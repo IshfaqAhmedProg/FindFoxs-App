@@ -2,7 +2,7 @@ import { createTheme } from "@mui/material";
 const theme = createTheme({
   typography: {
     fontFamily: [
-      "Montserrat",
+      "Inter",
       "-apple-system",
       "BlinkMacSystemFont",
       '"Segoe UI"',
