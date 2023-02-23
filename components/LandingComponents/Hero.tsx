@@ -2,10 +2,10 @@ import React from "react";
 import { TypeAnimation } from "react-type-animation";
 import { Inter } from "@next/font/google";
 const inter = Inter({ subsets: ["latin"] });
-export const Hero = () => {
+export const Hero = ({ text }: { text: string }) => {
   return (
     <div style={{ width: "60ch", height: "20ch" }} className={inter.className}>
-      <TypeAnimation
+      {/* <TypeAnimation
         cursor={false}
         sequence={[
           "Search Leads...",
@@ -29,6 +29,15 @@ export const Hero = () => {
         deletionSpeed={99}
         wrapper="h1"
         repeat={Infinity}
+      /> */}
+      <TypeAnimation
+        cursor={false}
+        sequence={[text + "...", 500, text + "..", 500, text + ".", 500]}
+        speed={70}
+        deletionSpeed={99}
+        wrapper="h1"
+        repeat={Infinity}
+        style={{ color: "var(--primary)" }}
       />
     </div>
   );

@@ -1,0 +1,24 @@
+{
+  "auth": [
+    {
+      "id": 1,
+      "name": "email",
+      "type": "text",
+      "placeholder": "Enter your email address",
+      "label": "Email Address",
+      "helperText": "Invalid email",
+      "required": true,
+      "pattern": "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$"
+    },
+    {
+      "id": 2,
+      "name": "password",
+      "type": "password",
+      "placeholder": "Enter your password",
+      "label": "Password",
+      "helperText": "Passwords should be 8-20 characters and include atleast 1 letter, 1 number and 1 special character",
+      "required": true,
+      "pattern": "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\\W)(?!.* ).{8,16}$"
+    }
+  ]
+}

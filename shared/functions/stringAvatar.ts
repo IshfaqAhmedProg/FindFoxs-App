@@ -20,7 +20,7 @@ function stringToColor(string: string) {
 export function stringAvatar(name: string) {
   return {
     sx: {
-      bgcolor: "var(--accentlight)",
+      bgcolor: "var(--primarylight)",
     },
     children: `${name.split(" ")[0][0]}${name.split(" ")[1][0]}`,
   };

@@ -1,7 +1,7 @@
 import Head from "next/head";
-import styles from "@/styles/Home.module.css";
 import Link from "next/link";
 import { Hero } from "@/components/LandingComponents/Hero";
+import styles from "@/styles/Home.module.css";
 
 export default function Home() {
   return (
@@ -16,7 +16,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <Hero />
+        <Hero text="Home" />
       </main>
     </>
   );
