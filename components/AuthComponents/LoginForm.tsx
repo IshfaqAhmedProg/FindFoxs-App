@@ -1,12 +1,12 @@
 import { useAuth } from "@/contexts/AuthContext";
-import { AuthCredentials } from "@/shared/interfaces/Authentication";
+import { FormCredentials } from "@/shared/interfaces/FormInputs";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useAuthLayout } from "./AuthLayout";
-import inputs from "../../shared/constants/inputs.json";
+import inputs from "@/shared/constants/inputs.json";
 import { Button, CircularProgress, Box, Divider } from "@mui/material";
 import { FormInput } from "@/components/FormComponents/FormInput";
-import google from "../../public/Logos/Extra/Google.svg";
+import google from "@/public/Logos/Extra/Google.svg";
 import Image from "next/image";
 import Typography from "@mui/material/Typography";
 import LoadingButton from "../LoadingButton/LoadingButton";
@@ -14,7 +14,7 @@ import LoginRoundedIcon from "@mui/icons-material/LoginRounded";
 export default function LoginForm() {
   const { handleError } = useAuthLayout();
   const { login, googleLogin } = useAuth();
-  const [values, setValues] = useState<AuthCredentials>({
+  const [values, setValues] = useState<FormCredentials>({
     email: "",
     password: "",
   });
@@ -98,7 +98,6 @@ export default function LoginForm() {
           <LoadingButton
             loading={loading}
             type="submit"
-            variant="outlined"
             size="large"
             startIcon={<Image src={google} alt="google logo" />}
           >

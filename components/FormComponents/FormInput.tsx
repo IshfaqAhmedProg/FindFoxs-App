@@ -19,9 +19,6 @@ export const FormInput = (props: any) => {
 
   function handleFocus(e: React.FocusEvent<HTMLInputElement>) {
     const pattern = new RegExp(inputProps.pattern);
-    // console.log(pattern);
-    // console.log(e.target.value);
-    // console.log(pattern.test(e.target.value));
     setWrongInput(!pattern.test(e.target.value) && e.target.value != "");
   }
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -38,32 +35,12 @@ export const FormInput = (props: any) => {
   );
   return (
     <FormControl>
-      <InputLabel
-        id={id}
-        color="secondary"
-        sx={{ color: "var(--primarylight)" }}
-      >
+      <InputLabel id={id} color="secondary">
         {inputProps.label}
       </InputLabel>
       <Input
         {...inputProps}
         error={wrongInput}
-        sx={{
-          width: "100%",
-          color: "var(--primarylight)",
-          ":hover:not(.Mui-disabled, .Mui-error)::before": {
-            borderBottom: "2px solid var(--accent)",
-          },
-          "::before": {
-            borderBottomColor: "var(--primarylight)",
-          },
-          "::after": {
-            height: "2px",
-            borderBottom: "none",
-            background:
-              "linear-gradient(90deg, var(--accent) 0%, var(--primary) 51%, var(--accent) 100%)",
-          },
-        }}
         onChange={onChange}
         onBlur={handleFocus}
         type={

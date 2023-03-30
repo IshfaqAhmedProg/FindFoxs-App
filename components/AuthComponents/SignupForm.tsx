@@ -1,5 +1,5 @@
 import { useAuth } from "@/contexts/AuthContext";
-import { AuthCredentials } from "@/shared/interfaces/Authentication";
+import { FormCredentials } from "@/shared/interfaces/FormInputs";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useAuthLayout } from "./AuthLayout";
@@ -10,11 +10,14 @@ import Typography from "@mui/material/Typography";
 
 import { Button, CircularProgress, Box, Divider } from "@mui/material";
 import { FormInput } from "@/components/FormComponents/FormInput";
+import LoadingButton from "../LoadingButton/LoadingButton";
+import HowToRegRoundedIcon from "@mui/icons-material/HowToRegRounded";
+
 export default function SignupForm() {
   const { handleError } = useAuthLayout();
 
   const { signup, googleSignup } = useAuth();
-  const [values, setValues] = useState<AuthCredentials>({
+  const [values, setValues] = useState<FormCredentials>({
     email: "",
     password: "",
   });
@@ -22,6 +25,7 @@ export default function SignupForm() {
   const router = useRouter();
   function handleSignUp(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    setLoading(true);
     signup(values.email, values.password)
       .then(() => {
         router.replace("/dashboard/newuser/1");
@@ -65,13 +69,15 @@ export default function SignupForm() {
               onChange={onChange}
             />
           ))}
-          <Button type="submit" variant="contained" disabled={loading}>
-            {loading ? (
-              <CircularProgress size={24} color="secondary" />
-            ) : (
-              "Signup"
-            )}
-          </Button>
+          <LoadingButton
+            loading={loading}
+            type="submit"
+            variant="contained"
+            disabled={loading}
+            endIcon={<HowToRegRoundedIcon />}
+          >
+            Sign up
+          </LoadingButton>
         </form>
         <Divider style={{ width: "100%" }}>or</Divider>
         <form
@@ -82,10 +88,15 @@ export default function SignupForm() {
             width: "100%",
           }}
         >
-          <Button type="submit" variant="outlined" size="large">
+          <LoadingButton
+            loading={loading}
+            type="submit"
+            variant="outlined"
+            size="large"
+            startIcon={<Image src={google} alt="google logo" />}
+          >
             Sign up with Google&nbsp;
-            <Image src={google} alt="google logo" />
-          </Button>
+          </LoadingButton>
         </form>
       </Box>
     </>

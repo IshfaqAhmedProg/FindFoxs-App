@@ -16,31 +16,34 @@ import { NavLinks } from "@/shared/interfaces/NavLinks";
 import { stringAvatar } from "@/shared/functions/stringAvatar";
 
 interface Props {
-  navLinks: Array<NavLinks>;
+  drawerItems: Array<NavLinks>;
   handleDrawerToggle: any;
 }
-export const NavDrawer = ({ navLinks, handleDrawerToggle }: Props) => {
+export const NavDrawer = ({ drawerItems, handleDrawerToggle }: Props) => {
   return (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-      <Box sx={{ my: 3, mx: "auto", width: "fit-content" }}>
-        <Avatar
-          {...stringAvatar("Ishfaq Ahmed")}
-          sx={{ width: 60, height: 60 }}
-        />
-      </Box>
-      <Divider />
+
       <List>
-        {navLinks.map((item: NavLinks) => (
-          <ListItem key={item.name} disablePadding>
-            <ListItemButton
-              href={item.goto}
-              sx={{ color: "var(--accentlight)" }}
-            >
-              <ListItemAvatar>{item.icon}</ListItemAvatar>
-              <ListItemText primary={item.name} />
-            </ListItemButton>
-          </ListItem>
-        ))}
+        {drawerItems.map((item: NavLinks) => {
+          return (
+            <ListItem key={item.name} disablePadding>
+              {item.goto ? (
+                <ListItemButton
+                  href={item.goto}
+                  sx={{ color: "var(--accentlight)" }}
+                >
+                  <ListItemAvatar>{item.icon}</ListItemAvatar>
+                  <ListItemText primary={item.name} />
+                </ListItemButton>
+              ) : (
+                <>
+                  <ListItemAvatar>{item.icon}</ListItemAvatar>
+                  <ListItemText primary={item.name} />
+                </>
+              )}
+            </ListItem>
+          );
+        })}
       </List>
     </Box>
   );

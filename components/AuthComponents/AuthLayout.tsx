@@ -27,7 +27,7 @@ export const AuthLayoutProvider = ({
   }, [checked]);
   const background = (
     <Image
-      src="https://source.unsplash.com/random/1280x720/?blue,ocean,beach"
+      src="https://source.unsplash.com/random/1280x720/?fox"
       width={1920}
       height={1080}
       alt="background"

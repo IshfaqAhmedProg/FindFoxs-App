@@ -1,7 +1,7 @@
-export interface AuthCredentials {
+export interface FormCredentials {
   [key: string]: string;
 }
-export interface AuthInputs {
+export interface FormInput {
   id: number;
   name: string;
   type: string;

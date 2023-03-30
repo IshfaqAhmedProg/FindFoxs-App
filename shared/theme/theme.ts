@@ -1,5 +1,45 @@
 import { createTheme } from "@mui/material";
 const theme = createTheme({
+  components: {
+    MuiInputLabel: {
+      styleOverrides: {
+        root: { color: "var(--primarylight)", fontSize: ".875rem" },
+      },
+    },
+    MuiInput: {
+      styleOverrides: {
+        root: {
+          width: "100%",
+          color: "var(--primarylight)",
+          ":hover:not(.Mui-disabled, .Mui-error)::before": {
+            borderBottom: "2px solid var(--accent)",
+          },
+          "::before": {
+            borderBottomColor: "var(--primarylight)",
+          },
+          "::after": {
+            height: "2px",
+            borderBottom: "none",
+            background:
+              "linear-gradient(90deg, var(--accent) 0%, var(--primary) 51%, var(--accent) 100%)",
+          },
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: "var(--border-radius)",
+          boxShadow: "var(--box-shadow)",
+          paddingInline: "1.2em",
+          paddingBlock: "0.65em",
+          ":hover": {
+            boxShadow: "var(--box-shadow-hover)",
+          },
+        },
+      },
+    },
+  },
   palette: {
     primary: {
       main: "#303f9f",
@@ -24,10 +64,11 @@ const theme = createTheme({
       fontWeight: "bold",
     },
     fontFamily: [
-      "Inter",
+      '"Montserrat"',
       "-apple-system",
       "BlinkMacSystemFont",
       '"Segoe UI"',
+      "Roboto",
       '"Helvetica Neue"',
       "Arial",
       "sans-serif",

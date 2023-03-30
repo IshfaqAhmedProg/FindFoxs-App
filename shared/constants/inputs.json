@@ -20,5 +20,25 @@
       "required": true,
       "pattern": "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\\W)(?!.* ).{8,16}$"
     }
+  ],
+  "getintouch": [
+    {
+      "id": 1,
+      "name": "Name",
+      "type": "text",
+      "placeholder": "Enter your name",
+      "label": "Name",
+      "helperText": "Invalid name",
+      "required": true
+    },
+    {
+      "id": 2,
+      "name": "email",
+      "type": "text",
+      "placeholder": "Enter your email address",
+      "label": "Email Address",
+      "helperText": "Invalid email",
+      "required": true
+    }
   ]
 }

@@ -1,7 +1,14 @@
 import Head from "next/head";
 import Link from "next/link";
-import { Hero } from "@/components/LandingComponents/Hero";
+import { HeroSection } from "@/components/LandingComponents/HeroSection";
 import styles from "@/styles/Home.module.css";
+import FeaturesSection from "@/components/LandingComponents/FeaturesSection";
+import { Stack } from "@mui/material";
+import ToolsSection from "@/components/LandingComponents/ToolsSection";
+import FAQsection from "@/components/LandingComponents/FAQsection";
+import GetInTouchSection from "@/components/LandingComponents/GetInTouchSection";
+import Footer from "@/components/LandingComponents/Footer";
+import Cursor from "@/components/LandingComponents/Cursor";
 
 export default function Home() {
   return (
@@ -16,7 +23,20 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <Hero text="Home" />
+        <Cursor />
+        <Stack
+          gap="5rem"
+          justifyContent="flex-start"
+          alignItems="center"
+          width="100%"
+        >
+          <HeroSection />
+          <FeaturesSection />
+          <ToolsSection />
+          <FAQsection />
+          <GetInTouchSection />
+          <Footer />
+        </Stack>
       </main>
     </>
   );

@@ -124,7 +124,7 @@ export default function UserControls({ container }: { container: any }) {
         }}
       >
         <NavDrawer
-          navLinks={navLinks}
+          drawerItems={navLinks}
           handleDrawerToggle={handleDrawerToggle}
         />
       </SwipeableDrawer>

@@ -6,9 +6,9 @@ export const SearchBar = () => {
   const Search = styled("div")(({ theme }) => ({
     position: "relative",
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha("#e9e9e9", 0.3),
+    backgroundColor: alpha("#e9e9e9", 0),
     "&:hover": {
-      backgroundColor: alpha("#848fd6", 0.3),
+      backgroundColor: alpha("#848fd6", 0),
     },
     marginLeft: 0,
     width: "100%",
@@ -29,22 +29,23 @@ export const SearchBar = () => {
   const StyledInputBase = styled(InputBase)(({ theme }) => ({
     color: "#303f9f",
     "& .MuiInputBase-input": {
-      padding: theme.spacing(1, 1, 1, 0),
       // vertical padding + font size from searchIcon
+      padding: theme.spacing(1, 1, 1, 0),
       paddingLeft: `calc(1em + ${theme.spacing(4)})`,
       transition: theme.transitions.create("width"),
       width: "100%",
       [theme.breakpoints.up("sm")]: {
-        width: "20ch",
+        width: "0",
+        transformOrigin: "right",
         "&:focus": {
-          width: "25ch",
+          width: "18ch",
         },
       },
     },
   }));
   return (
     <Search>
-      <SearchIconWrapper>
+      <SearchIconWrapper sx={{ padding: "0" }}>
         <SearchIcon color="secondary" />
       </SearchIconWrapper>
       <StyledInputBase
