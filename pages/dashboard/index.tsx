@@ -5,7 +5,7 @@ export default function Dashboard() {
   return (
     <main className={styles.main}>
       <Cursor />
-      <HeroSection text="Dashboard" />
+      <HeroSection />
     </main>
   );
 }
