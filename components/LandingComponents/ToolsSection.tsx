@@ -70,7 +70,7 @@ export default function ToolsSection() {
         flexWrap="wrap"
       >
         {toolsList.map((tool) => (
-          <Tool tool={tool} />
+          <Tool tool={tool} key={tool.title} />
         ))}
       </Stack>
     </>
