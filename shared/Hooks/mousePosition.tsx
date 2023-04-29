@@ -9,9 +9,9 @@ const useMousePosition = ({ includeTouch }: { includeTouch: Boolean }) => {
       let x, y;
       if (ev.touches) {
         const touch = ev.touches[0];
-        [x, y] = [touch.clientX, touch.clientY + window.pageYOffset];
+        [x, y] = [touch.clientX, touch.clientY];
       } else {
-        [x, y] = [ev.clientX, ev.clientY + window.pageYOffset];
+        [x, y] = [ev.clientX, ev.clientY];
       }
       setMousePosition({ x, y });
     };

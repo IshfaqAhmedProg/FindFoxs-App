@@ -22,8 +22,8 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/Logos/Favicon.svg" />
       </Head>
+      <Cursor />
       <main className={styles.main}>
-        <Cursor />
         <Stack
           gap="5rem"
           justifyContent="flex-start"

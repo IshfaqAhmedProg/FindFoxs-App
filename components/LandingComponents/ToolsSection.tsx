@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { Stack } from "@mui/material";
+import { Stack, Tooltip } from "@mui/material";
 import Typography from "@mui/material/Typography";
 
 import EmailAddressValidatorImage from "@/public/Icons/EmailAddressValidator.svg";
@@ -48,7 +48,19 @@ export default function ToolsSection() {
     return (
       <Stack alignItems="center" gap="1.4375rem" maxWidth="15em">
         <Image src={tool.image} alt={tool.title} />
-        <h3>{tool.title}</h3>
+        <Tooltip title={tool.title}>
+          <h3
+            style={{
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              display: "-webkit-box",
+              WebkitLineClamp: "2",
+              WebkitBoxOrient: "vertical",
+            }}
+          >
+            {tool.title}
+          </h3>
+        </Tooltip>
         <Typography textAlign="center" width="25ch">
           {tool.desc} <Link href="/">Learn More...</Link>
         </Typography>

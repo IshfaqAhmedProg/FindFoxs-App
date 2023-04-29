@@ -10,10 +10,10 @@ export const SearchBar = () => {
     "&:hover": {
       backgroundColor: alpha("#848fd6", 0),
     },
-    marginLeft: 0,
+    // marginLeft: 0,
     width: "100%",
     [theme.breakpoints.up("sm")]: {
-      marginLeft: theme.spacing(1),
+      // marginLeft: theme.spacing(1),
       width: "auto",
     },
   }));
@@ -30,7 +30,7 @@ export const SearchBar = () => {
     color: "#303f9f",
     "& .MuiInputBase-input": {
       // vertical padding + font size from searchIcon
-      padding: theme.spacing(1, 1, 1, 0),
+      // padding: theme.spacing(1, 1, 1, 0),
       paddingLeft: `calc(1em + ${theme.spacing(4)})`,
       transition: theme.transitions.create("width"),
       width: "100%",

@@ -7,12 +7,13 @@ import HeroImage from "@/public/Images/HeroImage.png";
 export const HeroSection = () => {
   return (
     <Box
-      height="100vh"
       width="100%"
       flexDirection="column"
       display="flex"
       alignItems="center"
       justifyContent="space-around"
+      gap="2.5rem"
+      sx={{ paddingTop: { xs: "3rem", md: "0" } }}
     >
       <Typography variant="h1" textAlign="center">
         Accelerate Your
@@ -27,7 +28,7 @@ export const HeroSection = () => {
         <Button
           size="large"
           color="primary"
-          sx={{ fontSize: "1.1em", background: "white" }}
+          sx={{ fontSize: "var(--buttonimpact)", background: "white" }}
         >
           Try for free
         </Button>
@@ -36,13 +37,19 @@ export const HeroSection = () => {
           size="large"
           variant="contained"
           sx={{
-            fontSize: "1.1em",
+            fontSize: "var(--buttonimpact)",
           }}
         >
           Watch a video
         </Button>
       </Box>
-      <Image src={HeroImage} alt="Scrape fox. Your one stop for leads needs!" />
+      <Box sx={{ width: { xs: "90vw", md: "fit-content" } }}>
+        <Image
+          style={{ width: "100%", maxWidth: "54.0625rem", height: "auto" }}
+          src={HeroImage}
+          alt="Scrape fox. Your one stop for leads needs!"
+        />
+      </Box>
     </Box>
   );
 };

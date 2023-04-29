@@ -17,7 +17,7 @@ export default function ContactForm() {
   return (
     <form>
       <Stack justifyContent="center" gap="1.5rem">
-        <Stack direction="row" gap="1rem">
+        <Stack direction="row" justifyContent="space-between" gap="1.5rem">
           {inputs.getintouch.map((input) => (
             <FormInput
               key={input.id}

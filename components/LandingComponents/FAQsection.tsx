@@ -48,7 +48,7 @@ export default function FAQsection() {
         <br />
         <span>Questions</span>
       </h2>
-      <Stack maxWidth="60vw" gap=".875rem">
+      <Stack maxWidth="60vw" minWidth="350px" gap=".875rem">
         {faq.map((element) => {
           return (
             <Accordion
@@ -69,10 +69,7 @@ export default function FAQsection() {
                 aria-controls={element.id + "-content"}
                 id={element.id + "-header"}
               >
-                <Typography
-                  sx={{ width: "33%", flexShrink: 0 }}
-                  color="primary"
-                >
+                <Typography sx={{ flexShrink: 0 }} color="primary">
                   {element.question}
                 </Typography>
               </AccordionSummary>

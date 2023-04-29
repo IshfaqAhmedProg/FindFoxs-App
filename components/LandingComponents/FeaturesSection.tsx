@@ -1,5 +1,5 @@
 import React from "react";
-import { Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import SearchForLeadsImage from "@/public/Images/SearchForLeads.png";
 import EngageWithLeadsImage from "@/public/Images/EngageWithLeads.png";
@@ -47,20 +47,25 @@ export default function FeaturesSection() {
           gap: { md: "12rem", sm: "2rem", xs: "2rem" },
         }}
       >
-        <Stack alignItems="flex-start" gap="1.0625rem">
+        <Stack alignItems="center" gap="1.0625rem">
           <h2>
             <span>{highlighted}</span> {title}
           </h2>
-          <Typography
-            sx={{
-              width: "30ch",
-              textAlign: { md: "left", sm: "center", xs: "center" },
-            }}
-          >
+          <Typography width="30ch" textAlign="center">
             {desc}
           </Typography>
         </Stack>
-        <Image src={image} alt={`${highlighted} ${title}`} />
+        <Box
+          sx={{ width: { xs: "100%", md: "50%" } }}
+          display="flex"
+          justifyContent="center"
+        >
+          <Image
+            src={image}
+            alt={`${highlighted} ${title}`}
+            style={{ width: "100%", maxWidth: "25rem", height: "auto" }}
+          />
+        </Box>
       </Stack>
     );
   };
@@ -85,7 +90,11 @@ export default function FeaturesSection() {
         Add Scrapefox to your websites to manage leads that come from your
         website and to generate new leads.
       </Typography>
-      <Image src={CRMCapableImage} alt="Complete modern CRM capabilities" />
+      <Image
+        style={{ width: "100%", maxWidth: "34.625rem", height: "auto" }}
+        src={CRMCapableImage}
+        alt="Complete modern CRM capabilities"
+      />
     </Stack>
   );
 }
