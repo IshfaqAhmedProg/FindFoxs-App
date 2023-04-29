@@ -78,7 +78,12 @@ export default function NavBar(props: Props) {
     </Box>
   );
   const landingLinks = (
-    <Stack direction="row" spacing={3} fontWeight="bold">
+    <Stack
+      direction="row"
+      spacing={3}
+      fontWeight="bold"
+      sx={{ display: { md: "flex", xs: "none" }, alignItems: "center" }}
+    >
       <Link href="/features">Features</Link>
       <Link href="/pricing">Pricing</Link>
       <Link href="/about">About</Link>
@@ -110,7 +115,7 @@ export default function NavBar(props: Props) {
               ? {
                   display: "flex",
                   justifyContent: "space-between",
-                  paddingTop: "3.2em",
+                  paddingTop: "5vh",
                   paddingInline: "7vw",
                 }
               : {
