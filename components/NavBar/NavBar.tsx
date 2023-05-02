@@ -6,18 +6,17 @@ import { useRouter } from "next/router";
 import {
   AppBar,
   Box,
-  Slide,
   SwipeableDrawer,
   Toolbar,
   Tooltip,
-  useScrollTrigger,
   Stack,
 } from "@mui/material";
 
-import { NavLinks } from "@/shared/interfaces/NavLinks";
+import { NavLinks } from "@/shared/interfaces/Links";
 import { SearchBar } from "./SearchBar";
 import { NavDrawer } from "./NavDrawer";
 import UserControls from "./UserControls";
+import HideOnScroll from "../HideOnScroll/HideOnScroll";
 
 import { useAuth } from "@/contexts/AuthContext";
 
@@ -25,32 +24,22 @@ import Logo from "../../public/Logos/ScrapeFoxLogo.svg";
 import LoginRoundedIcon from "@mui/icons-material/LoginRounded";
 interface Props {
   window?: () => Window;
-  children: React.ReactElement;
 }
-function HideOnScroll(props: Props) {
-  const { children, window } = props;
-  // Note that you normally won't need to set the window ref as useScrollTrigger
-  // will default to window.
-  // This is only being set here because the demo is in an iframe.
-  const trigger = useScrollTrigger({
-    target: window ? window() : undefined,
-  });
 
-  return (
-    <Slide appear={false} direction="down" in={!trigger}>
-      {children}
-    </Slide>
-  );
-}
 export default function NavBar(props: Props) {
   const { window } = props;
   const { user } = useAuth();
   const router = useRouter();
   const [drawerToggle, setDrawerToggle] = useState(false);
   const drawerWidth = 240;
-  const drawerItems: Array<NavLinks> = [
+  const authLinks: Array<NavLinks> = [
     { name: "Login", goto: "/auth/login" },
     { name: "Signup", goto: "/auth/signup" },
+  ];
+  const pagesLinks: Array<NavLinks> = [
+    { name: "Features", goto: "/features" },
+    { name: "Pricing", goto: "/pricing" },
+    { name: "About", goto: "/about" },
   ];
   function handleDrawerToggle() {
     setDrawerToggle((prev) => !prev);
@@ -59,8 +48,11 @@ export default function NavBar(props: Props) {
     window !== undefined ? () => window().document.body : undefined;
   const loginSignupBox = (
     <Box
-      gap="1.5rem"
-      sx={{ display: { md: "flex", xs: "none" }, alignItems: "center" }}
+      sx={{
+        display: { md: "flex", xs: "none" },
+        alignItems: "center",
+        gap: { sm: 0.5, md: 1 },
+      }}
     >
       {router.pathname != "/auth/signup" && (
         <Link href="/auth/signup" style={{ fontWeight: "bold" }}>
@@ -68,13 +60,13 @@ export default function NavBar(props: Props) {
         </Link>
       )}
       {router.pathname != "/auth/login" && (
-        <Tooltip title="Login">
-          <Link href="/auth/login">
-            <LoginRoundedIcon sx={{ color: "var(--accent)" }} />
-          </Link>
-        </Tooltip>
+        <Link href="/auth/login">
+          <Tooltip title="Login">
+            <LoginRoundedIcon />
+          </Tooltip>
+        </Link>
       )}
-      <SearchBar />
+      {/* <SearchBar /> */}
     </Box>
   );
   const landingLinks = (
@@ -84,9 +76,13 @@ export default function NavBar(props: Props) {
       fontWeight="bold"
       sx={{ display: { md: "flex", xs: "none" }, alignItems: "center" }}
     >
-      <Link href="/features">Features</Link>
-      <Link href="/pricing">Pricing</Link>
-      <Link href="/about">About</Link>
+      {pagesLinks.map((link) => {
+        return (
+          <Link key={link.name} href={link.goto}>
+            {link.name}
+          </Link>
+        );
+      })}
     </Stack>
   );
   return (
@@ -103,7 +99,6 @@ export default function NavBar(props: Props) {
               background:
                 "linear-gradient(180deg, #E3EAFF 0%, rgba(255, 255, 255, 0) 100%)",
               boxShadow: "none",
-              paddingBottom: "1.5rem",
             }
       }
       elevation={1}
@@ -116,18 +111,19 @@ export default function NavBar(props: Props) {
                   display: "flex",
                   justifyContent: "space-between",
                   paddingTop: "5vh",
-                  paddingInline: "7vw",
+                  paddingInline: "5%",
                 }
               : {
                   display: "flex",
                   justifyContent: "space-between",
+                  paddingInline: "5%",
                 }
           }
           disableGutters
         >
           <Box
             sx={{
-              width: "181px",
+              width: { xs: "120px", sm: "181px" },
               minHeight: "36px",
               height: "auto",
               position: "relative",
@@ -170,7 +166,7 @@ export default function NavBar(props: Props) {
         }}
       >
         <NavDrawer
-          drawerItems={drawerItems}
+          drawerItems={authLinks}
           handleDrawerToggle={handleDrawerToggle}
         />
       </SwipeableDrawer>

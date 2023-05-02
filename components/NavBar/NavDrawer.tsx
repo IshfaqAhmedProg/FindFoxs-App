@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 import Logo from "../../public/Logos/VerifyFoxLogo.svg";
-import { NavLinks } from "@/shared/interfaces/NavLinks";
+import { NavLinks } from "@/shared/interfaces/Links";
 import { stringAvatar } from "@/shared/functions/stringAvatar";
 
 interface Props {

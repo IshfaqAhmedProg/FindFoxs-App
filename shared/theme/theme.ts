@@ -39,6 +39,76 @@ const theme = createTheme({
         },
       },
     },
+
+    MuiSvgIcon: {
+      styleOverrides: {
+        root: {
+          color: "var(--primarylight)",
+          fontSize: 25,
+        },
+      },
+    },
+    MuiMenuItem: {
+      styleOverrides: {
+        root: {
+          color: "var(--graydark)",
+          fontSize: 14,
+          "& .MuiSvgIcon-root": {
+            fontSize: 20,
+            color: "var(--graylight)",
+          },
+        },
+      },
+    },
+    MuiMenu: {
+      defaultProps: {
+        PaperProps: {
+          elevation: 0,
+          sx: {
+            borderRadius: "var(--border-radius)",
+            overflow: "visible",
+            filter: "drop-shadow(var(--box-shadow))",
+            mt: 1.5,
+            "& .MuiAvatar-root": {
+              width: 32,
+              height: 32,
+              ml: -0.5,
+              mr: 1,
+            },
+          },
+        },
+      },
+    },
+    MuiCard: {
+      defaultProps: {
+        elevation: 0,
+        sx: {
+          borderRadius: "var(--border-radius)",
+          overflowY: "auto",
+          boxShadow: "var(--box-shadow)",
+        },
+      },
+    },
+    MuiCardHeader: {
+      defaultProps: {
+        titleTypographyProps: {
+          sx: {
+            fontSize: { sm: ".75rem", md: ".875rem" },
+            fontWeight: "bold",
+            color: "var(--primarydark)",
+          },
+        },
+      },
+    },
+    MuiAvatar: {
+      styleOverrides: {
+        root: {
+          width: 35,
+          height: 35,
+          fontSize: 14,
+        },
+      },
+    },
   },
   palette: {
     primary: {
@@ -76,6 +146,25 @@ const theme = createTheme({
       '"Segoe UI Emoji"',
       '"Segoe UI Symbol"',
     ].join(","),
+    body1: {
+      fontSize: 14, // replace with your desired font size
+    },
+    h3: {
+      margin: "0",
+      fontStyle: "normal",
+      fontWeight: "700",
+      fontSize: "var(--h3)",
+      lineHeight: "124.5%",
+      color: "var(--primary)",
+    },
+    h4: {
+      margin: "0",
+      fontStyle: "normal",
+      fontWeight: "700",
+      fontSize: "20px",
+      lineHeight: "124.5%",
+      color: "var(--graylight)",
+    },
   },
 });
 export default theme;
