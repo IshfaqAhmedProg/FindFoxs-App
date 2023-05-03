@@ -145,7 +145,7 @@ export default function NavBar(props: Props) {
           {user ? <UserControls container={container} /> : loginSignupBox}
         </Toolbar>
       </HideOnScroll>
-
+{/* 
       <SwipeableDrawer
         anchor="right"
         container={container}
@@ -169,7 +169,7 @@ export default function NavBar(props: Props) {
           drawerItems={authLinks}
           handleDrawerToggle={handleDrawerToggle}
         />
-      </SwipeableDrawer>
+      </SwipeableDrawer> */}
     </AppBar>
   );
 }

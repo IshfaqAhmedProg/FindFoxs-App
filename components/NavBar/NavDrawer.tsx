@@ -14,6 +14,7 @@ import Image from "next/image";
 import Logo from "../../public/Logos/VerifyFoxLogo.svg";
 import { NavLinks } from "@/shared/interfaces/Links";
 import { stringAvatar } from "@/shared/functions/stringAvatar";
+import Link from "next/link";
 
 interface Props {
   drawerItems: Array<NavLinks>;
@@ -22,19 +23,17 @@ interface Props {
 export const NavDrawer = ({ drawerItems, handleDrawerToggle }: Props) => {
   return (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-
       <List>
         {drawerItems.map((item: NavLinks) => {
           return (
             <ListItem key={item.name} disablePadding>
               {item.goto ? (
-                <ListItemButton
-                  href={item.goto}
-                  sx={{ color: "var(--accentlight)" }}
-                >
-                  <ListItemAvatar>{item.icon}</ListItemAvatar>
-                  <ListItemText primary={item.name} />
-                </ListItemButton>
+                <Link href={item.goto}>
+                  <ListItemButton sx={{ color: "var(--accentlight)" }}>
+                    <ListItemAvatar>{item.icon}</ListItemAvatar>
+                    <ListItemText primary={item.name} />
+                  </ListItemButton>
+                </Link>
               ) : (
                 <>
                   <ListItemAvatar>{item.icon}</ListItemAvatar>
