@@ -57,6 +57,7 @@ export default function LeadConversion() {
           {leadConversionDetails.map((detail) => {
             return (
               <HorizontalProgress
+                key={detail.title}
                 value={detail.value}
                 full={true}
                 maxValue={detail.maxValue}
