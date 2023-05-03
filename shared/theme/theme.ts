@@ -80,12 +80,13 @@ const theme = createTheme({
       },
     },
     MuiCard: {
-      defaultProps: {
-        elevation: 0,
-        sx: {
+      styleOverrides: {
+        root: {
           borderRadius: "var(--border-radius)",
           overflowY: "auto",
           boxShadow: "var(--box-shadow)",
+          display: "flex",
+          flexDirection: "column",
         },
       },
     },
@@ -148,6 +149,10 @@ const theme = createTheme({
     ].join(","),
     body1: {
       fontSize: 14, // replace with your desired font size
+    },
+    body2: {
+      fontSize: 14, // replace with your desired font size
+      color: "var(--primary)",
     },
     h3: {
       margin: "0",

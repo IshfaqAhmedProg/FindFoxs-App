@@ -26,12 +26,12 @@ export default function SideBar({ toggle, handleToggle }: Props) {
   const sidebarContent: Array<SideBarLinks> = [
     {
       name: "Dashboard",
-      icon: <DashboardIcon color="var(--accent)" />,
+      icon: <DashboardIcon />,
       goto: "/dashboard",
     },
     {
       name: "Leads",
-      icon: <LeadsIcon color="var(--accent)" />,
+      icon: <LeadsIcon />,
       goto: "",
       children: [
         { name: "Search Leads", goto: "/" },
@@ -41,7 +41,7 @@ export default function SideBar({ toggle, handleToggle }: Props) {
     },
     {
       name: "Tools",
-      icon: <ToolsIcon color="var(--accent)" />,
+      icon: <ToolsIcon />,
       goto: "",
       children: [
         { name: "Email Validator", goto: "/" },
@@ -53,12 +53,12 @@ export default function SideBar({ toggle, handleToggle }: Props) {
     },
     {
       name: "Tasks",
-      icon: <TaskOutlinedIcon sx={{ color: "var(--accent)" }} />,
+      icon: <TaskOutlinedIcon />,
       goto: "/",
     },
     {
       name: "Settings",
-      icon: <SettingsOutlinedIcon sx={{ color: "var(--accent)" }} />,
+      icon: <SettingsOutlinedIcon />,
       goto: "/",
     },
   ];

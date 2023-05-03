@@ -38,10 +38,12 @@ export default function DashboardLayout({
         </Typography>
         <Box
           width="100%"
-          height="100%"
           sx={{ overflowY: "auto", overflowX: "visible" }}
           pt={1}
           px={1.5}
+          display="grid"
+          gridTemplateColumns="1fr 1fr"
+          gap={2}
         >
           {children}
         </Box>
