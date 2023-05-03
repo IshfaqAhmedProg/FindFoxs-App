@@ -3,7 +3,7 @@ import DashboardCardsLayout from "./DashboardCardsLayout";
 import CircularProgress from "@/components/ProgressBars/CircularProgress";
 import { Box, Stack, Typography } from "@mui/material";
 import HorizontalProgress from "@/components/ProgressBars/HorizontalProgress";
-export default function LeadConversion() {
+export default function LeadConversionCard() {
   const conversionPercentage = 85;
   const leadConversionDetails = [
     {
@@ -37,6 +37,7 @@ export default function LeadConversion() {
         direction="row"
         flexWrap="wrap"
         justifyContent="center"
+        alignItems="center"
         marginY="auto"
         gap={4}
       >

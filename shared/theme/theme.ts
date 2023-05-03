@@ -94,7 +94,7 @@ const theme = createTheme({
       defaultProps: {
         titleTypographyProps: {
           sx: {
-            fontSize: { sm: ".75rem", md: ".875rem" },
+            fontSize: { xs: "0.875rem", sm: ".75rem", md: ".875rem" },
             fontWeight: "bold",
             color: "var(--primarydark)",
           },

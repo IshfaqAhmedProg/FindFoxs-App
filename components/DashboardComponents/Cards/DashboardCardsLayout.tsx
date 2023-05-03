@@ -19,7 +19,13 @@ export default function DashboardCardsLayout({
   minHeight,
 }: Props) {
   return (
-    <Card sx={{ minHeight: minHeight, overflowY: "hidden" }}>
+    <Card
+      sx={{
+        minHeight: minHeight,
+        overflowY: "hidden",
+        gridRowStart: "span 2",
+      }}
+    >
       <CardHeader
         action={
           <Button
@@ -38,7 +44,7 @@ export default function DashboardCardsLayout({
               <ReadMoreRoundedIcon sx={{ color: "var(--graylight)" }} />
             }
           >
-            View All
+            See More
           </Button>
         }
         title={title}
