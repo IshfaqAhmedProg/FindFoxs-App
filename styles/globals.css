@@ -53,6 +53,13 @@ a:hover {
   width: 5px;
   height: 5px;
 }
+.trailingText {
+  color: var(--primarylight);
+  font-weight: 400;
+}
+.muted {
+  color: var(--graylight);
+}
 h1 {
   margin: 0;
   font-style: normal;

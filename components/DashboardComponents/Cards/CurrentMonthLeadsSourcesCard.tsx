@@ -21,19 +21,19 @@ export default function CurrentMonthLeadsSourcesCard(props: Props) {
   });
   return (
     <DashboardCardsLayout title="Current Month Leads Sources" minHeight="430px">
-      <Box color="white">
+      <Box color="white" display="flex" justifyContent="center">
         <PieChart
           label={({ dataEntry }) =>
             dataEntry.title + "\n" + dataEntry.value + "%"
           }
           labelStyle={{
-            fontSize: "3px",
+            fontSize: "2px",
             fill: "white",
             pointerEvents: "none",
           }}
           labelPosition={70}
           data={data}
-          radius={40}
+          radius={28}
           segmentsStyle={{ transition: "stroke .4s ease", cursor: "pointer" }}
           segmentsShift={(index) => (index === hovered ? 2 : 1)}
           onClick={(event, index) => {

@@ -20,10 +20,9 @@ export default function SingleStatCard({ title, stat, total }: Props) {
       minHeight="6.875rem"
     >
       <Typography
+        variant="h5"
         sx={{
           fontSize: { sm: ".75rem", md: ".875rem" },
-          fontWeight: "bold",
-          color: "var(--primarydark)",
           position: "absolute",
           top: "10%",
           left: "10%",
@@ -33,9 +32,8 @@ export default function SingleStatCard({ title, stat, total }: Props) {
       </Typography>
       <Typography fontSize="250%" variant="h3" color="secondary">
         {stat}
-        <span style={{ color: "var(--graylight)" }}>
-          {total && `/${total}`}
-        </span>
+        {total && "/"}
+        {total && <span className="muted">{total}</span>}
       </Typography>
     </Box>
   );

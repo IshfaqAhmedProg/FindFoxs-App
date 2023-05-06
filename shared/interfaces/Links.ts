@@ -10,4 +10,5 @@ export interface NavLinks extends SimpleLink {
 }
 export interface SideBarLinks extends NavLinks {
   children?: Array<SimpleLink>;
+  expanded?: boolean;
 }

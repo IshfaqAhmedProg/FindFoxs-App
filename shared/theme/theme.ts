@@ -170,6 +170,11 @@ const theme = createTheme({
       lineHeight: "124.5%",
       color: "var(--graylight)",
     },
+    h5: {
+      fontSize: "0.875rem",
+      fontWeight: "bold",
+      color: "var(--primarydark)",
+    },
   },
 });
 export default theme;

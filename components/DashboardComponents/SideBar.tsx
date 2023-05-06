@@ -3,6 +3,7 @@ import {
   IconButton,
   List,
   ListItemButton,
+  ListItemText,
   Typography,
 } from "@mui/material";
 import React from "react";
@@ -34,7 +35,7 @@ export default function SideBar({ toggle, handleToggle }: Props) {
       icon: <LeadsIcon />,
       goto: "",
       children: [
-        { name: "Search Leads", goto: "/" },
+        { name: "Search Leads", goto: "/searchLeads" },
         { name: "Manage Your Leads", goto: "/" },
         { name: "Engage with Leads", goto: "/" },
       ],
@@ -66,19 +67,26 @@ export default function SideBar({ toggle, handleToggle }: Props) {
     return (
       <>
         <ListItemButton
-          sx={{ gap: "1rem" }}
+          sx={{ gap: "1rem", paddingRight: "10px" }}
           selected={router.pathname === content.goto}
+          onClick={() => router.push(content.goto)}
         >
           {content.icon}
-          <Typography
-            sx={{
-              fontWeight: "bold",
-              fontSize: "1rem",
-              color: "var(--primarydark)",
-            }}
-          >
-            {content.name}
-          </Typography>
+          <ListItemText
+            disableTypography
+            primary={
+              <Typography
+                sx={{
+                  fontWeight: "bold",
+                  fontSize: "1rem",
+                  color: "var(--primarydark)",
+                }}
+              >
+                {content.name}
+              </Typography>
+            }
+          />
+          {toggle && content.icon}
         </ListItemButton>
         {content.children?.length != 0 && (
           <List disablePadding>
@@ -96,6 +104,7 @@ export default function SideBar({ toggle, handleToggle }: Props) {
         key={child.name}
         sx={{ marginLeft: "3rem" }}
         selected={router.pathname === child.goto}
+        onClick={() => router.push(child.goto)}
       >
         <Typography
           color={"var(--primary)"}
