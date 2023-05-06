@@ -6,7 +6,7 @@ type Props = {
   data: ComponentProps<typeof PieChart>["data"];
 };
 
-export default function CurrentMonthLeadsSourcesCard(props: Props) {
+export default function LeadsSourcesCard(props: Props) {
   const [selected, setSelected] = useState<number | undefined>(0);
   const [hovered, setHovered] = useState<number | undefined>(undefined);
 
@@ -20,7 +20,7 @@ export default function CurrentMonthLeadsSourcesCard(props: Props) {
     return entry;
   });
   return (
-    <DashboardCardsLayout title="Current Month Leads Sources" minHeight="430px">
+    <DashboardCardsLayout title="Leads Sources" minHeight="430px">
       <Box color="white" display="flex" justifyContent="center">
         <PieChart
           label={({ dataEntry }) =>

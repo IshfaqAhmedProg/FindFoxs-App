@@ -12,6 +12,8 @@ import { Bar } from "react-chartjs-2";
 import DashboardCardsLayout from "./DashboardCardsLayout";
 import { Stack, Typography, AvatarGroup, Avatar, Tooltip } from "@mui/material";
 import Stats, { Stat } from "@/shared/interfaces/Stats";
+import SingleStatSmall from "@/components/DisplayStats/SingleStatSmall";
+import SingleStatBig from "@/components/DisplayStats/SingleStatBig";
 
 ChartJS.register(
   CategoryScale,
@@ -77,76 +79,41 @@ const statData: Array<Stats> = [
   {
     statTitle: "Most emails sent",
     statTitleTrailing: "this month",
-    stats: [{ title: "John Bradley", stat: "80", statTrailing: "emails" }],
+    stats: [{ title: "John Bradley", stat: "80", statUnit: "emails" }],
   },
   {
     statTitle: "Most calls made",
     statTitleTrailing: "this month",
     stats: [
-      { title: "John Bradley", stat: "80", statTrailing: "calls" },
-      { title: "Peter Petely", stat: "70", statTrailing: "calls" },
-      { title: "Weter Wetely", stat: "58", statTrailing: "calls" },
+      { title: "John Bradley", stat: "80", statUnit: "calls" },
+      { title: "Peter Petely", stat: "70", statUnit: "calls" },
+      { title: "Weter Wetely", stat: "58", statUnit: "calls" },
     ],
   },
   {
     statTitle: "Most new leads added",
     statTitleTrailing: "this month",
     stats: [
-      { title: "Peter Petely", stat: "70", statTrailing: "leads" },
-      { title: "Weter Wetely", stat: "58", statTrailing: "leads" },
+      { title: "Peter Petely", stat: "70", statUnit: "leads" },
+      { title: "Weter Wetely", stat: "58", statUnit: "leads" },
     ],
   },
 ];
 
-const SingleStatBig = ({ title, statTrailing, stat }: Stat) => {
-  return (
-    <Stack>
-      <Typography variant="h5" textAlign="center">
-        {title} <span className="trailingText">{statTrailing}</span>
-      </Typography>
-      <Typography fontSize="250%" variant="h3" color="secondary">
-        {stat}
-      </Typography>
-    </Stack>
-  );
-};
-const SingleStatSmall = ({ stat }: { stat: Stats }) => {
-  return (
-    <Stack gap={2}>
-      <Typography variant="h5">
-        {stat.statTitle}&nbsp;
-        <span className="trailingText">{stat.statTitleTrailing}</span>
-      </Typography>
-      <Stack gap={1}>
-        {stat.stats.map((s, index) => {
-          return (
-            <Stack direction="row" justifyContent="space-between" key={index}>
-              <Typography>{s.title}</Typography>
-              <Typography color="secondary" fontWeight="bold">
-                {s.stat}&nbsp;
-                <span className="trailingText">{s.statTrailing}</span>
-              </Typography>
-            </Stack>
-          );
-        })}
-      </Stack>
-    </Stack>
-  );
-};
 export default function TeamActivityCard() {
   return (
     <DashboardCardsLayout minHeight="748px" title="Team Activity">
-      <Stack gap={4}>
+      <Stack gap={4} pt={3}>
         <Bar options={options} data={barChartData} updateMode="resize" />
         <Stack direction="row" justifyContent="space-between" paddingX={6}>
           <SingleStatBig
             title="Total Calls by team"
-            statTrailing="this month"
+            statUnit="this month"
             stat="80"
           />
           <SingleStatBig
             title="Total Emails by team"
-            statTrailing="this month"
+            statUnit="this month"
             stat="250"
           />
         </Stack>

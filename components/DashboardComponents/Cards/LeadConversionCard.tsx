@@ -40,6 +40,7 @@ export default function LeadConversionCard() {
         alignItems="center"
         marginY="auto"
         gap={4}
+        pt={2}
       >
         <Box
           display="flex"

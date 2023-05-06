@@ -15,17 +15,13 @@ export default function SingleStatCard({ title, stat, total }: Props) {
       bgcolor="white"
       display="flex"
       justifyContent="center"
-      alignItems="flex-end"
-      position="relative"
+      flexDirection="column"
       minHeight="6.875rem"
     >
       <Typography
         variant="h5"
         sx={{
           fontSize: { sm: ".75rem", md: ".875rem" },
-          position: "absolute",
-          top: "10%",
-          left: "10%",
         }}
       >
         {title}

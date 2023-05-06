@@ -5,7 +5,7 @@ import LeadConversionCard from "@/components/DashboardComponents/Cards/LeadConve
 import TasksCard from "@/components/DashboardComponents/Cards/TasksCard";
 import { Box, Grid } from "@mui/material";
 import SingleStatCard from "@/components/DashboardComponents/Cards/SingleStatCard";
-import CurrentMonthLeadsSourcesCard from "@/components/DashboardComponents/Cards/CurrentMonthLeadsSourcesCard";
+import LeadsSourcesCard from "@/components/DashboardComponents/Cards/LeadsSourcesCard";
 import TeamActivityCard from "@/components/DashboardComponents/Cards/TeamActivityCard";
 import LeadStagesCard from "@/components/DashboardComponents/Cards/LeadStagesCard";
 type PieData = {
@@ -46,7 +46,7 @@ export default function Dashboard() {
               total={100}
             />
           </Box>
-          <CurrentMonthLeadsSourcesCard data={dataMock} />
+          <LeadsSourcesCard data={dataMock} />
           <TeamActivityCard />
           <LeadStagesCard />
           <Box

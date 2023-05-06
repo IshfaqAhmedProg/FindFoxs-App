@@ -50,7 +50,7 @@ export default function DashboardCardsLayout({
         title={title}
       />
       <Divider />
-      <CardContent sx={{ overflowY: "auto", my: "auto" }}>
+      <CardContent sx={{ overflowY: "auto", padding: 0 }}>
         {children}
       </CardContent>
     </Card>

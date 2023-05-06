@@ -5,8 +5,10 @@ import {
   ListItemButton,
   ListItemText,
   Typography,
+  Collapse,
+  Tooltip,
 } from "@mui/material";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import MenuOpenRoundedIcon from "@mui/icons-material/MenuOpenRounded";
 import {
   DashboardIcon,
@@ -17,6 +19,8 @@ import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import TaskOutlinedIcon from "@mui/icons-material/TaskOutlined";
 import { SideBarLinks, SimpleLink } from "@/shared/interfaces/Links";
 import { useRouter } from "next/router";
+import SidebarList from "./SideBarList";
+
 interface Props {
   toggle: boolean;
   handleToggle: (params: boolean) => void;
@@ -24,6 +28,9 @@ interface Props {
 export default function SideBar({ toggle, handleToggle }: Props) {
   const sidebarWidth = 300;
   const router = useRouter();
+  const [leadsToggle, setLeadsToggle] = useState(false);
+  const [toolsToggle, setToolsToggle] = useState(false);
+
   const sidebarContent: Array<SideBarLinks> = [
     {
       name: "Dashboard",
@@ -39,6 +46,7 @@ export default function SideBar({ toggle, handleToggle }: Props) {
         { name: "Manage Your Leads", goto: "/" },
         { name: "Engage with Leads", goto: "/" },
       ],
+      expanded: leadsToggle,
     },
     {
       name: "Tools",
@@ -51,11 +59,12 @@ export default function SideBar({ toggle, handleToggle }: Props) {
         { name: "Google Maps Scraper", goto: "/" },
         { name: "Email and Contacts Scraper", goto: "/" },
       ],
+      expanded: toolsToggle,
     },
     {
       name: "Tasks",
       icon: <TaskOutlinedIcon />,
-      goto: "/",
+      goto: "/tasks",
     },
     {
       name: "Settings",
@@ -63,61 +72,27 @@ export default function SideBar({ toggle, handleToggle }: Props) {
       goto: "/",
     },
   ];
-  const SidebarList = ({ content }: { content: SideBarLinks }) => {
-    return (
-      <>
-        <ListItemButton
-          sx={{ gap: "1rem", paddingRight: "10px" }}
-          selected={router.pathname === content.goto}
-          onClick={() => router.push(content.goto)}
-        >
-          {content.icon}
-          <ListItemText
-            disableTypography
-            primary={
-              <Typography
-                sx={{
-                  fontWeight: "bold",
-                  fontSize: "1rem",
-                  color: "var(--primarydark)",
-                }}
-              >
-                {content.name}
-              </Typography>
-            }
-          />
-          {toggle && content.icon}
-        </ListItemButton>
-        {content.children?.length != 0 && (
-          <List disablePadding>
-            {content.children?.map((child) => {
-              return <ChildList key={child.name} child={child} />;
-            })}
-          </List>
-        )}
-      </>
-    );
-  };
-  const ChildList = ({ child }: { child: SimpleLink }) => {
-    return (
-      <ListItemButton
-        key={child.name}
-        sx={{ marginLeft: "3rem" }}
-        selected={router.pathname === child.goto}
-        onClick={() => router.push(child.goto)}
-      >
-        <Typography
-          color={"var(--primary)"}
-          sx={{
-            fontSize: "14px",
-          }}
-          maxWidth="18ch"
-        >
-          {child.name}
-        </Typography>
-      </ListItemButton>
-    );
-  };
+  function handleSideBarListClick(content: SideBarLinks) {
+    if (!!content.goto) {
+      router.push(content.goto);
+    }
+    switch (content.name) {
+      case "Leads":
+        {
+          setLeadsToggle(!content.expanded);
+        }
+        break;
+      case "Tools":
+        {
+          setToolsToggle(!content.expanded);
+        }
+        break;
+
+      default:
+        break;
+    }
+  }
+
   return (
     <Box
       maxWidth={sidebarWidth}
@@ -147,7 +122,14 @@ export default function SideBar({ toggle, handleToggle }: Props) {
       </IconButton>
       <List sx={{ width: "100%" }}>
         {sidebarContent.map((content) => {
-          return <SidebarList key={content.name} content={content} />;
+          return (
+            <SidebarList
+              key={content.name}
+              content={content}
+              toggle={toggle}
+              handleSideBarListClick={handleSideBarListClick}
+            />
+          );
         })}
       </List>
     </Box>
