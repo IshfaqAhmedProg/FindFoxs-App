@@ -7,33 +7,37 @@ export default function TaskInteraction({ task }: { task: Task }) {
   return (
     <Box display="flex" gap={0.2} flexGrow={1} justifyContent="flex-end">
       <Tooltip title={"Open Task " + task.id}>
-        <IconButton size="small" disabled={task.status == "RUNNING"}>
-          <FileOpenOutlinedIcon
-            sx={
-              task.status == "RUNNING"
-                ? { color: "var(--graylight)", fontSize: "1.125rem" }
-                : {
-                    fontSize: "1.125rem",
-                    color: "var(--primarylight)",
-                  }
-            }
-          />
-        </IconButton>
+        <span>
+          <IconButton size="small" disabled={task.status == "RUNNING"}>
+            <FileOpenOutlinedIcon
+              sx={
+                task.status == "RUNNING"
+                  ? { color: "var(--graylight)", fontSize: "1.125rem" }
+                  : {
+                      fontSize: "1.125rem",
+                      color: "var(--primarylight)",
+                    }
+              }
+            />
+          </IconButton>
+        </span>
       </Tooltip>
       <Tooltip title={"Delete Task " + task.id}>
-        <IconButton size="small" disabled={task.status == "RUNNING"}>
-          <DeleteOutlinedIcon
-            sx={
-              task.status == "RUNNING"
-                ? { color: "var(--graylight)", fontSize: "1.125rem" }
-                : {
-                    fontSize: "1.125rem",
-                    color: "var(--primarylight)",
-                    ":hover": { color: "var(--error)" },
-                  }
-            }
-          />
-        </IconButton>
+        <span>
+          <IconButton size="small" disabled={task.status == "RUNNING"}>
+            <DeleteOutlinedIcon
+              sx={
+                task.status == "RUNNING"
+                  ? { color: "var(--graylight)", fontSize: "1.125rem" }
+                  : {
+                      fontSize: "1.125rem",
+                      color: "var(--primarylight)",
+                      ":hover": { color: "var(--error)" },
+                    }
+              }
+            />
+          </IconButton>
+        </span>
       </Tooltip>
     </Box>
   );

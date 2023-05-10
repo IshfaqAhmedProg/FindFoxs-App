@@ -15,6 +15,8 @@ export default function Home() {
     <>
       <Head>
         <title>Scrapefox CRM</title>
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="/Logos/Favicon.svg" />
         <meta
           name="description"
           content="Best CRM for marketing professionals!"

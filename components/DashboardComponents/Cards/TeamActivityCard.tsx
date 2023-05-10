@@ -10,7 +10,14 @@ import {
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
 import DashboardCardsLayout from "./DashboardCardsLayout";
-import { Stack, Typography, AvatarGroup, Avatar, Tooltip } from "@mui/material";
+import {
+  Stack,
+  Typography,
+  AvatarGroup,
+  Avatar,
+  Tooltip,
+  Box,
+} from "@mui/material";
 import Stats, { Stat } from "@/shared/interfaces/Stats";
 import SingleStatSmall from "@/components/DisplayStats/SingleStatSmall";
 import SingleStatBig from "@/components/DisplayStats/SingleStatBig";
@@ -28,6 +35,14 @@ export const options = {
   plugins: {
     legend: {
       position: "top" as const,
+    },
+  },
+
+  scales: {
+    y: {
+      grid: {
+        display: false,
+      },
     },
   },
 };
@@ -104,7 +119,14 @@ export default function TeamActivityCard() {
   return (
     <DashboardCardsLayout minHeight="748px" title="Team Activity">
       <Stack gap={4} pt={3}>
-        <Bar options={options} data={barChartData} updateMode="resize" />
+        <Box
+          position="relative"
+          maxHeight="450px"
+          display="flex"
+          justifyContent="center"
+        >
+          <Bar options={options} data={barChartData} updateMode="resize" />
+        </Box>
         <Stack direction="row" justifyContent="space-between" paddingX={6}>
           <SingleStatBig
             title="Total Calls by team"

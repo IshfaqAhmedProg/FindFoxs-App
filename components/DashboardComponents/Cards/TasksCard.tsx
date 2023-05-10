@@ -2,15 +2,7 @@ import React from "react";
 import DashboardCardsLayout from "./DashboardCardsLayout";
 import Tasks, { Tools } from "@/shared/interfaces/Tasks";
 import TaskListItem from "@/components/TaskComponent/TaskListItem";
-import {
-  Stack,
-  Divider,
-  Accordion,
-  AccordionSummary,
-  Typography,
-  AccordionDetails,
-} from "@mui/material";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { Stack, Divider } from "@mui/material";
 export default function TasksCard() {
   const tasks: Array<Tasks> = [
     {
@@ -48,10 +40,10 @@ export default function TasksCard() {
       <Stack gap={2} padding={1} pt={3}>
         {tasks.map((task) => {
           return (
-            <>
-              <TaskListItem key={task.id} task={task} />
+            <Stack key={task.id}>
+              <TaskListItem task={task} />
               <Divider />
-            </>
+            </Stack>
           );
         })}
       </Stack>
