@@ -15,7 +15,7 @@ export default function Home() {
     <>
       <Head>
         <title>Scrapefox CRM</title>
-        <meta property="og:title" content="The Rock" />
+        <meta property="og:title" content="Scrapefox" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://scrapfox.vercel.app/" />
         <meta property="og:image" content="/Logos/Favicon.svg" />
