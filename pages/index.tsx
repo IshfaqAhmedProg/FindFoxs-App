@@ -20,7 +20,6 @@ export default function Home() {
           content="Best CRM for marketing professionals!"
         />
 
-        {/* <!-- Facebook Meta Tags --> */}
         <meta property="og:url" content="https://scrapefox-crm.vercel.app" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Scrapefox" />
@@ -30,10 +29,9 @@ export default function Home() {
         />
         <meta
           property="og:image"
-          content="https://scrapefox-crm.vercel.app/Logos/Favicon.svg"
+          content="https://scrapefox-crm.vercel.app/Images/ogimage.png"
         />
 
-        {/* <!-- Twitter Meta Tags --> */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="twitter:domain" content="scrapefox-crm.vercel.app" />
         <meta
@@ -47,7 +45,7 @@ export default function Home() {
         />
         <meta
           name="twitter:image"
-          content="https://scrapefox-crm.vercel.app/Logos/Favicon.svg"
+          content="https://scrapefox-crm.vercel.app/Images/ogimage.png"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/Logos/Favicon.svg" />
