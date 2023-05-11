@@ -17,7 +17,7 @@ export default function Home() {
         <title>Scrapefox</title>
         <meta
           name="description"
-          content="Best CRM for marketing professionals!"
+          content="Best CRM and Leads Generator for marketing professionals!"
         />
 
         <meta property="og:url" content="https://scrapefox-crm.vercel.app" />
@@ -25,7 +25,7 @@ export default function Home() {
         <meta property="og:title" content="Scrapefox" />
         <meta
           property="og:description"
-          content="Best CRM for marketing professionals!"
+          content="Best CRM and Leads Generator for marketing professionals!"
         />
         <meta
           property="og:image"
@@ -41,7 +41,7 @@ export default function Home() {
         <meta name="twitter:title" content="Scrapefox" />
         <meta
           name="twitter:description"
-          content="Best CRM for marketing professionals!"
+          content="Best CRM and Leads Generator for marketing professionals!"
         />
         <meta
           name="twitter:image"
