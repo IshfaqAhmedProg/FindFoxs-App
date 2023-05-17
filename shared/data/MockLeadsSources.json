@@ -1,0 +1,27 @@
+[
+  {
+    "id": "Google",
+    "label": "Google",
+    "value": 345
+  },
+  {
+    "id": "Facebook",
+    "label": "Facebook",
+    "value": 443
+  },
+  {
+    "id": "LinkedIn",
+    "label": "LinkedIn",
+    "value": 572
+  },
+  {
+    "id": "Twittter",
+    "label": "Twittter",
+    "value": 236
+  },
+  {
+    "id": "Others",
+    "label": "Others",
+    "value": 167
+  }
+]

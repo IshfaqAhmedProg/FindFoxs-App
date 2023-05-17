@@ -1,0 +1,79 @@
+[
+  {
+    "month": "January",
+    "New Leads": 127,
+    "New LeadsColor": "rgba(3, 219,120, 1)",
+    "Emails Sent": 74,
+    "Emails SentColor": "rgba(84, 103, 228, 1)",
+    "Calls Made": 187,
+    "Calls MadeColor": "rgba(48, 63, 159, 1)",
+    "Converted To Satisfied": 38,
+    "Converted To SatisfiedColor": "rgba(19, 163, 134, 1)"
+  },
+  {
+    "month": "February",
+    "New Leads": 141,
+    "New LeadsColor": "rgba(3, 219,120, 1)",
+    "Emails Sent": 170,
+    "Emails SentColor": "rgba(84, 103, 228, 1)",
+    "Calls Made": 145,
+    "Calls MadeColor": "rgba(48, 63, 159, 1)",
+    "Converted To Satisfied": 82,
+    "Converted To SatisfiedColor": "rgba(19, 163, 134, 1)"
+  },
+  {
+    "month": "March",
+    "New Leads": 8,
+    "New LeadsColor": "rgba(3, 219,120, 1)",
+    "Emails Sent": 26,
+    "Emails SentColor": "rgba(84, 103, 228, 1)",
+    "Calls Made": 152,
+    "Calls MadeColor": "rgba(48, 63, 159, 1)",
+    "Converted To Satisfied": 17,
+    "Converted To SatisfiedColor": "rgba(19, 163, 134, 1)"
+  },
+  {
+    "month": "April",
+    "New Leads": 112,
+    "New LeadsColor": "rgba(3, 219,120, 1)",
+    "Emails Sent": 150,
+    "Emails SentColor": "rgba(84, 103, 228, 1)",
+    "Calls Made": 50,
+    "Calls MadeColor": "rgba(48, 63, 159, 1)",
+    "Converted To Satisfied": 130,
+    "Converted To SatisfiedColor": "rgba(19, 163, 134, 1)"
+  },
+  {
+    "month": "May",
+    "New Leads": 118,
+    "New LeadsColor": "rgba(3, 219,120, 1)",
+    "Emails Sent": 148,
+    "Emails SentColor": "rgba(84, 103, 228, 1)",
+    "Calls Made": 116,
+    "Calls MadeColor": "rgba(48, 63, 159, 1)",
+    "Converted To Satisfied": 78,
+    "Converted To SatisfiedColor": "rgba(19, 163, 134, 1)"
+  },
+  {
+    "month": "June",
+    "New Leads": 153,
+    "New LeadsColor": "rgba(3, 219,120, 1)",
+    "Emails Sent": 184,
+    "Emails SentColor": "rgba(84, 103, 228, 1)",
+    "Calls Made": 197,
+    "Calls MadeColor": "rgba(48, 63, 159, 1)",
+    "Converted To Satisfied": 112,
+    "Converted To SatisfiedColor": "rgba(19, 163, 134, 1)"
+  },
+  {
+    "month": "July",
+    "New Leads": 79,
+    "New LeadsColor": "rgba(3, 219,120, 1)",
+    "Emails Sent": 76,
+    "Emails SentColor": "rgba(84, 103, 228, 1)",
+    "Calls Made": 82,
+    "Calls MadeColor": "rgba(48, 63, 159, 1)",
+    "Converted To Satisfied": 101,
+    "Converted To SatisfiedColor": "rgba(19, 163, 134, 1)"
+  }
+]

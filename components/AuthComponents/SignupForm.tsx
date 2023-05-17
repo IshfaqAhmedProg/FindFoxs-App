@@ -47,7 +47,7 @@ export default function SignupForm() {
 
   return (
     <>
-      <Typography variant="h5" component="h1" sx={{ fontWeight: "bold" }}>
+      <Typography variant="h4" component="h1" sx={{ fontWeight: "bold" }}>
         Create an account
       </Typography>
       <Box

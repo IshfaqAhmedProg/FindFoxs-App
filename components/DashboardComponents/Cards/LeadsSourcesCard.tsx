@@ -1,49 +1,34 @@
-import React, { useState, ComponentProps } from "react";
+import React from "react";
 import DashboardCardsLayout from "./DashboardCardsLayout";
-import { PieChart } from "react-minimal-pie-chart";
-import { Box } from "@mui/material";
-type Props = {
-  data: ComponentProps<typeof PieChart>["data"];
-};
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import { Pie } from "react-chartjs-2";
-ChartJS.register(ArcElement, Tooltip, Legend);
+import { ResponsivePieCanvas } from "@nivo/pie";
+import data from "@/shared/data/MockLeadsSources.json";
+import { nivoTheme } from "@/shared/theme/nivoTheme";
 
-export default function LeadsSourcesCard(props: Props) {
-  const [selected, setSelected] = useState<number | undefined>(0);
-  const [hovered, setHovered] = useState<number | undefined>(undefined);
-
-  const data = {
-    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-    datasets: [
-      {
-        label: "# of Votes",
-        data: [12, 19, 3, 5, 2, 3],
-        backgroundColor: [
-          "rgba(255, 99, 132, 0.2)",
-          "rgba(54, 162, 235, 0.2)",
-          "rgba(255, 206, 86, 0.2)",
-          "rgba(75, 192, 192, 0.2)",
-          "rgba(153, 102, 255, 0.2)",
-          "rgba(255, 159, 64, 0.2)",
-        ],
-        borderColor: [
-          "rgba(255, 99, 132, 1)",
-          "rgba(54, 162, 235, 1)",
-          "rgba(255, 206, 86, 1)",
-          "rgba(75, 192, 192, 1)",
-          "rgba(153, 102, 255, 1)",
-          "rgba(255, 159, 64, 1)",
-        ],
-        borderWidth: 1,
-      },
-    ],
-  };
+export default function LeadsSourcesCard() {
   return (
     <DashboardCardsLayout title="Leads Sources" minHeight="430px">
-      <Box color="white" display="flex" justifyContent="center">
-        <Pie data={data} />
-      </Box>
+      <ResponsivePieCanvas
+        data={data}
+        theme={nivoTheme}
+        margin={{ top: 40, right: 40, bottom: 40, left: 40 }}
+        innerRadius={0.1}
+        padAngle={0.7}
+        cornerRadius={3}
+        activeOuterRadiusOffset={8}
+        colors={["#1D276B", "#303F9F", "#5467E4", "#13A386", "#064C2C"]}
+        arcLinkLabelsSkipAngle={10}
+        arcLinkLabelsTextColor={{
+          from: "color",
+          modifiers: [["opacity", 3]],
+        }}
+        arcLinkLabelsThickness={2}
+        arcLinkLabelsColor={{ from: "color" }}
+        arcLabelsSkipAngle={10}
+        arcLabelsTextColor={{
+          from: "color",
+          modifiers: [["brighter", 3]],
+        }}
+      />
     </DashboardCardsLayout>
   );
 }

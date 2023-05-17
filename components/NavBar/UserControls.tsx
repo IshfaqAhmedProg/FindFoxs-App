@@ -1,17 +1,5 @@
 import React, { useState } from "react";
-import {
-  Box,
-  Tooltip,
-  IconButton,
-  Badge,
-  Menu,
-  MenuItem,
-  ListItemIcon,
-  Avatar,
-  Divider,
-  Stack,
-  MenuList,
-} from "@mui/material";
+import { Tooltip, IconButton, Badge, Avatar, Stack } from "@mui/material";
 import NotificationsIcon from "@mui/icons-material/NotificationsNoneRounded";
 import HelpIcon from "@mui/icons-material/HelpOutlineRounded";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
@@ -22,10 +10,11 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useRouter } from "next/router";
 import NavMenu from "./NavMenu";
 import { DashboardIcon } from "@/public/Icons/CustomIcons";
+import AccountHeader from "./AccountHeader";
 
 export default function UserControls({ container }: { container: any }) {
   const router = useRouter();
-  const { logout } = useAuth();
+  const { user, logout } = useAuth();
   const [accountOpenAnchor, setAccountOpenAnchor] =
     useState<null | HTMLElement>(null);
   const accountOpen = Boolean(accountOpenAnchor);
@@ -75,19 +64,6 @@ export default function UserControls({ container }: { container: any }) {
     },
   ];
 
-  const accountHeader = (
-    <>
-      <Avatar {...stringAvatar("Ishfaq Ahmed")} />
-      <Stack>
-        <p style={{ fontWeight: "bold", color: "var(--primarydark)" }}>
-          Ishfaq Ahmed
-        </p>
-        <p style={{ color: "var(--primarydark)", fontSize: "11px" }}>
-          Team Manager
-        </p>
-      </Stack>
-    </>
-  );
   function handleAccountClick(event: React.MouseEvent<HTMLElement>) {
     setAccountOpenAnchor(event.currentTarget);
   }
@@ -132,7 +108,7 @@ export default function UserControls({ container }: { container: any }) {
         handleClose={handleClose}
         accountOpen={accountOpen}
         items={menuLinks}
-        header={accountHeader}
+        header={<AccountHeader />}
       />
     </>
   );

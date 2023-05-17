@@ -50,7 +50,7 @@ export default function LoginForm() {
   }
   return (
     <>
-      <Typography variant="h3" component="h1" sx={{ fontWeight: "bold" }}>
+      <Typography variant="h4" component="h1" sx={{ fontWeight: "bold" }}>
         Log In
       </Typography>
       <Box

@@ -52,7 +52,7 @@ export default function DashboardLayout({
           sx={{
             overflowY: "auto",
             overflowX: "visible",
-            gridTemplateColumns: { sm: "1fr", md: "1fr 1fr" },
+            gridTemplateColumns: { md: "1fr", lg: "1fr 1fr" },
             gridAutoRows: "auto",
             px: { xs: 0, md: 1.5 },
           }}

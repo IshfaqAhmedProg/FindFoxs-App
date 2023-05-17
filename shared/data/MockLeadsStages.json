@@ -1,0 +1,27 @@
+[
+  {
+    "id": "step_awareness",
+    "value": 67772,
+    "label": "Awareness"
+  },
+  {
+    "id": "step_capture",
+    "value": 61002,
+    "label": "Lead Capture"
+  },
+  {
+    "id": "step_prospect",
+    "value": 49074,
+    "label": "Prospect"
+  },
+  {
+    "id": "step_qualified",
+    "value": 36534,
+    "label": "Qualifies Leads"
+  },
+  {
+    "id": "step_customer",
+    "value": 27994,
+    "label": "Customer"
+  }
+]

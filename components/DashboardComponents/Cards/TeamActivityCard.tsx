@@ -1,14 +1,4 @@
 import React from "react";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip as ChartTooltip,
-  Legend,
-} from "chart.js";
-import { Bar } from "react-chartjs-2";
 import DashboardCardsLayout from "./DashboardCardsLayout";
 import {
   Stack,
@@ -18,60 +8,13 @@ import {
   Tooltip,
   Box,
 } from "@mui/material";
-import Stats, { Stat } from "@/shared/interfaces/Stats";
+import Stats from "@/shared/interfaces/Stats";
 import SingleStatSmall from "@/components/DisplayStats/SingleStatSmall";
 import SingleStatBig from "@/components/DisplayStats/SingleStatBig";
+import { ResponsiveBar } from "@nivo/bar";
+import data from "@/shared/data/MockTeamActivity.json";
+import { nivoTheme } from "@/shared/theme/nivoTheme";
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  ChartTooltip,
-  Legend
-);
-export const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: "top" as const,
-    },
-  },
-
-  scales: {
-    y: {
-      grid: {
-        display: false,
-      },
-    },
-  },
-};
-const labels = ["this Month (February)"];
-export const barChartData = {
-  labels,
-  datasets: [
-    {
-      label: "New Leads",
-      data: [1200],
-      backgroundColor: "rgba(3, 219,120, 1)",
-    },
-    {
-      label: "Emails Sent",
-      data: [120],
-      backgroundColor: "rgba(84, 103, 228, 1)",
-    },
-    {
-      label: "Calls Made",
-      data: [545],
-      backgroundColor: "rgba(48, 63, 159, 1)",
-    },
-    {
-      label: "Converted To Satisfied",
-      data: [258],
-      backgroundColor: "rgba(19, 163, 134, 1)",
-    },
-  ],
-};
 const peopleOnlineData = [
   { name: "John Bradley", profileImage: "/Images/genericperson1.png" },
   { name: "John Bradley", profileImage: "/Images/genericperson1.png" },
@@ -121,12 +64,83 @@ export default function TeamActivityCard() {
       <Stack gap={4} pt={3}>
         <Box
           position="relative"
-          maxHeight="450px"
+          height="450px"
           display="flex"
           justifyContent="center"
         >
-          <Bar options={options} data={barChartData} updateMode="resize" />
+          <ResponsiveBar
+            data={data}
+            keys={[
+              "New Leads",
+              "Emails Sent",
+              "Calls Made",
+              "Converted To Satisfied",
+            ]}
+            indexBy="month"
+            margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
+            padding={0.3}
+            valueScale={{ type: "linear" }}
+            indexScale={{ type: "band", round: true }}
+            colors={["#1D276B", "#303F9F", "#5467E4", "#13A386", "#064C2C"]}
+            borderColor={{
+              from: "color",
+              modifiers: [["darker", 1.6]],
+            }}
+            borderRadius={2}
+            axisTop={null}
+            axisRight={null}
+            axisBottom={{
+              tickSize: 5,
+              tickPadding: 5,
+              tickRotation: 0,
+              legend: "month",
+              legendPosition: "middle",
+              legendOffset: 32,
+            }}
+            axisLeft={{
+              tickSize: 5,
+              tickPadding: 5,
+              tickRotation: 0,
+            }}
+            labelSkipWidth={12}
+            labelSkipHeight={12}
+            labelTextColor={{
+              from: "color",
+              modifiers: [["brighter", 3]],
+            }}
+            legends={[
+              {
+                dataFrom: "keys",
+                anchor: "top",
+                direction: "row",
+                justify: false,
+                translateX: 0,
+                translateY: -30,
+                itemsSpacing: 2,
+                itemWidth: 100,
+                itemHeight: 20,
+                itemDirection: "left-to-right",
+                itemOpacity: 0.85,
+                symbolSize: 20,
+                effects: [
+                  {
+                    on: "hover",
+                    style: {
+                      itemOpacity: 1,
+                    },
+                  },
+                ],
+              },
+            ]}
+            role="application"
+            ariaLabel="Team Activities"
+            barAriaLabel={(e) =>
+              e.id + ": " + e.formattedValue + " in month: " + e.indexValue
+            }
+            theme={nivoTheme}
+          />
         </Box>
+
         <Stack direction="row" justifyContent="space-between" paddingX={6}>
           <SingleStatBig
             title="Total Calls by team"
