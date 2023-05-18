@@ -42,9 +42,9 @@ export default function SideBar({ toggle, handleToggle }: Props) {
       icon: <LeadsIcon />,
       goto: "",
       children: [
-        { name: "Search Leads", goto: "/searchLeads" },
-        { name: "Manage Your Leads", goto: "/" },
-        { name: "Engage with Leads", goto: "/" },
+        { name: "Search Leads", goto: "/leads/search" },
+        { name: "Manage Your Leads", goto: "/leads/manage" },
+        { name: "Engage with Leads", goto: "/leads/engage" },
       ],
       expanded: leadsToggle,
     },

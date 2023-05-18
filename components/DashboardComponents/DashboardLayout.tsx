@@ -9,7 +9,10 @@ export default function DashboardLayout({
   children,
 }: {
   title?: string;
-  children: React.ReactElement;
+  children?:
+    | React.ReactElement
+    | JSX.Element
+    | Array<React.ReactElement | JSX.Element>;
 }) {
   const theme = useTheme();
   const [toggleSidebar, setToggleSidebar] = useState<boolean>(

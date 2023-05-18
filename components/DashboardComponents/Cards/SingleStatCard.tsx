@@ -5,8 +5,9 @@ interface Props {
   title: string;
   stat: number | string;
   total?: number | string;
+  unit?: string;
 }
-export default function SingleStatCard({ title, stat, total }: Props) {
+export default function SingleStatCard({ title, stat, total, unit }: Props) {
   return (
     <Box
       p={3}
@@ -30,6 +31,7 @@ export default function SingleStatCard({ title, stat, total }: Props) {
         {stat}
         {total && "/"}
         {total && <span className="muted">{total}</span>}
+        {unit && <span className="muted">{unit}</span>}
       </Typography>
     </Box>
   );

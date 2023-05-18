@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import ReadMoreRoundedIcon from "@mui/icons-material/ReadMoreRounded";
 interface Props {
-  children?: React.ReactElement | JSX.Element;
+  children?: React.ReactElement | Array<React.ReactElement>;
   title: string;
   minHeight: string;
 }
