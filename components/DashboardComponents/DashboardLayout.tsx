@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import SideBar from "../SideBar/SideBar";
 import { useTheme } from "@mui/material/styles";
 import { useMediaQuery, Typography } from "@mui/material";
+import { useRouter } from "next/router";
 
 export default function DashboardLayout({
   title,
@@ -19,6 +20,7 @@ export default function DashboardLayout({
     //to keep the sidebar toggled when screen is big
     useMediaQuery(theme.breakpoints.down("md"))
   );
+  const router = useRouter();
   return (
     <Box position="relative" height="100%" width="100%" display="flex">
       <SideBar
@@ -52,13 +54,21 @@ export default function DashboardLayout({
           width="100%"
           height="100%"
           display="grid"
-          sx={{
-            overflowY: "auto",
-            overflowX: "visible",
-            gridTemplateColumns: { md: "1fr", lg: "1fr 1fr" },
-            gridAutoRows: "auto",
-            px: { xs: 0, md: 1.5 },
-          }}
+          sx={
+            router.pathname == "/dashboard"
+              ? {
+                  overflowY: "auto",
+                  overflowX: "visible",
+                  gridTemplateColumns: { md: "1fr", lg: "1fr 1fr" },
+                  gridAutoRows: "auto",
+                  px: { xs: 0, md: 1.5 },
+                }
+              : {
+                  overflowY: "auto",
+                  overflowX: "visible",
+                  px: { xs: 0, md: 1.5 },
+                }
+          }
           pt={1}
           gap={2}
         >

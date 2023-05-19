@@ -1,26 +1,19 @@
 import { faker } from "@faker-js/faker";
-export interface Leads {
-  _id: string;
-  avatar: string;
-  jobTitle: string;
-  email: string;
-  phoneNumber: string;
-  firstName: string;
-  lastName: string;
-  companyName: string;
-  companyWebsite: string;
-}
+import { Leads } from "../interfaces/Leads";
+
 function createRandomLead(): Leads {
+  const companyName = faker.company.name();
   return {
-    _id: faker.datatype.uuid(),
+    _id: faker.string.uuid(),
+    name: `${faker.person.firstName()} ${faker.person.lastName()}`,
     avatar: faker.image.avatar(),
     jobTitle: faker.person.jobTitle(),
     email: faker.internet.email(),
     phoneNumber: faker.phone.number(),
-    firstName: faker.person.firstName(),
-    lastName: faker.person.lastName(),
-    companyName: faker.company.name(),
-    companyWebsite: `${faker.company.name()}.com`,
+    location: `${faker.location.country()}, ${faker.location.state()}, ${faker.location.city()}`,
+    companyName: companyName,
+    companyWebsite: `${encodeURIComponent(companyName)}.com`,
+    industry: "Public Relations",
   };
 }
 export default function createRandomLeadArray(numUsers = 5): Array<Leads> {

@@ -1,3 +1,4 @@
 {
-    "editor.autoIndent": "advanced"
+    "editor.autoIndent": "advanced",
+    "typescript.tsdk": "node_modules\\typescript\\lib"
 }

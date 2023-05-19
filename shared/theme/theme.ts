@@ -26,6 +26,13 @@ const theme = createTheme({
         },
       },
     },
+    MuiFormControlLabel: {
+      styleOverrides: {
+        root: {
+          marginLeft: 0,
+        },
+      },
+    },
     MuiButton: {
       styleOverrides: {
         root: {
@@ -39,7 +46,6 @@ const theme = createTheme({
         },
       },
     },
-
     MuiSvgIcon: {
       styleOverrides: {
         root: {

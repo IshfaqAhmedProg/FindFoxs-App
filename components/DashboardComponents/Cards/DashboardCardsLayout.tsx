@@ -5,7 +5,6 @@ import {
   Card,
   CardContent,
   Divider,
-  Box,
 } from "@mui/material";
 import ReadMoreRoundedIcon from "@mui/icons-material/ReadMoreRounded";
 interface Props {
