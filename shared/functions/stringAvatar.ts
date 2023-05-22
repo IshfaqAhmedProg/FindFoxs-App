@@ -18,10 +18,15 @@ function stringToColor(string: string) {
   return color;
 }
 export function stringAvatar(name: string) {
+  var words = name.split(" ");
+  var initials = "";
+  for (var i = 0; i < words.length; i++) {
+    initials += words[i][0].toUpperCase();
+  }
   return {
     sx: {
       bgcolor: "var(--primarylight)",
     },
-    children: `${name.split(" ")[0][0]}${name.split(" ")[1][0]}`,
+    children: initials,
   };
 }

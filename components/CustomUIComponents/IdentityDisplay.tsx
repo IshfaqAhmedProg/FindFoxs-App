@@ -15,7 +15,13 @@ export default function IdentityDisplay({
 }: Props) {
   return (
     <>
-      {avatar ? <Avatar src={avatar} /> : <Avatar {...stringAvatar(name)} />}
+      {avatar ? (
+        <Avatar src={avatar} />
+      ) : name ? (
+        <Avatar {...stringAvatar(name)} />
+      ) : (
+        ""
+      )}
       <Stack textOverflow="ellipsis" width={maxWidth} overflow="hidden">
         <Typography sx={{ fontWeight: "bold", color: "var(--primary)" }} noWrap>
           {name}
