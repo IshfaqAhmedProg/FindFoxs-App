@@ -110,8 +110,8 @@ export default function UserControls({ container }: { container: any }) {
         items={menuLinks}
         header={
           <IdentityDisplay
-            avatar={user.photoURL}
-            name={user.email}
+            avatar={user?.photoURL}
+            name={user?.email}
             title="Team Manager"
             maxWidth="15ch"
           />
