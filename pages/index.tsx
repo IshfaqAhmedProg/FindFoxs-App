@@ -48,7 +48,7 @@ export default function Home() {
           content="https://scrapefox-crm.vercel.app/Images/ogimage.png"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/Logos/Favicon.svg" />
+        <link rel="icon" href="favicon.ico" />
       </Head>
       <Cursor />
       <main className={styles.main}>
