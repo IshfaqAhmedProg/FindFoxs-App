@@ -1,6 +1,7 @@
 import React from "react";
 import { Typography, Stack, Avatar } from "@mui/material";
 import { stringAvatar } from "@/shared/functions/stringAvatar";
+import Image from "next/image";
 interface Props {
   avatar?: string;
   name: string;
@@ -16,7 +17,9 @@ export default function IdentityDisplay({
   return (
     <>
       {avatar ? (
-        <Avatar src={avatar} />
+        <Avatar>
+          <Image src={avatar} alt={name} width={70} height={70} />
+        </Avatar>
       ) : name ? (
         <Avatar {...stringAvatar(name)} />
       ) : (

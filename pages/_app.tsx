@@ -5,6 +5,7 @@ import "@/styles/globals.css";
 import { ThemeProvider } from "@mui/material";
 import type { AppProps } from "next/app";
 import { Analytics } from "@vercel/analytics/react";
+import Script from "next/script";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -12,6 +13,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <ThemeProvider theme={theme}>
         <NavBar />
         <Component {...pageProps} />
+        <Script src={`//code.tidio.co/${process.env.TIDIO_KEY}.js`} async />
         <Analytics />
       </ThemeProvider>
     </AuthContextProvider>

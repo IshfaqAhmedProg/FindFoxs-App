@@ -16,8 +16,14 @@ export default function TableFilter({ tableData, filter }: Props) {
       direction="row"
       minHeight="54px"
       alignItems={"center"}
+      justifyContent={"space-between"}
       gap={5}
       ml={1}
+      sx={{
+        overflowX: "auto",
+        overflowY: "hidden",
+        whiteSpace: "nowrap",
+      }}
     >
       <FormControlLabel
         label="select all"

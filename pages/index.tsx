@@ -1,5 +1,4 @@
 import Head from "next/head";
-import Link from "next/link";
 import { HeroSection } from "@/components/LandingComponents/HeroSection";
 import styles from "@/styles/Home.module.css";
 import FeaturesSection from "@/components/LandingComponents/FeaturesSection";

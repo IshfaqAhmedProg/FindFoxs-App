@@ -21,7 +21,14 @@ const LeadTablePublicValues: Array<LeadFilters> = [
 
 export default function SearchLeadsFilter() {
   return (
-    <Stack direction="row" alignItems={"center"} gap={2}>
+    <Stack
+      direction="row"
+      alignItems={"center"}
+      justifyContent={"center"}
+      minWidth={"622px"}
+      width={"100%"}
+      gap={1}
+    >
       <Typography>Filters:</Typography>
       <CustomTextInput placeholder="Name(optional)" />
       {LeadTablePublicValues.map((filter) => {

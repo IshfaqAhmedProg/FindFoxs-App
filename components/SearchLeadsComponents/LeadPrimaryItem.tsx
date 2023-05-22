@@ -20,6 +20,7 @@ import TableCell from "@/components/TableComponents/TableCell";
 
 import SingleLeadCard from "../SearchLeadsComponents/SingleLeadCard";
 import { useTable } from "@/contexts/TableContext";
+import Image from "next/image";
 
 export default function LeadPrimaryItem({ content }: { content: Lead }) {
   const { selected, handleSelect } = useTable();
@@ -53,7 +54,9 @@ export default function LeadPrimaryItem({ content }: { content: Lead }) {
         onChange={(e, checked) => handleSelect(content._id)}
       />
 
-      <Avatar alt="Lead Avatar" src={content.avatar} />
+      <Avatar sx={{ width: "40px", height: "40px" }}>
+        <Image alt="Lead Avatar" src={content.avatar} width={40} height={40} />
+      </Avatar>
       <Stack direction="row" gap={0.5} alignItems={"center"}>
         <Stack gap={1}>
           <TableCell fixedWidth="15ch">
