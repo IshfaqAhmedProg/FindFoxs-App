@@ -1,5 +1,4 @@
 import industries from "@/shared/data/ListOfIndustries.json";
-
 export interface Lead {
   _id: string;
   avatar: string;
@@ -12,3 +11,8 @@ export interface Lead {
   companyWebsite: string;
   industry: (typeof industries)[number];
 }
+interface LVF {
+  title: "Job Title" | "Company" | "Location" | "Industry";
+  icon: React.ReactElement;
+}
+export type LeadPublicFields = Array<LVF>;

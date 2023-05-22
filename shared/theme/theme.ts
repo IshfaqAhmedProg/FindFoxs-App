@@ -27,7 +27,17 @@ const theme = createTheme({
         },
       },
     },
-
+    MuiIconButton: {
+      styleOverrides: {
+        root: {
+          ":hover": {
+            "& .MuiSvgIcon-root": {
+              color: "var(--accent)",
+            },
+          },
+        },
+      },
+    },
     MuiFormControlLabel: {
       styleOverrides: {
         root: {
@@ -54,9 +64,6 @@ const theme = createTheme({
           color: "var(--primarylight)",
           fontSize: 25,
           transition: "all 0.15s ease",
-          ":hover": {
-            color: "var(--accent)",
-          },
         },
       },
     },
@@ -65,6 +72,7 @@ const theme = createTheme({
         root: {
           color: "var(--graydark)",
           fontSize: 14,
+          borderRadius: "var(--border-radius-small)",
           "& .MuiSvgIcon-root": {
             fontSize: 20,
             color: "var(--graylight)",
@@ -89,6 +97,14 @@ const theme = createTheme({
               mr: 1,
             },
           },
+        },
+      },
+    },
+    MuiListItemButton: {
+      styleOverrides: {
+        root: {
+          borderRadius:
+            "var(--border-radius-small) 0 0 var(--border-radius-small)",
         },
       },
     },

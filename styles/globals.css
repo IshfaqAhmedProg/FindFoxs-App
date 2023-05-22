@@ -70,8 +70,8 @@ h1 {
   text-align: center;
 }
 #backdropBlur {
-  backdrop-filter: blur(10px);
-  background: #6f6f6f55;
+  backdrop-filter: blur(4px);
+  background: #6f6f6f44;
 }
 h2 {
   margin: 0;

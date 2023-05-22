@@ -11,11 +11,18 @@ import {
   Stack,
 } from "@mui/material";
 import createRandomLeadArray from "@/shared/functions/createRandomLead";
-import TableContainer from "@/components/TableComponent/TableContainer";
-import { Lead } from "@/shared/interfaces/Lead";
-import TableFilter from "@/components/TableComponent/TableFilter";
+import TableContainer from "@/components/TableComponents/TableContainer";
+import { Lead, LeadPublicFields } from "@/shared/interfaces/Lead";
+import TableFilter from "@/components/TableComponents/TableFilter";
 import CustomButton from "@/components/CustomUIComponents/CustomButton";
-
+import MilitaryTechOutlinedIcon from "@mui/icons-material/MilitaryTechOutlined";
+import ApartmentRoundedIcon from "@mui/icons-material/ApartmentRounded";
+import PinDropRoundedIcon from "@mui/icons-material/PinDropRounded";
+import FactoryRoundedIcon from "@mui/icons-material/FactoryRounded";
+import LeadPrimaryItem from "@/components/SearchLeadsComponents/LeadPrimaryItem";
+import TablePrimaryItem from "@/components/TableComponents/TablePrimaryItem";
+import TableItem from "@/components/TableComponents/TableItem";
+import LeadTableItem from "@/components/SearchLeadsComponents/LeadTableItem";
 const searchTypes = ["Individual", "Company"];
 
 export type SearchType = (typeof searchTypes)[number];
@@ -29,12 +36,47 @@ export interface CheckboxSelected {
   selected: Array<string>;
 }
 
+const iconColor = { color: "var(--graylight)" };
+const LeadTablePublicValues: LeadPublicFields = [
+  {
+    title: "Job Title",
+    icon: <MilitaryTechOutlinedIcon sx={iconColor} />,
+  },
+  { title: "Company", icon: <ApartmentRoundedIcon sx={iconColor} /> },
+  { title: "Location", icon: <PinDropRoundedIcon sx={iconColor} /> },
+  { title: "Industry", icon: <FactoryRoundedIcon sx={iconColor} /> },
+];
 export default function SearchLeads() {
   const [searchType, setSearchType] = useState<SearchType>("Individual");
   const [page, setPage] = useState(1);
   const [leads, setLeads] = useState<Array<Lead>>([]);
   const [selected, setSelected] = useState<Array<string>>([]);
-
+  const tablePrimaryItem = (
+    <>
+      {leads.map((lead) => {
+        return (
+          <TablePrimaryItem key={lead._id} selected={selected} content={lead}>
+            <LeadPrimaryItem
+              content={lead}
+              selected={selected}
+              handleSelect={handleSelect}
+            />
+          </TablePrimaryItem>
+        );
+      })}
+    </>
+  );
+  const tableVisibleItems = (
+    <>
+      {leads.map((lead) => {
+        return (
+          <TableItem key={lead._id}>
+            <LeadTableItem content={lead} />
+          </TableItem>
+        );
+      })}
+    </>
+  );
   function handleSelect(id: string) {
     setSelected((prevCheckedItems) => {
       if (prevCheckedItems.includes(id)) {
@@ -111,11 +153,15 @@ export default function SearchLeads() {
               handleSelectAll={handleSelectAll}
               selected={selected}
               totalElements={leads.length}
+              filters={LeadTablePublicValues}
             />
             <TableContainer
-              contentArray={leads}
               handleSelect={handleSelect}
               selected={selected}
+              primaryKey="Name"
+              primaryItems={tablePrimaryItem}
+              visibleKeys={LeadTablePublicValues}
+              visibleItems={tableVisibleItems}
             />
             <Stack alignItems="center">
               <Pagination count={10} page={page} onChange={handlePageChange} />

@@ -14,27 +14,28 @@ import FactoryRoundedIcon from "@mui/icons-material/FactoryRounded";
 import CustomButton from "../CustomUIComponents/CustomButton";
 import CustomTextInput from "../CustomUIComponents/CustomTextInput";
 import { CheckboxSelectAll, CheckboxSelected } from "@/pages/leads/search";
+import { LeadPublicFields } from "@/shared/interfaces/Lead";
 
 const iconColor = { color: "var(--graylight)" };
-const IndividualFilters = [
-  {
-    title: "Job Title",
-    icon: <MilitaryTechOutlinedIcon sx={iconColor} />,
-  },
-  { title: "Company", icon: <ApartmentRoundedIcon sx={iconColor} /> },
-  { title: "Location", icon: <PinDropRoundedIcon sx={iconColor} /> },
-  { title: "Industry", icon: <FactoryRoundedIcon sx={iconColor} /> },
-];
+
 interface Props extends CheckboxSelectAll, CheckboxSelected {
   totalElements: number;
+  filters: LeadPublicFields;
 }
 export default function TableFilter({
   handleSelectAll,
   selected,
   totalElements,
+  filters,
 }: Props) {
   return (
-    <Stack direction="row" minHeight="54px" alignItems={"center"} gap={5}>
+    <Stack
+      direction="row"
+      minHeight="54px"
+      alignItems={"center"}
+      gap={5}
+      ml={1}
+    >
       <FormControlLabel
         label="select all"
         control={
@@ -51,7 +52,7 @@ export default function TableFilter({
       <Stack direction="row" alignItems={"center"} gap={2}>
         <Typography>Filters:</Typography>
         <CustomTextInput placeholder="Name(optional)" />
-        {IndividualFilters.map((filter) => {
+        {filters.map((filter) => {
           return (
             <CustomButton
               key={filter.title}
