@@ -8,6 +8,7 @@ import {
   Menu,
   MenuItem,
   ListItemIcon,
+  Tooltip,
 } from "@mui/material";
 import { styled } from "@mui/material";
 import {
@@ -93,18 +94,22 @@ export default function TablePrimaryItem({
   return (
     <>
       <Stack
+        height="81px"
         justifyContent="space-between"
         pt={2}
+        ml={1}
         gap={2}
         sx={
           selected.includes(content._id)
             ? {
                 background: "var(--graylighter)",
-                transition: "background 0.15s ease-in-out",
+                borderRadius: "var(--border-radius) 0 0 var(--border-radius) ",
+                transition: "all 0.1s ease-in-out",
               }
             : {
                 background: "transparent",
-                transition: "background 0.15s ease-in-out",
+                borderRadius: 0,
+                transition: "all 0.1s ease-in-out",
               }
         }
       >
@@ -118,14 +123,26 @@ export default function TablePrimaryItem({
           <Stack direction="row" gap={0.5} alignItems={"center"}>
             <Stack gap={1}>
               <TableCell fixedWidth="15ch">
-                <Typography
-                  noWrap
-                  sx={{
-                    fontSize: 16,
-                    fontWeight: "700",
-                    color: "var(--primarylight)",
-                  }}
-                >{`${content.name}`}</Typography>
+                <Tooltip title={content.name}>
+                  <button
+                    style={{
+                      background: "transparent",
+                      border: "none",
+                      cursor: "pointer",
+                      maxWidth: "100%",
+                    }}
+                    onClick={(e) => handleSelect(content._id)}
+                  >
+                    <Typography
+                      noWrap
+                      sx={{
+                        fontSize: 16,
+                        fontWeight: "700",
+                        color: "var(--primarylight)",
+                      }}
+                    >{`${content.name}`}</Typography>
+                  </button>
+                </Tooltip>
                 <Stack direction="row" gap={0.5}>
                   <SocialButtons>
                     <FacebookIcon sx={iconStyle} />

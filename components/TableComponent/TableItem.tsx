@@ -12,7 +12,13 @@ export default function TableItem({ content }: { content: Lead }) {
     fontSize: "14px",
   };
   return (
-    <Stack justifyContent="space-between" width="100%" pt={2} gap={2}>
+    <Stack
+      height="81px"
+      justifyContent="space-between"
+      width="100%"
+      pt={2}
+      gap={2}
+    >
       <Stack direction="row" alignItems="center" gap={2} pl={2} mt={2}>
         <TableCell>{content.jobTitle}</TableCell>
         <TableCell>
