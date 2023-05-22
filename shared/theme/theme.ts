@@ -1,4 +1,5 @@
 import { createTheme } from "@mui/material";
+
 const theme = createTheme({
   components: {
     MuiInputLabel: {
@@ -26,6 +27,7 @@ const theme = createTheme({
         },
       },
     },
+
     MuiFormControlLabel: {
       styleOverrides: {
         root: {
@@ -51,6 +53,10 @@ const theme = createTheme({
         root: {
           color: "var(--primarylight)",
           fontSize: 25,
+          transition: "all 0.15s ease",
+          ":hover": {
+            color: "var(--accent)",
+          },
         },
       },
     },
@@ -74,11 +80,12 @@ const theme = createTheme({
             borderRadius: "var(--border-radius)",
             overflow: "visible",
             filter: "drop-shadow(var(--box-shadow))",
-            mt: 1.5,
+            py: 1.5,
+            px: 1,
             "& .MuiAvatar-root": {
-              width: 32,
-              height: 32,
-              ml: -0.5,
+              width: 40,
+              height: 40,
+              // ml: -0.5,
               mr: 1,
             },
           },

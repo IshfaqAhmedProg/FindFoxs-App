@@ -8,7 +8,7 @@
   --primarylight: #5467e4;
   --primarylighter: #85bcf1;
   --white: rgba(255, 255, 255, 1);
-  --graylighter: #dde5fe;
+  --graylighter: #ededed;
   --graylight: #b1bad2;
   --graydark: #6f6f6f;
   --error: #ff4545;
@@ -68,6 +68,10 @@ h1 {
   font-size: var(--h1);
   line-height: 122%;
   text-align: center;
+}
+#backdropBlur {
+  backdrop-filter: blur(10px);
+  background: #6f6f6f55;
 }
 h2 {
   margin: 0;

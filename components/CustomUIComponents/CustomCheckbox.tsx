@@ -76,7 +76,6 @@ export default function CustomCheckbox(props: CheckboxProps) {
       checkedIcon={<CheckedIcon />}
       indeterminateIcon={<IndeterminateIcon />}
       icon={<Icon />}
-      inputProps={{ "aria-label": "Checkbox demo" }}
       {...props}
     />
   );

@@ -40,5 +40,16 @@
       "helperText": "Invalid email",
       "required": true
     }
+  ],
+  "searchleads": [
+    {
+      "id": 1,
+      "name": "Search by name",
+      "type": "text",
+      "placeholder": "Name(Optional)",
+      "label": "Filters:",
+      "helperText": "Invalid name",
+      "required": false
+    }
   ]
 }

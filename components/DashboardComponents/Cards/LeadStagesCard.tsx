@@ -11,7 +11,7 @@ export default function LeadStagesCard() {
         data={data}
         margin={{ top: 40, right: 20, bottom: 20, left: 20 }}
         valueFormat=">-.4s"
-        colors={["#1D276B", "#303F9F", "#5467E4", "#13A386", "#064C2C"]}
+        colors={["#1D276B", "#303F9F", "#5467E4", "#13A386", "#00e676"]}
         borderWidth={20}
         shapeBlending={0.36}
         labelColor={{

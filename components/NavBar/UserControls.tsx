@@ -10,7 +10,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useRouter } from "next/router";
 import NavMenu from "./NavMenu";
 import { DashboardIcon } from "@/public/Icons/CustomIcons";
-import AccountHeader from "./AccountHeader";
+import IdentityDisplay from "../CustomUIComponents/IdentityDisplay";
 
 export default function UserControls({ container }: { container: any }) {
   const router = useRouter();
@@ -108,7 +108,14 @@ export default function UserControls({ container }: { container: any }) {
         handleClose={handleClose}
         accountOpen={accountOpen}
         items={menuLinks}
-        header={<AccountHeader />}
+        header={
+          <IdentityDisplay
+            avatar={user.photoURL}
+            name={user.email}
+            title="Team Manager"
+            maxWidth="15ch"
+          />
+        }
       />
     </>
   );

@@ -1,31 +1,27 @@
 import React from "react";
-import {
-  Box,
-  Divider,
-  FormControlLabel,
-  Stack,
-  Tooltip,
-  Typography,
-} from "@mui/material";
+import { Box, Stack, Tooltip, Typography } from "@mui/material";
 import TablePrimaryItem from "./TablePrimaryItem";
 import TableItem from "./TableItem";
-import CustomCheckbox from "../CustomCheckbox/CustomCheckbox";
-import { Leads } from "@/shared/interfaces/Leads";
-interface Props {
-  contentArray: Array<Leads>;
+import { Lead } from "@/shared/interfaces/Lead";
+import { CheckboxSelect, CheckboxSelected } from "@/pages/leads/search";
+
+interface Props extends CheckboxSelect, CheckboxSelected {
+  contentArray: Array<Lead>;
 }
 export const TableCell = ({
   children,
   type = "cell",
+  fixedWidth = "20ch",
 }: {
   children: any;
   type?: "cell" | "head";
+  fixedWidth?: string;
 }) => {
   return (
     <Box
-      minWidth="20ch"
-      width="20ch"
-      maxWidth="20ch"
+      minWidth={fixedWidth}
+      width={fixedWidth}
+      maxWidth={fixedWidth}
       textOverflow="ellipsis"
       overflow="hidden"
     >
@@ -49,20 +45,26 @@ export const TableCell = ({
   );
 };
 
-export default function TableContainer({ contentArray }: Props) {
+export default function TableContainer({
+  contentArray,
+  handleSelect,
+  selected,
+}: Props) {
   return (
     <Box display="flex" justifyContent="center">
-      <Stack gap={1.5} pt={2}>
+      <Stack pt={2}>
         <Stack direction="row" alignItems="center" justifyContent="flex-end">
           <TableCell type="head">Name</TableCell>
-          {/* <FormControlLabel
-            label="select all"
-            control={<CustomCheckbox />}
-            sx={{ "& span": { fontSize: "11px" } }}
-          /> */}
         </Stack>
         {contentArray.map((content) => {
-          return <TablePrimaryItem key={content._id} content={content} />;
+          return (
+            <TablePrimaryItem
+              key={content._id}
+              selected={selected}
+              content={content}
+              handleSelect={handleSelect}
+            />
+          );
         })}
       </Stack>
       <Stack
@@ -72,7 +74,6 @@ export default function TableContainer({ contentArray }: Props) {
         sx={{ overflowX: "auto", overflowY: "hidden", whiteSpace: "nowrap" }}
         position="relative"
         pt={2}
-        gap={1.5}
       >
         <Stack direction="row" pl={2} gap={2} alignItems="center">
           <TableCell type="head">Job Title</TableCell>

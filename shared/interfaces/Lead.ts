@@ -1,6 +1,6 @@
 import industries from "@/shared/data/ListOfIndustries.json";
 
-export interface Leads {
+export interface Lead {
   _id: string;
   avatar: string;
   jobTitle: string;
