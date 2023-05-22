@@ -65,7 +65,7 @@ export default function LeadPrimaryItem({ content }: { content: Lead }) {
                   cursor: "pointer",
                   maxWidth: "100%",
                 }}
-                onClick={(e) => handleSelect(content._id)}
+                onClick={handleSeeMoreClick}
               >
                 <Typography
                   noWrap

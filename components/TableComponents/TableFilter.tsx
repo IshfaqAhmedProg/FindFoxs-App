@@ -2,7 +2,6 @@ import React from "react";
 import { FormControlLabel, Stack } from "@mui/material";
 import CustomCheckbox from "../CustomUIComponents/CustomCheckbox";
 
-import { LeadFilters } from "@/shared/interfaces/Lead";
 import { useTable } from "@/contexts/TableContext";
 
 interface Props {
@@ -11,10 +10,6 @@ interface Props {
 }
 export default function TableFilter({ tableData, filter }: Props) {
   const { handleSelectAll, selected } = useTable();
-  {
-    console.log("from filter selected", selected);
-    console.log("from filter totalElements", tableData.length);
-  }
 
   return (
     <Stack

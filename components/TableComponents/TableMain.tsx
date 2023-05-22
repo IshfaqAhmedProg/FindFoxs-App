@@ -8,20 +8,18 @@ import {
   Stack,
 } from "@mui/material";
 import TableContainer from "@/components/TableComponents/TableContainer";
-import { leadPublicFields } from "@/shared/interfaces/Lead";
+import { LeadSearchType, leadPublicFields } from "@/shared/interfaces/Lead";
 import TableFilter from "@/components/TableComponents/TableFilter";
 import SearchTypeSelector from "../SearchLeadsComponents/SearchTypeSelector";
 import { useTable } from "@/contexts/TableContext";
 import SearchLeadsFilter from "../SearchLeadsComponents/SearchLeadsFilter";
-const searchTypes = ["Individual", "Company"];
-
-export type SearchType = (typeof searchTypes)[number];
 
 interface Props {
   tableTitle: string;
   data: Array<any>;
   primaryItems: React.ReactElement;
   secondaryItems: React.ReactElement;
+  searchTypes: Array<LeadSearchType | any>;
 }
 
 export default function TableMain({
@@ -29,12 +27,13 @@ export default function TableMain({
   data,
   primaryItems,
   secondaryItems,
+  searchTypes,
 }: Props) {
-  const [searchType, setSearchType] = useState<SearchType>("Individual");
+  const [searchType, setSearchType] = useState<string>(searchTypes[0]);
   const { page, handlePageChange } = useTable();
   function handleTypeChange(
     event: React.ChangeEvent<unknown>,
-    type: SearchType
+    type: LeadSearchType
   ) {
     setSearchType(type);
   }

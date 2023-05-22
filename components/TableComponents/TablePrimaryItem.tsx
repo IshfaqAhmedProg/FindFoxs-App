@@ -18,6 +18,7 @@ export default function TablePrimaryItem({ content, children }: Props) {
         justifyContent="space-between"
         pt={2}
         ml={1}
+        mt={"1px"}
         gap={2}
         sx={
           selected.includes(content._id)
@@ -25,11 +26,16 @@ export default function TablePrimaryItem({ content, children }: Props) {
                 background: "var(--graylighter)",
                 borderRadius: "var(--border-radius) 0 0 var(--border-radius) ",
                 transition: "all 0.1s ease-in-out",
+                ":hover": {
+                  background: "var(--graylightest)",
+                },
               }
             : {
-                background: "transparent",
-                borderRadius: 0,
+                borderRadius: "var(--border-radius) 0 0 var(--border-radius) ",
                 transition: "all 0.1s ease-in-out",
+                ":hover": {
+                  background: "var(--graylightest)",
+                },
               }
         }
       >

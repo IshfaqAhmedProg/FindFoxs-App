@@ -21,3 +21,6 @@ export interface LeadFilters {
   title: (typeof leadPublicFields)[number];
   icon: React.ReactElement;
 }
+export const leadSearchTypes = ["Individual", "Company"];
+
+export type LeadSearchType = (typeof leadSearchTypes)[number];

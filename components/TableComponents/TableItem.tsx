@@ -9,6 +9,7 @@ export default function TableItem({ children }: { children: React.ReactNode }) {
       width="100%"
       pt={2}
       gap={2}
+      mt={"1px"}
     >
       <Stack direction="row" alignItems="center" gap={2} pl={2} mt={2}>
         {children}

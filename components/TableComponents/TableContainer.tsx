@@ -1,6 +1,5 @@
 import React from "react";
 import { Box, Stack } from "@mui/material";
-import { LeadFilters } from "@/shared/interfaces/Lead";
 import TableCell from "./TableCell";
 
 interface Props {

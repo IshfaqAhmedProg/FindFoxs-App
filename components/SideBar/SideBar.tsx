@@ -1,14 +1,5 @@
-import {
-  Box,
-  IconButton,
-  List,
-  ListItemButton,
-  ListItemText,
-  Typography,
-  Collapse,
-  Tooltip,
-} from "@mui/material";
-import React, { useState, useEffect } from "react";
+import { Box, IconButton, List } from "@mui/material";
+import React, { useState } from "react";
 import MenuOpenRoundedIcon from "@mui/icons-material/MenuOpenRounded";
 import {
   DashboardIcon,
@@ -17,7 +8,7 @@ import {
 } from "@/public/Icons/CustomIcons";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import TaskOutlinedIcon from "@mui/icons-material/TaskOutlined";
-import { SideBarLinks, SimpleLink } from "@/shared/interfaces/Links";
+import { SideBarLinks } from "@/shared/interfaces/Links";
 import { useRouter } from "next/router";
 import SidebarList from "./SideBarList";
 
@@ -28,8 +19,8 @@ interface Props {
 export default function SideBar({ toggle, handleToggle }: Props) {
   const sidebarWidth = 300;
   const router = useRouter();
-  const [leadsToggle, setLeadsToggle] = useState(false);
-  const [toolsToggle, setToolsToggle] = useState(false);
+  const [leadsToggle, setLeadsToggle] = useState(true);
+  const [toolsToggle, setToolsToggle] = useState(true);
 
   const sidebarContent: Array<SideBarLinks> = [
     {

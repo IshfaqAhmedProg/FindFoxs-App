@@ -8,14 +8,14 @@ import {
   Stack,
 } from "@mui/material";
 import CustomButton from "../CustomUIComponents/CustomButton";
-import { SearchType } from "../TableComponents/TableMain";
+import { LeadSearchType } from "@/shared/interfaces/Lead";
 
 interface Props {
-  searchTypes: Array<SearchType>;
-  active: SearchType;
+  searchTypes: Array<LeadSearchType>;
+  active: LeadSearchType;
   handleTypeChange: (
     event: React.ChangeEvent<unknown>,
-    type: SearchType
+    type: LeadSearchType
   ) => void;
 }
 export default function SearchTypeSelector({
