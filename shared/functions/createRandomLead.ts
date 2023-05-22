@@ -9,7 +9,7 @@ function createRandomLead(): Lead {
   return {
     _id: faker.string.uuid(),
     name: `${firstName} ${lastName}`,
-    avatar: faker.image.avatar(),
+    avatar: "/Images/genericperson1.png",
     jobTitle: faker.person.jobTitle(),
     email: faker.internet.email({ firstName, lastName }),
     phoneNumber: faker.phone.number("501-###-###"),
