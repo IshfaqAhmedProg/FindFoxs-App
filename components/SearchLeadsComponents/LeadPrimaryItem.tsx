@@ -18,16 +18,11 @@ import CustomCheckbox from "../CustomUIComponents/CustomCheckbox";
 import { Lead } from "@/shared/interfaces/Lead";
 import TableCell from "@/components/TableComponents/TableCell";
 
-import { CheckboxSelect, CheckboxSelected } from "@/pages/leads/search";
 import SingleLeadCard from "../SearchLeadsComponents/SingleLeadCard";
-interface Props extends CheckboxSelect, CheckboxSelected {
-  content: Lead;
-}
-export default function LeadPrimaryItem({
-  content,
-  selected,
-  handleSelect,
-}: Props) {
+import { useTable } from "@/contexts/TableContext";
+
+export default function LeadPrimaryItem({ content }: { content: Lead }) {
+  const { selected, handleSelect } = useTable();
   const [seeMoreOpenAnchor, setSeeMoreOpenAnchor] =
     useState<null | HTMLElement>(null);
   const seeMoreOpen = Boolean(seeMoreOpenAnchor);

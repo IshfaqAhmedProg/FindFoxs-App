@@ -1,33 +1,21 @@
 import React from "react";
-import {
-  TextField,
-  FormControlLabel,
-  Stack,
-  Typography,
-  styled,
-} from "@mui/material";
+import { FormControlLabel, Stack } from "@mui/material";
 import CustomCheckbox from "../CustomUIComponents/CustomCheckbox";
-import MilitaryTechOutlinedIcon from "@mui/icons-material/MilitaryTechOutlined";
-import ApartmentRoundedIcon from "@mui/icons-material/ApartmentRounded";
-import PinDropRoundedIcon from "@mui/icons-material/PinDropRounded";
-import FactoryRoundedIcon from "@mui/icons-material/FactoryRounded";
-import CustomButton from "../CustomUIComponents/CustomButton";
-import CustomTextInput from "../CustomUIComponents/CustomTextInput";
-import { CheckboxSelectAll, CheckboxSelected } from "@/pages/leads/search";
-import { LeadPublicFields } from "@/shared/interfaces/Lead";
 
-const iconColor = { color: "var(--graylight)" };
+import { LeadFilters } from "@/shared/interfaces/Lead";
+import { useTable } from "@/contexts/TableContext";
 
-interface Props extends CheckboxSelectAll, CheckboxSelected {
-  totalElements: number;
-  filters: LeadPublicFields;
+interface Props {
+  tableData: Array<any>;
+  filter: React.ReactElement;
 }
-export default function TableFilter({
-  handleSelectAll,
-  selected,
-  totalElements,
-  filters,
-}: Props) {
+export default function TableFilter({ tableData, filter }: Props) {
+  const { handleSelectAll, selected } = useTable();
+  {
+    console.log("from filter selected", selected);
+    console.log("from filter totalElements", tableData.length);
+  }
+
   return (
     <Stack
       direction="row"
@@ -40,33 +28,16 @@ export default function TableFilter({
         label="select all"
         control={
           <CustomCheckbox
-            onChange={(e, checked) => handleSelectAll(checked)}
+            onChange={(e, checked) => handleSelectAll(checked, tableData)}
             indeterminate={
-              selected.length > 0 && selected.length < totalElements
+              selected.length > 0 && selected.length < tableData.length
             }
-            checked={selected.length == totalElements}
+            checked={selected.length == tableData.length}
           />
         }
         sx={{ "& span": { color: "var(--graylight)", fontSize: "11px" } }}
       />
-      <Stack direction="row" alignItems={"center"} gap={2}>
-        <Typography>Filters:</Typography>
-        <CustomTextInput placeholder="Name(optional)" />
-        {filters.map((filter) => {
-          return (
-            <CustomButton
-              key={filter.title}
-              kind="plain"
-              buttonProps={{
-                startIcon: filter.icon,
-                sx: { color: "var(--graylight)" },
-              }}
-            >
-              {filter.title}
-            </CustomButton>
-          );
-        })}
-      </Stack>
+      {filter}
     </Stack>
   );
 }

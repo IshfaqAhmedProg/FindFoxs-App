@@ -1,21 +1,20 @@
 import React from "react";
 import { Box, Stack } from "@mui/material";
-import { LeadPublicFields } from "@/shared/interfaces/Lead";
-import { CheckboxSelect, CheckboxSelected } from "@/pages/leads/search";
+import { LeadFilters } from "@/shared/interfaces/Lead";
 import TableCell from "./TableCell";
 
-interface Props extends CheckboxSelect, CheckboxSelected {
+interface Props {
   primaryKey: string;
-  visibleKeys: LeadPublicFields | Array<any>;
+  secondaryKeys: Array<string>;
   primaryItems: React.ReactElement;
-  visibleItems: React.ReactElement;
+  secondaryItems: React.ReactElement;
 }
 
 export default function TableContainer({
   primaryKey,
   primaryItems,
-  visibleKeys,
-  visibleItems,
+  secondaryKeys,
+  secondaryItems,
 }: Props) {
   return (
     <Box display="flex" justifyContent="center">
@@ -34,13 +33,13 @@ export default function TableContainer({
         pt={2}
       >
         <Stack direction="row" pl={2} gap={2} alignItems="center">
-          {visibleKeys.map((key) => (
-            <TableCell key={key.title} type="head">
-              {key.title}
+          {secondaryKeys.map((key) => (
+            <TableCell key={key} type="head">
+              {key}
             </TableCell>
           ))}
         </Stack>
-        {visibleItems}
+        {secondaryItems}
       </Stack>
     </Box>
   );

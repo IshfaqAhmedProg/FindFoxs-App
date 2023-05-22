@@ -8,6 +8,10 @@ export default function LeadTableItem({ content }: { content: Lead }) {
   const linkStyle = {
     color: "var(--primarylight)",
     fontSize: "14px",
+    width: "100%",
+    display: "flex",
+    alignItems: "center",
+    gap: "0.2rem",
   };
   return (
     <>
@@ -15,11 +19,11 @@ export default function LeadTableItem({ content }: { content: Lead }) {
       <TableCell>
         <Link
           href={content.companyWebsite}
-          style={linkStyle}
           target="_blank"
+          style={linkStyle}
           passHref={true}
         >
-          <InsertLinkIcon sx={{ fontSize: "15px", mt: 1 }} />
+          <InsertLinkIcon sx={{ fontSize: "15px" }} />
           {content.companyName}
         </Link>
       </TableCell>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   CardHeader,
   Card,
@@ -8,47 +8,30 @@ import {
   Stack,
 } from "@mui/material";
 import TableContainer from "@/components/TableComponents/TableContainer";
-import { LeadPublicFields } from "@/shared/interfaces/Lead";
+import { leadPublicFields } from "@/shared/interfaces/Lead";
 import TableFilter from "@/components/TableComponents/TableFilter";
-import MilitaryTechOutlinedIcon from "@mui/icons-material/MilitaryTechOutlined";
-import ApartmentRoundedIcon from "@mui/icons-material/ApartmentRounded";
-import PinDropRoundedIcon from "@mui/icons-material/PinDropRounded";
-import FactoryRoundedIcon from "@mui/icons-material/FactoryRounded";
 import SearchTypeSelector from "../SearchLeadsComponents/SearchTypeSelector";
 import { useTable } from "@/contexts/TableContext";
+import SearchLeadsFilter from "../SearchLeadsComponents/SearchLeadsFilter";
 const searchTypes = ["Individual", "Company"];
 
 export type SearchType = (typeof searchTypes)[number];
-export interface CheckboxSelectAll {
-  handleSelectAll: (checked: boolean) => void;
-}
-export interface CheckboxSelect {
-  handleSelect: (id: string) => void;
-}
-export interface CheckboxSelected {
-  selected: Array<string>;
+
+interface Props {
+  tableTitle: string;
+  data: Array<any>;
+  primaryItems: React.ReactElement;
+  secondaryItems: React.ReactElement;
 }
 
-const iconColor = { color: "var(--graylight)" };
-const LeadTablePublicValues: LeadPublicFields = [
-  {
-    title: "Job Title",
-    icon: <MilitaryTechOutlinedIcon sx={iconColor} />,
-  },
-  { title: "Company", icon: <ApartmentRoundedIcon sx={iconColor} /> },
-  { title: "Location", icon: <PinDropRoundedIcon sx={iconColor} /> },
-  { title: "Industry", icon: <FactoryRoundedIcon sx={iconColor} /> },
-];
-export default function TableMain({ data }: { data: any }) {
+export default function TableMain({
+  tableTitle,
+  data,
+  primaryItems,
+  secondaryItems,
+}: Props) {
   const [searchType, setSearchType] = useState<SearchType>("Individual");
-  const {
-    selected,
-    page,
-    tableData,
-    handlePageChange,
-    handleSelectAll,
-    handleSelect,
-  } = useTable();
+  const { page, handlePageChange } = useTable();
   function handleTypeChange(
     event: React.ChangeEvent<unknown>,
     type: SearchType
@@ -58,7 +41,7 @@ export default function TableMain({ data }: { data: any }) {
   return (
     <Card>
       <CardHeader
-        title="Search for..."
+        title={tableTitle}
         action={
           <SearchTypeSelector
             searchTypes={searchTypes}
@@ -81,19 +64,12 @@ export default function TableMain({ data }: { data: any }) {
           },
         }}
       >
-        <TableFilter
-          handleSelectAll={handleSelectAll}
-          selected={selected}
-          totalElements={tableData.length}
-          filters={LeadTablePublicValues}
-        />
+        <TableFilter tableData={data} filter={<SearchLeadsFilter />} />
         <TableContainer
-          handleSelect={handleSelect}
-          selected={selected}
           primaryKey="Name"
-          primaryItems={tablePrimaryItem}
-          visibleKeys={LeadTablePublicValues}
-          visibleItems={tableVisibleItems}
+          primaryItems={primaryItems}
+          secondaryKeys={leadPublicFields}
+          secondaryItems={secondaryItems}
         />
         <Stack alignItems="center">
           <Pagination count={10} page={page} onChange={handlePageChange} />

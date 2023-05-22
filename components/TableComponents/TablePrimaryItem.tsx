@@ -1,23 +1,16 @@
-import React, { useState } from "react";
-import {
-  Stack,
-  Divider,
-} from "@mui/material";
+import React from "react";
+import { Stack, Divider } from "@mui/material";
 
 import { Lead } from "@/shared/interfaces/Lead";
 
-import {  CheckboxSelected } from "@/pages/leads/search";
+import { useTable } from "@/contexts/TableContext";
 
-
-interface Props extends CheckboxSelected {
+interface Props {
   content: Lead;
   children: React.ReactElement;
 }
-export default function TablePrimaryItem({
-  content,
-  selected,
-  children,
-}: Props) {
+export default function TablePrimaryItem({ content, children }: Props) {
+  const { selected } = useTable();
   return (
     <>
       <Stack

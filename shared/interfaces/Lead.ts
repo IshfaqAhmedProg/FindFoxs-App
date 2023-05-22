@@ -11,8 +11,13 @@ export interface Lead {
   companyWebsite: string;
   industry: (typeof industries)[number];
 }
-interface LVF {
-  title: "Job Title" | "Company" | "Location" | "Industry";
+export const leadPublicFields = [
+  "Job Title",
+  "Company",
+  "Location",
+  "Industry",
+];
+export interface LeadFilters {
+  title: (typeof leadPublicFields)[number];
   icon: React.ReactElement;
 }
-export type LeadPublicFields = Array<LVF>;

@@ -1,4 +1,8 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import { Lead } from "@/shared/interfaces/Lead";
+import React, { createContext, useContext, useState } from "react";
+
+interface TableDataTypes extends Lead {}
+
 const TableContext = createContext<any>({});
 export const useTable = () => useContext(TableContext);
 export const TableContextProvider = ({
@@ -8,10 +12,7 @@ export const TableContextProvider = ({
 }) => {
   const [selected, setSelected] = useState<Array<string>>([]);
   const [page, setPage] = useState(1);
-  const [tableData, setTableData] = useState<Array<any>>([]);
-  const handleTableData = (data: any) => {
-    setTableData(data);
-  };
+
   function handleSelect(id: string) {
     setSelected((prevCheckedItems) => {
       if (prevCheckedItems.includes(id)) {
@@ -21,21 +22,25 @@ export const TableContextProvider = ({
       }
     });
   }
-  function handleSelectAll(checked: boolean) {
+  const handleSelectAll = (
+    checked: boolean,
+    tableData: Array<TableDataTypes>
+  ) => {
     if (checked) setSelected(tableData.map((data) => data._id));
     else setSelected([]);
-  }
-  function handlePageChange(event: React.ChangeEvent<unknown>, value: number) {
+  };
+  const handlePageChange = (
+    event: React.ChangeEvent<unknown>,
+    value: number
+  ) => {
     setPage(value);
-  }
+  };
   return (
     <TableContext.Provider
       value={{
         selected,
         page,
-        tableData,
         handlePageChange,
-        handleDataToSelect: handleTableData,
         handleSelect,
         handleSelectAll,
       }}
