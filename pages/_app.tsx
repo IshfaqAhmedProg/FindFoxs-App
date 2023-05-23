@@ -13,7 +13,10 @@ export default function App({ Component, pageProps }: AppProps) {
       <ThemeProvider theme={theme}>
         <NavBar />
         <Component {...pageProps} />
-        <Script src={`//code.tidio.co/${process.env.TIDIO_KEY}.js`} async />
+        <Script
+          src={`//code.tidio.co/2pe6u1h7hojkccweeyfqbxsvj9l3ffsx.js`}
+          async
+        />
         <Analytics />
       </ThemeProvider>
     </AuthContextProvider>
