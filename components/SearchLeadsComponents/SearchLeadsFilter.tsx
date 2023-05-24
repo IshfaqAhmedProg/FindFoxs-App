@@ -2,14 +2,14 @@ import React from "react";
 import { Stack, Typography } from "@mui/material";
 import CustomTextInput from "../CustomUIComponents/CustomTextInput";
 import CustomButton from "../CustomUIComponents/CustomButton";
-import { LeadFilters } from "@/shared/interfaces/Lead";
+import { LeadAction } from "@/shared/interfaces/Lead";
 import MilitaryTechOutlinedIcon from "@mui/icons-material/MilitaryTechOutlined";
 import ApartmentRoundedIcon from "@mui/icons-material/ApartmentRounded";
 import PinDropRoundedIcon from "@mui/icons-material/PinDropRounded";
 import FactoryRoundedIcon from "@mui/icons-material/FactoryRounded";
 
 const iconColor = { color: "var(--graylight)" };
-const LeadTablePublicValues: Array<LeadFilters> = [
+const LeadTablePublicValues: Array<LeadAction> = [
   {
     title: "Job Title",
     icon: <MilitaryTechOutlinedIcon sx={iconColor} />,
@@ -30,7 +30,7 @@ export default function SearchLeadsFilter() {
       gap={1}
     >
       <Typography>Filters:</Typography>
-      <CustomTextInput placeholder="Name(optional)" />
+      <CustomTextInput placeholder="Search by Name" />
       {LeadTablePublicValues.map((filter) => {
         return (
           <CustomButton

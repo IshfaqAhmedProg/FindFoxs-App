@@ -19,14 +19,7 @@ export default function SingleStatCard({ title, stat, total, unit }: Props) {
       flexDirection="column"
       minHeight="6.875rem"
     >
-      <Typography
-        variant="h5"
-        sx={{
-          fontSize: { sm: ".75rem", md: ".875rem" },
-        }}
-      >
-        {title}
-      </Typography>
+      <Typography variant="h5">{title}</Typography>
       <Typography fontSize="250%" variant="h3" color="secondary">
         {stat}
         {total && "/"}

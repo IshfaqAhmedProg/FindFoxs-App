@@ -18,11 +18,11 @@ import CustomCheckbox from "../CustomUIComponents/CustomCheckbox";
 import { Lead } from "@/shared/interfaces/Lead";
 import TableCell from "@/components/TableComponents/TableCell";
 
-import SingleLeadCard from "../SearchLeadsComponents/SingleLeadCard";
+import SingleLeadCard from "./SingleLeadCard";
 import { useTable } from "@/contexts/TableContext";
 import Image from "next/image";
 
-export default function LeadPrimaryItem({ content }: { content: Lead }) {
+export default function SearchLeadsPrimaryItem({ content }: { content: Lead }) {
   const { selected, handleSelect } = useTable();
   const [seeMoreOpenAnchor, setSeeMoreOpenAnchor] =
     useState<null | HTMLElement>(null);
@@ -48,7 +48,13 @@ export default function LeadPrimaryItem({ content }: { content: Lead }) {
     setSeeMoreOpenAnchor(null);
   }
   return (
-    <Stack direction="row" alignItems="center" gap={2}>
+    <Stack
+      direction="row"
+      alignItems="center"
+      gap={2}
+      justifyContent={"space-between"}
+      width={"100%"}
+    >
       <CustomCheckbox
         checked={selected.includes(content._id)}
         onChange={(e, checked) => handleSelect(content._id)}

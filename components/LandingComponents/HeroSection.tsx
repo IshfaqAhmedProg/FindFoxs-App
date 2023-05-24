@@ -4,7 +4,9 @@ import React from "react";
 import OndemandVideoRoundedIcon from "@mui/icons-material/OndemandVideoRounded";
 import Image from "next/image";
 import HeroImage from "@/public/Images/HeroImage.png";
+import CustomButton from "../CustomUIComponents/CustomButton";
 export const HeroSection = () => {
+  const videoIcon = <OndemandVideoRoundedIcon />;
   return (
     <Box
       width="100%"
@@ -25,23 +27,15 @@ export const HeroSection = () => {
         </span>
       </Typography>
       <Box display="flex" gap="1.5em">
-        <Button
-          size="large"
-          color="primary"
-          sx={{ fontSize: "var(--buttonimpact)", background: "white" }}
-        >
-          Try for free
-        </Button>
-        <Button
-          startIcon={<OndemandVideoRoundedIcon />}
-          size="large"
-          variant="contained"
-          sx={{
-            fontSize: "var(--buttonimpact)",
+        <CustomButton kind="primarylg">Try for free</CustomButton>
+        <CustomButton
+          buttonProps={{
+            startIcon: videoIcon,
           }}
+          kind="secondarylg"
         >
           Watch a video
-        </Button>
+        </CustomButton>
       </Box>
       <Box sx={{ width: { xs: "90vw", md: "fit-content" } }}>
         <Image

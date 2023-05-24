@@ -26,6 +26,7 @@ export default function TableCell({
                 : { fontSize: ".75rem" }
             }
             noWrap
+          
           >
             {children}
           </Typography>

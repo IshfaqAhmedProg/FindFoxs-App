@@ -1,12 +1,7 @@
 import React from "react";
-import {
-  CardHeader,
-  Button,
-  Card,
-  CardContent,
-  Divider,
-} from "@mui/material";
+import { CardHeader, Button, Card, CardContent, Divider } from "@mui/material";
 import ReadMoreRoundedIcon from "@mui/icons-material/ReadMoreRounded";
+import CustomButton from "@/components/CustomUIComponents/CustomButton";
 interface Props {
   children?: React.ReactElement | Array<React.ReactElement>;
   title: string;
@@ -17,6 +12,15 @@ export default function DashboardCardsLayout({
   title,
   minHeight,
 }: Props) {
+  const buttonIcon = <ReadMoreRoundedIcon sx={{ color: "var(--graylight)" }} />;
+  const button = (
+    <CustomButton
+      kind="plain"
+      buttonProps={{ startIcon: buttonIcon, "aria-label": `see more ${title}` }}
+    >
+      See More
+    </CustomButton>
+  );
   return (
     <Card
       sx={{
@@ -25,29 +29,7 @@ export default function DashboardCardsLayout({
         gridRowStart: "span 2",
       }}
     >
-      <CardHeader
-        action={
-          <Button
-            aria-label={`view more ${title}`}
-            sx={{
-              bgcolor: "transparent",
-              boxShadow: "none",
-              color: "var(--graylight)",
-              fontSize: "14px",
-              ":hover": {
-                boxShadow: "none",
-              },
-              padding: "0 8px",
-            }}
-            startIcon={
-              <ReadMoreRoundedIcon sx={{ color: "var(--graylight)" }} />
-            }
-          >
-            See More
-          </Button>
-        }
-        title={title}
-      />
+      <CardHeader action={button} title={title} />
       <Divider />
       <CardContent sx={{ overflowY: "auto", padding: 0, height: "100%" }}>
         {children}

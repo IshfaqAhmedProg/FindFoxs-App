@@ -6,10 +6,10 @@ import { Lead } from "@/shared/interfaces/Lead";
 import { useTable } from "@/contexts/TableContext";
 
 interface Props {
-  content: Lead;
+  id: string;
   children: React.ReactElement;
 }
-export default function TablePrimaryItem({ content, children }: Props) {
+export default function TablePrimaryItem({ id, children }: Props) {
   const { selected } = useTable();
   return (
     <>
@@ -21,7 +21,7 @@ export default function TablePrimaryItem({ content, children }: Props) {
         mt={"1px"}
         gap={2}
         sx={
-          selected.includes(content._id)
+          selected.includes(id)
             ? {
                 background: "var(--graylighter)",
                 borderRadius: "var(--border-radius) 0 0 var(--border-radius) ",

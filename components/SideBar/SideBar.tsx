@@ -95,6 +95,7 @@ export default function SideBar({ toggle, handleToggle }: Props) {
       sx={{
         boxShadow: "var(--box-shadow)",
         transition: "left 0.15s ease",
+        overflowY: "auto",
       }}
       bgcolor="white"
       paddingTop="4.375rem"

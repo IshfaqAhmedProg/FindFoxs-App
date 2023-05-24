@@ -139,13 +139,21 @@ const theme = createTheme({
         },
       },
     },
+    MuiPaginationItem: {
+      styleOverrides: {
+        root: {
+          color: "var(--primarylight)",
+          fontWeight: 700,
+        },
+      },
+    },
   },
   palette: {
     primary: {
       main: "#303f9f",
       dark: "#212c6f",
       light: "#5965b2",
-      contrastText: "#fff",
+      contrastText: "#ffffff",
     },
     secondary: {
       main: "#00e676",
@@ -195,12 +203,12 @@ const theme = createTheme({
       margin: "0",
       fontStyle: "normal",
       fontWeight: "700",
-      fontSize: "20px",
+      fontSize: "1.25rem",
       lineHeight: "124.5%",
       color: "var(--graylight)",
     },
     h5: {
-      fontSize: "0.875rem",
+      fontSize: "md",
       fontWeight: "bold",
       color: "var(--primarydark)",
     },

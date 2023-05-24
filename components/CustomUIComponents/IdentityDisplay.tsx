@@ -18,7 +18,7 @@ export default function IdentityDisplay({
     <>
       {avatar ? (
         <Avatar>
-          <Image src={avatar} alt={name} width={70} height={70} />
+          <Image alt="Lead Avatar" src={avatar} width={40} height={40} />
         </Avatar>
       ) : name ? (
         <Avatar {...stringAvatar(name)} />

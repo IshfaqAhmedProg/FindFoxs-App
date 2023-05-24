@@ -17,10 +17,12 @@ export const leadPublicFields = [
   "Location",
   "Industry",
 ];
-export interface LeadFilters {
+export interface LeadAction {
   title: (typeof leadPublicFields)[number];
   icon: React.ReactElement;
+  handler?: (params: any) => void;
 }
-export const leadSearchTypes = ["Individual", "Company"];
 
-export type LeadSearchType = (typeof leadSearchTypes)[number];
+export const leadSearchTabs = ["Individual", "Company"];
+
+export type LeadSearchTabs = (typeof leadSearchTabs)[number];

@@ -1,5 +1,5 @@
-import React from "react";
-import { Box, Stack } from "@mui/material";
+import React, { useState } from "react";
+import { Box, Stack, useMediaQuery, useTheme } from "@mui/material";
 import TableCell from "./TableCell";
 
 interface Props {
@@ -15,15 +15,22 @@ export default function TableContainer({
   secondaryKeys,
   secondaryItems,
 }: Props) {
+  const theme = useTheme();
+  const [toggleSecondary, setToggleSecondary] = useState<boolean>();
+  //to keep the sidebar toggled when screen is big
   return (
     <Box display="flex" justifyContent="center">
-      <Stack pt={2}>
+      <Stack
+        pt={2}
+        width={useMediaQuery(theme.breakpoints.down("sm")) ? "100%" : "inherit"}
+      >
         <Stack direction="row" alignItems="center" justifyContent="flex-end">
           <TableCell type="head">{primaryKey}</TableCell>
         </Stack>
         {primaryItems}
       </Stack>
       <Stack
+        display={useMediaQuery(theme.breakpoints.down("sm")) ? "none" : "block"}
         width="80%"
         boxShadow="inset var(--box-shadow)"
         borderRadius="var(--border-radius)"

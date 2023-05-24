@@ -6,7 +6,7 @@
   --primarydark: #1d276b;
   --primary: #303f9f;
   --primarylight: #5467e4;
-  --primarylighter: #85bcf1;
+  --primarylighter: #92bcff;
   --white: rgba(255, 255, 255, 1);
   --graylightest: #0000000a;
   --graylighter: #ededed;
@@ -112,7 +112,7 @@ p {
   -webkit-border-radius: 10px;
   border-radius: 10px;
 }
-body.awesome-iframe {
+.awesome-iframe {
   font-family: "Montserrat", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
     Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }

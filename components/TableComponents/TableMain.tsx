@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import {
   CardHeader,
   Card,
@@ -8,46 +8,38 @@ import {
   Stack,
 } from "@mui/material";
 import TableContainer from "@/components/TableComponents/TableContainer";
-import { LeadSearchType, leadPublicFields } from "@/shared/interfaces/Lead";
+import { leadPublicFields } from "@/shared/interfaces/Lead";
 import TableFilter from "@/components/TableComponents/TableFilter";
-import SearchTypeSelector from "../SearchLeadsComponents/SearchTypeSelector";
+import TableTabsSelector from "./TableTabsSelector";
 import { useTable } from "@/contexts/TableContext";
-import SearchLeadsFilter from "../SearchLeadsComponents/SearchLeadsFilter";
-
-interface Props {
-  tableTitle: string;
-  data: Array<any>;
-  primaryItems: React.ReactElement;
-  secondaryItems: React.ReactElement;
-  searchTypes: Array<LeadSearchType | any>;
-}
+import { ITableMain } from "@/shared/interfaces/Table";
 
 export default function TableMain({
-  tableTitle,
+  tableTitle = "",
   data,
+  primaryKey = "",
   primaryItems,
   secondaryItems,
-  searchTypes,
-}: Props) {
-  const [searchType, setSearchType] = useState<string>(searchTypes[0]);
-  const { page, handlePageChange } = useTable();
-  function handleTypeChange(
-    event: React.ChangeEvent<unknown>,
-    type: LeadSearchType
-  ) {
-    setSearchType(type);
-  }
+  tableTabs,
+  filterComponent,
+  selectActionsComponent,
+}: ITableMain) {
+  const { page, handlePageChange, handleTabChange, activeTab } = useTable();
+  useEffect(() => {
+    //setting the initially selected tab
+    const tab = tableTabs[0];
+    if (!activeTab) handleTabChange({ tab });
+  }, []);
   return (
     <Card>
       <CardHeader
         title={tableTitle}
-        action={
-          <SearchTypeSelector
-            searchTypes={searchTypes}
-            active={searchType}
-            handleTypeChange={handleTypeChange}
-          />
-        }
+        action={<TableTabsSelector tableTabs={tableTabs} />}
+        sx={{
+          "& div:first-of-type": {
+            flex: "0 1 auto",
+          },
+        }}
       />
       <Divider />
       <CardContent
@@ -63,15 +55,24 @@ export default function TableMain({
           },
         }}
       >
-        <TableFilter tableData={data} filter={<SearchLeadsFilter />} />
+        <TableFilter
+          selectActionsComponent={selectActionsComponent}
+          tableData={data}
+          filterComponent={filterComponent}
+        />
         <TableContainer
-          primaryKey="Name"
+          primaryKey={primaryKey}
           primaryItems={primaryItems}
           secondaryKeys={leadPublicFields}
           secondaryItems={secondaryItems}
         />
-        <Stack alignItems="center">
-          <Pagination count={10} page={page} onChange={handlePageChange} />
+        <Stack mx={4} my={2}>
+          <Pagination
+            count={10}
+            page={page}
+            onChange={(e, page) => handlePageChange({ page })}
+            shape="rounded"
+          />
         </Stack>
       </CardContent>
     </Card>

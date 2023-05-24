@@ -1,17 +1,23 @@
-import { Lead } from "@/shared/interfaces/Lead";
+import { Lead, LeadSearchTabs } from "@/shared/interfaces/Lead";
+import {
+  DataTypesSupported,
+  ITableContext,
+  handlePageChangeParams,
+  handleSelectAllParams,
+  handleTabChangeParams,
+} from "@/shared/interfaces/Table";
 import React, { createContext, useContext, useState } from "react";
 
-interface TableDataTypes extends Lead {}
-
 const TableContext = createContext<any>({});
-export const useTable = () => useContext(TableContext);
+export const useTable = (): ITableContext => useContext(TableContext);
 export const TableContextProvider = ({
   children,
 }: {
   children: React.ReactNode;
 }) => {
   const [selected, setSelected] = useState<Array<string>>([]);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState<number>(1);
+  const [activeTab, setActiveTab] = useState<string>("");
 
   function handleSelect(id: string) {
     setSelected((prevCheckedItems) => {
@@ -22,24 +28,24 @@ export const TableContextProvider = ({
       }
     });
   }
-  const handleSelectAll = (
-    checked: boolean,
-    tableData: Array<TableDataTypes>
-  ) => {
-    if (checked) setSelected(tableData.map((data) => data._id));
+  const handleSelectAll = (params: handleSelectAllParams) => {
+    if (params.checked) setSelected(params.tableData.map((data) => data._id));
     else setSelected([]);
   };
-  const handlePageChange = (
-    event: React.ChangeEvent<unknown>,
-    value: number
-  ) => {
-    setPage(value);
+  const handlePageChange = (params: handlePageChangeParams) => {
+    setPage(params.page);
+  };
+
+  const handleTabChange = (params: handleTabChangeParams) => {
+    setActiveTab(params.tab);
   };
   return (
     <TableContext.Provider
       value={{
         selected,
         page,
+        activeTab,
+        handleTabChange,
         handlePageChange,
         handleSelect,
         handleSelectAll,

@@ -6,8 +6,15 @@ import ClearRoundedIcon from "@mui/icons-material/ClearRounded";
 interface Props {
   buttonProps?: ButtonProps;
   iconButtonProps?: IconButtonProps;
-  children?: string;
-  kind: "plain" | "primary" | "secondary" | "close";
+  children?: React.ReactElement | string;
+  kind?:
+    | "plain"
+    | "primary"
+    | "primarylg"
+    | "secondary"
+    | "secondarylg"
+    | "icon"
+    | "close";
 }
 const PlainButton = styled(Button)({
   bgcolor: "transparent",
@@ -27,7 +34,7 @@ export default function CustomButton({
   buttonProps,
   iconButtonProps,
   children,
-  kind,
+  kind = "primary",
 }: Props) {
   switch (kind) {
     case "plain":
@@ -39,8 +46,44 @@ export default function CustomButton({
           <ClearRoundedIcon />
         </CloseButton>
       );
+    case "primarylg":
+      return (
+        <Button
+          size="large"
+          color="primary"
+          sx={{ fontSize: "var(--buttonimpact)", background: "white" }}
+          {...buttonProps}
+        >
+          {children}
+        </Button>
+      );
+      break;
+    case "secondarylg":
+      return (
+        <Button
+          size="large"
+          variant="contained"
+          sx={{
+            fontSize: "var(--buttonimpact)",
+          }}
+          {...buttonProps}
+        >
+          {children}
+        </Button>
+      );
+      break;
+    case "secondary":
+      return (
+        <Button {...buttonProps} variant="contained" sx={{ color: "white" }}>
+          {children}
+        </Button>
+      );
+      break;
+    case "icon":
+      return <IconButton {...iconButtonProps}>{children}</IconButton>;
+      break;
     default:
-      return <Button {...buttonProps} />;
+      return <Button {...buttonProps}>{children}</Button>;
       break;
   }
 }
