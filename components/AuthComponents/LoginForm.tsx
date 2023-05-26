@@ -2,7 +2,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { FormCredentials } from "@/shared/interfaces/FormInputs";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import { useAuthLayout } from "./AuthLayout";
+import { useAuthError } from "../../contexts/AuthErrorContext";
 import inputs from "@/shared/constants/inputs.json";
 import { Button, CircularProgress, Box, Divider } from "@mui/material";
 import { FormInput } from "@/components/FormComponents/FormInput";
@@ -11,8 +11,9 @@ import Image from "next/image";
 import Typography from "@mui/material/Typography";
 import LoadingButton from "../LoadingButton/LoadingButton";
 import LoginRoundedIcon from "@mui/icons-material/LoginRounded";
+import FormContainer from "../FormComponents/FormContainer";
 export default function LoginForm() {
-  const { handleError } = useAuthLayout();
+  const { handleError } = useAuthError();
   const { login, googleLogin } = useAuth();
   const [values, setValues] = useState<FormCredentials>({
     email: "",
@@ -20,11 +21,7 @@ export default function LoginForm() {
   });
   const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
-  const formStyles = {
-    display: "flex",
-    flexDirection: "column",
-    gap: "1.5rem",
-  };
+
   function handleEmailLogin(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
@@ -60,14 +57,7 @@ export default function LoginForm() {
         alignItems="center"
         gap="1.5rem"
       >
-        <form
-          onSubmit={handleEmailLogin}
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "1.5rem",
-          }}
-        >
+        <FormContainer onSubmit={handleEmailLogin}>
           {inputs.auth.map((input) => (
             <FormInput
               key={input.id}
@@ -85,16 +75,9 @@ export default function LoginForm() {
           >
             Log in
           </LoadingButton>
-        </form>
+        </FormContainer>
         <Divider style={{ width: "100%" }}>or</Divider>
-        <form
-          onSubmit={handleGoogleLogin}
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            width: "100%",
-          }}
-        >
+        <FormContainer onSubmit={handleGoogleLogin}>
           <LoadingButton
             loading={loading}
             type="submit"
@@ -103,7 +86,7 @@ export default function LoginForm() {
           >
             Log in with Google&nbsp;
           </LoadingButton>
-        </form>
+        </FormContainer>
       </Box>
     </>
   );

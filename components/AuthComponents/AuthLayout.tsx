@@ -1,30 +1,16 @@
-import React, { useState, createContext, useEffect, useContext } from "react";
-import { Alert, AlertTitle, Fade, Card, Box } from "@mui/material";
-import { GetRefinedFirebaseError } from "@/shared/functions/errorHandler";
 import Image from "next/image";
-const AuthLayoutContext = createContext<any>({});
-export const useAuthLayout = () => useContext(AuthLayoutContext);
-export const AuthLayoutProvider = ({
+import React from "react";
+import { Box, Stack, useMediaQuery, useTheme } from "@mui/material";
+import { useAuthError } from "../../contexts/AuthErrorContext";
+
+export default function AuthLayout({
   children,
 }: {
   children: React.ReactNode;
-}) => {
-  const [checked, setChecked] = useState<boolean>(false);
-  const [errorMsg, setErrorMsg] = useState<string>("");
-  const handleError = (err: any) => {
-    setChecked(true);
-    if (err == null) return;
-    console.log(GetRefinedFirebaseError(err));
-    setErrorMsg(GetRefinedFirebaseError(err));
-    return;
-  };
-  useEffect(() => {
-    //to make the message dissapear
-    let checkedTimeOut;
-    if (checked) {
-      checkedTimeOut = setTimeout(() => setChecked(!checked), 5000);
-    }
-  }, [checked]);
+}) {
+  const theme = useTheme();
+
+  const { errorAlert } = useAuthError();
   const background = (
     <Image
       src="https://source.unsplash.com/random/1280x720/?fox"
@@ -41,57 +27,39 @@ export const AuthLayoutProvider = ({
       }}
     />
   );
-  const errorAlert = (
-    <Fade
-      in={checked}
-      style={{
-        transformOrigin: "0 0 0",
-        position: "absolute",
-        top: "10%",
-        left: "50%",
-        transform: "translate(-50%,0%)",
-      }}
-    >
-      <Alert severity="error">
-        <AlertTitle>Error</AlertTitle>
-        {errorMsg}
-      </Alert>
-    </Fade>
-  );
   return (
-    <AuthLayoutContext.Provider value={{ handleError }}>
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        height="100vh"
-        maxWidth="100%"
-        overflow="hidden"
-        position="relative"
+    <Box
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      height="100vh"
+      maxWidth="100%"
+      overflow="hidden"
+      position="relative"
+    >
+      {background}
+      {errorAlert}
+      <Stack
+        px={2}
+        py={4}
+        width={useMediaQuery(theme.breakpoints.up("md")) ? "60%" : "95%"}
+        maxWidth={"42.5rem"}
+        height={"65%"}
+        gap={3}
+        alignItems={"center"}
+        justifyContent={
+          useMediaQuery(theme.breakpoints.up("md")) ? "center" : "space-around"
+        }
+        position={"relative"}
+        borderRadius={"var(--border-radius)"}
+        bgcolor={"var(--white)"}
+        sx={{
+          boxShadow: "var(--box-shadow)",
+          overflowY: "auto",
+        }}
       >
-        {background}
-        {errorAlert}
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "3em",
-            justifyContent: "center",
-            width: "40vw",
-            minWidth: "fit-content",
-            alignItems: "center",
-            position: "relative",
-            borderRadius: "var(--border-radius)",
-            paddingTop: "3.125rem",
-            paddingBottom: "5rem",
-            boxShadow: "var(--box-shadow)",
-            color: "var(--primary)",
-            background: "var(--white)",
-          }}
-        >
-          {children}
-        </Box>
-      </Box>
-    </AuthLayoutContext.Provider>
+        {children}
+      </Stack>
+    </Box>
   );
-};
+}

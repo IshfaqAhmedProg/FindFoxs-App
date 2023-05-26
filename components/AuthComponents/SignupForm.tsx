@@ -2,21 +2,22 @@ import { useAuth } from "@/contexts/AuthContext";
 import { FormCredentials } from "@/shared/interfaces/FormInputs";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import { useAuthLayout } from "./AuthLayout";
 import inputs from "../../shared/constants/inputs.json";
 import google from "../../public/Logos/Extra/Google.svg";
 import Image from "next/image";
 import Typography from "@mui/material/Typography";
 
-import { Button, CircularProgress, Box, Divider } from "@mui/material";
+import { Box, Divider } from "@mui/material";
 import { FormInput } from "@/components/FormComponents/FormInput";
 import LoadingButton from "../LoadingButton/LoadingButton";
 import HowToRegRoundedIcon from "@mui/icons-material/HowToRegRounded";
+import FormContainer from "../FormComponents/FormContainer";
+import { useAuthError } from "@/contexts/AuthErrorContext";
 
 export default function SignupForm() {
-  const { handleError } = useAuthLayout();
+  const { handleError } = useAuthError();
 
-  const { signup, googleSignup } = useAuth();
+  const { signup, googleSignup, sendEV } = useAuth();
   const [values, setValues] = useState<FormCredentials>({
     email: "",
     password: "",
@@ -27,17 +28,15 @@ export default function SignupForm() {
     e.preventDefault();
     setLoading(true);
     signup(values.email, values.password)
-      .then(() => {
-        router.replace("/dashboard/newuser/1");
-      })
-      .catch((error: any) => console.log(error))
+      .then(() => router.replace("/auth/signup/1"))
+      .catch((error: any) => handleError(error))
       .finally(() => setLoading(false));
   }
   function handleGoogleSignup(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
     googleSignup()
-      .then(() => router.replace("/dashboard"))
+      .then(() => router.replace("/auth/signup/1"))
       .catch((error: any) => handleError(error))
       .finally(() => setLoading(false));
   }
@@ -57,10 +56,7 @@ export default function SignupForm() {
         alignItems="center"
         gap="1.5rem"
       >
-        <form
-          onSubmit={handleSignUp}
-          style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}
-        >
+        <FormContainer onSubmit={handleSignUp}>
           {inputs.auth.map((input) => (
             <FormInput
               key={input.id}
@@ -78,26 +74,18 @@ export default function SignupForm() {
           >
             Sign up
           </LoadingButton>
-        </form>
+        </FormContainer>
         <Divider style={{ width: "100%" }}>or</Divider>
-        <form
-          onSubmit={handleGoogleSignup}
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            width: "100%",
-          }}
-        >
+        <FormContainer onSubmit={handleGoogleSignup}>
           <LoadingButton
             loading={loading}
             type="submit"
-            variant="outlined"
             size="large"
             startIcon={<Image src={google} alt="google logo" />}
           >
             Sign up with Google&nbsp;
           </LoadingButton>
-        </form>
+        </FormContainer>
       </Box>
     </>
   );

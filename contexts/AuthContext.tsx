@@ -8,20 +8,23 @@ import {
   signInWithPopup,
   sendPasswordResetEmail,
   sendEmailVerification,
+  UserCredential,
 } from "firebase/auth";
 
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { auth, db } from "../firebase/config";
 import { User } from "firebase/auth";
 import Cookies from "js-cookie";
+import { useRouter } from "next/router";
 
 const AuthContext = createContext<any>({});
-export const useAuth = () => useContext(AuthContext);
+export const useAuth = (): IAuthContext => useContext(AuthContext);
 export const AuthContextProvider = ({
   children,
 }: {
   children: React.ReactNode;
 }) => {
+  const router = useRouter();
   const [user, setUser] = useState<User | null>();
   const [loading, setLoading] = useState<boolean>();
 
@@ -32,10 +35,11 @@ export const AuthContextProvider = ({
       if (user) {
         //TODOsetcookies here
         Cookies.set("loggedin", "true");
-
+        Cookies.set("emailVerified", JSON.stringify(user.emailVerified));
         setUser(user);
       } else {
         Cookies.remove("loggedin");
+        Cookies.remove("emailVerified");
         setUser(null);
       }
       setLoading(false);
@@ -90,6 +94,8 @@ export const AuthContextProvider = ({
       setUser(null);
       console.log("loggedout");
       Cookies.remove("loggedin");
+      Cookies.remove("emailVerified");
+      router.replace("/");
     });
   };
   //Password Reset Auth function
@@ -124,3 +130,13 @@ export const AuthContextProvider = ({
     </AuthContext.Provider>
   );
 };
+interface IAuthContext {
+  login: (email: string, password: string) => Promise<UserCredential>;
+  signup: (email: string, password: string) => Promise<UserCredential>;
+  googleSignup: () => Promise<UserCredential>;
+  googleLogin: () => Promise<UserCredential>;
+  sendEV: () => Promise<void> | null;
+  logout: () => void;
+  resetPass: (email: string) => Promise<void>;
+  user: User | null;
+}
