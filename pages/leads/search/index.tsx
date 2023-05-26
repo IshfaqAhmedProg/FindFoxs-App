@@ -1,66 +1,16 @@
-import React, { useState, useEffect } from "react";
 import styles from "@/styles/Home.module.css";
 import Cursor from "@/components/LandingComponents/Cursor";
 import DashboardLayout from "@/components/DashboardComponents/DashboardLayout";
-import createRandomLeadArray from "@/shared/functions/createRandomLead";
-import { Lead, leadSearchTabs } from "@/shared/interfaces/Lead";
-import SearchLeadsPrimaryItem from "@/components/SearchLeadsComponents/SearchLeadsPrimaryItem";
-import TablePrimaryItem from "@/components/TableComponents/TablePrimaryItem";
-import TableItem from "@/components/TableComponents/TableItem";
-import SearchLeadsTableItem from "@/components/SearchLeadsComponents/SearchLeadsTableItem";
 import { TableContextProvider } from "@/contexts/TableContext";
-import TableMain from "@/components/TableComponents/TableMain";
-import SearchLeadsFilter from "@/components/SearchLeadsComponents/SearchLeadsFilter";
-import SearchLeadsSelectAction from "@/components/SearchLeadsComponents/SearchLeadsSelectAction";
+import SearchLeads from "@/components/SearchLeadsComponents/SearchLeads";
 
-export default function SearchLeads() {
-  const [leads, setLeads] = useState<Array<Lead>>([]);
-  const tablePrimaryItem = (
-    <>
-      {leads.length != 0 &&
-        leads.map((lead) => {
-          return (
-            <TablePrimaryItem key={lead._id} id={lead._id}>
-              <SearchLeadsPrimaryItem content={lead} />
-            </TablePrimaryItem>
-          );
-        })}
-    </>
-  );
-  const tableSecondaryItems = (
-    <>
-      {leads.length != 0 &&
-        leads.map((lead) => {
-          return (
-            <TableItem key={lead._id}>
-              <SearchLeadsTableItem content={lead} />
-            </TableItem>
-          );
-        })}
-    </>
-  );
-
-  useEffect(() => {
-    if (leads.length == 0) {
-      setLeads(createRandomLeadArray(8));
-    }
-  }, [leads.length]);
-
+export default function SearchLeadsPage() {
   return (
     <main className={styles.dashboard}>
       <Cursor />
       <DashboardLayout title="Search Leads">
         <TableContextProvider>
-          <TableMain
-            tableTitle="Search for..."
-            data={leads}
-            primaryKey="Name"
-            primaryItems={tablePrimaryItem}
-            secondaryItems={tableSecondaryItems}
-            tableTabs={leadSearchTabs}
-            filterComponent={<SearchLeadsFilter />}
-            selectActionsComponent={<SearchLeadsSelectAction />}
-          />
+          <SearchLeads />
         </TableContextProvider>
       </DashboardLayout>
     </main>

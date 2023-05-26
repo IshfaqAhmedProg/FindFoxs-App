@@ -7,7 +7,7 @@ import {
   Stack,
   Tooltip,
 } from "@mui/material";
-import CustomButton from "../CustomUIComponents/CustomButton";
+import CustomButton from "../CustomMUIComponents/CustomButton";
 import { Lead, LeadAction } from "@/shared/interfaces/Lead";
 import AddHomeOutlinedIcon from "@mui/icons-material/AddHomeOutlined";
 import AddchartOutlinedIcon from "@mui/icons-material/AddchartOutlined";
@@ -15,31 +15,30 @@ import ForwardToInboxOutlinedIcon from "@mui/icons-material/ForwardToInboxOutlin
 import PhoneForwardedRoundedIcon from "@mui/icons-material/PhoneForwardedRounded";
 import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
 export default function SearchLeadsSelectAction() {
-  const color = { color: "var(--primarylight)" };
   const LeadTableSelectActions: Array<LeadAction> = [
     {
       title: "Save to Group",
-      icon: <AddHomeOutlinedIcon sx={color} />,
+      icon: <AddHomeOutlinedIcon />,
       handler: (e) => handleSaveToGroup("group1", []),
     },
     {
       title: "Add to Stage",
-      icon: <AddchartOutlinedIcon sx={color} />,
+      icon: <AddchartOutlinedIcon />,
       handler: (e) => handleAddToStage("stage1", []),
     },
     {
       title: "Send Email",
-      icon: <ForwardToInboxOutlinedIcon sx={color} />,
+      icon: <ForwardToInboxOutlinedIcon />,
       handler: (e) => handleSendMail([]),
     },
     {
       title: "Make a Call",
-      icon: <PhoneForwardedRoundedIcon sx={color} />,
+      icon: <PhoneForwardedRoundedIcon />,
       handler: (e) => handleMakeCall([]),
     },
     {
       title: "More",
-      icon: <MoreVertOutlinedIcon sx={color} />,
+      icon: <MoreVertOutlinedIcon />,
       handler: (e) => handleSeeMoreClick(e),
     },
   ];

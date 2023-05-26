@@ -1,6 +1,4 @@
 import {
-  Box,
-  IconButton,
   List,
   ListItemButton,
   ListItemText,
@@ -11,8 +9,8 @@ import {
 import { SideBarLinks } from "@/shared/interfaces/Links";
 import React from "react";
 import { useRouter } from "next/router";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded";
+import ExpandLessRoundedIcon from "@mui/icons-material/ExpandLessRounded";
 import SideBarListChild from "./SideBarListChild";
 export default function SidebarList({
   toggle,
@@ -24,6 +22,11 @@ export default function SidebarList({
   handleSideBarListClick: (param: SideBarLinks) => void;
 }) {
   const router = useRouter();
+  const expandIconStyles = {
+    ":hover": {
+      color: "var(--accent)",
+    },
+  };
   return (
     <>
       <Tooltip title={toggle && content.name}>
@@ -50,9 +53,9 @@ export default function SidebarList({
           {toggle && content.icon}
           {!toggle && content.children ? (
             content.expanded ? (
-              <ExpandLessIcon />
+              <ExpandLessRoundedIcon sx={expandIconStyles} />
             ) : (
-              <ExpandMoreIcon />
+              <ExpandMoreRoundedIcon sx={expandIconStyles} />
             )
           ) : (
             ""

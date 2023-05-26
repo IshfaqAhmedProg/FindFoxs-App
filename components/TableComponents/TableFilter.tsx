@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { FormControlLabel, Stack, Slide } from "@mui/material";
-import CustomCheckbox from "../CustomUIComponents/CustomCheckbox";
+import CustomCheckbox from "../CustomMUIComponents/CustomCheckbox";
 
 import { useTable } from "@/contexts/TableContext";
 

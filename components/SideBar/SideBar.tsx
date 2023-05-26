@@ -11,6 +11,7 @@ import TaskOutlinedIcon from "@mui/icons-material/TaskOutlined";
 import { SideBarLinks } from "@/shared/interfaces/Links";
 import { useRouter } from "next/router";
 import SidebarList from "./SideBarList";
+import CustomButton from "../CustomMUIComponents/CustomButton";
 
 interface Props {
   toggle: boolean;
@@ -103,15 +104,18 @@ export default function SideBar({ toggle, handleToggle }: Props) {
       flexDirection="column"
       alignItems="flex-end"
     >
-      <IconButton
-        onClick={() => handleToggle(!toggle)}
-        sx={{
-          transform: toggle ? "rotate(180deg)" : "rotate(0deg)",
-          transition: "transform 0.15s ease",
+      <CustomButton
+        kind="icon"
+        iconButtonProps={{
+          onClick: () => handleToggle(!toggle),
+          sx: {
+            transform: toggle ? "rotate(180deg)" : "rotate(0deg)",
+            transition: "transform 0.15s ease",
+          },
         }}
       >
         <MenuOpenRoundedIcon />
-      </IconButton>
+      </CustomButton>
       <List sx={{ width: "100%" }}>
         {sidebarContent.map((content) => {
           return (

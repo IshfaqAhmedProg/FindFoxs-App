@@ -20,8 +20,16 @@ const PlainButton = styled(Button)({
   bgcolor: "transparent",
   boxShadow: "none",
   fontSize: "14px",
+  color: "var(--graylight)",
   ":hover": {
     boxShadow: "none",
+    color: "var(--primarylight)",
+    "& .MuiSvgIcon-root": {
+      color: "var(--primarylight)",
+    },
+  },
+  "& .MuiSvgIcon-root": {
+    color: "var(--graylight)",
   },
   padding: "0 8px",
 });
@@ -30,6 +38,13 @@ const CloseButton = styled(IconButton)({
   top: "1%",
   right: "1%",
 });
+const iconHoverStyle = {
+  ":hover": {
+    "& .MuiSvgIcon-root": {
+      color: "var(--accent)",
+    },
+  },
+};
 export default function CustomButton({
   buttonProps,
   iconButtonProps,
@@ -46,16 +61,18 @@ export default function CustomButton({
           <ClearRoundedIcon />
         </CloseButton>
       );
-    case "primarylg":
+    case "icon":
       return (
-        <Button
-          size="large"
-          color="primary"
-          sx={{ fontSize: "var(--buttonimpact)", background: "white" }}
-          {...buttonProps}
+        <IconButton
+          {...iconButtonProps}
+          sx={{
+            "& .MuiSvgIcon-root": { color: "var(--primarylight)" },
+            ...iconHoverStyle,
+            ...iconButtonProps?.sx,
+          }}
         >
           {children}
-        </Button>
+        </IconButton>
       );
       break;
     case "secondarylg":
@@ -65,6 +82,7 @@ export default function CustomButton({
           variant="contained"
           sx={{
             fontSize: "var(--buttonimpact)",
+            ...buttonProps?.sx,
           }}
           {...buttonProps}
         >
@@ -74,13 +92,33 @@ export default function CustomButton({
       break;
     case "secondary":
       return (
-        <Button {...buttonProps} variant="contained" sx={{ color: "white" }}>
+        <Button
+          {...buttonProps}
+          variant="contained"
+          sx={{
+            color: "white",
+            ...buttonProps?.sx,
+          }}
+        >
           {children}
         </Button>
       );
       break;
-    case "icon":
-      return <IconButton {...iconButtonProps}>{children}</IconButton>;
+    case "primarylg":
+      return (
+        <Button
+          size="large"
+          color="primary"
+          sx={{
+            fontSize: "var(--buttonimpact)",
+            background: "white",
+            ...buttonProps?.sx,
+          }}
+          {...buttonProps}
+        >
+          {children}
+        </Button>
+      );
       break;
     default:
       return <Button {...buttonProps}>{children}</Button>;

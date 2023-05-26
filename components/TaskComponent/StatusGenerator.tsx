@@ -46,6 +46,8 @@ export default function StatusGenerator({ status }: Status) {
         <>
           <ManageHistoryRoundedIcon
             sx={{
+              color: "var(--primarylight)",
+
               width: ".9375rem",
               height: ".9375rem",
             }}

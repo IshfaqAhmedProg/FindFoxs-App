@@ -1,5 +1,5 @@
 import React from "react";
-import CustomButton from "../CustomUIComponents/CustomButton";
+import CustomButton from "../CustomMUIComponents/CustomButton";
 import {
   Stack,
   IconButton,
@@ -10,7 +10,7 @@ import {
   Tooltip,
 } from "@mui/material";
 import { Lead } from "@/shared/interfaces/Lead";
-import IdentityDisplay from "../CustomUIComponents/IdentityDisplay";
+import IdentityDisplay from "../IdentityDisplay/IdentityDisplay";
 import ForwardToInboxOutlinedIcon from "@mui/icons-material/ForwardToInboxOutlined";
 import PhoneForwardedRoundedIcon from "@mui/icons-material/PhoneForwardedRounded";
 import ApartmentRoundedIcon from "@mui/icons-material/ApartmentRounded";
@@ -75,16 +75,16 @@ export default function SingleLeadCard({
         justifyContent={"center"}
         gap={1}
       >
-        <Tooltip title="Send an email!">
-          <IconButton>
+        <CustomButton kind="icon">
+          <Tooltip title="Send an email!">
             <ForwardToInboxOutlinedIcon sx={{ fontSize: "31px" }} />
-          </IconButton>
-        </Tooltip>
-        <Tooltip title="Make a call!">
-          <IconButton>
+          </Tooltip>
+        </CustomButton>
+        <CustomButton kind="icon">
+          <Tooltip title="Make a call!">
             <PhoneForwardedRoundedIcon sx={{ fontSize: "31px" }} />
-          </IconButton>
-        </Tooltip>
+          </Tooltip>
+        </CustomButton>
       </Stack>
       <Typography variant="h4" sx={{ pl: 3, py: 1, fontSize: "12px" }}>
         Status

@@ -1,7 +1,7 @@
 import React from "react";
 import { CardHeader, Button, Card, CardContent, Divider } from "@mui/material";
 import ReadMoreRoundedIcon from "@mui/icons-material/ReadMoreRounded";
-import CustomButton from "@/components/CustomUIComponents/CustomButton";
+import CustomButton from "@/components/CustomMUIComponents/CustomButton";
 interface Props {
   children?: React.ReactElement | Array<React.ReactElement>;
   title: string;
@@ -12,7 +12,7 @@ export default function DashboardCardsLayout({
   title,
   minHeight,
 }: Props) {
-  const buttonIcon = <ReadMoreRoundedIcon sx={{ color: "var(--graylight)" }} />;
+  const buttonIcon = <ReadMoreRoundedIcon />;
   const button = (
     <CustomButton
       kind="plain"

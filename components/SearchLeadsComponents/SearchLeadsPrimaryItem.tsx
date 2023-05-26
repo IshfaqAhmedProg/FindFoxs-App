@@ -14,7 +14,7 @@ import {
   InstagramIcon,
 } from "@/public/Icons/CustomIcons";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
-import CustomCheckbox from "../CustomUIComponents/CustomCheckbox";
+import CustomCheckbox from "../CustomMUIComponents/CustomCheckbox";
 import { Lead } from "@/shared/interfaces/Lead";
 import TableCell from "@/components/TableComponents/TableCell";
 
@@ -35,6 +35,9 @@ export default function SearchLeadsPrimaryItem({ content }: { content: Lead }) {
     width: 16,
     height: 16,
     color: "var(--graylight)",
+    "& .MuiSvgIcon-root": {
+      color: "var(--graylight)",
+    },
   };
   const SeeMoreButton = {
     height: "100%",

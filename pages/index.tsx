@@ -64,6 +64,7 @@ export default function Home() {
           <GetInTouchSection />
           <Footer />
         </Stack>
+       
       </main>
     </>
   );

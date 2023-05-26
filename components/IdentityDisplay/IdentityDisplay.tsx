@@ -3,8 +3,8 @@ import { Typography, Stack, Avatar } from "@mui/material";
 import { stringAvatar } from "@/shared/functions/stringAvatar";
 import Image from "next/image";
 interface Props {
-  avatar?: string;
-  name: string;
+  avatar?: string | null | undefined;
+  name: string | null | undefined;
   title?: string;
   maxWidth: string;
 }

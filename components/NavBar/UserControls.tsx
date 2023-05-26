@@ -10,7 +10,9 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useRouter } from "next/router";
 import NavMenu from "./NavMenu";
 import { DashboardIcon } from "@/public/Icons/CustomIcons";
-import IdentityDisplay from "../CustomUIComponents/IdentityDisplay";
+import IdentityDisplay from "../IdentityDisplay/IdentityDisplay";
+import CustomButton from "../CustomMUIComponents/CustomButton";
+import UserAvatar from "./UserAvatar";
 
 export default function UserControls({ container }: { container: any }) {
   const router = useRouter();
@@ -29,18 +31,14 @@ export default function UserControls({ container }: { container: any }) {
       name: "Notifications",
       goto: "",
       handler: handleNotificationClick,
-      icon: (
-        <>
-          <Badge badgeContent={17} variant="dot" color="secondary"></Badge>
-          <NotificationsIcon />
-        </>
-      ),
+      icon: <NotificationsIcon />,
+      badge: true,
     },
     {
       name: "Account Settings",
       goto: "",
       handler: handleAccountClick,
-      icon: <Avatar {...stringAvatar("Ishfaq Ahmed")} />,
+      icon: <UserAvatar user={user} />,
     },
   ];
   const menuLinks: Array<NavLinks> = [
@@ -52,7 +50,7 @@ export default function UserControls({ container }: { container: any }) {
     },
     {
       name: "Dashboard",
-      icon: <DashboardIcon color="var(--graylight)" />,
+      icon: <DashboardIcon />,
       goto: "/dashboard",
       handler: (param: any) => router.push("/dashboard"),
     },
@@ -72,7 +70,7 @@ export default function UserControls({ container }: { container: any }) {
     setAccountOpenAnchor(null);
   }
   function handleLogout() {
-    logout().then(router.replace("/"));
+    logout();
     handleClose();
   }
   function handleNotificationClick() {}
@@ -87,19 +85,31 @@ export default function UserControls({ container }: { container: any }) {
         alignItems="center"
       >
         {navLinks.map((navItem) => {
-          return (
-            <Tooltip title={navItem.name} key={navItem.name}>
-              <IconButton
-                onClick={navItem.handler}
-                size="small"
-                aria-controls={accountOpen ? navItem.name : undefined}
-                aria-haspopup="true"
-                aria-expanded={accountOpen ? "true" : undefined}
+          if (navItem.icon) {
+            return (
+              <CustomButton
+                key={navItem.name}
+                kind="icon"
+                iconButtonProps={{
+                  onClick: navItem.handler,
+                  size: "small",
+                  "aria-controls": accountOpen ? navItem.name : "undefined",
+                  "aria-haspopup": true,
+                  "aria-expanded": accountOpen ? true : undefined,
+                }}
               >
-                {navItem.icon}
-              </IconButton>
-            </Tooltip>
-          );
+                <Tooltip title={navItem.name}>
+                  <Badge
+                    color="secondary"
+                    variant="dot"
+                    invisible={!navItem?.badge}
+                  >
+                    {navItem.icon}
+                  </Badge>
+                </Tooltip>
+              </CustomButton>
+            );
+          }
         })}
       </Stack>
       <NavMenu

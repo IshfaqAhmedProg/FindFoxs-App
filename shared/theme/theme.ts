@@ -27,14 +27,19 @@ const theme = createTheme({
         },
       },
     },
-    MuiIconButton: {
+    MuiAlert: {
       styleOverrides: {
         root: {
-          ":hover": {
-            "& .MuiSvgIcon-root": {
-              color: "var(--accent)",
-            },
+          background: "white",
+          borderRadius: "var(--border-radius-small)",
+          "& .MuiAlertTitle-root": {
+            fontWeight: 700,
           },
+          maxWidth: "30rem",
+          boxShadow: "var(--box-shadow)",
+        },
+        standardError: {
+          color: "var(--error)",
         },
       },
     },
@@ -48,10 +53,11 @@ const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: "var(--border-radius)",
+          borderRadius: "var(--border-radius-small)",
           boxShadow: "var(--box-shadow)",
           paddingInline: "1.2em",
           paddingBlock: "0.65em",
+          width: "max-content",
           ":hover": {
             boxShadow: "var(--box-shadow-hover)",
           },
@@ -61,7 +67,6 @@ const theme = createTheme({
     MuiSvgIcon: {
       styleOverrides: {
         root: {
-          color: "var(--primarylight)",
           fontSize: 25,
           transition: "all 0.15s ease",
         },
@@ -88,8 +93,6 @@ const theme = createTheme({
             borderRadius: "var(--border-radius)",
             overflow: "visible",
             filter: "drop-shadow(var(--box-shadow))",
-            py: 1.5,
-            px: 1,
             "& .MuiAvatar-root": {
               width: 40,
               height: 40,
@@ -144,6 +147,15 @@ const theme = createTheme({
         root: {
           color: "var(--primarylight)",
           fontWeight: 700,
+        },
+      },
+    },
+    MuiList: {
+      styleOverrides: {
+        root: {
+          "& .MuiListItemButton-root svg": {
+            color: "var(--primarylight)",
+          },
         },
       },
     },

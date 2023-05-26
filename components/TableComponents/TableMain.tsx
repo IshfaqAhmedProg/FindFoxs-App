@@ -29,7 +29,7 @@ export default function TableMain({
     //setting the initially selected tab
     const tab = tableTabs[0];
     if (!activeTab) handleTabChange({ tab });
-  }, []);
+  }, [activeTab,handleTabChange,tableTabs]);
   return (
     <Card>
       <CardHeader

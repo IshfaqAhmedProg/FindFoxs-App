@@ -1,22 +1,21 @@
 import React from "react";
 import { Stack, Typography } from "@mui/material";
-import CustomTextInput from "../CustomUIComponents/CustomTextInput";
-import CustomButton from "../CustomUIComponents/CustomButton";
+import CustomTextInput from "../CustomMUIComponents/CustomTextInput";
+import CustomButton from "../CustomMUIComponents/CustomButton";
 import { LeadAction } from "@/shared/interfaces/Lead";
 import MilitaryTechOutlinedIcon from "@mui/icons-material/MilitaryTechOutlined";
 import ApartmentRoundedIcon from "@mui/icons-material/ApartmentRounded";
 import PinDropRoundedIcon from "@mui/icons-material/PinDropRounded";
 import FactoryRoundedIcon from "@mui/icons-material/FactoryRounded";
 
-const iconColor = { color: "var(--graylight)" };
 const LeadTablePublicValues: Array<LeadAction> = [
   {
     title: "Job Title",
-    icon: <MilitaryTechOutlinedIcon sx={iconColor} />,
+    icon: <MilitaryTechOutlinedIcon />,
   },
-  { title: "Company", icon: <ApartmentRoundedIcon sx={iconColor} /> },
-  { title: "Location", icon: <PinDropRoundedIcon sx={iconColor} /> },
-  { title: "Industry", icon: <FactoryRoundedIcon sx={iconColor} /> },
+  { title: "Company", icon: <ApartmentRoundedIcon /> },
+  { title: "Location", icon: <PinDropRoundedIcon /> },
+  { title: "Industry", icon: <FactoryRoundedIcon /> },
 ];
 
 export default function SearchLeadsFilter() {
