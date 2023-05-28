@@ -48,7 +48,7 @@ export default function AuthLayout({
         gap={3}
         alignItems={"center"}
         justifyContent={
-          useMediaQuery(theme.breakpoints.up("md")) ? "center" : "space-around"
+          useMediaQuery(theme.breakpoints.up("sm")) ? "center" : "space-around"
         }
         position={"relative"}
         borderRadius={"var(--border-radius)"}
