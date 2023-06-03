@@ -1,26 +1,26 @@
 [
   {
-    "id": "step_awareness",
+    "id": "stage1",
     "value": 67772,
     "label": "Awareness"
   },
   {
-    "id": "step_capture",
+    "id": "stage2",
     "value": 61002,
     "label": "Lead Capture"
   },
   {
-    "id": "step_prospect",
+    "id": "stage3",
     "value": 49074,
     "label": "Prospect"
   },
   {
-    "id": "step_qualified",
+    "id": "stage4",
     "value": 36534,
-    "label": "Qualifies Leads"
+    "label": "Qualified Leads"
   },
   {
-    "id": "step_customer",
+    "id": "stage5",
     "value": 27994,
     "label": "Customer"
   }

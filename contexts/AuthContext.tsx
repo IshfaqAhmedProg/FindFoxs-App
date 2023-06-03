@@ -16,6 +16,7 @@ import { auth, db } from "../firebase/config";
 import { User } from "firebase/auth";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
+import Loading from "@/components/Loading/Loading";
 
 const AuthContext = createContext<any>({});
 export const useAuth = (): IAuthContext => useContext(AuthContext);
@@ -126,7 +127,7 @@ export const AuthContextProvider = ({
         user,
       }}
     >
-      {loading ? <div className="loading">Loading...</div> : children}
+      {loading ? <Loading /> : children}
     </AuthContext.Provider>
   );
 };

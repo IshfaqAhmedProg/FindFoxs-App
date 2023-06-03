@@ -4,30 +4,29 @@ import CircularProgress from "@/components/ProgressBars/CircularProgress";
 import { Box, Stack, Typography } from "@mui/material";
 import HorizontalProgress from "@/components/ProgressBars/HorizontalProgress";
 export default function LeadConversionCard() {
-  const conversionPercentage = 85;
   const leadConversionDetails = [
     {
       title: "New Leads Added",
       subtitle: "this month",
-      value: conversionPercentage,
+      value: 50,
       maxValue: 100,
     },
     {
       title: "Contacts that opened mail",
       subtitle: "this month",
-      value: conversionPercentage,
+      value: 62,
       maxValue: 100,
     },
     {
       title: "Emails sent to leads",
       subtitle: "this month",
-      value: conversionPercentage,
+      value: 28,
       maxValue: 100,
     },
     {
       title: "Called Leads",
       subtitle: "this month",
-      value: conversionPercentage,
+      value: 35,
       maxValue: 100,
     },
   ];
@@ -36,10 +35,9 @@ export default function LeadConversionCard() {
       <Stack
         direction="row"
         flexWrap="wrap"
-        justifyContent="center"
         alignItems="center"
+        justifyContent="space-around"
         marginY="auto"
-        gap={4}
         pt={2}
       >
         <Box
@@ -49,7 +47,7 @@ export default function LeadConversionCard() {
           gap={1}
           alignItems="center"
         >
-          <CircularProgress value={conversionPercentage} />
+          <CircularProgress value={75} />
           <Typography textAlign="center" variant="body2">
             <strong>303</strong> Leads Converted to Satisfied out of{" "}
             <strong>387</strong>

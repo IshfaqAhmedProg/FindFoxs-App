@@ -37,12 +37,12 @@ export default function TasksCard() {
 
   return (
     <DashboardCardsLayout title="Tasks" minHeight="236px">
-      <Stack gap={2} padding={1} pt={3}>
+      <Stack padding={1}>
         {tasks.map((task) => {
           return (
             <Stack key={task.id}>
               <TaskListItem task={task} />
-              <Divider />
+              <Divider sx={{ mx: 2 }} />
             </Stack>
           );
         })}
