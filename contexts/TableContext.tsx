@@ -1,6 +1,5 @@
-import { Lead, LeadSearchTabs } from "@/shared/interfaces/Lead";
+"use client";
 import {
-  DataTypesSupported,
   ITableContext,
   handlePageChangeParams,
   handleSelectAllParams,

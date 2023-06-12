@@ -1,4 +1,5 @@
-import React, { useState, useEffect, Suspense } from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import createRandomLeadArray from "@/shared/functions/createRandomLead";
 import {
   Lead,
