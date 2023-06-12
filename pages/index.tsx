@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Scrapefox</title>
+        <title>FindFoxs</title>
         <meta
           name="description"
           content="Best CRM and Leads Generator for marketing professionals!"
@@ -37,7 +37,7 @@ export default function Home() {
           property="twitter:url"
           content="https://scrapefox-crm.vercel.app"
         />
-        <meta name="twitter:title" content="Scrapefox" />
+        <meta name="twitter:title" content="FindFoxs" />
         <meta
           name="twitter:description"
           content="Best CRM and Leads Generator for marketing professionals!"
