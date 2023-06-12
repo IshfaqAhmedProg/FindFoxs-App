@@ -27,7 +27,7 @@ export default function SideBarListChild({
       <ListItemButton
         key={child.name}
         sx={{ marginLeft: "3rem", gap: "1rem", paddingRight: "15px" }}
-        selected={pathName === child.goto}
+        selected={pathName == child.goto}
         onClick={() => router.push(child.goto)}
       >
         <ListItemText

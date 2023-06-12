@@ -1,7 +1,8 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import { Box, Stack, useMediaQuery, useTheme } from "@mui/material";
+import { Box, Stack, useMediaQuery } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import { useAuthError } from "../../contexts/AuthErrorContext";
 
 export default function AuthLayout({

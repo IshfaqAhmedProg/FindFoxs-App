@@ -34,9 +34,9 @@ export default function SideBar({ toggle, handleToggle }: Props) {
       icon: <LeadsIcon />,
       goto: "",
       children: [
-        { name: "Search Leads", goto: "dashboard/leads/search" },
-        { name: "Manage Your Leads", goto: "dashboard/leads/manage" },
-        { name: "Engage with Leads", goto: "dashboard/leads/engage" },
+        { name: "Search Leads", goto: "/dashboard/leads/search" },
+        { name: "Manage Your Leads", goto: "/dashboard/leads/manage" },
+        { name: "Engage with Leads", goto: "/dashboard/leads/engage" },
       ],
       expanded: leadsToggle,
     },

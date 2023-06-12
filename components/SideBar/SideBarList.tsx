@@ -22,6 +22,7 @@ export default function SidebarList({
   handleSideBarListClick: (param: SideBarLinks) => void;
 }) {
   const pathName = usePathname();
+
   const expandIconStyles = {
     ":hover": {
       color: "var(--accent)",

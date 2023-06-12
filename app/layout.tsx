@@ -4,9 +4,7 @@ import NavBar from "@/components/NavBar/NavBar";
 import { AuthContextProvider } from "@/contexts/AuthContext";
 import theme from "@/shared/theme/theme";
 import "@/styles/globals.css";
-import styles from "@/styles/Home.module.css";
-
-import { ThemeProvider } from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
 import { Analytics } from "@vercel/analytics/react";
 import Script from "next/script";
 export default function RootLayout({
@@ -16,6 +14,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+
   return (
     <html lang="en">
       <body>

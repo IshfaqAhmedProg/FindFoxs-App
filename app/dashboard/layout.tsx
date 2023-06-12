@@ -3,16 +3,13 @@ import { Box } from "@mui/material";
 import React, { useState } from "react";
 import SideBar from "@/components/SideBar/SideBar";
 import { useTheme } from "@mui/material/styles";
-import { useMediaQuery, Typography } from "@mui/material";
+import { useMediaQuery } from "@mui/material";
 import { usePathname } from "next/navigation";
 import styles from "@/styles/Home.module.css";
-import Cursor from "@/components/LandingComponents/Cursor";
 
 export default function DashboardLayout({
-  title,
   children,
 }: {
-  title?: string;
   children: React.ReactNode;
 }) {
   const theme = useTheme();
@@ -23,7 +20,6 @@ export default function DashboardLayout({
   const pathName = usePathname();
   return (
     <main className={styles.dashboard}>
-      <Cursor />
       <Box position="relative" height="100%" width="100%" display="flex">
         <SideBar
           toggle={toggleSidebar}
@@ -49,9 +45,6 @@ export default function DashboardLayout({
           paddingBottom={1}
           alignItems="flex-start"
         >
-          <Typography variant="h4" component="h1" px={1.5}>
-            {title}
-          </Typography>
           <Box
             width="100%"
             height="100%"

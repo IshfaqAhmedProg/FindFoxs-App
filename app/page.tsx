@@ -6,6 +6,7 @@ import ToolsSection from "@/components/LandingComponents/ToolsSection";
 import FAQsection from "@/components/LandingComponents/FAQsection";
 import GetInTouchSection from "@/components/LandingComponents/GetInTouchSection";
 import Footer from "@/components/LandingComponents/Footer";
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://scrapefox-crm.vercel.app"),
   title: "Scrapefoxs",

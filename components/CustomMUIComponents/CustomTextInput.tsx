@@ -1,5 +1,5 @@
 import React from "react";
-import { styled } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import TextField, { TextFieldProps } from "@mui/material/TextField";
 const PlainTextInput = styled(TextField)({
   "& fieldset": {

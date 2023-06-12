@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Box, Stack, useMediaQuery, useTheme } from "@mui/material";
+import { Box, Stack, useMediaQuery } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import TableCell from "./TableCell";
 
 interface Props {
