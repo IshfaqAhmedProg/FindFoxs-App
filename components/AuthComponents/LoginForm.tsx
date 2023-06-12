@@ -1,10 +1,11 @@
+"use client";
 import { useAuth } from "@/contexts/AuthContext";
 import { FormCredentials } from "@/shared/interfaces/FormInputs";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useAuthError } from "../../contexts/AuthErrorContext";
 import inputs from "@/shared/constants/inputs.json";
-import { Button, CircularProgress, Box, Divider } from "@mui/material";
+import { Box, Divider } from "@mui/material";
 import { FormInput } from "@/components/FormComponents/FormInput";
 import google from "@/public/Logos/Extra/Google.svg";
 import Image from "next/image";

@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import DashboardCardsLayout from "./DashboardCardsLayout";
 import { ResponsivePieCanvas } from "@nivo/pie";

@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import { SideBarLinks } from "@/shared/interfaces/Links";
 import React from "react";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded";
 import ExpandLessRoundedIcon from "@mui/icons-material/ExpandLessRounded";
 import SideBarListChild from "./SideBarListChild";
@@ -21,7 +21,7 @@ export default function SidebarList({
   content: SideBarLinks;
   handleSideBarListClick: (param: SideBarLinks) => void;
 }) {
-  const router = useRouter();
+  const pathName = usePathname();
   const expandIconStyles = {
     ":hover": {
       color: "var(--accent)",
@@ -32,7 +32,7 @@ export default function SidebarList({
       <Tooltip title={toggle && content.name}>
         <ListItemButton
           sx={{ gap: "1rem", paddingRight: "10px" }}
-          selected={router.pathname === content.goto}
+          selected={pathName === content.goto}
           onClick={() => handleSideBarListClick(content)}
         >
           {content.icon}

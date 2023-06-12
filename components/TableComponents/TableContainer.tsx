@@ -5,18 +5,17 @@ import TableCell from "./TableCell";
 interface Props {
   primaryKey: string;
   secondaryKeys: Array<string>;
-  primaryItems: React.ReactElement;
-  secondaryItems: React.ReactElement;
+  primaryComponent: React.ReactElement;
+  secondaryComponents: React.ReactElement;
 }
 
 export default function TableContainer({
   primaryKey,
-  primaryItems,
+  primaryComponent,
   secondaryKeys,
-  secondaryItems,
+  secondaryComponents,
 }: Props) {
   const theme = useTheme();
-  const [toggleSecondary, setToggleSecondary] = useState<boolean>();
   //to keep the sidebar toggled when screen is big
   return (
     <Box display="flex" justifyContent="center">
@@ -27,7 +26,7 @@ export default function TableContainer({
         <Stack direction="row" alignItems="center" justifyContent="flex-end">
           <TableCell type="head">{primaryKey}</TableCell>
         </Stack>
-        {primaryItems}
+        {primaryComponent}
       </Stack>
       <Stack
         display={useMediaQuery(theme.breakpoints.down("sm")) ? "none" : "block"}
@@ -45,7 +44,7 @@ export default function TableContainer({
             </TableCell>
           ))}
         </Stack>
-        {secondaryItems}
+        {secondaryComponents}
       </Stack>
     </Box>
   );

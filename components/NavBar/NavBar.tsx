@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { useRouter, usePathname } from "next/navigation";
 
 import {
   AppBar,
@@ -30,6 +30,7 @@ export default function NavBar(props: Props) {
   const { window } = props;
   const { user } = useAuth();
   const router = useRouter();
+  const pathName = usePathname();
   const [drawerToggle, setDrawerToggle] = useState(false);
   const drawerWidth = 240;
   const authLinks: Array<NavLinks> = [
@@ -54,12 +55,12 @@ export default function NavBar(props: Props) {
         gap: { sm: 0.5, md: 1 },
       }}
     >
-      {router.pathname != "/auth/signup" && (
+      {pathName != "/auth/signup" && (
         <Link href="/auth/signup" style={{ fontWeight: "bold" }}>
           Signup
         </Link>
       )}
-      {router.pathname != "/auth/login" && (
+      {pathName != "/auth/login" && (
         <Link href="/auth/login">
           <Tooltip title="Login">
             <LoginRoundedIcon />
@@ -89,7 +90,7 @@ export default function NavBar(props: Props) {
     <AppBar
       component="nav"
       sx={
-        router.pathname != "/"
+        pathName != "/"
           ? {
               background: "var(--white)",
               color: "var(--primary)",
@@ -106,7 +107,7 @@ export default function NavBar(props: Props) {
       <HideOnScroll>
         <Toolbar
           sx={
-            router.pathname == "/"
+            pathName == "/"
               ? {
                   display: "flex",
                   justifyContent: "space-between",
@@ -141,11 +142,11 @@ export default function NavBar(props: Props) {
               }}
             />
           </Box>
-          {router.pathname == "/" && landingLinks}
+          {pathName == "/" && landingLinks}
           {user ? <UserControls container={container} /> : loginSignupBox}
         </Toolbar>
       </HideOnScroll>
-{/* 
+      {/* 
       <SwipeableDrawer
         anchor="right"
         container={container}

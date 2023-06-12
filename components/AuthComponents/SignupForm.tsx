@@ -1,6 +1,7 @@
+"use client";
 import { useAuth } from "@/contexts/AuthContext";
 import { FormCredentials } from "@/shared/interfaces/FormInputs";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import inputs from "../../shared/constants/inputs.json";
 import google from "../../public/Logos/Extra/Google.svg";

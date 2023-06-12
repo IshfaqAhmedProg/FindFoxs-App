@@ -7,7 +7,7 @@ import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import { stringAvatar } from "@/shared/functions/stringAvatar";
 import { NavLinks } from "@/shared/interfaces/Links";
 import { useAuth } from "@/contexts/AuthContext";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import NavMenu from "./NavMenu";
 import { DashboardIcon } from "@/public/Icons/CustomIcons";
 import IdentityDisplay from "../IdentityDisplay/IdentityDisplay";

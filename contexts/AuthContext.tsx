@@ -1,3 +1,4 @@
+"use client";
 import React, { createContext, useContext, useState, useEffect } from "react";
 import {
   onAuthStateChanged,
@@ -15,7 +16,7 @@ import { doc, setDoc, getDoc } from "firebase/firestore";
 import { auth, db } from "../firebase/config";
 import { User } from "firebase/auth";
 import Cookies from "js-cookie";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import Loading from "@/components/Loading/Loading";
 
 const AuthContext = createContext<any>({});
@@ -28,7 +29,6 @@ export const AuthContextProvider = ({
   const router = useRouter();
   const [user, setUser] = useState<User | null>();
   const [loading, setLoading] = useState<boolean>();
-
   //AuthState Change Use Effect
   useEffect(() => {
     setLoading(true);

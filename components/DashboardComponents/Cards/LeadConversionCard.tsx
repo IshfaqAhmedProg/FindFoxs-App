@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import DashboardCardsLayout from "./DashboardCardsLayout";
 import CircularProgress from "@/components/ProgressBars/CircularProgress";

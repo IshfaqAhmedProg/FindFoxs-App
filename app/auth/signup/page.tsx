@@ -1,13 +1,11 @@
-import React from "react";
-
 import { AuthErrorProvider } from "@/contexts/AuthErrorContext";
-import LoginForm from "@/components/AuthComponents/LoginForm";
+import SignupForm from "@/components/AuthComponents/SignupForm";
 import AuthLayout from "@/components/AuthComponents/AuthLayout";
 export default function login() {
   return (
     <AuthErrorProvider>
       <AuthLayout>
-        <LoginForm />
+        <SignupForm />
       </AuthLayout>
     </AuthErrorProvider>
   );

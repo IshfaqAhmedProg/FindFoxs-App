@@ -1,9 +1,10 @@
+"use client"
 import { Box } from "@mui/material";
 import React, { useState } from "react";
 import SideBar from "../SideBar/SideBar";
 import { useTheme } from "@mui/material/styles";
 import { useMediaQuery, Typography } from "@mui/material";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 
 export default function DashboardLayout({
   title,
@@ -20,7 +21,7 @@ export default function DashboardLayout({
     //to keep the sidebar toggled when screen is big
     useMediaQuery(theme.breakpoints.down("md"))
   );
-  const router = useRouter();
+  const pathName = usePathname();
   return (
     <Box position="relative" height="100%" width="100%" display="flex">
       <SideBar
@@ -55,7 +56,7 @@ export default function DashboardLayout({
           height="100%"
           display="grid"
           sx={
-            router.pathname == "/dashboard"
+            pathName == "/dashboard"
               ? {
                   overflowY: "auto",
                   overflowX: "visible",

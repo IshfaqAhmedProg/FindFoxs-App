@@ -1,4 +1,5 @@
-import * as React from "react";
+"use client";
+import React from "react";
 import { styled } from "@mui/material/styles";
 import IconButton, { IconButtonProps } from "@mui/material/IconButton";
 import Button, { ButtonProps } from "@mui/material/Button";

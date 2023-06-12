@@ -1,3 +1,4 @@
+"use client";
 import useMousePosition from "@/shared/hooks/mousePosition";
 import React from "react";
 

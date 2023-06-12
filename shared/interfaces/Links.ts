@@ -2,7 +2,7 @@ import { SvgIconProps } from "@mui/material";
 import { Url } from "url";
 export interface SimpleLink {
   name: string;
-  goto: string | Url;
+  goto: string;
 }
 export interface NavLinks extends SimpleLink {
   handler?: (param: any) => void;

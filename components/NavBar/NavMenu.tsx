@@ -1,7 +1,8 @@
 import React from "react";
 import { Menu, MenuItem, Divider, ListItemIcon } from "@mui/material";
 import { NavLinks } from "@/shared/interfaces/Links";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
+
 interface NavMenu {
   id: string;
   accountOpenAnchor: null | HTMLElement;
@@ -18,7 +19,7 @@ export default function NavMenu({
   items,
   header,
 }: NavMenu) {
-  const router = useRouter();
+  const pathName = usePathname();
   return (
     <Menu
       anchorEl={accountOpenAnchor}
@@ -33,7 +34,7 @@ export default function NavMenu({
       {header && <Divider />}
 
       {items.map((menuItem: any) => {
-        if (router.pathname !== menuItem.goto)
+        if (pathName !== menuItem.goto)
           return (
             <MenuItem onClick={menuItem.handler} key={menuItem.name}>
               <ListItemIcon>{menuItem.icon}</ListItemIcon>

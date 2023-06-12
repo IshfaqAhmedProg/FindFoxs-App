@@ -9,8 +9,9 @@ export interface ITableMain {
   tableTabs: TabsSuppported;
   data: DataTypesSupported;
   primaryKey?: string;
-  primaryItems: React.ReactElement;
-  secondaryItems: React.ReactElement;
+  primaryComponent: React.ReactElement;
+  secondaryComponents: React.ReactElement;
+  secondaryKeys: Array<string>;
   filterComponent: React.ReactElement;
   selectActionsComponent: React.ReactElement;
 }

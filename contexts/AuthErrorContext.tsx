@@ -1,3 +1,4 @@
+"use client"
 import React, { useState, createContext, useEffect, useContext } from "react";
 import { Alert, AlertTitle, Fade } from "@mui/material";
 import { GetRefinedFirebaseError } from "@/shared/functions/errorHandler";

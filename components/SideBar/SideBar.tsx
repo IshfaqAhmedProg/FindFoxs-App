@@ -9,7 +9,7 @@ import {
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import TaskOutlinedIcon from "@mui/icons-material/TaskOutlined";
 import { SideBarLinks } from "@/shared/interfaces/Links";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import SidebarList from "./SideBarList";
 import CustomButton from "../CustomMUIComponents/CustomButton";
 
@@ -34,9 +34,9 @@ export default function SideBar({ toggle, handleToggle }: Props) {
       icon: <LeadsIcon />,
       goto: "",
       children: [
-        { name: "Search Leads", goto: "/leads/search" },
-        { name: "Manage Your Leads", goto: "/leads/manage" },
-        { name: "Engage with Leads", goto: "/leads/engage" },
+        { name: "Search Leads", goto: "dashboard/leads/search" },
+        { name: "Manage Your Leads", goto: "dashboard/leads/manage" },
+        { name: "Engage with Leads", goto: "dashboard/leads/engage" },
       ],
       expanded: leadsToggle,
     },

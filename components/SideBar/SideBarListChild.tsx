@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 
-import { useRouter } from "next/router";
+import { useRouter, usePathname } from "next/navigation";
 export default function SideBarListChild({
   toggle,
   child,
@@ -21,13 +21,13 @@ export default function SideBarListChild({
   child: SimpleLink;
 }) {
   const router = useRouter();
-
+  const pathName = usePathname();
   return (
     <Tooltip title={child.name}>
       <ListItemButton
         key={child.name}
         sx={{ marginLeft: "3rem", gap: "1rem", paddingRight: "15px" }}
-        selected={router.pathname === child.goto}
+        selected={pathName === child.goto}
         onClick={() => router.push(child.goto)}
       >
         <ListItemText

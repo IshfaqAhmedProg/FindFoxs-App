@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useEffect } from "react";
 import DashboardCardsLayout from "./DashboardCardsLayout";
 import { ResponsiveFunnel } from "@nivo/funnel";

@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import DashboardCardsLayout from "./DashboardCardsLayout";
 import Tasks, { Tools } from "@/shared/interfaces/Tasks";

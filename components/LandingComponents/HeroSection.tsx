@@ -1,3 +1,4 @@
+"use client"
 import { Box, Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 import React from "react";
@@ -14,7 +15,7 @@ export const HeroSection = () => {
       display="flex"
       alignItems="center"
       justifyContent="space-around"
-      gap="2.5rem"
+      gap="3rem"
       sx={{ paddingTop: { xs: "3rem", md: "0" } }}
     >
       <Typography variant="h1" textAlign="center">

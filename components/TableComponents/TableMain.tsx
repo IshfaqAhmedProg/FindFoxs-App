@@ -8,7 +8,6 @@ import {
   Stack,
 } from "@mui/material";
 import TableContainer from "@/components/TableComponents/TableContainer";
-import { leadPublicFields } from "@/shared/interfaces/Lead";
 import TableFilter from "@/components/TableComponents/TableFilter";
 import TableTabsSelector from "./TableTabsSelector";
 import { useTable } from "@/contexts/TableContext";
@@ -18,8 +17,9 @@ export default function TableMain({
   tableTitle = "",
   data,
   primaryKey = "",
-  primaryItems,
-  secondaryItems,
+  primaryComponent,
+  secondaryComponents,
+  secondaryKeys,
   tableTabs,
   filterComponent,
   selectActionsComponent,
@@ -29,7 +29,7 @@ export default function TableMain({
     //setting the initially selected tab
     const tab = tableTabs[0];
     if (!activeTab) handleTabChange({ tab });
-  }, [activeTab,handleTabChange,tableTabs]);
+  }, [activeTab, handleTabChange, tableTabs]);
   return (
     <Card>
       <CardHeader
@@ -62,9 +62,9 @@ export default function TableMain({
         />
         <TableContainer
           primaryKey={primaryKey}
-          primaryItems={primaryItems}
-          secondaryKeys={leadPublicFields}
-          secondaryItems={secondaryItems}
+          primaryComponent={primaryComponent}
+          secondaryKeys={secondaryKeys}
+          secondaryComponents={secondaryComponents}
         />
         <Stack mx={4} my={2}>
           <Pagination
