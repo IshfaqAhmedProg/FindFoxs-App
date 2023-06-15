@@ -1,61 +1,83 @@
 import React from "react";
-import { Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import CheckCircleOutlineRoundedIcon from "@mui/icons-material/CheckCircleOutlineRounded";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import ManageHistoryRoundedIcon from "@mui/icons-material/ManageHistoryRounded";
 import capitalizeFirstLetter from "@/shared/functions/capitaliseFirstLetter";
 import { Status } from "@/shared/interfaces/Tasks";
-
-export default function StatusGenerator({ status }: Status) {
+interface Props extends Status {
+  variant?: "small" | "large";
+}
+export default function StatusGenerator({ status, variant = "small" }: Props) {
   const statString = capitalizeFirstLetter(status.toLocaleLowerCase());
+  const iconStyle =
+    variant == "small"
+      ? {
+          width: ".9375rem",
+          height: ".9375rem",
+        }
+      : {
+          width: "1.2rem",
+          height: "1.2rem",
+        };
+  const containerStyle = {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 1,
+  };
+  const fontStyle =
+    variant == "small"
+      ? {
+          fontSize: "11px",
+        }
+      : {
+          fontSize: "14px",
+        };
   switch (status) {
     case "COMPLETE":
       return (
-        <>
+        <Stack sx={containerStyle}>
           <CheckCircleOutlineRoundedIcon
             sx={{
               color: "var(--accent)",
-              width: ".9375rem",
-              height: ".9375rem",
+              ...iconStyle,
             }}
           />
-          <Typography fontSize="11px" color="var(--accent)">
+          <Typography sx={fontStyle} color="var(--accent)">
             {statString}
           </Typography>
-        </>
+        </Stack>
       );
       break;
     case "FAILED":
       return (
-        <>
+        <Stack sx={containerStyle}>
           <CancelOutlinedIcon
             sx={{
               color: "var(--error)",
-              width: ".9375rem",
-              height: ".9375rem",
+              ...iconStyle,
             }}
           />
-          <Typography fontSize="11px" color="var(--error)">
+          <Typography sx={fontStyle} color="var(--error)">
             {statString}
           </Typography>
-        </>
+        </Stack>
       );
       break;
     case "RUNNING":
       return (
-        <>
+        <Stack sx={containerStyle}>
           <ManageHistoryRoundedIcon
             sx={{
               color: "var(--primarylight)",
 
-              width: ".9375rem",
-              height: ".9375rem",
+              ...iconStyle,
             }}
           />
-          <Typography fontSize="11px" color="var(--primarylight)">
+          <Typography sx={fontStyle} color="var(--primarylight)">
             {statString}
           </Typography>
-        </>
+        </Stack>
       );
       break;
     default:

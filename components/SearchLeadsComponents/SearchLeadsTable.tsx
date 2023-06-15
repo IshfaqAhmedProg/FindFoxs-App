@@ -1,6 +1,10 @@
 import React, { useState, useEffect, Suspense } from "react";
 import createRandomLeadArray from "@/shared/functions/createRandomLead";
-import { Lead, leadSearchTabs } from "@/shared/interfaces/Lead";
+import {
+  Lead,
+  leadPublicFields,
+  leadSearchTabs,
+} from "@/shared/interfaces/Lead";
 import SearchLeadsPrimaryItem from "@/components/SearchLeadsComponents/SearchLeadsPrimaryItem";
 import TablePrimaryItem from "@/components/TableComponents/TablePrimaryItem";
 import TableItem from "@/components/TableComponents/TableItem";
@@ -11,11 +15,10 @@ import SearchLeadsSelectAction from "@/components/SearchLeadsComponents/SearchLe
 import { useTable } from "@/contexts/TableContext";
 import { CircularProgress, Stack } from "@mui/material";
 
-export default function SearchLeads() {
-  const [leads, setLeads] = useState<Array<Lead>>([]);
+export default function SearchLeadsTable({ leads }: { leads: Array<Lead> }) {
   const [loading, setLoading] = useState<boolean>(true);
   const { activeTab } = useTable();
-  const tablePrimaryItem = (
+  const tablePrimaryItems = (
     <>
       {leads.length != 0 &&
         leads.map((lead) => {
@@ -39,15 +42,7 @@ export default function SearchLeads() {
         })}
     </>
   );
-  {
-    console.log(leads);
-  }
-  useEffect(() => {
-    if (leads.length == 0) {
-      setLeads(createRandomLeadArray(8));
-      setLoading(false);
-    }
-  }, [leads.length]);
+
 
   return (
     <Suspense
@@ -61,8 +56,9 @@ export default function SearchLeads() {
         tableTitle="Search for..."
         data={leads}
         primaryKey="Name"
-        primaryItems={tablePrimaryItem}
+        primaryItems={tablePrimaryItems}
         secondaryItems={tableSecondaryItems}
+        secondaryKeys={leadPublicFields}
         tableTabs={leadSearchTabs}
         filterComponent={<SearchLeadsFilter />}
         selectActionsComponent={<SearchLeadsSelectAction />}

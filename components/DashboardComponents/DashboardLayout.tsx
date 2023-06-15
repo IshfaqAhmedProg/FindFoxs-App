@@ -4,6 +4,7 @@ import SideBar from "../SideBar/SideBar";
 import { useTheme } from "@mui/material/styles";
 import { useMediaQuery, Typography } from "@mui/material";
 import { useRouter } from "next/router";
+import Cursor from "../LandingComponents/Cursor";
 
 export default function DashboardLayout({
   title,
@@ -72,6 +73,7 @@ export default function DashboardLayout({
           pt={1}
           gap={2}
         >
+          <Cursor />
           {children}
         </Box>
       </Box>

@@ -1,6 +1,4 @@
-import { Lead, LeadSearchTabs } from "@/shared/interfaces/Lead";
 import {
-  DataTypesSupported,
   ITableContext,
   handlePageChangeParams,
   handleSelectAllParams,
@@ -12,13 +10,23 @@ const TableContext = createContext<any>({});
 export const useTable = (): ITableContext => useContext(TableContext);
 export const TableContextProvider = ({
   children,
+  fetchDataFunction,
 }: {
   children: React.ReactNode;
+  fetchDataFunction: () => void;
 }) => {
   const [selected, setSelected] = useState<Array<string>>([]);
   const [page, setPage] = useState<number>(1);
   const [activeTab, setActiveTab] = useState<string>("");
-
+  const [seeMoreOpenAnchor, setSeeMoreOpenAnchor] =
+    useState<null | HTMLElement>(null);
+  const seeMoreOpen = Boolean(seeMoreOpenAnchor);
+  function handleSeeMoreClick(event: React.MouseEvent<HTMLElement>) {
+    setSeeMoreOpenAnchor(event.currentTarget);
+  }
+  function handleSeeMoreClose() {
+    setSeeMoreOpenAnchor(null);
+  }
   function handleSelect(id: string) {
     setSelected((prevCheckedItems) => {
       if (prevCheckedItems.includes(id)) {
@@ -32,8 +40,8 @@ export const TableContextProvider = ({
     if (params.checked) setSelected(params.tableData.map((data) => data._id));
     else setSelected([]);
   };
-  const handlePageChange = (params: handlePageChangeParams) => {
-    setPage(params.page);
+  const handleDataFetch = () => {
+    fetchDataFunction();
   };
 
   const handleTabChange = (params: handleTabChangeParams) => {
@@ -44,11 +52,15 @@ export const TableContextProvider = ({
       value={{
         selected,
         page,
+        seeMoreOpen,
         activeTab,
+        seeMoreOpenAnchor,
         handleTabChange,
-        handlePageChange,
+        handleDataFetch,
         handleSelect,
         handleSelectAll,
+        handleSeeMoreClick,
+        handleSeeMoreClose,
       }}
     >
       {children}

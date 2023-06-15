@@ -1,6 +1,6 @@
 import React from "react";
 import { Divider, Stack } from "@mui/material";
-import CustomButton from "../CustomMUIComponents/CustomButton";
+import CustomButton from "../CustomComponents/CustomButton";
 import { LeadSearchTabs } from "@/shared/interfaces/Lead";
 import { useTable } from "@/contexts/TableContext";
 

@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
-import { FormControlLabel, Stack, Slide } from "@mui/material";
-import CustomCheckbox from "../CustomMUIComponents/CustomCheckbox";
+import { FormControlLabel, Stack, Slide, Typography } from "@mui/material";
+import CustomCheckbox from "../CustomComponents/CustomCheckbox";
 
 import { useTable } from "@/contexts/TableContext";
 
@@ -58,7 +58,19 @@ export default function TableFilter({
           unmountOnExit
           container={containerRef.current}
         >
-          <span>{filterComponent}</span>
+          <span>
+            <Stack
+              direction="row"
+              alignItems={"center"}
+              justifyContent={"center"}
+              minWidth={"622px"}
+              width={"100%"}
+              gap={1}
+            >
+              <Typography>Filters:</Typography>
+              {filterComponent}
+            </Stack>
+          </span>
         </Slide>
       )}
       {selectActionsComponent && selected.length > 0 && (

@@ -11,7 +11,7 @@ import { useRouter } from "next/router";
 import NavMenu from "./NavMenu";
 import { DashboardIcon } from "@/public/Icons/CustomIcons";
 import IdentityDisplay from "../IdentityDisplay/IdentityDisplay";
-import CustomButton from "../CustomMUIComponents/CustomButton";
+import CustomButton from "../CustomComponents/CustomButton";
 import UserAvatar from "./UserAvatar";
 
 export default function UserControls({ container }: { container: any }) {

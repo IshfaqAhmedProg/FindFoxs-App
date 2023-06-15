@@ -6,7 +6,6 @@ import DashboardLayout from "@/components/DashboardComponents/DashboardLayout";
 export default function EngageLeads() {
   return (
     <main className={styles.dashboard}>
-      <Cursor />
       <DashboardLayout title="Engage with Leads">
         <div>yo</div>
       </DashboardLayout>

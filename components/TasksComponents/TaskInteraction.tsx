@@ -8,7 +8,7 @@ export default function TaskInteraction({ task }: { task: Task }) {
   return (
     <Box display="flex" gap={0.2} flexGrow={1} justifyContent="flex-end">
       {task.status != "FAILED" ? (
-        <Tooltip title={"Open Task " + task.id}>
+        <Tooltip title={"Open Task " + task._id}>
           <span>
             <IconButton disabled={task.status == "RUNNING"}>
               <FileOpenOutlinedIcon
@@ -24,7 +24,7 @@ export default function TaskInteraction({ task }: { task: Task }) {
           </span>
         </Tooltip>
       ) : (
-        <Tooltip title={"Rerun task " + task.id}>
+        <Tooltip title={"Rerun task " + task._id}>
           <span>
             <IconButton>
               <AutorenewRoundedIcon
@@ -36,7 +36,7 @@ export default function TaskInteraction({ task }: { task: Task }) {
           </span>
         </Tooltip>
       )}
-      <Tooltip title={"Delete Task " + task.id}>
+      <Tooltip title={"Delete Task " + task._id}>
         <span>
           <IconButton disabled={task.status == "RUNNING"}>
             <DeleteOutlinedIcon

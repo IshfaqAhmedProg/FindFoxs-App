@@ -32,10 +32,16 @@
     "react": "^18.2.0",
     "react-circular-progressbar": "^2.1.0",
     "react-dom": "^18.2.0",
+    "react-intersection-observer": "^9.4.4",
     "react-type-animation": "^2.1.2",
-    "typescript": "4.9.4"
+    "react-youtube": "^10.1.0",
+    "swr": "^2.1.5",
+    "typescript": "4.9.4",
+    "validator": "^13.9.0",
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.19.3/xlsx-0.19.3.tgz"
   },
   "devDependencies": {
-    "@faker-js/faker": "^8.0.1"
+    "@faker-js/faker": "^8.0.1",
+    "@types/validator": "^13.7.17"
   }
 }

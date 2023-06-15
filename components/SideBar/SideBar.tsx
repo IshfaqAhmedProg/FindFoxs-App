@@ -11,7 +11,7 @@ import TaskOutlinedIcon from "@mui/icons-material/TaskOutlined";
 import { SideBarLinks } from "@/shared/interfaces/Links";
 import { useRouter } from "next/router";
 import SidebarList from "./SideBarList";
-import CustomButton from "../CustomMUIComponents/CustomButton";
+import CustomButton from "../CustomComponents/CustomButton";
 
 interface Props {
   toggle: boolean;
@@ -45,10 +45,10 @@ export default function SideBar({ toggle, handleToggle }: Props) {
       icon: <ToolsIcon />,
       goto: "",
       children: [
-        { name: "Email Validator", goto: "/" },
-        { name: "Number Validator", goto: "/" },
+        { name: "Email Validator", goto: "/tools/emailValidator" },
+        { name: "Number Validator", goto: "/tools/phoneNumberValidator" },
         { name: "WhatsApp Validator", goto: "/" },
-        { name: "Google Maps Scraper", goto: "/" },
+        { name: "Google Maps Scraper", goto: "/tools/googleMapsScraper" },
         { name: "Email and Contacts Scraper", goto: "/" },
       ],
       expanded: toolsToggle,

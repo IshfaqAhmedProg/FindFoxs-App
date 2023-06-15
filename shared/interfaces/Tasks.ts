@@ -1,5 +1,6 @@
 export interface Tools {
   tool:
+    | string
     | "Google Maps Scraper"
     | "Email Validator"
     | "Email Reverse Lookup"
@@ -9,10 +10,38 @@ export interface Tools {
     | "Whatsapp Validator";
 }
 export interface Status {
-  status: "RUNNING" | "COMPLETE" | "FAILED";
+  status: string | "RUNNING" | "COMPLETE" | "FAILED";
 }
-export default interface Task extends Tools, Status {
-  id: string;
+interface TaskDetails {
   queryCount: number;
-  startTime: Date;
+  startTime: Date | number;
+  endTime: Date | number;
+}
+export interface TaskResult {
+  result?: IEmailValidatorResult;
+}
+export interface IEmailValidatorResult {
+  deliverable: number;
+  undeliverable: {
+    invalid_email: number;
+    invalid_domain: number;
+    rejected_email: number;
+    invalid_smtp: number;
+  };
+  risky: {
+    low_quality: number;
+    low_deliverability: number;
+  };
+  unknown: {
+    no_connect: number;
+    timeout: number;
+    unavailable_smtp: number;
+    unexpected_error: number;
+  };
+  duplicate: number;
+}
+type TaskUnits = string | "website" | "email" | "number" | "keyword";
+export default interface Task extends TaskDetails, Tools, Status, TaskResult {
+  unit: TaskUnits;
+  _id: string;
 }

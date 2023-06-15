@@ -1,5 +1,5 @@
 import React from "react";
-import CustomButton from "../CustomMUIComponents/CustomButton";
+import CustomButton from "../CustomComponents/CustomButton";
 import {
   Stack,
   IconButton,

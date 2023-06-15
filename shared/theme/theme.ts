@@ -2,6 +2,16 @@ import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
   components: {
+    MuiChip: {
+      styleOverrides: {
+        root: {
+          background: "var(--primarylight)",
+          opacity: 0.8,
+          fontWeight: "bold",
+          color: "white",
+        },
+      },
+    },
     MuiInputLabel: {
       styleOverrides: {
         root: { color: "var(--primarylight)", fontSize: ".875rem" },
@@ -108,6 +118,44 @@ const theme = createTheme({
         root: {
           borderRadius:
             "var(--border-radius-small) 0 0 var(--border-radius-small)",
+        },
+      },
+    },
+
+    MuiDialog: {
+      styleOverrides: {
+        root: {
+          borderRadius: "var(--border-radius)",
+        },
+        paperFullWidth: {
+          borderRadius: "var(--border-radius)",
+          minHeight: "350px",
+          justifyContent: "space-around",
+          padding: "2rem",
+        },
+      },
+    },
+    MuiDialogContent: {
+      styleOverrides: {
+        root: {
+          marginTop: "2rem",
+          flex: "1 0 auto",
+        },
+      },
+    },
+    MuiDivider: {
+      styleOverrides: {
+        root: {
+          fontWeight: "bold",
+          fontSize: "13px",
+          color: "var(--graylight)",
+          borderColor: "var(--graylighter)",
+          ":before": {
+            borderColor: "var(--graylighter)",
+          },
+          ":after": {
+            borderColor: "var(--graylighter)",
+          },
         },
       },
     },

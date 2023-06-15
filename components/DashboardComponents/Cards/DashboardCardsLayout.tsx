@@ -1,7 +1,7 @@
 import React from "react";
 import { CardHeader, Button, Card, CardContent, Divider } from "@mui/material";
 import ReadMoreRoundedIcon from "@mui/icons-material/ReadMoreRounded";
-import CustomButton from "@/components/CustomMUIComponents/CustomButton";
+import CustomButton from "@/components/CustomComponents/CustomButton";
 interface Props {
   children?: React.ReactElement | Array<React.ReactElement>;
   title: string;

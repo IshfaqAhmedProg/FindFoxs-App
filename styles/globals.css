@@ -1,6 +1,6 @@
 :root {
   /* Color styles */
-  --accentdark: #00a152;
+  --accentdark: #13a386;
   --accent: #00e676;
   --accentlight: #33eb91;
   --primarydark: #1d276b;
@@ -11,7 +11,7 @@
   --graylightest: #0000000a;
   --graylighter: #ededed;
   --graylight: #b1bad2;
-  --graydark: #6f6f6f;
+  --graydark: #575a66;
   --error: #ff4545;
 
   /* Text-size styles */
@@ -24,7 +24,7 @@
   --h2impact: 1.88rem;
 
   /* Utitlity variables */
-  --border-radius-small: 0.75em;
+  --border-radius-small: 0.5em;
   --border-radius: 1em;
   --border-radius-large: 1.0875em;
   --box-shadow: 0px 0px 10px #848fd655;
@@ -56,7 +56,7 @@ a:hover {
   height: 5px;
 }
 .trailingText {
-  color: var(--primarylight);
+  color: var(--graylight);
   font-weight: 400;
 }
 .muted {

@@ -1,15 +1,17 @@
 import { Lead, LeadSearchTabs } from "./Lead";
+import Task from "./Tasks";
 
-export type DTS = Lead;
+export type DTS = Lead | Task;
 export type DataTypesSupported = Array<DTS>;
 export type STS = LeadSearchTabs;
 export type TabsSuppported = Array<STS>;
 export interface ITableMain {
   tableTitle?: string;
-  tableTabs: TabsSuppported;
+  tableTabs?: TabsSuppported;
   data: DataTypesSupported;
   primaryKey?: string;
   primaryItems: React.ReactElement;
+  secondaryKeys: Array<string>;
   secondaryItems: React.ReactElement;
   filterComponent: React.ReactElement;
   selectActionsComponent: React.ReactElement;
@@ -29,11 +31,15 @@ export type handleSelectAllParams = {
   tableData: DataTypesSupported;
 };
 export interface ITableContext {
+  seeMoreOpen: boolean;
+  seeMoreOpenAnchor: null | HTMLElement;
   selected: Array<string>;
   page: number;
   activeTab: string;
   handleTabChange: (params: handleTabChangeParams) => void;
-  handlePageChange: (params: handlePageChangeParams) => void;
+  handleDataFetch: () => void;
   handleSelect: (id: string) => void;
   handleSelectAll: (params: handleSelectAllParams) => void;
+  handleSeeMoreClick: (event: React.MouseEvent<HTMLElement>) => void;
+  handleSeeMoreClose: () => void;
 }

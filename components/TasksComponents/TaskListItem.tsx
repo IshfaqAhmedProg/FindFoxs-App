@@ -36,14 +36,14 @@ export default function TaskListItem({ task }: { task: Task }) {
               <strong>{task.tool}</strong>
             </Typography>
           </Tooltip>
-          <Tooltip title={task.id}>
+          <Tooltip title={task._id}>
             <Typography
               variant="h4"
               fontSize="12px"
               color="var(--graylight)"
               noWrap
             >
-              #{task.id}
+              #{task._id}
             </Typography>
           </Tooltip>
         </Box>
@@ -53,9 +53,9 @@ export default function TaskListItem({ task }: { task: Task }) {
           </Typography>
         </Box>
         <Box textOverflow="ellipsis" overflow="hidden" width="7ch">
-          <Tooltip title={task.startTime.toDateString()}>
+          <Tooltip title={task.startTime.toString()}>
             <Typography fontSize="11px" noWrap textAlign="center">
-              {task.startTime.toDateString()}
+              {task.startTime.toString()}
             </Typography>
           </Tooltip>
         </Box>

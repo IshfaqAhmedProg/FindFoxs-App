@@ -53,13 +53,12 @@ export default function LeadConversionCard() {
             <strong>387</strong>
           </Typography>
         </Box>
-        <Box display="flex" flexDirection="column" gap={2}>
+        <Box display="flex" flexDirection="column" gap={4}>
           {leadConversionDetails.map((detail) => {
             return (
               <HorizontalProgress
                 key={detail.title}
                 value={detail.value}
-                full={true}
                 maxValue={detail.maxValue}
                 title={detail.title}
                 subtitle={detail.subtitle}

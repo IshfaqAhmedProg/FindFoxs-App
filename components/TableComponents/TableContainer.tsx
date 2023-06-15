@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import { Box, Stack, useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import TableCell from "./TableCell";
-
+import { DataTypesSupported } from "@/shared/interfaces/Table";
+import { useTable } from "@/contexts/TableContext";
+import { InView } from "react-intersection-observer";
+import Loading from "../Loading/Loading";
 interface Props {
   primaryKey: string;
   secondaryKeys: Array<string>;
@@ -18,9 +21,17 @@ export default function TableContainer({
 }: Props) {
   const theme = useTheme();
   const [toggleSecondary, setToggleSecondary] = useState<boolean>();
+  const { handleDataFetch: handlePageChange } = useTable();
+
   //to keep the sidebar toggled when screen is big
   return (
-    <Box display="flex" justifyContent="center">
+    <Box
+      display="flex"
+      id="TableContainer"
+      justifyContent="center"
+      sx={{ overflowY: "auto" }}
+      height={"100%"}
+    >
       <Stack
         pt={2}
         width={useMediaQuery(theme.breakpoints.down("sm")) ? "100%" : "inherit"}
@@ -29,18 +40,26 @@ export default function TableContainer({
           <TableCell type="head">{primaryKey}</TableCell>
         </Stack>
         {primaryItems}
+        <InView
+          as="div"
+          onChange={(inView, entry) => (inView ? handlePageChange() : null)}
+          style={{ marginTop: "1.5rem" }}
+        >
+          <Loading />
+        </InView>
       </Stack>
       <Stack
         display={useMediaQuery(theme.breakpoints.down("sm")) ? "none" : "block"}
         width="80%"
         boxShadow="inset var(--box-shadow)"
         borderRadius="var(--border-radius)"
-        sx={{ overflowX: "auto", overflowY: "hidden", whiteSpace: "nowrap" }}
+        height={"fit-content"}
+        sx={{ overflowX: "auto", whiteSpace: "nowrap", overflowY: "hidden" }}
         position="relative"
         pt={2}
       >
         <Stack direction="row" pl={2} gap={2} alignItems="center">
-          {secondaryKeys.map((key) => (
+          {secondaryKeys?.map((key) => (
             <TableCell key={key} type="head">
               {key}
             </TableCell>

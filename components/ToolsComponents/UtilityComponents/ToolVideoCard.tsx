@@ -1,0 +1,37 @@
+import { Box, Stack } from "@mui/material";
+import React from "react";
+import YouTube, { YouTubeProps } from "react-youtube";
+
+export default function ToolVideo({ videoId }: { videoId: string }) {
+  const opts: YouTubeProps["opts"] = {
+    height: "320",
+    width: "100%",
+    playerVars: {
+      autoplay: 0,
+    },
+  };
+  return (
+    <Stack
+      width={"100%"}
+      gap={3}
+      alignItems={"center"}
+      justifyContent={"center"}
+      sx={{
+        ["@container (max-width: 720px)"]: {
+          gridRowStart: "1",
+        },
+      }}
+    >
+      <Box
+        height={"fit-content"}
+        width={"80%"}
+        maxWidth={"720px"}
+        bgcolor={"var(--graydark)"}
+        borderRadius="var(--border-radius)"
+        overflow={"hidden"}
+      >
+        <YouTube videoId={videoId} opts={opts} />
+      </Box>
+    </Stack>
+  );
+}

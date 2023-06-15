@@ -7,7 +7,7 @@ import {
   Stack,
   Tooltip,
 } from "@mui/material";
-import CustomButton from "../CustomMUIComponents/CustomButton";
+import CustomButton from "../CustomComponents/CustomButton";
 import { Lead, LeadAction } from "@/shared/interfaces/Lead";
 import AddHomeOutlinedIcon from "@mui/icons-material/AddHomeOutlined";
 import AddchartOutlinedIcon from "@mui/icons-material/AddchartOutlined";

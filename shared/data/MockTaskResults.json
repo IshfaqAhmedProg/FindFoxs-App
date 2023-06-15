@@ -1,0 +1,52 @@
+[
+  {
+    "_id": "135498dsas",
+    "tool": "Email Validator",
+    "result": {
+      "total": 5500,
+      "deliverable": 2802,
+      "undeliverable": {
+        "invalid_email": 319,
+        "invalid_domain": 106,
+        "rejected_email": 180,
+        "invalid_smtp": 123
+      },
+      "risky": {
+        "low_quality": 488,
+        "low_deliverability": 884
+      },
+      "unknown": {
+        "no_connect": 102,
+        "timeout": 36,
+        "unavailable_smtp": 137,
+        "unexpected_error": 128
+      },
+      "duplicate": 195
+    }
+  },
+  {
+    "_id": "98dsa1354s",
+    "tool": "Email Validator",
+    "result": {
+      "total": 6500,
+      "deliverable": 3802,
+      "undeliverable": {
+        "invalid_email": 319,
+        "invalid_domain": 106,
+        "rejected_email": 180,
+        "invalid_smtp": 123
+      },
+      "risky": {
+        "low_quality": 488,
+        "low_deliverability": 884
+      },
+      "unknown": {
+        "no_connect": 102,
+        "timeout": 36,
+        "unavailable_smtp": 137,
+        "unexpected_error": 128
+      },
+      "duplicate": 195
+    }
+  }
+]

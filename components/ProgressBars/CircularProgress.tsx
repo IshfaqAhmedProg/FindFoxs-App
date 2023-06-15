@@ -2,8 +2,15 @@ import React from "react";
 import GradientSVG from "../GradientSVG/GradientSVG";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import { Typography } from "@mui/material";
 
-export default function CircularProgress({ value }: { value: number }) {
+export default function CircularProgress({
+  title,
+  value,
+}: {
+  title?: string;
+  value: number;
+}) {
   const svgGradient = (
     <GradientSVG
       startColor="var(--accent)"
@@ -21,9 +28,15 @@ export default function CircularProgress({ value }: { value: number }) {
         color: "var(--accent)",
       }}
     >
+      <Typography
+        variant="h4"
+        sx={{ position: "absolute", top: "59%", left: "26%", fontSize: "12px" }}
+      >
+        {title}
+      </Typography>
       {svgGradient}
       <CircularProgressbar
-        strokeWidth={8}
+        strokeWidth={15}
         value={value}
         maxValue={100}
         text={`${value}%`}

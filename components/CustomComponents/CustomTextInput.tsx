@@ -6,13 +6,14 @@ const PlainTextInput = styled(TextField)({
     border: "none",
   },
   background: "var(--graylighter)",
-  borderRadius: 3,
+  borderRadius: "var(--border-radius-small)",
   color: "var(--primarydark)",
   "& input::placeholder": {
     color: "var(--graydark)",
   },
   "& .Mui-focused": {
     backgroundColor: "rgba(250, 250, 250, 1)",
+    borderRadius: "var(--border-radius-small)",
     boxShadow: "inset var(--box-shadow-hover)",
   },
 });
@@ -20,11 +21,11 @@ export default function CustomTextInput(props: TextFieldProps) {
   return (
     <PlainTextInput
       style={{
-        height: "29px",
+        minHeight: "35px",
       }}
       inputProps={{
         style: {
-          height: "29px",
+          minHeight: "35px",
           paddingTop: 0,
           paddingRight: 0,
           paddingBottom: 0,

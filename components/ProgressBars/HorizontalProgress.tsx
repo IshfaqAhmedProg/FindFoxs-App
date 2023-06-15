@@ -23,7 +23,6 @@ interface Props {
   value: number;
   maxValue: number;
   valueId?: string;
-  full: boolean;
 }
 export default function HorizontalProgress({
   title,
@@ -31,7 +30,6 @@ export default function HorizontalProgress({
   value,
   maxValue,
   valueId,
-  full,
 }: Props) {
   return (
     <Stack>

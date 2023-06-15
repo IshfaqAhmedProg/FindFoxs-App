@@ -4,7 +4,7 @@ import React from "react";
 import OndemandVideoRoundedIcon from "@mui/icons-material/OndemandVideoRounded";
 import Image from "next/image";
 import HeroImage from "@/public/Images/HeroImage.png";
-import CustomButton from "../CustomMUIComponents/CustomButton";
+import CustomButton from "../CustomComponents/CustomButton";
 export const HeroSection = () => {
   const videoIcon = <OndemandVideoRoundedIcon />;
   return (

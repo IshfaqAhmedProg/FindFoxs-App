@@ -1,0 +1,132 @@
+[
+  {
+    "_id": "135498556s",
+    "tool": "Google Maps Scraper",
+    "unit": "keyword",
+    "queryCount": 215,
+    "startTime": 1261923200,
+    "endTime": 1666219200,
+    "status": "RUNNING"
+  },
+  {
+    "_id": "135498dsas",
+    "tool": "Email Validator",
+    "unit": "email",
+    "queryCount": 15,
+    "startTime": 1621923600,
+    "endTime": 1626139200,
+    "status": "COMPLETE",
+    "result": {
+      "deliverable": 2802,
+      "undeliverable": {
+        "invalid_email": 319,
+        "invalid_domain": 106,
+        "rejected_email": 180,
+        "invalid_smtp": 123
+      },
+      "risky": {
+        "low_quality": 488,
+        "low_deliverability": 884
+      },
+      "unknown": {
+        "no_connect": 102,
+        "timeout": 36,
+        "unavailable_smtp": 137,
+        "unexpected_error": 128
+      },
+      "duplicate": 195
+    }
+  },
+  {
+    "_id": "98dsa1354s",
+    "tool": "Email Validator",
+    "unit": "email",
+    "queryCount": 320,
+    "startTime": 1196236200,
+    "endTime": 1236619200,
+    "status": "COMPLETE",
+    "result": {
+      "deliverable": 3802,
+      "undeliverable": {
+        "invalid_email": 319,
+        "invalid_domain": 106,
+        "rejected_email": 180,
+        "invalid_smtp": 123
+      },
+      "risky": {
+        "low_quality": 488,
+        "low_deliverability": 884
+      },
+      "unknown": {
+        "no_connect": 102,
+        "timeout": 36,
+        "unavailable_smtp": 137,
+        "unexpected_error": 128
+      },
+      "duplicate": 195
+    }
+  },
+  {
+    "_id": "3598dsa14s",
+    "tool": "Email And Contacts Scraper",
+    "unit": "website",
+    "queryCount": 10,
+    "startTime": 1623619200,
+    "endTime": 1623619200,
+    "status": "FAILED"
+  },
+  {
+    "_id": "3598d5984s",
+    "tool": "Email And Contacts Scraper",
+    "unit": "website",
+    "queryCount": 10,
+    "startTime": 1623619200,
+    "endTime": 1623619200,
+    "status": "FAILED"
+  },
+  {
+    "_id": "378452354s",
+    "tool": "Email And Contacts Scraper",
+    "unit": "website",
+    "queryCount": 10,
+    "startTime": 1623619200,
+    "endTime": 1623619200,
+    "status": "RUNNING"
+  },
+  {
+    "_id": "378452354s",
+    "tool": "Email And Contacts Scraper",
+    "unit": "website",
+    "queryCount": 10,
+    "startTime": 1623619200,
+    "endTime": 1623619200,
+    "status": "RUNNING"
+  },
+  {
+    "_id": "378452354s",
+    "tool": "Google Maps Scraper",
+    "unit": "website",
+    "queryCount": 10,
+    "startTime": 1623619200,
+    "endTime": 1623619200,
+    "status": "RUNNING"
+  },
+  {
+    "_id": "378452354s",
+    "tool": "Phone Number Validator",
+    "unit": "website",
+    "queryCount": 10,
+    "startTime": 1623619200,
+    "endTime": 1623619200,
+    "status": "RUNNING"
+  },
+  {
+    "_id": "378452354s",
+    "tool": "Email And Contacts Scraper",
+    "unit": "website",
+    "queryCount": 10,
+    "startTime": 1623619200,
+    "endTime": 1623619200,
+    "status": "RUNNING"
+  }
+]

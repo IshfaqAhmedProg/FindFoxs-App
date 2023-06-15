@@ -14,16 +14,13 @@ import {
   InstagramIcon,
 } from "@/public/Icons/CustomIcons";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
-import CustomCheckbox from "../CustomMUIComponents/CustomCheckbox";
 import { Lead } from "@/shared/interfaces/Lead";
 import TableCell from "@/components/TableComponents/TableCell";
 
 import SingleLeadCard from "./SingleLeadCard";
-import { useTable } from "@/contexts/TableContext";
 import Image from "next/image";
 
 export default function SearchLeadsPrimaryItem({ content }: { content: Lead }) {
-  const { selected, handleSelect } = useTable();
   const [seeMoreOpenAnchor, setSeeMoreOpenAnchor] =
     useState<null | HTMLElement>(null);
   const seeMoreOpen = Boolean(seeMoreOpenAnchor);
@@ -51,18 +48,7 @@ export default function SearchLeadsPrimaryItem({ content }: { content: Lead }) {
     setSeeMoreOpenAnchor(null);
   }
   return (
-    <Stack
-      direction="row"
-      alignItems="center"
-      gap={2}
-      justifyContent={"space-between"}
-      width={"100%"}
-    >
-      <CustomCheckbox
-        checked={selected.includes(content._id)}
-        onChange={(e, checked) => handleSelect(content._id)}
-      />
-
+    <>
       <Avatar sx={{ width: "40px", height: "40px" }}>
         <Image alt="Lead Avatar" src={content.avatar} width={40} height={40} />
       </Avatar>
@@ -130,6 +116,6 @@ export default function SearchLeadsPrimaryItem({ content }: { content: Lead }) {
       >
         <SingleLeadCard content={content} handleClose={handleClose} />
       </Menu>
-    </Stack>
+    </>
   );
 }

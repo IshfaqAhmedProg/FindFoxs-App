@@ -12,8 +12,7 @@ import LeadStagesCard from "@/components/DashboardComponents/Cards/LeadStagesCar
 export default function Dashboard() {
   return (
     <main className={styles.dashboard}>
-      <Cursor />
-      <DashboardLayout title="Dashboard">
+      <DashboardLayout>
         <LeadConversionCard />
         <TasksCard />
         <Box
