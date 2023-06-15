@@ -10,7 +10,6 @@ import {
 } from "@mui/material";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import createStyles from "@mui/material/styles/createStyles";
 
 export const FormInput = (props: any) => {
   const { id, helperText, onChange, ...inputProps } = props;

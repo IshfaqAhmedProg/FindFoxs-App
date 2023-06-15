@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useAuthError } from "../../contexts/AuthErrorContext";
 import inputs from "@/shared/constants/inputs.json";
-import { Button, CircularProgress, Box, Divider } from "@mui/material";
+import {  Box, Divider } from "@mui/material";
 import { FormInput } from "@/components/FormComponents/FormInput";
 import google from "@/public/Logos/Extra/Google.svg";
 import Image from "next/image";

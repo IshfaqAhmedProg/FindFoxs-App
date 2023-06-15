@@ -2,7 +2,7 @@ import CustomBox from "@/components/CustomComponents/CustomBox";
 import Task from "@/shared/interfaces/Tasks";
 import { Box, Typography } from "@mui/material";
 import React from "react";
-import CustomDoughnutCard from "@/components/CustomComponents/CustomDoughnutCard";
+import DoughnutCard from "@/components/DoughnutCard/DoughnutCard";
 
 import ResultSummaryCard from "@/components/ToolsComponents/UtilityComponents/ResultSummaryCard";
 import VerticalCardWrapper from "@/components/ToolsComponents/UtilityComponents/VerticalCardWrapper";
@@ -129,7 +129,7 @@ export default function EmailValidatorResult({ task }: { task: Task }) {
         justifyContent="space-around"
         gap={2}
       >
-        <CustomDoughnutCard
+        <DoughnutCard
           centerValue={(
             ((task.result?.deliverable ?? 100) / total) *
             100
@@ -156,7 +156,7 @@ export default function EmailValidatorResult({ task }: { task: Task }) {
         <Typography fontWeight={"bold"} variant="h4" color={"var(--error)"}>
           Undeliverable
         </Typography>
-        <CustomDoughnutCard
+        <DoughnutCard
           centerValue={((totalUndeliverable / total) * 100).toFixed(1)}
           colors={undeliverableDataColors}
           data={undeliverableData}
@@ -173,7 +173,7 @@ export default function EmailValidatorResult({ task }: { task: Task }) {
         >
           Risky
         </Typography>
-        <CustomDoughnutCard
+        <DoughnutCard
           centerValue={((totalRisky / total) * 100).toFixed(1)}
           colors={riskyDataColors}
           data={riskyData}
@@ -186,7 +186,7 @@ export default function EmailValidatorResult({ task }: { task: Task }) {
         <Typography fontWeight={"bold"} variant="h4" color={"var(--graylight)"}>
           Unknown
         </Typography>
-        <CustomDoughnutCard
+        <DoughnutCard
           centerValue={((totalUnknown / total) * 100).toFixed(1)}
           colors={unknownDataColors}
           data={unknownData}

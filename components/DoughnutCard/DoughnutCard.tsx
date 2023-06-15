@@ -1,4 +1,3 @@
-import { IEmailValidatorResult } from "@/shared/interfaces/Tasks";
 import { nivoTheme } from "@/shared/theme/nivoTheme";
 import { Chip, Stack, Typography } from "@mui/material";
 import { ResponsivePieCanvas } from "@nivo/pie";
@@ -8,7 +7,7 @@ type pieData = {
   label: string;
   value: number;
 };
-export default function CustomDoughnutCard({
+export default function DoughnutCard({
   total,
   data,
   centerValue,

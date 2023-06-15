@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import DashboardCardsLayout from "./DashboardCardsLayout";
 import { ResponsiveFunnel } from "@nivo/funnel";
 import data from "@/shared/data/MockLeadsStages.json";
 import { nivoTheme } from "@/shared/theme/nivoTheme";
-import { Grid, Box, Typography, Stack } from "@mui/material";
+import { Box, Typography, Stack } from "@mui/material";
 export default function LeadStagesCard() {
   const gridTemplateAreas = `"stage1 funnel" "stage2 funnel" "stage3 funnel" "stage4 funnel" "stage5 funnel"`;
   const bullets = (
