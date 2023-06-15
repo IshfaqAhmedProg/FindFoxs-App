@@ -90,8 +90,8 @@ export default function SelectHeaderDialog({
                   maxWidth={"35ch"}
                   mt={2}
                 >
-                  If you're not getting enough records make sure to check if the
-                  data is formatted correctly.
+                  If you&apos;re not getting enough records make sure to check
+                  if the data is formatted correctly.
                 </Typography>
               </>
             )}

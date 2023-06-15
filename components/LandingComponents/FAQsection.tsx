@@ -18,9 +18,9 @@ export default function FAQsection() {
   const faq = [
     {
       id: "faq1",
-      question: "What is Scrapefox?",
+      question: "What is FindFoxs?",
       answer:
-        "Scrapefox is a lead generating, searching and engaging platform with additional features like a fully built CRM that can be integrated using rest API, Bulk Email sending, email automation, Multiple validators like mobile phone, email, whatsapp, and also scrapers for Google maps, Facebook and Google Search so that users have the freedom to scrape their own leads from the internet.",
+        "FindFoxs is a lead generating, searching and engaging platform with additional features like a fully built CRM that can be integrated using rest API, Bulk Email sending, email automation, Multiple validators like mobile phone, email, whatsapp, and also scrapers for Google maps, Facebook and Google Search so that users have the freedom to scrape their own leads from the internet.",
     },
     {
       id: "faq2",

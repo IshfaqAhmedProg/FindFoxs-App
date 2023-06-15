@@ -6,7 +6,6 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           background: "var(--primarylight)",
-          opacity: 0.8,
           fontWeight: "bold",
           color: "white",
         },

@@ -49,7 +49,10 @@ export default function SideBar({ toggle, handleToggle }: Props) {
         { name: "Number Validator", goto: "/tools/phoneNumberValidator" },
         { name: "WhatsApp Validator", goto: "/" },
         { name: "Google Maps Scraper", goto: "/tools/googleMapsScraper" },
-        { name: "Email and Contacts Scraper", goto: "/" },
+        {
+          name: "Email and Contacts Scraper",
+          goto: "/tools/emailAndContactScraper",
+        },
       ],
       expanded: toolsToggle,
     },

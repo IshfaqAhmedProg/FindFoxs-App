@@ -87,7 +87,7 @@ export default function FeaturesSection() {
         capabilities.
       </h2>
       <Typography style={{ width: "30ch", textAlign: "center" }}>
-        Add Scrapefox to your websites to manage leads that come from your
+        Add FindFoxs to your websites to manage leads that come from your
         website and to generate new leads.
       </Typography>
       <Image

@@ -66,20 +66,17 @@ export default function GoogleMapsScraper() {
         kind="plain"
         buttonProps={{
           sx:
-            pathName == "/tools/emailValidator"
+            pathName == "/tools/googleMapsScraper"
               ? { color: "var(--primary)" }
               : { color: "var(--graylight)" },
         }}
       >
-        Validate
+        Scrape
       </CustomButton>
       <CustomButton
         kind="plain"
         buttonProps={{
-          sx:
-            pathName == "/tools/emailValidator/results"
-              ? { color: "var(--primary)" }
-              : { color: "var(--graylight)" },
+          sx: { color: "var(--graylight)" },
           onClick: () => router.push("/tasks"),
         }}
       >

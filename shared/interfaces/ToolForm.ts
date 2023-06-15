@@ -1,4 +1,4 @@
-interface ValidatorTypeData {
+export interface ValidatorTypeData {
   singleData: string;
   validationResult: string;
   fileName: string;

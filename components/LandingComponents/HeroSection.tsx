@@ -23,7 +23,7 @@ export const HeroSection = () => {
         <span>Lead Generation</span> With
         <br />
         <span style={{ color: "var(--primary)" }}>
-          Scrape<span style={{ color: "var(--accent)" }}>Fox</span>
+          Find<span style={{ color: "var(--accent)" }}>Foxs</span>
         </span>
       </Typography>
       <Box display="flex" gap="1.5em">

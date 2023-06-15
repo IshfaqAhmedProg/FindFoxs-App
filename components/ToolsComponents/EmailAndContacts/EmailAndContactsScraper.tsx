@@ -13,42 +13,6 @@ export default function EmailAndContactsScraper() {
   const pathName = usePathname();
   const router = useRouter();
 
-  const resultStat: Array<Stats> = [
-    {
-      statTitle: "Reason",
-      stats: [
-        {
-          title: "Unable to get domain or MX pointer.",
-          stat: "",
-          statUnit: "",
-        },
-      ],
-    },
-    {
-      statTitle: "Disposable",
-      stats: [
-        {
-          title: "False",
-        },
-      ],
-    },
-    {
-      statTitle: "Possible Typo:",
-      stats: [
-        {
-          title: "None",
-        },
-      ],
-    },
-    {
-      statTitle: "MX Info:",
-      stats: [
-        {
-          title: "No MX-pointer in DNS record. Using domain: dsa.dsad",
-        },
-      ],
-    },
-  ];
   function checkIfEmail(emailArray: Array<string>) {
     const finalArray = [];
     for (const email of emailArray) {
@@ -66,7 +30,7 @@ export default function EmailAndContactsScraper() {
         kind="plain"
         buttonProps={{
           sx:
-            pathName == "/tools/emailValidator"
+            pathName == "/tools/emailAndContactsScraper"
               ? { color: "var(--primary)" }
               : { color: "var(--graylight)" },
         }}
@@ -76,10 +40,7 @@ export default function EmailAndContactsScraper() {
       <CustomButton
         kind="plain"
         buttonProps={{
-          sx:
-            pathName == "/tools/emailValidator/results"
-              ? { color: "var(--primary)" }
-              : { color: "var(--graylight)" },
+          sx: { color: "var(--graylight)" },
           onClick: () => router.push("/tasks"),
         }}
       >

@@ -71,7 +71,7 @@ export default function PhoneNumberValidator() {
         kind="plain"
         buttonProps={{
           sx:
-            pathName == "/tools/emailValidator"
+            pathName == "/tools/phoneNumberValidator"
               ? { color: "var(--primary)" }
               : { color: "var(--graylight)" },
         }}
@@ -81,10 +81,7 @@ export default function PhoneNumberValidator() {
       <CustomButton
         kind="plain"
         buttonProps={{
-          sx:
-            pathName == "/tools/emailValidator/results"
-              ? { color: "var(--primary)" }
-              : { color: "var(--graylight)" },
+          sx: { color: "var(--graylight)" },
           onClick: () => router.push("/tasks"),
         }}
       >

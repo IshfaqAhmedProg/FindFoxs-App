@@ -17,7 +17,7 @@ export default function EmailValidatorResult({ task }: { task: Task }) {
     totalRisky +
     totalUnknown;
   const deliverableDataColors = [
-    "#00e676",
+    "#13A386",
     "#ff4545",
     "#5467E4",
     "#303f9f",
