@@ -47,7 +47,10 @@ export default function SideBar({ toggle, handleToggle }: Props) {
       children: [
         { name: "Email Validator", goto: "/tools/emailValidator" },
         { name: "Number Validator", goto: "/tools/phoneNumberValidator" },
-        { name: "WhatsApp Validator", goto: "/" },
+        {
+          name: "WhatsApp Validator",
+          goto: "https://whatsappautobot.vercel.app",
+        },
         { name: "Google Maps Scraper", goto: "/tools/googleMapsScraper" },
         {
           name: "Email and Contacts Scraper",

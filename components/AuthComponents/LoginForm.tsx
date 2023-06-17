@@ -4,14 +4,14 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useAuthError } from "../../contexts/AuthErrorContext";
 import inputs from "@/shared/constants/inputs.json";
-import {  Box, Divider } from "@mui/material";
-import { FormInput } from "@/components/FormComponents/FormInput";
+import { Box, Divider } from "@mui/material";
+import { FormInput } from "@/components/CustomComponents/FormComponents/FormInput";
 import google from "@/public/Logos/Extra/Google.svg";
 import Image from "next/image";
 import Typography from "@mui/material/Typography";
-import LoadingButton from "../LoadingButton/LoadingButton";
 import LoginRoundedIcon from "@mui/icons-material/LoginRounded";
-import FormContainer from "../FormComponents/FormContainer";
+import FormContainer from "../CustomComponents/FormComponents/FormContainer";
+import CustomButton from "../CustomComponents/CustomButton";
 export default function LoginForm() {
   const { handleError } = useAuthError();
   const { login, googleLogin } = useAuth();
@@ -66,26 +66,30 @@ export default function LoginForm() {
               onChange={onChange}
             />
           ))}
-          <LoadingButton
+          <CustomButton
+            buttonProps={{
+              type: "submit",
+              disabled: loading,
+              variant: "contained",
+              endIcon: <LoginRoundedIcon />,
+            }}
             loading={loading}
-            type="submit"
-            variant="contained"
-            disabled={loading}
-            endIcon={<LoginRoundedIcon />}
           >
             Log in
-          </LoadingButton>
+          </CustomButton>
         </FormContainer>
         <Divider style={{ width: "100%" }}>or</Divider>
         <FormContainer onSubmit={handleGoogleLogin}>
-          <LoadingButton
+          <CustomButton
+            buttonProps={{
+              type: "submit",
+              disabled: loading,
+              endIcon: <Image src={google} alt="google logo" />,
+            }}
             loading={loading}
-            type="submit"
-            size="large"
-            startIcon={<Image src={google} alt="google logo" />}
           >
             Log in with Google&nbsp;
-          </LoadingButton>
+          </CustomButton>
         </FormContainer>
       </Box>
     </>

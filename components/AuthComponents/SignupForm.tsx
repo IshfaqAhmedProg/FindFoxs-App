@@ -8,11 +8,11 @@ import Image from "next/image";
 import Typography from "@mui/material/Typography";
 
 import { Box, Divider } from "@mui/material";
-import { FormInput } from "@/components/FormComponents/FormInput";
-import LoadingButton from "../LoadingButton/LoadingButton";
+import { FormInput } from "@/components/CustomComponents/FormComponents/FormInput";
 import HowToRegRoundedIcon from "@mui/icons-material/HowToRegRounded";
-import FormContainer from "../FormComponents/FormContainer";
+import FormContainer from "../CustomComponents/FormComponents/FormContainer";
 import { useAuthError } from "@/contexts/AuthErrorContext";
+import CustomButton from "../CustomComponents/CustomButton";
 
 export default function SignupForm() {
   const { handleError } = useAuthError();
@@ -65,26 +65,30 @@ export default function SignupForm() {
               onChange={onChange}
             />
           ))}
-          <LoadingButton
+          <CustomButton
+            buttonProps={{
+              type: "submit",
+              disabled: loading,
+              variant: "contained",
+              endIcon: <HowToRegRoundedIcon />,
+            }}
             loading={loading}
-            type="submit"
-            variant="contained"
-            disabled={loading}
-            endIcon={<HowToRegRoundedIcon />}
           >
             Sign up
-          </LoadingButton>
+          </CustomButton>
         </FormContainer>
         <Divider style={{ width: "100%" }}>or</Divider>
         <FormContainer onSubmit={handleGoogleSignup}>
-          <LoadingButton
+          <CustomButton
+            buttonProps={{
+              type: "submit",
+              disabled: loading,
+              endIcon: <Image src={google} alt="google logo" />,
+            }}
             loading={loading}
-            type="submit"
-            size="large"
-            startIcon={<Image src={google} alt="google logo" />}
           >
             Sign up with Google&nbsp;
-          </LoadingButton>
+          </CustomButton>
         </FormContainer>
       </Box>
     </>

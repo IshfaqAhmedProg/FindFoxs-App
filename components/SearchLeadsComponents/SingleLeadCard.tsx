@@ -10,7 +10,7 @@ import {
   Tooltip,
 } from "@mui/material";
 import { Lead } from "@/shared/interfaces/Lead";
-import IdentityDisplay from "../IdentityDisplay/IdentityDisplay";
+import IdentityDisplay from "../CustomComponents/IdentityDisplay/IdentityDisplay";
 import ForwardToInboxOutlinedIcon from "@mui/icons-material/ForwardToInboxOutlined";
 import PhoneForwardedRoundedIcon from "@mui/icons-material/PhoneForwardedRounded";
 import ApartmentRoundedIcon from "@mui/icons-material/ApartmentRounded";

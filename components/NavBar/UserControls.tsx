@@ -10,7 +10,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useRouter } from "next/router";
 import NavMenu from "./NavMenu";
 import { DashboardIcon } from "@/public/Icons/CustomIcons";
-import IdentityDisplay from "../IdentityDisplay/IdentityDisplay";
+import IdentityDisplay from "../CustomComponents/IdentityDisplay/IdentityDisplay";
 import CustomButton from "../CustomComponents/CustomButton";
 import UserAvatar from "./UserAvatar";
 

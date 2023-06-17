@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Stack, Box, TextField } from "@mui/material";
 import inputs from "@/shared/constants/inputs.json";
 import { FormCredentials } from "@/shared/interfaces/FormInputs";
-import { FormInput } from "../FormComponents/FormInput";
+import { FormInput } from "../CustomComponents/FormComponents/FormInput";
 import Button from "@mui/material/Button";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
 export default function ContactForm() {

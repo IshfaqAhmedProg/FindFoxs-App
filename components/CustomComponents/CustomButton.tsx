@@ -3,6 +3,8 @@ import { styled } from "@mui/material/styles";
 import IconButton, { IconButtonProps } from "@mui/material/IconButton";
 import Button, { ButtonProps } from "@mui/material/Button";
 import ClearRoundedIcon from "@mui/icons-material/ClearRounded";
+import { CircularProgress } from "@mui/material";
+
 interface Props {
   buttonProps?: ButtonProps;
   iconButtonProps?: IconButtonProps;
@@ -15,6 +17,7 @@ interface Props {
     | "secondarylg"
     | "icon"
     | "close";
+  loading?: boolean;
 }
 const PlainButton = styled(Button)({
   bgcolor: "transparent",
@@ -45,15 +48,21 @@ const iconHoverStyle = {
     },
   },
 };
+const loadingIcon = <CircularProgress color="secondary" size={24} />;
 export default function CustomButton({
   buttonProps,
   iconButtonProps,
   children,
   kind = "primary",
+  loading = false,
 }: Props) {
   switch (kind) {
     case "plain":
-      return <PlainButton {...buttonProps}>{children}</PlainButton>;
+      return (
+        <PlainButton {...buttonProps}>
+          {loading ? loadingIcon : children}
+        </PlainButton>
+      );
       break;
     case "close":
       return (
@@ -71,7 +80,7 @@ export default function CustomButton({
             ...iconButtonProps?.sx,
           }}
         >
-          {children}
+          {loading ? loadingIcon : children}
         </IconButton>
       );
       break;
@@ -86,7 +95,7 @@ export default function CustomButton({
           }}
           {...buttonProps}
         >
-          {children}
+          {loading ? loadingIcon : children}
         </Button>
       );
       break;
@@ -100,7 +109,7 @@ export default function CustomButton({
             ...buttonProps?.sx,
           }}
         >
-          {children}
+          {loading ? loadingIcon : children}
         </Button>
       );
       break;
@@ -116,12 +125,14 @@ export default function CustomButton({
           }}
           {...buttonProps}
         >
-          {children}
+          {loading ? loadingIcon : children}
         </Button>
       );
       break;
     default:
-      return <Button {...buttonProps}>{children}</Button>;
+      return (
+        <Button {...buttonProps}>{loading ? loadingIcon : children}</Button>
+      );
       break;
   }
 }

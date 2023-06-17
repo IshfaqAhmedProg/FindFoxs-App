@@ -1,6 +1,6 @@
 import { Box, ButtonGroup, Divider, Typography } from "@mui/material";
 import React from "react";
-import SingleStatSmall from "../../DisplayStats/SingleStatSmall";
+import SingleStatSmall from "../../CustomComponents/DisplayStats/SingleStatSmall";
 import CustomButton from "../../CustomComponents/CustomButton";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ShareRoundedIcon from "@mui/icons-material/ShareRounded";

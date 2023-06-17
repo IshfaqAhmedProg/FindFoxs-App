@@ -51,7 +51,7 @@ export default function CircularProgress({
             stroke: `url(#idCSS)`,
           },
           text: {
-            fill: "var(--primarydark)",
+            fill: value == 0 ? "var(--graylight)" : "var(--primarydark)",
             fontWeight: "bold",
           },
           trail: {

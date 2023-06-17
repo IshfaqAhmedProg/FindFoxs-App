@@ -2,7 +2,7 @@ import CustomBox from "@/components/CustomComponents/CustomBox";
 import Task from "@/shared/interfaces/Tasks";
 import { Box, Typography } from "@mui/material";
 import React from "react";
-import DoughnutCard from "@/components/DoughnutCard/DoughnutCard";
+import DoughnutCard from "@/components/CustomComponents/DoughnutCard/DoughnutCard";
 
 import ResultSummaryCard from "@/components/ToolsComponents/UtilityComponents/ResultSummaryCard";
 import VerticalCardWrapper from "@/components/ToolsComponents/UtilityComponents/VerticalCardWrapper";

@@ -1,4 +1,4 @@
-import SingleStatSmall from "@/components/DisplayStats/SingleStatSmall";
+import SingleStatSmall from "@/components/CustomComponents/DisplayStats/SingleStatSmall";
 import Loading from "@/components/Loading/Loading";
 import CircularProgress from "@/components/ProgressBars/CircularProgress";
 import HorizontalProgress from "@/components/ProgressBars/HorizontalProgress";

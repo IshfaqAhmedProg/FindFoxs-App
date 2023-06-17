@@ -9,8 +9,8 @@ import {
   Box,
 } from "@mui/material";
 import Stats from "@/shared/interfaces/Stats";
-import SingleStatSmall from "@/components/DisplayStats/SingleStatSmall";
-import SingleStatBig from "@/components/DisplayStats/SingleStatBig";
+import SingleStatSmall from "@/components/CustomComponents/DisplayStats/SingleStatSmall";
+import SingleStatBig from "@/components/CustomComponents/DisplayStats/SingleStatBig";
 import { ResponsiveBar } from "@nivo/bar";
 import data from "@/shared/data/MockTeamActivity.json";
 import { nivoTheme } from "@/shared/theme/nivoTheme";
