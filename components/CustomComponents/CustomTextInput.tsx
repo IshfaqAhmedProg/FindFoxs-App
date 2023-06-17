@@ -6,6 +6,7 @@ const PlainTextInput = styled(TextField)({
     border: "none",
   },
   background: "var(--graylighter)",
+
   borderRadius: "var(--border-radius-small)",
   color: "var(--primarydark)",
   "& input::placeholder": {

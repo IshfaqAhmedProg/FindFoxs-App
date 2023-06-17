@@ -33,8 +33,8 @@ export default function middleware(req: NextRequest) {
     emailVerified?.value == "false" &&
     protectedRoutes.some((route) => url.pathname.includes(route))
   ) {
-    console.log("emailVerified", emailVerified?.value);
-    console.log("Verified", userVerified?.value);
+    // console.log("emailVerified", emailVerified?.value);
+    // console.log("Verified", userVerified?.value);
     return NextResponse.redirect(`${siteUrl}/auth/signup/1`);
   }
 }

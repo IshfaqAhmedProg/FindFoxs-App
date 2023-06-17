@@ -43,7 +43,7 @@ export default function TableContainer({
         <InView
           as="div"
           onChange={(inView, entry) => (inView ? handlePageChange() : null)}
-          style={{ marginTop: "1.5rem" }}
+          style={{ marginTop: "1.5rem", position: "relative" }}
         >
           <Loading />
         </InView>

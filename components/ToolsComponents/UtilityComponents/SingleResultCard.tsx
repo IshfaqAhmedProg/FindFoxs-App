@@ -1,15 +1,18 @@
 import SingleStatSmall from "@/components/DisplayStats/SingleStatSmall";
+import Loading from "@/components/Loading/Loading";
 import CircularProgress from "@/components/ProgressBars/CircularProgress";
 import HorizontalProgress from "@/components/ProgressBars/HorizontalProgress";
 import Stats, { Stat } from "@/shared/interfaces/Stats";
 import { Box, Divider, Stack, Typography } from "@mui/material";
 import React from "react";
 interface Props {
+  loading: boolean;
   confidence: number;
   result: string;
   resultStat: Array<Stats>;
 }
 export default function SingleResultCard({
+  loading,
   confidence,
   result,
   resultStat,
@@ -32,25 +35,43 @@ export default function SingleResultCard({
       p={3}
       pt={6}
       gap={3}
+      position={"relative"}
     >
-      <CircularProgress value={confidence} title="Confidence" />
-      <Typography variant="h3" color={"var(--primarylight)"}>
+      <CircularProgress value={confidence} title="Validity" />
+      <Typography
+        variant="h3"
+        color={
+          result.toLowerCase().includes("invalid")
+            ? "var(--error)"
+            : result.toLowerCase().includes("yet")
+            ? "var(--graylight)"
+            : "var(--primarylight)"
+        }
+      >
         {result}
       </Typography>
       <Box minWidth={"350px"}>
         <Divider />
       </Box>
-      <Stack gap={3}>
-        {resultStat.map((stat) => {
-          return <SingleStatSmall key={stat.statTitle} stat={stat} />;
-        })}
-        <HorizontalProgress
-          value={15}
-          maxValue={100}
-          valueId="Danger"
-          title="Risk"
-        />
-      </Stack>
+      {loading ? (
+        <Loading />
+      ) : (
+        <Stack gap={3} width={"100%"} px={3}>
+          {resultStat.map((stat) => {
+            if (typeof stat.stats[0].title == "number")
+              return (
+                <HorizontalProgress
+                  key={stat.statTitle}
+                  value={stat.stats[0].title}
+                  maxValue={100}
+                  valueId="Danger"
+                  title="Risk"
+                />
+              );
+            else return <SingleStatSmall key={stat.statTitle} stat={stat} />;
+          })}
+        </Stack>
+      )}
     </Stack>
   );
 }

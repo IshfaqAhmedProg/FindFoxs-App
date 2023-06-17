@@ -34,12 +34,13 @@ export interface IToolFormData
     EmailAndContactsTypeData {}
 export default interface IToolFormContext {
   formData: IToolFormData;
+  resetFormData: () => void;
   handleKeywordChange: (val: Array<string>) => void;
   handleCountryChange: (val: CountryStateCity) => void;
   handleStateChange: (val: CountryStateCity) => void;
   handleCityChange: (val: CountryStateCity) => void;
   handleSingleDataChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleFileDataChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  submitSingleInput: () => void;
-  submitFileInput: () => void;
+  handleSingleInputSubmit: (e: React.SyntheticEvent) => void;
+  handleFileInputSubmit: () => void;
 }

@@ -1,53 +1,10 @@
-import CustomButton from "@/components/CustomComponents/CustomButton";
-import { Stack } from "@mui/material";
 import React from "react";
-import { usePathname, useRouter } from "next/navigation";
-import Stats from "@/shared/interfaces/Stats";
 import ValidatorWrapper from "../UtilityComponents/ValidatorWrapper";
 import ToolVideo from "../UtilityComponents/ToolVideoCard";
 import { ToolFormContextProvider } from "@/contexts/ToolFormContext";
-import isEmail from "validator/lib/isEmail";
 import EmailAndContactsInput from "./EmailAndContactsInput";
 
 export default function EmailAndContactsScraper() {
-  const pathName = usePathname();
-  const router = useRouter();
-
-  function checkIfEmail(emailArray: Array<string>) {
-    const finalArray = [];
-    for (const email of emailArray) {
-      if (email && isEmail(email.toString())) {
-        //format the item for task
-        console.log(email);
-        finalArray.push(email);
-      }
-    }
-    return finalArray;
-  }
-  const actionButtons = (
-    <Stack direction="row" gap={2} ml={2} pt={0.15}>
-      <CustomButton
-        kind="plain"
-        buttonProps={{
-          sx:
-            pathName == "/tools/emailAndContactsScraper"
-              ? { color: "var(--primary)" }
-              : { color: "var(--graylight)" },
-        }}
-      >
-        Validate
-      </CustomButton>
-      <CustomButton
-        kind="plain"
-        buttonProps={{
-          sx: { color: "var(--graylight)" },
-          onClick: () => router.push("/tasks"),
-        }}
-      >
-        History
-      </CustomButton>
-    </Stack>
-  );
   const emailAndContacts = {
     url: "",
     page: "",
@@ -58,11 +15,9 @@ export default function EmailAndContactsScraper() {
     columnHeader: "",
   };
   return (
-    <ValidatorWrapper title="Email And Contacts Scraper" action={actionButtons}>
+    <ValidatorWrapper title="Email And Contacts Scraper">
       <ToolFormContextProvider
-        checkFunction={checkIfEmail}
-        singleRequest="abc"
-        fileRequest={() => {
+        fileInputSubmitFunction={() => {
           console.log("file requested");
         }}
         initialFormData={emailAndContacts}

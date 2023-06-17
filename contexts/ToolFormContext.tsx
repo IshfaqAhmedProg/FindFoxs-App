@@ -5,7 +5,6 @@ import IToolFormContext, {
   CountryStateCity,
   IToolFormData,
 } from "@/shared/interfaces/ToolForm";
-import { Dialog } from "@mui/material";
 import React, { createContext, useContext, useState } from "react";
 
 const ToolFormContext = createContext<any>({});
@@ -13,23 +12,30 @@ export const useToolForm = (): IToolFormContext => useContext(ToolFormContext);
 export const ToolFormContextProvider = ({
   children,
   checkFunction,
-  singleRequest, //api url
-  fileRequest, //upload to db
+  singleInputSubmitFunction, //function to call the api and get the results used for anything where i need to directly call the api
+  fileInputSubmitFunction, //function to upload task to db
   initialFormData,
 }: {
   children: React.ReactNode;
-  singleRequest: string;
-  fileRequest: () => void;
-  checkFunction: (data: any) => Array<any>;
+  singleInputSubmitFunction?: (formData: IToolFormData) => Promise<any>;
+  fileInputSubmitFunction: (formData: IToolFormData) => void;
+  checkFunction?: (data: any) => Array<any>;
   initialFormData: any;
 }) => {
   const [formData, setFormData] = useState<IToolFormData>(initialFormData);
   const [showHeaderSelect, setShowHeaderSelect] = useState<boolean>(false);
+  const resetFormData = () => {
+    setFormData(initialFormData);
+  };
   const handleSingleDataChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, singleData: e.target.value });
+    setFormData({
+      ...formData,
+      singleData: e.target.value,
+      formattedData: (checkFunction && checkFunction([e.target.value])) ?? [],
+    });
   };
   const handleKeywordChange = (val: Array<string>) => {
-    setFormData({ ...formData, keywords: val });
+    if (val.length < 6) setFormData({ ...formData, keywords: val });
   };
   const handleCountryChange = (val: CountryStateCity) => {
     if (val.iso2)
@@ -82,7 +88,7 @@ export const ToolFormContextProvider = ({
       const extract = formData.unformattedData.map((row: any) => {
         return row[formData.columnHeader];
       });
-      const checkedExtract = checkFunction(extract);
+      const checkedExtract = (checkFunction && checkFunction(extract)) ?? [];
       setFormData({
         ...formData,
         formattedData: checkedExtract,
@@ -94,36 +100,41 @@ export const ToolFormContextProvider = ({
     if (headerValue) setFormData({ ...formData, columnHeader: headerValue });
   };
   const handleHeaderSelectDialogClose = () => {
-    setFormData(initialFormData);
+    resetFormData();
     setShowHeaderSelect(false);
   };
-  const submitSingleInput = (e: React.SyntheticEvent) => {};
-  const submitFileInput = (e: React.SyntheticEvent) => {
-    console.log("submitting file!");
+  const handleSingleInputSubmit = async (e: React.SyntheticEvent) => {
+    //checking if singlerequest exist and the sending formdata to single request
+    singleInputSubmitFunction && (await singleInputSubmitFunction(formData));
+  };
+  const handleFileInputSubmit = (e: React.SyntheticEvent) => {
+    fileInputSubmitFunction(formData);
   };
   return (
     <ToolFormContext.Provider
       value={{
         formData,
+        resetFormData,
         handleKeywordChange,
         handleCountryChange,
         handleStateChange,
         handleCityChange,
         handleSingleDataChange,
         handleFileDataChange,
-        submitSingleInput,
-        submitFileInput,
+        handleSingleInputSubmit,
+        handleFileInputSubmit,
       }}
     >
       <form>
         {children}
         {formData.allColumnHeaders && (
+          //Show a dialog to select header columns and submit the task
           <SelectHeaderDialog
             open={showHeaderSelect}
             onClose={handleHeaderSelectDialogClose}
             headerSelect={handleHeaderSelect}
             checkData={checkDataInColumn}
-            handleSubmit={submitFileInput}
+            handleSubmit={handleFileInputSubmit}
             formData={formData}
           />
         )}

@@ -14,7 +14,14 @@ export default function SingleStatSmall({ stat }: { stat: Stats }) {
           return (
             <Stack direction="row" justifyContent="space-between" key={index}>
               <Typography>{s.title}</Typography>
-              <Typography color={"var(--primarylight)"} fontWeight="bold">
+              <Typography
+                color={
+                  s.stat == "Unknown"
+                    ? "var(--graylight)"
+                    : "var(--primarylight)"
+                }
+                fontWeight="bold"
+              >
                 {s.stat}&nbsp;
                 <span className="trailingText">{s.statUnit}</span>
               </Typography>

@@ -29,9 +29,9 @@ const topFilms = [
 export default function EmailAndContactsInput() {
   const { formData, handleSingleDataChange, handleFileDataChange } =
     useToolForm();
-  {
-    console.log("formData", formData);
-  }
+  // {
+  //   console.log("formData", formData);
+  // }
   return (
     <Stack pt={4} alignItems={"center"} gap={6} maxWidth={"500px"}>
       <Typography textAlign={"center"}>

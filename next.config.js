@@ -15,6 +15,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'source.unsplash.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'flagcdn.com',
+      },
     ],
   },
   transpilePackages: ["@nivo", "@mui/system", "@mui/material", "@mui/icons-material"],

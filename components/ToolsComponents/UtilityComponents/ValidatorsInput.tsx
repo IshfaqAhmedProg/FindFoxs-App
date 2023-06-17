@@ -4,29 +4,63 @@ import React from "react";
 import FileUploadRoundedIcon from "@mui/icons-material/FileUploadRounded";
 import { useToolForm } from "@/contexts/ToolFormContext";
 import CustomButton from "@/components/CustomComponents/CustomButton";
+import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
+import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
+import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
+
 interface Props {
   description: string;
   unit: string;
 }
 export default function ValidatorsInput({ description, unit }: Props) {
-  const { formData, handleSingleDataChange, handleFileDataChange } =
-    useToolForm();
+  const {
+    formData,
+    resetFormData,
+    handleSingleDataChange,
+    handleFileDataChange,
+    handleSingleInputSubmit,
+  } = useToolForm();
   {
     console.log("formData", formData);
   }
   return (
     <Stack pt={4} alignItems={"center"} gap={6} maxWidth={"500px"}>
       <Typography textAlign={"center"}>{description}</Typography>
-      <Stack direction={"row"} gap={2}>
+      <Stack direction={"row"} gap={2} alignItems={"center"}>
         <CustomTextInput
           placeholder={`Enter ${unit} to validate`}
           value={formData.singleData}
           onChange={handleSingleDataChange}
         />
         {formData.singleData && (
-          <CustomButton kind="plain">Validate</CustomButton>
+          <>
+            {formData.formattedData.length != 0 ? (
+              <CheckRoundedIcon color="secondary" />
+            ) : (
+              <CloseRoundedIcon color="error" />
+            )}
+            <CustomButton
+              kind="plain"
+              buttonProps={{
+                startIcon: <CancelRoundedIcon />,
+                onClick: resetFormData,
+              }}
+            >
+              clear
+            </CustomButton>
+          </>
         )}
       </Stack>
+      {formData.singleData && (
+        <CustomButton
+          buttonProps={{
+            onClick: handleSingleInputSubmit,
+            disabled: formData.formattedData.length == 0,
+          }}
+        >
+          {formData.formattedData.length == 0 ? "Invalid Format" : "Validate"}
+        </CustomButton>
+      )}
       {!formData.singleData && (
         <>
           <Box minWidth={"250px"}>

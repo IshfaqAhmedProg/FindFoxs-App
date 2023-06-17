@@ -2,18 +2,33 @@ import React from "react";
 import { Box } from "@mui/material";
 import CustomCard from "@/components/CustomComponents/CustomCard";
 import CustomContainer from "../../CustomComponents/CustomContainer";
+import CustomButton from "@/components/CustomComponents/CustomButton";
+import Link from "next/link";
 
 export default function ValidatorWrapper({
   children,
-  action,
   title,
 }: {
   children: React.ReactNode;
-  action: React.ReactNode;
   title: string;
 }) {
   return (
-    <CustomCard title={title} action={action} actionPos="right">
+    <CustomCard
+      title={title}
+      action={
+        <Link href={"/tasks"}>
+          <CustomButton
+            kind="plain"
+            buttonProps={{
+              sx: { color: "var(--primary)" },
+            }}
+          >
+            History
+          </CustomButton>
+        </Link>
+      }
+      actionPos="right"
+    >
       <CustomContainer>
         <Box
           rowGap={2}

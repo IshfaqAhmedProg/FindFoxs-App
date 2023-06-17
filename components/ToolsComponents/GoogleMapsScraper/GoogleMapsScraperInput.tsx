@@ -3,32 +3,11 @@ import { Box, Divider, Stack, Typography, Autocomplete } from "@mui/material";
 import useSWR, { Fetcher } from "swr";
 
 import React, { useEffect, useState } from "react";
-import FileUploadRoundedIcon from "@mui/icons-material/FileUploadRounded";
 import { useToolForm } from "@/contexts/ToolFormContext";
 import { CountryStateCity } from "@/shared/interfaces/ToolForm";
-const topFilms = [
-  "The Shawshank Redemption",
-  "The Godfather",
-  "The Godfather: Part II",
-  "The Dark Knight",
-  "12 Angry Men",
-  "Schindler's List",
-  "Pulp Fiction",
-  "The Lord of the Rings: The Return of the King",
-  "The Good, the Bad and the Ugly",
-  "Fight Club",
-  "The Lord of the Rings: The Fellowship of the Ring",
-  "Star Wars: Episode V - The Empire Strikes Back",
-  "Forrest Gump",
-  "Inception",
-  "The Lord of the Rings: The Two Towers",
-  "One Flew Over the Cuckoo's Nest",
-  "Goodfellas",
-  "The Matrix",
-  "Seven Samurai",
-  "Star Wars: Episode IV - A New Hope",
-];
+import Image from "next/image";
 
+import keywordOptions from "@/shared/data/KeywordSuggestions.json";
 const fetcher: Fetcher<Array<CountryStateCity>, string> = (...args) =>
   fetch(...args).then((res) => res.json());
 const options = {
@@ -38,30 +17,29 @@ export default function GoogleMapsScraperInput() {
   const {
     formData,
     handleKeywordChange,
-    handleFileDataChange,
     handleCountryChange,
     handleStateChange,
     handleCityChange,
   } = useToolForm();
-  {
-    console.log("formData", formData);
-  }
+  // {
+  //   console.log("formData", formData);
+  // }
   const [countryStates, setCountryStates] = useState([]);
   const [statesCity, setStateCity] = useState([]);
   const { data: allCountries, error } = useSWR(
-    "/api/getCountry",
+    "/api/geoData/getCountry",
     fetcher,
     options
   );
-  {
-    console.log("countryStates", countryStates);
-  }
-  {
-    console.log("statesCity", statesCity);
-  }
+  // {
+  //   console.log("countryStates", countryStates);
+  // }
+  // {
+  //   console.log("statesCity", statesCity);
+  // }
   useEffect(() => {
     if (formData.countryCode != "") {
-      fetch("/api/getStateFromCountry", {
+      fetch("/api/geoData/getStateFromCountry", {
         method: "POST",
         headers: {
           Accept: "application/json, text/plain, */*",
@@ -80,7 +58,7 @@ export default function GoogleMapsScraperInput() {
   //fetch city from states and country
   useEffect(() => {
     if (formData.stateCode != "") {
-      fetch("/api/getCityFromState", {
+      fetch("/api/geoData/getCityFromState", {
         method: "POST",
         headers: {
           Accept: "application/json, text/plain, */*",
@@ -107,26 +85,34 @@ export default function GoogleMapsScraperInput() {
         row.
       </Typography>
       <Stack gap={2}>
-        <Stack direction={"row"} gap={2} alignItems={"center"}>
-          <Typography>Keywords:</Typography>
-          <Autocomplete
-            freeSolo
-            multiple
-            size="small"
-            options={topFilms}
-            limitTags={5}
-            value={formData.keywords}
-            onChange={(e, val) => {
-              handleKeywordChange(val);
-            }}
-            renderInput={(params) => (
-              <CustomTextInput
-                placeholder="Enter keywords"
-                sx={{ minWidth: "250px" }}
-                {...params}
-              />
-            )}
-          />
+        <Stack gap={2} alignItems={"center"}>
+          <Stack direction={"row"} gap={2} alignItems={"center"}>
+            <Typography>Keywords:</Typography>
+            <Autocomplete
+              freeSolo
+              multiple
+              size="small"
+              options={keywordOptions}
+              limitTags={5}
+              value={formData.keywords}
+              onChange={(e, val) => {
+                handleKeywordChange(val);
+              }}
+              renderInput={(params) => (
+                <CustomTextInput
+                  placeholder="Enter keywords"
+                  sx={{ minWidth: "300px", maxWidth: "300px" }}
+                  {...params}
+                  disabled={formData.keywords.length == 5}
+                />
+              )}
+            />
+          </Stack>
+          {formData.keywords.length == 5 && (
+            <Typography color="error">
+              Max no. of keywords allowed is 5.
+            </Typography>
+          )}
         </Stack>
         <Typography>Location:</Typography>
         {allCountries != undefined && (
@@ -143,12 +129,23 @@ export default function GoogleMapsScraperInput() {
                   setStateCity([]);
                 }
               }}
-              renderInput={(params) => (
-                <CustomTextInput
-                  placeholder="Select Country"
-                  sx={{ minWidth: "250px" }}
-                  {...params}
-                />
+              sx={{ flex: "1 0 auto" }}
+              renderOption={(props, option) => (
+                <Stack direction={"row"} component="li" {...props} gap={1}>
+                  {option.iso2 && (
+                    <Image
+                      loading="lazy"
+                      height={"12"}
+                      width={"20"}
+                      src={`https://flagcdn.com/w20/${option.iso2.toLowerCase()}.png`}
+                      alt={`flag of ${option.name}`}
+                    />
+                  )}
+                  {option.name}
+                </Stack>
+              )}
+              renderInput={(props) => (
+                <CustomTextInput placeholder="Select Country" {...props} />
               )}
             />
             <Stack direction={"row"} gap={2}>
@@ -163,13 +160,10 @@ export default function GoogleMapsScraperInput() {
                     setStateCity([]);
                   }
                 }}
+                sx={{ flex: "1 0 auto" }}
                 disabled={countryStates.length == 0}
                 renderInput={(params) => (
-                  <CustomTextInput
-                    placeholder="Select State"
-                    sx={{ minWidth: "160px" }}
-                    {...params}
-                  />
+                  <CustomTextInput placeholder="Select State" {...params} />
                 )}
               />
               <Autocomplete
@@ -181,12 +175,9 @@ export default function GoogleMapsScraperInput() {
                   if (val) handleCityChange(val);
                 }}
                 disabled={statesCity.length == 0}
+                sx={{ flex: "1 0 auto" }}
                 renderInput={(params) => (
-                  <CustomTextInput
-                    placeholder="Select City"
-                    sx={{ minWidth: "160px" }}
-                    {...params}
-                  />
+                  <CustomTextInput placeholder="Select City" {...params} />
                 )}
               />
             </Stack>

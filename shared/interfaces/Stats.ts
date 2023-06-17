@@ -1,7 +1,7 @@
 import React from "react";
 export interface Stat {
-  title: string | React.ReactNode;
-  stat?: string | React.ReactNode;
+  title?: string | number | React.ReactNode;
+  stat?: string | number | React.ReactNode;
   statUnit?: string | React.ReactNode;
 }
 export default interface Stats {

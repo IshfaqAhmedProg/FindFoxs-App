@@ -8,6 +8,7 @@ const theme = createTheme({
           background: "var(--primarylight)",
           fontWeight: "bold",
           color: "white",
+          borderRadius: "var(--border-radius-small)",
         },
       },
     },
@@ -223,6 +224,12 @@ const theme = createTheme({
     action: {
       disabledBackground: "#d4dcf3",
       disabled: "#a0a7bc",
+    },
+    error: {
+      main: "#ff4545",
+      dark: "#c53333",
+      light: "#fd6b6b",
+      contrastText: "##f99292",
     },
   },
   typography: {

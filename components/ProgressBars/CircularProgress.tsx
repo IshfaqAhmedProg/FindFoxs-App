@@ -30,7 +30,13 @@ export default function CircularProgress({
     >
       <Typography
         variant="h4"
-        sx={{ position: "absolute", top: "59%", left: "26%", fontSize: "12px" }}
+        sx={{
+          position: "absolute",
+          top: "60%",
+          left: "50%",
+          transform: "translate(-50%,-25%)",
+          fontSize: "12px",
+        }}
       >
         {title}
       </Typography>

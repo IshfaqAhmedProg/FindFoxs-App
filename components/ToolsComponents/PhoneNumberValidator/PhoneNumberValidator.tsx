@@ -1,94 +1,67 @@
-import CustomButton from "@/components/CustomComponents/CustomButton";
-import { Stack } from "@mui/material";
-import React from "react";
-import { usePathname, useRouter } from "next/navigation";
+import React, { useState } from "react";
 import Stats from "@/shared/interfaces/Stats";
 import SingleResultCard from "../UtilityComponents/SingleResultCard";
 import ValidatorWrapper from "../UtilityComponents/ValidatorWrapper";
 import ToolVideo from "../UtilityComponents/ToolVideoCard";
 import { ToolFormContextProvider } from "@/contexts/ToolFormContext";
-import isMobilePhone from "validator/lib/isMobilePhone";
 import ValidatorsInput from "../UtilityComponents/ValidatorsInput";
+import { IToolFormData } from "@/shared/interfaces/ToolForm";
+import checkIfPNumber from "@/shared/functions/checkIfPNumber";
+import fetchSingleDataResults from "@/shared/functions/fetchSingleDataResults";
+import convertToReadableString from "@/shared/functions/convertToReadableString";
+import { SingleResult } from "@/shared/interfaces/ValidatorResponses";
+import analyseSingleDataResult from "@/shared/functions/analyseSingleDataResult";
 
 export default function PhoneNumberValidator() {
-  const pathName = usePathname();
-  const router = useRouter();
+  const [loading, setLoading] = useState<boolean>(false);
 
-  const resultStat: Array<Stats> = [
-    {
-      statTitle: "Reason",
-      stats: [
-        {
-          title: "Unable to get domain or MX pointer.",
-        },
-      ],
-    },
-    {
-      statTitle: "Disposable",
-      stats: [
-        {
-          title: "False",
-        },
-      ],
-    },
-    {
-      statTitle: "Possible Typo:",
-      stats: [
-        {
-          title: "None",
-        },
-      ],
-    },
-    {
-      statTitle: "MX Info:",
-      stats: [
-        {
-          title: "No MX-pointer in DNS record. Using domain: dsa.dsad",
-        },
-      ],
-    },
+  const publicStats = [
+    "phone",
+    "phone_type",
+    "phone_region",
+    "country",
+    "country_code",
+    "country_prefix",
+    "carrier",
   ];
-  function checkIfPNumber(pNumberArray: Array<string>) {
-    const finalArray = [];
-    for (const pNumber of pNumberArray) {
-      if (pNumber && isMobilePhone(pNumber.toString())) {
-        //format the item for task
-        const formattedNumber =
-          "+" +
-          pNumber
-            .toString()
-            .replace(/[-+()]/g, "")
-            .replace(/\s/g, "");
-        console.log(formattedNumber);
-        finalArray.push(formattedNumber);
-      }
-    }
-    return finalArray;
+  const initialResultStat: Array<Stats> = publicStats.map((stat) => {
+    return {
+      statTitle: convertToReadableString(stat),
+      stats: [
+        {
+          title: "Unknown",
+        },
+      ],
+    };
+  });
+  const [singleResult, setSingleResult] = useState<SingleResult>({
+    resultScore: 0,
+    resultReport: "No Number validated yet!",
+    resultStat: initialResultStat,
+  });
+  async function submitSingleNumber(formData: IToolFormData) {
+    setLoading(true);
+    await fetchSingleDataResults(
+      "/api/validators/validatePhoneNumber",
+      publicStats,
+      JSON.stringify({
+        number: formData.formattedData[0],
+      })
+    ).then((data) => {
+      const statAnal = analyseSingleDataResult(
+        data,
+        publicStats,
+        formData.formattedData[0]
+      );
+      setSingleResult({
+        ...singleResult,
+        resultStat: statAnal.stat,
+        resultScore: statAnal.score,
+        resultReport: statAnal.report,
+      });
+      setLoading(false);
+    });
   }
-  const actionButtons = (
-    <Stack direction="row" gap={2} ml={2} pt={0.15}>
-      <CustomButton
-        kind="plain"
-        buttonProps={{
-          sx:
-            pathName == "/tools/phoneNumberValidator"
-              ? { color: "var(--primary)" }
-              : { color: "var(--graylight)" },
-        }}
-      >
-        Validate
-      </CustomButton>
-      <CustomButton
-        kind="plain"
-        buttonProps={{
-          sx: { color: "var(--graylight)" },
-          onClick: () => router.push("/tasks"),
-        }}
-      >
-        History
-      </CustomButton>
-    </Stack>
-  );
   const validatorType = {
     singleData: "",
     validationResult: "",
@@ -100,11 +73,11 @@ export default function PhoneNumberValidator() {
     columnHeader: "",
   };
   return (
-    <ValidatorWrapper title="Phone Number Validator" action={actionButtons}>
+    <ValidatorWrapper title="Phone Number Validator">
       <ToolFormContextProvider
         checkFunction={checkIfPNumber}
-        singleRequest="abc"
-        fileRequest={() => {
+        singleInputSubmitFunction={submitSingleNumber}
+        fileInputSubmitFunction={() => {
           console.log("file requested");
         }}
         initialFormData={validatorType}
@@ -115,9 +88,10 @@ export default function PhoneNumberValidator() {
         />
       </ToolFormContextProvider>
       <SingleResultCard
-        confidence={75}
-        result="Phone Number Valid"
-        resultStat={resultStat}
+        loading={loading}
+        confidence={singleResult.resultScore}
+        result={singleResult.resultReport}
+        resultStat={singleResult.resultStat}
       />
       <ToolVideo videoId="TF67a-48jlY" />
     </ValidatorWrapper>
