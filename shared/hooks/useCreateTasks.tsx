@@ -15,18 +15,20 @@ const useCreateTask = ({
   (
     formData: any,
     tool: string,
-    queryCount: number
-  ) => Promise<[void] | undefined>,
+    queryCount: number,
+    unit: string
+  ) => Promise<void | [void]>,
   boolean
 ] => {
   const [loadingCreateTask, setLoadingCreateTask] = useState<boolean>(false);
   const setUserTasks = async (
     formData: any,
     tool: string,
-    queryCount: number
+    queryCount: number,
+    unit: string
   ) => {
-    setLoadingCreateTask(true);
     var adder = null;
+    console.log("loading", loadingCreateTask);
     console.log("user", user);
     if (user) {
       const dateId = Date.now();
@@ -39,12 +41,13 @@ const useCreateTask = ({
       const data: Task = {
         dateCreated: Timestamp.fromDate(new Date(dateId)),
         queryCount: queryCount,
-        tool: tool,
+        tool,
         status: "RUNNING",
         uid: user.uid,
         _id,
         _idShort,
         estimatedTTC: estTTC,
+        unit,
       };
       console.log(
         "data being submitted",
@@ -53,12 +56,15 @@ const useCreateTask = ({
       const storage = getStorage();
       const dataBlob = JSON.stringify({ ...data, request: formData });
       const blobRef = ref(storage, `${user.uid}/tasks/${_id}/request`);
+      setLoadingCreateTask(true);
       adder = Promise.all([
         uploadString(blobRef, dataBlob).then(async (snapshot) => {
           await setDoc(doc(db, "tasks", _id), data);
         }),
-      ]);
-      setLoadingCreateTask(false);
+      ]).catch((err) => {
+        console.log(err);
+        setLoadingCreateTask(false);
+      });
       return adder;
     }
   };

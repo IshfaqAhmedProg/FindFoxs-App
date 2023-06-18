@@ -19,15 +19,7 @@ export default function TableCell({
     >
       {typeof children === "string" ? (
         <Tooltip title={children}>
-          <Typography
-            sx={
-              type == "cell"
-                ? { color: "var(--primarydark)" }
-                : { fontSize: ".75rem" }
-            }
-            noWrap
-          
-          >
+          <Typography sx={type == "cell" ? {} : { fontSize: ".75rem" }} noWrap>
             {children}
           </Typography>
         </Tooltip>

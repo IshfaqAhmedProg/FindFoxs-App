@@ -61,7 +61,8 @@ export default function EmailValidator() {
     await setUserTasks(
       formData.formattedData,
       "Email Validator",
-      formData.formattedData.length
+      formData.formattedData.length,
+      "email"
     )
       .then(() => router.push("/tasks"))
       .catch((err: any) => console.log(err));

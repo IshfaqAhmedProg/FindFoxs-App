@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+
 import { Box, Typography, IconButton, Tooltip } from "@mui/material";
-import Task, { Status } from "@/shared/interfaces/Tasks";
+import Task, { Status, isTask } from "@/shared/interfaces/Tasks";
 
 import StatusGenerator from "./StatusGenerator";
 import TaskInteraction from "./TaskInteraction";
-export default function TaskListItem({ task }: { task: Task }) {
+import { DTS, DataTypesSupported } from "@/shared/interfaces/Table";
+import { DocumentData } from "@firebase/firestore-types";
+export default function TaskListItem({ task }: { task: Task | DocumentData }) {
   return (
     <Box
       display="flex"
@@ -53,9 +56,9 @@ export default function TaskListItem({ task }: { task: Task }) {
           </Typography>
         </Box>
         <Box textOverflow="ellipsis" overflow="hidden" width="7ch">
-          <Tooltip title={task.dateCreated.toString()}>
+          <Tooltip title={task.dateCreated?.toDate().toString()}>
             <Typography fontSize="11px" noWrap textAlign="center">
-              {task.dateCreated.toString()}
+              {task.dateCreated?.toDate().toString()}
             </Typography>
           </Tooltip>
         </Box>
@@ -73,7 +76,7 @@ export default function TaskListItem({ task }: { task: Task }) {
           <StatusGenerator status={task.status} />
         </Box>
       </Box>
-      <TaskInteraction task={task} />
+      {isTask<Task>(task) && <TaskInteraction task={task} />}
     </Box>
   );
 }

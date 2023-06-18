@@ -1,4 +1,6 @@
-export interface ValidatorTypeData {
+import { TaskUnits } from "./Tasks";
+
+export interface ValidatorFormData {
   singleData: string;
   validationResult: string;
   fileName: string;
@@ -8,7 +10,7 @@ export interface ValidatorTypeData {
   allColumnHeaders: Array<string>;
   columnHeader: string;
 }
-interface GoogleMapsScraperTypeData {
+interface GoogleMapsScraperFormData {
   keywords: Array<string>;
   country: string;
   state: string;
@@ -18,7 +20,7 @@ interface GoogleMapsScraperTypeData {
   stateCode: string;
   addons: string;
 }
-interface EmailAndContactsTypeData {
+interface EmailAndContactsFormData {
   url: string;
   page: string;
   fileName: string;
@@ -29,9 +31,10 @@ export interface CountryStateCity {
   iso2?: string;
 }
 export interface IToolFormData
-  extends GoogleMapsScraperTypeData,
-    ValidatorTypeData,
-    EmailAndContactsTypeData {}
+  extends GoogleMapsScraperFormData,
+    ValidatorFormData,
+    EmailAndContactsFormData {
+}
 export default interface IToolFormContext {
   formData: IToolFormData;
   singleDataLoading: boolean;

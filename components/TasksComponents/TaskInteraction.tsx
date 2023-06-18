@@ -4,12 +4,13 @@ import Task from "@/shared/interfaces/Tasks";
 import FileOpenOutlinedIcon from "@mui/icons-material/FileOpenOutlined";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import AutorenewRoundedIcon from "@mui/icons-material/AutorenewRounded";
+import Link from "next/link";
 export default function TaskInteraction({ task }: { task: Task }) {
   return (
     <Box display="flex" gap={0.2} flexGrow={1} justifyContent="flex-end">
       {task.status != "FAILED" ? (
         <Tooltip title={"Open Task " + task._id}>
-          <span>
+          <Link href={`/tasks/results/${task._id}`}>
             <IconButton disabled={task.status == "RUNNING"}>
               <FileOpenOutlinedIcon
                 sx={
@@ -21,7 +22,7 @@ export default function TaskInteraction({ task }: { task: Task }) {
                 }
               />
             </IconButton>
-          </span>
+          </Link>
         </Tooltip>
       ) : (
         <Tooltip title={"Rerun task " + task._id}>

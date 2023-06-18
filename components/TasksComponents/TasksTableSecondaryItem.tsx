@@ -8,7 +8,7 @@ import {
   formatTime,
 } from "@/shared/functions/formatDateTime";
 import Task from "@/shared/interfaces/Tasks";
-import { DocumentData } from "firebase/firestore";
+import { DocumentData } from "@firebase/firestore-types";
 
 export default function TasksTableSecondaryItem({
   task,

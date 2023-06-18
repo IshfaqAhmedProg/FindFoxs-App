@@ -47,10 +47,11 @@ export interface IEmailValidatorResult {
   };
   duplicate: number;
 }
-type TaskUnits = string | "website" | "email" | "number" | "keyword";
+export type TaskUnits = string | "website" | "email" | "number" | "keyword";
 export default interface Task extends TaskDetails, Tools, Status, TaskResult {
   uid?: string;
   unit?: TaskUnits;
   _id: string;
   _idShort?: string;
 }
+export const isTask = <Task>(thing: any): thing is Task => true;

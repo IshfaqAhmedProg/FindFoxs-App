@@ -1,5 +1,5 @@
 import CustomButton from "@/components/CustomComponents/CustomButton";
-import { ValidatorTypeData } from "@/shared/interfaces/ToolForm";
+import { ValidatorFormData } from "@/shared/interfaces/ToolForm";
 import {
   Autocomplete,
   Dialog,
@@ -25,7 +25,7 @@ export default function SelectHeaderDialog({
   loading?: boolean;
   open: boolean;
   onClose: () => void;
-  formData: ValidatorTypeData;
+  formData: ValidatorFormData;
   checkData: () => void;
   headerSelect: (value: string | null) => void;
   handleSubmit: (e: React.SyntheticEvent) => void;

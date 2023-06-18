@@ -7,8 +7,13 @@ import ShareRoundedIcon from "@mui/icons-material/ShareRounded";
 import Task from "@/shared/interfaces/Tasks";
 import { formatDate, formatTime } from "@/shared/functions/formatDateTime";
 import StatusGenerator from "../../TasksComponents/StatusGenerator";
+import { DocumentData } from "@firebase/firestore-types";
 
-export default function ResultSummaryCard({ task }: { task: Task }) {
+export default function ResultSummaryCard({
+  task,
+}: {
+  task: Task | DocumentData;
+}) {
   return (
     <>
       <Typography variant="h4">Summary</Typography>
@@ -24,13 +29,13 @@ export default function ResultSummaryCard({ task }: { task: Task }) {
             },
             {
               title: "Created at",
-              stat: formatDate(new Date(task.dateCreated)),
-              statUnit: formatTime(new Date(task.dateCreated)),
+              stat: formatDate(task.dateCreated?.toDate()),
+              statUnit: formatTime(task.dateCreated?.toDate()),
             },
             {
               title: "Completed at",
-              stat: formatDate(new Date(task.dateCompleted)),
-              statUnit: formatTime(new Date(task.dateCompleted)),
+              stat: formatDate(task.dateCompleted?.toDate()),
+              statUnit: formatTime(task.dateCompleted?.toDate()),
             },
             {
               title: "Status",

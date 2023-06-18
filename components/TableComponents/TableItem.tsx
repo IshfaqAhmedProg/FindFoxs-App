@@ -6,7 +6,7 @@ export default function TableItem({ children }: { children: React.ReactNode }) {
     <Stack
       height="81px"
       justifyContent="space-between"
-      width="100%"
+      width="fit-content"
       pt={2}
       gap={2}
       mt={"1px"}

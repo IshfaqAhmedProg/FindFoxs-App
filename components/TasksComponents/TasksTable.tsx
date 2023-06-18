@@ -8,7 +8,7 @@ import TasksTablePrimaryItem from "./TasksTablePrimaryItem";
 import TaskTableFilter from "./TaskTableFilter";
 import { TableContextProvider } from "@/contexts/TableContext";
 import { DataTypesSupported } from "@/shared/interfaces/Table";
-import useFirestoreCollection from "@/shared/hooks/useFirestoreLoadMore";
+import useFirestoreCollection from "@/shared/hooks/useFirestoreCollection";
 export default function TasksTable() {
   const [tasks, setTasks] = useState<DataTypesSupported>([]);
   const uid = typeof window !== "undefined" && localStorage.getItem("uid");

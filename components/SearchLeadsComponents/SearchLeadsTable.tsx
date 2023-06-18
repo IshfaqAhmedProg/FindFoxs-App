@@ -8,7 +8,7 @@ import {
 import SearchLeadsPrimaryItem from "@/components/SearchLeadsComponents/SearchLeadsPrimaryItem";
 import TablePrimaryItem from "@/components/TableComponents/TablePrimaryItem";
 import TableItem from "@/components/TableComponents/TableItem";
-import SearchLeadsTableItem from "@/components/SearchLeadsComponents/SearchLeadsTableItem";
+import SearchLeadsTableSecondaryItem from "@/components/SearchLeadsComponents/SearchLeadsTableSecondaryItem";
 import TableMain from "@/components/TableComponents/TableMain";
 import SearchLeadsFilter from "@/components/SearchLeadsComponents/SearchLeadsFilter";
 import SearchLeadsSelectAction from "@/components/SearchLeadsComponents/SearchLeadsSelectAction";
@@ -36,7 +36,7 @@ export default function SearchLeadsTable({ leads }: { leads: Array<Lead> }) {
         leads.map((lead) => {
           return (
             <TableItem key={lead._id}>
-              <SearchLeadsTableItem content={lead} />
+              <SearchLeadsTableSecondaryItem content={lead} />
             </TableItem>
           );
         })}

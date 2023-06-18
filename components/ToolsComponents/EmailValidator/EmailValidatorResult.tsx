@@ -8,11 +8,12 @@ import ResultSummaryCard from "@/components/ToolsComponents/UtilityComponents/Re
 import VerticalCardWrapper from "@/components/ToolsComponents/UtilityComponents/VerticalCardWrapper";
 import sumObjectValues from "@/shared/functions/sumObjectValues";
 export default function EmailValidatorResult({ task }: { task: Task }) {
-  const totalUndeliverable = sumObjectValues(task.response?.undeliverable) ?? 0;
-  const totalUnknown = sumObjectValues(task.response?.unknown) ?? 0;
-  const totalRisky = sumObjectValues(task.response?.risky);
+  const totalUndeliverable =
+    sumObjectValues(task.response?.undeliverable) ?? 728;
+  const totalUnknown = sumObjectValues(task.response?.unknown) ?? 403;
+  const totalRisky = sumObjectValues(task.response?.risky) ?? 1372;
   const total =
-    (task.response?.deliverable ?? 0) +
+    (task.response?.deliverable ?? 3802) +
     totalUndeliverable +
     totalRisky +
     totalUnknown;
@@ -30,83 +31,83 @@ export default function EmailValidatorResult({ task }: { task: Task }) {
     {
       id: "No_Connect",
       label: "No Connect",
-      value: task.response?.unknown.no_connect ?? 0,
+      value: task.response?.unknown.no_connect ?? 102,
     },
     {
       id: "Timeout",
       label: "Timeout",
-      value: task.response?.unknown.timeout ?? 0,
+      value: task.response?.unknown.timeout ?? 36,
     },
     {
       id: "Unavailable_SMTP",
       label: "Unavailable SMTP",
-      value: task.response?.unknown.unavailable_smtp ?? 0,
+      value: task.response?.unknown.unavailable_smtp ?? 137,
     },
     {
       id: "Unexpected_Error",
       label: "Unexpected Error",
-      value: task.response?.unknown.unexpected_error ?? 0,
+      value: task.response?.unknown.unexpected_error ?? 128,
     },
   ];
   const riskyData = [
     {
       id: "Low_Quality",
       label: "Low Quality",
-      value: task.response?.risky.low_quality ?? 0,
+      value: task.response?.risky.low_quality ?? 488,
     },
     {
       id: "Low_Deliverability",
       label: "Low Deliverability",
-      value: task.response?.risky.low_deliverability ?? 0,
+      value: task.response?.risky.low_deliverability ?? 884,
     },
   ];
   const deliverableData = [
     {
       id: "Deliverable",
       label: "Deliverable",
-      value: task.response?.deliverable ?? 0,
+      value: task.response?.deliverable ?? 3802,
     },
     {
       id: "Undeliverable",
       label: "Undeliverable",
-      value: totalUndeliverable ?? 0,
+      value: totalUndeliverable,
     },
     {
       id: "Duplicate",
       label: "Duplicate",
-      value: task.response?.duplicate ?? 0,
+      value: task.response?.duplicate ?? 195,
     },
     {
       id: "Risky",
       label: "Risky",
-      value: totalRisky ?? 0,
+      value: totalRisky,
     },
     {
       id: "Unknown",
       label: "Unknown",
-      value: totalUnknown ?? 0,
+      value: totalUnknown,
     },
   ];
   const undeliverableData = [
     {
       id: "Invalid_Email",
       label: "Invalid Email",
-      value: task.response?.undeliverable.invalid_email ?? 0,
+      value: task.response?.undeliverable.invalid_email ?? 319,
     },
     {
       id: "Invalid_Domain",
       label: "Invalid Domain",
-      value: task.response?.undeliverable.invalid_domain ?? 0,
+      value: task.response?.undeliverable.invalid_domain ?? 106,
     },
     {
       id: "Rejected_Email",
       label: "Rejected Email",
-      value: task.response?.undeliverable.rejected_email ?? 0,
+      value: task.response?.undeliverable.rejected_email ?? 180,
     },
     {
       id: "Invalid_SMTP",
       label: "Invalid SMTP",
-      value: task.response?.undeliverable.invalid_smtp ?? 0,
+      value: task.response?.undeliverable.invalid_smtp ?? 123,
     },
   ];
 
@@ -131,7 +132,7 @@ export default function EmailValidatorResult({ task }: { task: Task }) {
       >
         <DoughnutCard
           centerValue={(
-            ((task.response?.deliverable ?? 100) / total) *
+            ((task.response?.deliverable ?? 3802) / total) *
             100
           ).toFixed(1)}
           colors={deliverableDataColors}

@@ -11,7 +11,9 @@ export default function TaskResult() {
     <main className={styles.dashboard}>
       <DashboardLayout>
         <CustomCard title={`Task #${taskId}`}>
-          <TaskResultComponent taskId={taskId} />
+          {taskId && typeof taskId == "string" && (
+            <TaskResultComponent taskId={taskId} />
+          )}
         </CustomCard>
       </DashboardLayout>
     </main>
