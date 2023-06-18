@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Box, Stack, useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import TableCell from "./TableCell";
-import { DataTypesSupported } from "@/shared/interfaces/Table";
 import { useTable } from "@/contexts/TableContext";
 import { InView } from "react-intersection-observer";
 import Loading from "../Loading/Loading";
@@ -21,7 +20,7 @@ export default function TableContainer({
 }: Props) {
   const theme = useTheme();
   const [toggleSecondary, setToggleSecondary] = useState<boolean>();
-  const { handleDataFetch: handlePageChange } = useTable();
+  const { handleDataFetch, loading } = useTable();
 
   //to keep the sidebar toggled when screen is big
   return (
@@ -42,10 +41,14 @@ export default function TableContainer({
         {primaryItems}
         <InView
           as="div"
-          onChange={(inView, entry) => (inView ? handlePageChange() : null)}
-          style={{ marginTop: "1.5rem", position: "relative" }}
+          onChange={(inView, entry) => (inView ? handleDataFetch() : null)}
+          style={{
+            minWidth: "25ch",
+            minHeight: "81px",
+            position: "relative",
+          }}
         >
-          <Loading />
+          {loading && <Loading />}
         </InView>
       </Stack>
       <Stack

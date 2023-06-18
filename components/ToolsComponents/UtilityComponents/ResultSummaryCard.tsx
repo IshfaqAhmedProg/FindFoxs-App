@@ -24,13 +24,13 @@ export default function ResultSummaryCard({ task }: { task: Task }) {
             },
             {
               title: "Created at",
-              stat: formatDate(new Date(task.startTime)),
-              statUnit: formatTime(new Date(task.startTime)),
+              stat: formatDate(new Date(task.dateCreated)),
+              statUnit: formatTime(new Date(task.dateCreated)),
             },
             {
               title: "Completed at",
-              stat: formatDate(new Date(task.endTime)),
-              statUnit: formatTime(new Date(task.endTime)),
+              stat: formatDate(new Date(task.dateCompleted)),
+              statUnit: formatTime(new Date(task.dateCompleted)),
             },
             {
               title: "Status",

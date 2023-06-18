@@ -53,9 +53,9 @@ export default function TaskListItem({ task }: { task: Task }) {
           </Typography>
         </Box>
         <Box textOverflow="ellipsis" overflow="hidden" width="7ch">
-          <Tooltip title={task.startTime.toString()}>
+          <Tooltip title={task.dateCreated.toString()}>
             <Typography fontSize="11px" noWrap textAlign="center">
-              {task.startTime.toString()}
+              {task.dateCreated.toString()}
             </Typography>
           </Tooltip>
         </Box>

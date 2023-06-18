@@ -10,8 +10,13 @@ import {
 import React, { useState } from "react";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 import { useRouter } from "next/router";
+import { DocumentData } from "firebase/firestore";
 
-export default function TasksTablePrimaryItem({ task }: { task: Task }) {
+export default function TasksTablePrimaryItem({
+  task,
+}: {
+  task: Task | DocumentData;
+}) {
   const router = useRouter();
   const SeeMoreButton = {
     height: "100%",
@@ -36,7 +41,7 @@ export default function TasksTablePrimaryItem({ task }: { task: Task }) {
               color="var(--graylight)"
               noWrap
             >
-              #{task._id}
+              #{task._idShort}
             </Typography>
           </Tooltip>
         </Box>

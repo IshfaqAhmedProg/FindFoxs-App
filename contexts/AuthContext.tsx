@@ -35,10 +35,12 @@ export const AuthContextProvider = ({
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         //TODOsetcookies here
+        localStorage.setItem("uid", user.uid);
         Cookies.set("loggedin", "true");
         Cookies.set("emailVerified", JSON.stringify(user.emailVerified));
         setUser(user);
       } else {
+        localStorage.removeItem("uid");
         Cookies.remove("loggedin");
         Cookies.remove("emailVerified");
         setUser(null);
@@ -96,6 +98,7 @@ export const AuthContextProvider = ({
       console.log("loggedout");
       Cookies.remove("loggedin");
       Cookies.remove("emailVerified");
+      localStorage.removeItem("uid");
       router.replace("/");
     });
   };

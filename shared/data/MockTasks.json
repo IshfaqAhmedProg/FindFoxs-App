@@ -1,20 +1,20 @@
 [
   {
     "_id": "135498556s",
-    "tool": "Google Maps Scraper",
+    "service": "Google Maps Scraper",
     "unit": "keyword",
     "queryCount": 215,
-    "startTime": 1261923200,
-    "endTime": 1666219200,
+    "dateCreated": 1261923200,
+    "dateCompleted": 1666219200,
     "status": "RUNNING"
   },
   {
     "_id": "135498dsas",
-    "tool": "Email Validator",
+    "service": "Email Validator",
     "unit": "email",
     "queryCount": 15,
-    "startTime": 1621923600,
-    "endTime": 1626139200,
+    "dateCreated": 1621923600,
+    "dateCompleted": 1626139200,
     "status": "COMPLETE",
     "result": {
       "deliverable": 2802,
@@ -39,11 +39,11 @@
   },
   {
     "_id": "98dsa1354s",
-    "tool": "Email Validator",
+    "service": "Email Validator",
     "unit": "email",
     "queryCount": 320,
-    "startTime": 1196236200,
-    "endTime": 1236619200,
+    "dateCreated": 1196236200,
+    "dateCompleted": 1236619200,
     "status": "COMPLETE",
     "result": {
       "deliverable": 3802,
@@ -68,65 +68,65 @@
   },
   {
     "_id": "3598dsa14s",
-    "tool": "Email And Contacts Scraper",
+    "service": "Email And Contacts Scraper",
     "unit": "website",
     "queryCount": 10,
-    "startTime": 1623619200,
-    "endTime": 1623619200,
+    "dateCreated": 1623619200,
+    "dateCompleted": 1623619200,
     "status": "FAILED"
   },
   {
     "_id": "3598d5984s",
-    "tool": "Email And Contacts Scraper",
+    "service": "Email And Contacts Scraper",
     "unit": "website",
     "queryCount": 10,
-    "startTime": 1623619200,
-    "endTime": 1623619200,
+    "dateCreated": 1623619200,
+    "dateCompleted": 1623619200,
     "status": "FAILED"
   },
   {
     "_id": "378452354s",
-    "tool": "Email And Contacts Scraper",
+    "service": "Email And Contacts Scraper",
     "unit": "website",
     "queryCount": 10,
-    "startTime": 1623619200,
-    "endTime": 1623619200,
+    "dateCreated": 1623619200,
+    "dateCompleted": 1623619200,
     "status": "RUNNING"
   },
   {
     "_id": "378452354s",
-    "tool": "Email And Contacts Scraper",
+    "service": "Email And Contacts Scraper",
     "unit": "website",
     "queryCount": 10,
-    "startTime": 1623619200,
-    "endTime": 1623619200,
+    "dateCreated": 1623619200,
+    "dateCompleted": 1623619200,
     "status": "RUNNING"
   },
   {
     "_id": "378452354s",
-    "tool": "Google Maps Scraper",
+    "service": "Google Maps Scraper",
     "unit": "website",
     "queryCount": 10,
-    "startTime": 1623619200,
-    "endTime": 1623619200,
+    "dateCreated": 1623619200,
+    "dateCompleted": 1623619200,
     "status": "RUNNING"
   },
   {
     "_id": "378452354s",
-    "tool": "Phone Number Validator",
+    "service": "Phone Number Validator",
     "unit": "website",
     "queryCount": 10,
-    "startTime": 1623619200,
-    "endTime": 1623619200,
+    "dateCreated": 1623619200,
+    "dateCompleted": 1623619200,
     "status": "RUNNING"
   },
   {
     "_id": "378452354s",
-    "tool": "Email And Contacts Scraper",
+    "service": "Email And Contacts Scraper",
     "unit": "website",
     "queryCount": 10,
-    "startTime": 1623619200,
-    "endTime": 1623619200,
+    "dateCreated": 1623619200,
+    "dateCompleted": 1623619200,
     "status": "RUNNING"
   }
 ]

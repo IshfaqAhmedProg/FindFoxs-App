@@ -8,11 +8,11 @@ import ResultSummaryCard from "@/components/ToolsComponents/UtilityComponents/Re
 import VerticalCardWrapper from "@/components/ToolsComponents/UtilityComponents/VerticalCardWrapper";
 import sumObjectValues from "@/shared/functions/sumObjectValues";
 export default function EmailValidatorResult({ task }: { task: Task }) {
-  const totalUndeliverable = sumObjectValues(task.result?.undeliverable) ?? 0;
-  const totalUnknown = sumObjectValues(task.result?.unknown) ?? 0;
-  const totalRisky = sumObjectValues(task.result?.risky);
+  const totalUndeliverable = sumObjectValues(task.response?.undeliverable) ?? 0;
+  const totalUnknown = sumObjectValues(task.response?.unknown) ?? 0;
+  const totalRisky = sumObjectValues(task.response?.risky);
   const total =
-    (task.result?.deliverable ?? 0) +
+    (task.response?.deliverable ?? 0) +
     totalUndeliverable +
     totalRisky +
     totalUnknown;
@@ -30,41 +30,41 @@ export default function EmailValidatorResult({ task }: { task: Task }) {
     {
       id: "No_Connect",
       label: "No Connect",
-      value: task.result?.unknown.no_connect ?? 0,
+      value: task.response?.unknown.no_connect ?? 0,
     },
     {
       id: "Timeout",
       label: "Timeout",
-      value: task.result?.unknown.timeout ?? 0,
+      value: task.response?.unknown.timeout ?? 0,
     },
     {
       id: "Unavailable_SMTP",
       label: "Unavailable SMTP",
-      value: task.result?.unknown.unavailable_smtp ?? 0,
+      value: task.response?.unknown.unavailable_smtp ?? 0,
     },
     {
       id: "Unexpected_Error",
       label: "Unexpected Error",
-      value: task.result?.unknown.unexpected_error ?? 0,
+      value: task.response?.unknown.unexpected_error ?? 0,
     },
   ];
   const riskyData = [
     {
       id: "Low_Quality",
       label: "Low Quality",
-      value: task.result?.risky.low_quality ?? 0,
+      value: task.response?.risky.low_quality ?? 0,
     },
     {
       id: "Low_Deliverability",
       label: "Low Deliverability",
-      value: task.result?.risky.low_deliverability ?? 0,
+      value: task.response?.risky.low_deliverability ?? 0,
     },
   ];
   const deliverableData = [
     {
       id: "Deliverable",
       label: "Deliverable",
-      value: task.result?.deliverable ?? 0,
+      value: task.response?.deliverable ?? 0,
     },
     {
       id: "Undeliverable",
@@ -74,7 +74,7 @@ export default function EmailValidatorResult({ task }: { task: Task }) {
     {
       id: "Duplicate",
       label: "Duplicate",
-      value: task.result?.duplicate ?? 0,
+      value: task.response?.duplicate ?? 0,
     },
     {
       id: "Risky",
@@ -91,22 +91,22 @@ export default function EmailValidatorResult({ task }: { task: Task }) {
     {
       id: "Invalid_Email",
       label: "Invalid Email",
-      value: task.result?.undeliverable.invalid_email ?? 0,
+      value: task.response?.undeliverable.invalid_email ?? 0,
     },
     {
       id: "Invalid_Domain",
       label: "Invalid Domain",
-      value: task.result?.undeliverable.invalid_domain ?? 0,
+      value: task.response?.undeliverable.invalid_domain ?? 0,
     },
     {
       id: "Rejected_Email",
       label: "Rejected Email",
-      value: task.result?.undeliverable.rejected_email ?? 0,
+      value: task.response?.undeliverable.rejected_email ?? 0,
     },
     {
       id: "Invalid_SMTP",
       label: "Invalid SMTP",
-      value: task.result?.undeliverable.invalid_smtp ?? 0,
+      value: task.response?.undeliverable.invalid_smtp ?? 0,
     },
   ];
 
@@ -131,7 +131,7 @@ export default function EmailValidatorResult({ task }: { task: Task }) {
       >
         <DoughnutCard
           centerValue={(
-            ((task.result?.deliverable ?? 100) / total) *
+            ((task.response?.deliverable ?? 100) / total) *
             100
           ).toFixed(1)}
           colors={deliverableDataColors}

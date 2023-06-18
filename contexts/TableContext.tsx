@@ -11,9 +11,11 @@ export const useTable = (): ITableContext => useContext(TableContext);
 export const TableContextProvider = ({
   children,
   fetchDataFunction,
+  loading,
 }: {
   children: React.ReactNode;
   fetchDataFunction: () => void;
+  loading: boolean;
 }) => {
   const [selected, setSelected] = useState<Array<string>>([]);
   const [page, setPage] = useState<number>(1);
@@ -41,6 +43,7 @@ export const TableContextProvider = ({
     else setSelected([]);
   };
   const handleDataFetch = () => {
+    console.log("data fetch");
     fetchDataFunction();
   };
 
@@ -51,6 +54,7 @@ export const TableContextProvider = ({
     <TableContext.Provider
       value={{
         selected,
+        loading,
         page,
         seeMoreOpen,
         activeTab,

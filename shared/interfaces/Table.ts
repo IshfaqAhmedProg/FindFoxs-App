@@ -1,7 +1,8 @@
+import { DocumentData } from "firebase/firestore";
 import { Lead, LeadSearchTabs } from "./Lead";
 import Task from "./Tasks";
 
-export type DTS = Lead | Task;
+export type DTS = Lead | Task | DocumentData;
 export type DataTypesSupported = Array<DTS>;
 export type STS = LeadSearchTabs;
 export type TabsSuppported = Array<STS>;
@@ -36,6 +37,7 @@ export interface ITableContext {
   selected: Array<string>;
   page: number;
   activeTab: string;
+  loading: boolean;
   handleTabChange: (params: handleTabChangeParams) => void;
   handleDataFetch: () => void;
   handleSelect: (id: string) => void;

@@ -15,12 +15,16 @@ export const ToolFormContextProvider = ({
   singleInputSubmitFunction, //function to call the api and get the results used for anything where i need to directly call the api
   fileInputSubmitFunction, //function to upload task to db
   initialFormData,
+  singleDataLoading,
+  fileDataLoading,
 }: {
   children: React.ReactNode;
   singleInputSubmitFunction?: (formData: IToolFormData) => Promise<any>;
   fileInputSubmitFunction: (formData: IToolFormData) => void;
   checkFunction?: (data: any) => Array<any>;
   initialFormData: any;
+  singleDataLoading?: boolean;
+  fileDataLoading?: boolean;
 }) => {
   const [formData, setFormData] = useState<IToolFormData>(initialFormData);
   const [showHeaderSelect, setShowHeaderSelect] = useState<boolean>(false);
@@ -114,6 +118,7 @@ export const ToolFormContextProvider = ({
     <ToolFormContext.Provider
       value={{
         formData,
+        singleDataLoading,
         resetFormData,
         handleKeywordChange,
         handleCountryChange,
@@ -130,6 +135,7 @@ export const ToolFormContextProvider = ({
         {formData.allColumnHeaders && (
           //Show a dialog to select header columns and submit the task
           <SelectHeaderDialog
+            loading={fileDataLoading}
             open={showHeaderSelect}
             onClose={handleHeaderSelectDialogClose}
             headerSelect={handleHeaderSelect}

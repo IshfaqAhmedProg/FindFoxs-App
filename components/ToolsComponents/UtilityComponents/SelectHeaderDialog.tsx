@@ -14,6 +14,7 @@ import React from "react";
 import PlaylistAddCheckRoundedIcon from "@mui/icons-material/PlaylistAddCheckRounded";
 import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
 export default function SelectHeaderDialog({
+  loading,
   open,
   onClose,
   formData,
@@ -21,6 +22,7 @@ export default function SelectHeaderDialog({
   headerSelect,
   handleSubmit,
 }: {
+  loading?: boolean;
   open: boolean;
   onClose: () => void;
   formData: ValidatorTypeData;
@@ -115,6 +117,7 @@ export default function SelectHeaderDialog({
             </CustomButton>
             <CustomButton
               kind="secondary"
+              loading={loading}
               buttonProps={{
                 onClick: handleSubmit,
                 type: "submit",

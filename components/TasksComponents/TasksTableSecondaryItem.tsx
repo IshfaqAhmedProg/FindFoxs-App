@@ -8,10 +8,15 @@ import {
   formatTime,
 } from "@/shared/functions/formatDateTime";
 import Task from "@/shared/interfaces/Tasks";
+import { DocumentData } from "firebase/firestore";
 
-export default function TasksTableSecondaryItem({ task }: { task: Task }) {
-  const startTime = new Date(task.startTime);
-  const endTime = new Date(task.endTime);
+export default function TasksTableSecondaryItem({
+  task,
+}: {
+  task: Task | DocumentData;
+}) {
+  const startTime = task.dateCreated?.toDate();
+  const endTime = task.dateCompleted?.toDate() ?? undefined;
   const DateTimeComponent = ({ dateTime }: { dateTime: Date }) => {
     return (
       <Stack direction={"row"} gap={0.5} alignItems={"flex-end"}>
@@ -23,9 +28,7 @@ export default function TasksTableSecondaryItem({ task }: { task: Task }) {
         >
           {formatDate(dateTime)}
         </Typography>
-        <Typography >
-          {formatTime(dateTime)}
-        </Typography>
+        <Typography>{formatTime(dateTime)}</Typography>
       </Stack>
     );
   };
@@ -38,17 +41,10 @@ export default function TasksTableSecondaryItem({ task }: { task: Task }) {
         <DateTimeComponent dateTime={startTime} />
       </TableCell>
       <TableCell>
-        <DateTimeComponent dateTime={endTime} />
+        {endTime ? <DateTimeComponent dateTime={endTime} /> : "-"}
       </TableCell>
       <TableCell>
-        <Typography>
-          {formatTTC(
-            new Date(
-              new Date(task.endTime).getTime() -
-                new Date(task.startTime).getTime()
-            )
-          )}
-        </Typography>
+        <Typography>{task.estimatedTTC}</Typography>
       </TableCell>
       <TableCell>
         <Typography>{task.queryCount}</Typography>

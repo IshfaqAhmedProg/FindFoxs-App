@@ -1,3 +1,7 @@
+import { Timestamp } from "firebase/firestore";
+import { IToolFormData } from "./ToolForm";
+import { User } from "firebase/auth";
+
 export interface Tools {
   tool:
     | string
@@ -14,11 +18,14 @@ export interface Status {
 }
 interface TaskDetails {
   queryCount: number;
-  startTime: Date | number;
-  endTime: Date | number;
+  dateCreated: Date | number | Timestamp;
+  dateCompleted?: Date | number | Timestamp;
+  estimatedTTC?: string;
+  request?: IToolFormData;
 }
+
 export interface TaskResult {
-  result?: IEmailValidatorResult;
+  response?: IEmailValidatorResult;
 }
 export interface IEmailValidatorResult {
   deliverable: number;
@@ -42,6 +49,8 @@ export interface IEmailValidatorResult {
 }
 type TaskUnits = string | "website" | "email" | "number" | "keyword";
 export default interface Task extends TaskDetails, Tools, Status, TaskResult {
-  unit: TaskUnits;
+  uid?: string;
+  unit?: TaskUnits;
   _id: string;
+  _idShort?: string;
 }

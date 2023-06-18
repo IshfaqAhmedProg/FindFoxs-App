@@ -34,6 +34,7 @@ export interface IToolFormData
     EmailAndContactsTypeData {}
 export default interface IToolFormContext {
   formData: IToolFormData;
+  singleDataLoading: boolean;
   resetFormData: () => void;
   handleKeywordChange: (val: Array<string>) => void;
   handleCountryChange: (val: CountryStateCity) => void;

@@ -15,6 +15,7 @@ interface Props {
 export default function ValidatorsInput({ description, unit }: Props) {
   const {
     formData,
+    singleDataLoading,
     resetFormData,
     handleSingleDataChange,
     handleFileDataChange,
@@ -27,32 +28,33 @@ export default function ValidatorsInput({ description, unit }: Props) {
     <Stack pt={4} alignItems={"center"} gap={6} maxWidth={"500px"}>
       <Typography textAlign={"center"}>{description}</Typography>
       <Stack direction={"row"} gap={2} alignItems={"center"}>
+        {formData.singleData &&
+          (formData.formattedData.length != 0 ? (
+            <CheckRoundedIcon color="secondary" />
+          ) : (
+            <CloseRoundedIcon color="error" />
+          ))}
         <CustomTextInput
           placeholder={`Enter ${unit} to validate`}
           value={formData.singleData}
           onChange={handleSingleDataChange}
+          sx={{ width: "100%" }}
         />
         {formData.singleData && (
-          <>
-            {formData.formattedData.length != 0 ? (
-              <CheckRoundedIcon color="secondary" />
-            ) : (
-              <CloseRoundedIcon color="error" />
-            )}
-            <CustomButton
-              kind="plain"
-              buttonProps={{
-                startIcon: <CancelRoundedIcon />,
-                onClick: resetFormData,
-              }}
-            >
-              clear
-            </CustomButton>
-          </>
+          <CustomButton
+            kind="plain"
+            buttonProps={{
+              startIcon: <CancelRoundedIcon />,
+              onClick: resetFormData,
+            }}
+          >
+            clear
+          </CustomButton>
         )}
       </Stack>
       {formData.singleData && (
         <CustomButton
+          loading={singleDataLoading}
           buttonProps={{
             onClick: handleSingleInputSubmit,
             disabled: formData.formattedData.length == 0,

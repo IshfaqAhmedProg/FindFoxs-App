@@ -1,27 +1,34 @@
-import React, { createContext, useContext, useState } from "react";
-import { db, auth } from "../firebase/config";
+import React, { useEffect, useState } from "react";
 import { doc, setDoc, Timestamp } from "firebase/firestore";
 import { getStorage, ref, uploadString } from "firebase/storage";
 import { v5 as uuidv5 } from "uuid";
 import { estimatedTTC } from "@/shared/functions/estimatedTTC";
 import Task from "@/shared/interfaces/Tasks";
+import { User } from "firebase/auth";
+import { db } from "@/firebase/config";
 
-const DatabaseContext = createContext<any>({});
-export const useDatabase = () => useContext(DatabaseContext);
-export const DatabaseContextProvider = ({
-  children,
+const useCreateTask = ({
+  user,
 }: {
-  children: React.ReactNode;
-}) => {
-  const [loading, setLoading] = useState<boolean>(false);
+  user: User | null;
+}): [
+  (
+    formData: any,
+    tool: string,
+    queryCount: number
+  ) => Promise<[void] | undefined>,
+  boolean
+] => {
+  const [loadingCreateTask, setLoadingCreateTask] = useState<boolean>(false);
   const setUserTasks = async (
     formData: any,
     tool: string,
     queryCount: number
   ) => {
-    setLoading(true);
+    setLoadingCreateTask(true);
     var adder = null;
-    if (auth.currentUser) {
+    console.log("user", user);
+    if (user) {
       const dateId = Date.now();
       const MY_NAMESPACE = process.env.NEXT_PUBLIC_UUID_NAMESPACE ?? "Ethoslab";
       const _id = uuidv5(dateId.toString(), MY_NAMESPACE)
@@ -34,7 +41,7 @@ export const DatabaseContextProvider = ({
         queryCount: queryCount,
         tool: tool,
         status: "RUNNING",
-        uid: auth.currentUser.uid,
+        uid: user.uid,
         _id,
         _idShort,
         estimatedTTC: estTTC,
@@ -45,22 +52,16 @@ export const DatabaseContextProvider = ({
       );
       const storage = getStorage();
       const dataBlob = JSON.stringify({ ...data, request: formData });
-      const blobRef = ref(
-        storage,
-        `${auth.currentUser.uid}/tasks/${_id}/request`
-      );
+      const blobRef = ref(storage, `${user.uid}/tasks/${_id}/request`);
       adder = Promise.all([
         uploadString(blobRef, dataBlob).then(async (snapshot) => {
           await setDoc(doc(db, "tasks", _id), data);
         }),
       ]);
-      setLoading(false);
+      setLoadingCreateTask(false);
       return adder;
     }
   };
-  return (
-    <DatabaseContext.Provider value={{ setUserTasks, loading }}>
-      {children}
-    </DatabaseContext.Provider>
-  );
+  return [setUserTasks, loadingCreateTask];
 };
+export default useCreateTask;

@@ -7,7 +7,6 @@ import CustomCheckbox from "../CustomComponents/CustomCheckbox";
 
 interface Props {
   id: string;
-
   children: React.ReactNode;
 }
 export default function TablePrimaryItem({ id, children }: Props) {
@@ -20,6 +19,7 @@ export default function TablePrimaryItem({ id, children }: Props) {
       ml={1}
       mt={"1px"}
       gap={2}
+      minWidth="20ch"
       sx={
         selected.includes(id)
           ? {

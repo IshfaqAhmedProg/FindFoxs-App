@@ -1,4 +1,4 @@
-import useMousePosition from "@/shared/hooks/mousePosition";
+import useMousePosition from "@/shared/hooks/useMousePosition";
 import React from "react";
 
 export default function Cursor() {
