@@ -15,7 +15,7 @@ export const TableContextProvider = ({
 }: {
   children: React.ReactNode;
   fetchDataFunction: () => void;
-  loading: boolean;
+  loading?: boolean;
 }) => {
   const [selected, setSelected] = useState<Array<string>>([]);
   const [page, setPage] = useState<number>(1);
