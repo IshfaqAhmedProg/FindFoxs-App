@@ -43,7 +43,6 @@ export const TableContextProvider = ({
     else setSelected([]);
   };
   const handleDataFetch = () => {
-    console.log("data fetch");
     fetchDataFunction();
   };
 

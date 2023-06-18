@@ -13,7 +13,6 @@ export const AuthErrorProvider = ({
   const handleError = (err: any) => {
     setChecked(true);
     if (err == null) return;
-    console.log(GetRefinedFirebaseError(err));
     setErrorMsg(GetRefinedFirebaseError(err));
     return;
   };

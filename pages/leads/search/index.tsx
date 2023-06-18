@@ -1,5 +1,4 @@
 import styles from "@/styles/Home.module.css";
-import Cursor from "@/components/LandingComponents/Cursor";
 import DashboardLayout from "@/components/DashboardComponents/DashboardLayout";
 import { TableContextProvider } from "@/contexts/TableContext";
 import SearchLeadsTable from "@/components/SearchLeadsComponents/SearchLeadsTable";

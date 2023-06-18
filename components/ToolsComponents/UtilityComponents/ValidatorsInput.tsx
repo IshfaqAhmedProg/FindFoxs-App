@@ -21,9 +21,7 @@ export default function ValidatorsInput({ description, unit }: Props) {
     handleFileDataChange,
     handleSingleInputSubmit,
   } = useToolForm();
-  {
-    console.log("formData", formData);
-  }
+
   return (
     <Stack pt={4} alignItems={"center"} gap={6} maxWidth={"500px"}>
       <Typography textAlign={"center"}>{description}</Typography>

@@ -35,8 +35,7 @@ const useFirestoreCollection = ({
   const [results, setResults] = useState<Array<DocumentData>>([]);
   const [lastData, setLastData] = useState<any>();
   const [docs, loading, error] = useCollectionData(queryCall);
-  console.log("docs", docs);
-  console.log("lastData", lastData);
+
   useEffect(() => {
     if (!queryCall) {
       // Initial query
@@ -51,7 +50,6 @@ const useFirestoreCollection = ({
   }, []);
 
   const fetchDataFunction = () => {
-    console.log("lastData", lastData);
     if (lastData && docs && docs.length === fetchSize) {
       const newQueryCall = query(
         collection(db, collectionString),

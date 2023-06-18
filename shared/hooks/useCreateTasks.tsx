@@ -28,8 +28,7 @@ const useCreateTask = ({
     unit: string
   ) => {
     var adder = null;
-    console.log("loading", loadingCreateTask);
-    console.log("user", user);
+
     if (user) {
       const dateId = Date.now();
       const MY_NAMESPACE = process.env.NEXT_PUBLIC_UUID_NAMESPACE ?? "Ethoslab";
@@ -49,10 +48,7 @@ const useCreateTask = ({
         estimatedTTC: estTTC,
         unit,
       };
-      console.log(
-        "data being submitted",
-        JSON.stringify({ ...data, request: formData })
-      );
+
       const storage = getStorage();
       const dataBlob = JSON.stringify({ ...data, request: formData });
       const blobRef = ref(storage, `${user.uid}/tasks/${_id}/request`);
