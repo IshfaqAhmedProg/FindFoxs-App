@@ -73,7 +73,6 @@ export default function NavBar(props: Props) {
     <Stack
       direction="row"
       spacing={3}
-      fontWeight="bold"
       sx={{ display: { md: "flex", xs: "none" }, alignItems: "center" }}
     >
       {pagesLinks.map((link) => {
@@ -97,7 +96,7 @@ export default function NavBar(props: Props) {
             }
           : {
               background:
-                "linear-gradient(180deg, #E3EAFF 0%, rgba(255, 255, 255, 0) 100%)",
+                "linear-gradient(180deg, #E3EAFF 0%,#f0f4ff99 70%, rgba(255, 255, 255, 0) 100%)",
               boxShadow: "none",
             }
       }
@@ -141,11 +140,13 @@ export default function NavBar(props: Props) {
               }}
             />
           </Box>
-          {router.pathname == "/" && landingLinks}
-          {user ? <UserControls container={container} /> : loginSignupBox}
+          <Stack direction={"row"} gap={3}>
+            {router.pathname == "/" && landingLinks}
+            {user ? <UserControls container={container} /> : loginSignupBox}
+          </Stack>
         </Toolbar>
       </HideOnScroll>
-{/* 
+      {/* 
       <SwipeableDrawer
         anchor="right"
         container={container}

@@ -7,80 +7,82 @@ import { ToolFormContextProvider } from "@/contexts/ToolFormContext";
 import ValidatorsInput from "../UtilityComponents/ValidatorsInput";
 import { IToolFormData } from "@/shared/interfaces/ToolForm";
 import checkIfPNumber from "@/shared/functions/checkIfPNumber";
-import fetchSingleDataResults from "@/shared/functions/fetchSingleDataResults";
 import convertToReadableString from "@/shared/functions/convertToReadableString";
-import { SingleResult } from "@/shared/interfaces/ValidatorResponses";
-import analyseSingleDataResult from "@/shared/functions/analyseSingleDataResult";
-
+import useSingleDataResult from "@/shared/hooks/useSingleDataResult";
+import useCreateTask from "@/shared/hooks/useCreateTasks";
+import { useAuth } from "@/contexts/AuthContext";
+import { useRouter } from "next/navigation";
+const publicStats = [
+  "phone",
+  "phone_type",
+  "phone_region",
+  "country",
+  "country_code",
+  "country_prefix",
+  "carrier",
+];
+const initialResultStat: Array<Stats> = publicStats.map((stat) => {
+  return {
+    statTitle: convertToReadableString(stat),
+    stats: [
+      {
+        title: "Unknown",
+      },
+    ],
+  };
+});
+const initialFormData = {
+  singleData: "",
+  validationResult: "",
+  fileName: "",
+  unformattedData: [],
+  extractLength: 0,
+  formattedData: [],
+  allColumnHeaders: [],
+  columnHeader: "",
+};
 export default function PhoneNumberValidator() {
-  const [loading, setLoading] = useState<boolean>(false);
-
-  const publicStats = [
-    "phone",
-    "phone_type",
-    "phone_region",
-    "country",
-    "country_code",
-    "country_prefix",
-    "carrier",
-  ];
-  const initialResultStat: Array<Stats> = publicStats.map((stat) => {
-    return {
-      statTitle: convertToReadableString(stat),
-      stats: [
-        {
-          title: "Unknown",
-        },
-      ],
-    };
-  });
-  const [singleResult, setSingleResult] = useState<SingleResult>({
-    resultScore: 0,
-    resultReport: "No Number validated yet!",
-    resultStat: initialResultStat,
-  });
+  const router = useRouter();
+  const { user } = useAuth();
+  const [setUserTasks, loadingCreateTask] = useCreateTask({ user }); //handle creating new tasks when uploading file
+  const [singleResult, fetchSingleDataResults, loadingSingleResult] =
+    useSingleDataResult({
+      initialResult: {
+        resultScore: 0,
+        resultReport: "No number validated yet!",
+        resultStat: initialResultStat,
+      },
+      publicStats,
+    }); //handles single input results
   async function submitSingleNumber(formData: IToolFormData) {
-    setLoading(true);
     await fetchSingleDataResults(
       "/api/validators/validatePhoneNumber",
-      publicStats,
       JSON.stringify({
         number: formData.formattedData[0],
-      })
-    ).then((data) => {
-      const statAnal = analyseSingleDataResult(
-        data,
-        publicStats,
-        formData.formattedData[0]
-      );
-      setSingleResult({
-        ...singleResult,
-        resultStat: statAnal.stat,
-        resultScore: statAnal.score,
-        resultReport: statAnal.report,
-      });
-      setLoading(false);
-    });
+      }),
+      formData
+    );
   }
-  const validatorType = {
-    singleData: "",
-    validationResult: "",
-    fileName: "",
-    unformattedData: [],
-    extractLength: 0,
-    formattedData: [],
-    allColumnHeaders: [],
-    columnHeader: "",
-  };
+  async function submitFile(formData: IToolFormData) {
+    await setUserTasks(
+      formData.formattedData,
+      "Phone Number Validator",
+      formData.formattedData.length,
+      "number"
+    )
+      .then(() => router.push("/tasks"))
+      .catch((err: any) => console.log(err));
+  }
+
   return (
     <ValidatorWrapper title="Phone Number Validator">
       <ToolFormContextProvider
         checkFunction={checkIfPNumber}
         singleInputSubmitFunction={submitSingleNumber}
-        fileInputSubmitFunction={() => {
-          console.log("file requested");
-        }}
-        initialFormData={validatorType}
+        fileInputSubmitFunction={submitFile}
+        initialFormData={initialFormData}
+        fileDataLoading={loadingCreateTask}
+        singleDataLoading={loadingSingleResult}
       >
         <ValidatorsInput
           description="You can enter a single number or upload a file containing a list of numbers, make sure the file you upload is of .xlsx or .csv format. Also make sure the files have headers on the first row."
@@ -88,7 +90,7 @@ export default function PhoneNumberValidator() {
         />
       </ToolFormContextProvider>
       <SingleResultCard
-        loading={loading}
+        loading={loadingSingleResult}
         confidence={singleResult.resultScore}
         result={singleResult.resultReport}
         resultStat={singleResult.resultStat}

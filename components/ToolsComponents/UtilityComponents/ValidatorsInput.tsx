@@ -24,7 +24,9 @@ export default function ValidatorsInput({ description, unit }: Props) {
 
   return (
     <Stack pt={4} alignItems={"center"} gap={6} maxWidth={"500px"}>
-      <Typography textAlign={"center"}>{description}</Typography>
+      <Typography textAlign={"center"} fontSize={"14px"}>
+        {description}
+      </Typography>
       <Stack direction={"row"} gap={2} alignItems={"center"}>
         {formData.singleData &&
           (formData.formattedData.length != 0 ? (

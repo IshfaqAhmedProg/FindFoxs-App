@@ -41,10 +41,13 @@ function convertInputToPercentage(str: string): number {
 
     const sum = asciiValues.reduce((acc, value) => acc + value, 0);
 
+    console.log("sum", sum);
     const normalizedValue = sum / (asciiValues.length * 255);
+    console.log("normalizedValue", normalizedValue);
 
-    const percentage = Math.min(normalizedValue, 0.1);
-
+    const percentage =
+      normalizedValue < 0.1 ? normalizedValue : normalizedValue * 0.1;
+    console.log("percentage", percentage);
     return percentage;
   }
   return getRandomArbitrary(0, 0.1);

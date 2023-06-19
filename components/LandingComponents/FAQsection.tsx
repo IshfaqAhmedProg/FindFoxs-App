@@ -21,24 +21,28 @@ export default function FAQsection() {
       question: "What is FindFoxs?",
       answer:
         "FindFoxs is a lead generating, searching and engaging platform with additional features like a fully built CRM that can be integrated using rest API, Bulk Email sending, email automation, Multiple validators like mobile phone, email, whatsapp, and also scrapers for Google maps, Facebook and Google Search so that users have the freedom to scrape their own leads from the internet.",
+      delay: "0",
     },
     {
       id: "faq2",
       question: "Is it legal to scrape data?",
       answer:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores doloribus autem nobis soluta rem porro nostrum maiores? Non ut assumenda accusamus hic ipsa saepe nemo.",
+      delay: "200",
     },
     {
       id: "faq3",
       question: "How much does it cost?",
       answer:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores doloribus autem nobis soluta rem porro nostrum maiores? Non ut assumenda accusamus hic ipsa saepe nemo.",
+      delay: "400",
     },
     {
       id: "faq4",
       question: "What is Free Tier?",
       answer:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores doloribus autem nobis soluta rem porro nostrum maiores? Non ut assumenda accusamus hic ipsa saepe nemo.",
+      delay: "600",
     },
   ];
   return (
@@ -51,37 +55,46 @@ export default function FAQsection() {
       <Stack maxWidth="60vw" minWidth="350px" gap=".875rem">
         {faq.map((element) => {
           return (
-            <Accordion
+            <div
               key={element.id}
-              expanded={expanded === element.id}
-              onChange={handleChange(element.id)}
-              sx={{
-                borderRadius: "var(--border-radius)",
-                padding: "1rem 1.5rem",
-                boxShadow: "var(--box-shadow)",
-                "&:before": {
-                  display: "none",
-                },
-              }}
+              data-aos="fade-down"
+              data-aos-delay={element.delay}
+              data-aos-anchor-placement="top-bottom"
             >
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon sx={{ color: "var(--accent)" }} />}
-                aria-controls={element.id + "-content"}
-                id={element.id + "-header"}
+              <Accordion
+                expanded={expanded === element.id}
+                onChange={handleChange(element.id)}
+                sx={{
+                  borderRadius: "var(--border-radius)",
+                  padding: "1rem 1.5rem",
+                  boxShadow: "var(--box-shadow)",
+                  "&:before": {
+                    display: "none",
+                  },
+                  overflow: "hidden",
+                }}
               >
-                <Typography sx={{ flexShrink: 0 }} color="primary">
-                  {element.question}
-                </Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Typography
-                  sx={{ fontSize: "0.8em", color: "var(--primarylight)" }}
-                  variant="body1"
+                <AccordionSummary
+                  expandIcon={
+                    <ExpandMoreIcon sx={{ color: "var(--accent)" }} />
+                  }
+                  aria-controls={element.id + "-content"}
+                  id={element.id + "-header"}
                 >
-                  {element.answer}
-                </Typography>
-              </AccordionDetails>
-            </Accordion>
+                  <Typography sx={{ flexShrink: 0 }} color="primary">
+                    {element.question}
+                  </Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <Typography
+                    sx={{ fontSize: "0.8em", color: "var(--primarylight)" }}
+                    variant="body1"
+                  >
+                    {element.answer}
+                  </Typography>
+                </AccordionDetails>
+              </Accordion>
+            </div>
           );
         })}
       </Stack>

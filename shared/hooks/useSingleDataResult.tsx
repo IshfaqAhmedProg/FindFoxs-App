@@ -4,28 +4,25 @@ import { SingleResult } from "../interfaces/ValidatorResponses";
 import Stats, { Stat } from "../interfaces/Stats";
 import { IToolFormData } from "../interfaces/ToolForm";
 interface Props {
-  initialResultStat: Array<Stats>;
+  initialResult: {
+    resultScore: number;
+    resultReport: string;
+    resultStat: Array<Stats>;
+  };
   publicStats: any;
 }
+
 const useSingleDataResult = ({
-  initialResultStat,
+  initialResult,
   publicStats,
 }: Props): [
   SingleResult,
-  (
-    fetchUrl: string,
-    body: string,
-    formData: IToolFormData
-  ) => Promise<void>,
+  (fetchUrl: string, body: string, formData: IToolFormData) => Promise<void>,
   boolean
 ] => {
   const [loadingSingleResult, setLoadingSingleResult] =
     useState<boolean>(false);
-  const [singleResult, setSingleResult] = useState<SingleResult>({
-    resultScore: 0,
-    resultReport: "No Email validated yet!",
-    resultStat: initialResultStat,
-  });
+  const [singleResult, setSingleResult] = useState<SingleResult>(initialResult);
   function fetchSingleDataResults(
     fetchUrl: string,
     body: string,
@@ -48,10 +45,18 @@ const useSingleDataResult = ({
           formData.formattedData[0]
         );
         setSingleResult({
-          ...singleResult,
           resultStat: statAnal.stat,
           resultScore: statAnal.score,
           resultReport: statAnal.report,
+        });
+        setLoadingSingleResult(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setSingleResult({
+          resultStat: [],
+          resultScore: 404,
+          resultReport: err.status,
         });
         setLoadingSingleResult(false);
       });

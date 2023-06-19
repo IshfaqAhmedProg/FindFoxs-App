@@ -11,7 +11,7 @@
   --graylightest: #0000000a;
   --graylighter: #ededed;
   --graylight: #b1bad2;
-  --graydark: #575a66;
+  --graydark: #767a8b;
   --error: #ff4545;
 
   /* Text-size styles */
@@ -44,7 +44,7 @@ body {
 }
 a {
   cursor: pointer;
-  color: var(--primarydark);
+  color: var(--primary);
   text-decoration: none;
 }
 a:hover {

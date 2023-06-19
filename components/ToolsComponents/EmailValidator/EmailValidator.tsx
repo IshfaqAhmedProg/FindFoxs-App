@@ -45,7 +45,11 @@ export default function EmailValidator() {
   const [setUserTasks, loadingCreateTask] = useCreateTask({ user }); //handle creating new tasks when uploading file
   const [singleResult, fetchSingleDataResults, loadingSingleResult] =
     useSingleDataResult({
-      initialResultStat,
+      initialResult: {
+        resultScore: 0,
+        resultReport: "No email validated yet!",
+        resultStat: initialResultStat,
+      },
       publicStats,
     }); //handles single input results
   async function submitSingleEmail(formData: IToolFormData) {

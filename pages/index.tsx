@@ -61,10 +61,9 @@ export default function Home() {
           <FeaturesSection />
           <ToolsSection />
           <FAQsection />
-          <GetInTouchSection />
+          {/* <GetInTouchSection /> */}
           <Footer />
         </Stack>
-       
       </main>
     </>
   );
