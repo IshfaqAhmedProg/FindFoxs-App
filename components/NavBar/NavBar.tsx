@@ -73,6 +73,7 @@ export default function NavBar(props: Props) {
     <Stack
       direction="row"
       spacing={3}
+      fontWeight="bold"
       sx={{ display: { md: "flex", xs: "none" }, alignItems: "center" }}
     >
       {pagesLinks.map((link) => {
