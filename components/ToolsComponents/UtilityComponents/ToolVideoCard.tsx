@@ -15,12 +15,12 @@ export default function ToolVideo({ videoId }: { videoId: string }) {
       width={"100%"}
       gap={3}
       alignItems={"center"}
-      justifyContent={"center"}
       sx={{
         ["@container (max-width: 720px)"]: {
           gridRowStart: "1",
         },
       }}
+      pt={4}
     >
       <Box
         height={"fit-content"}

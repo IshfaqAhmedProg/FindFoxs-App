@@ -251,7 +251,7 @@ const theme = createTheme({
       '"Segoe UI Symbol"',
     ].join(","),
     body1: {
-      fontSize: 16, // replace with your desired font size
+      fontSize: 14, // replace with your desired font size
       lineHeight: 2,
       letterSpacing: 0.2,
     },

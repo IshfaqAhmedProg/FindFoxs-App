@@ -104,15 +104,16 @@ export default function FeaturesSection() {
       {featureList.map((feature) => {
         return <Feature key={feature.title} feature={feature} />;
       })}
-      <Stack alignItems={"center"} gap={4}>
+      <Stack alignItems={"center"} gap={8}>
         <h2 data-aos="zoom-in-down">
           Complete modern <span>CRM</span>
           <br />
           capabilities.
         </h2>
         <Typography
-          style={{ width: "30ch", textAlign: "center" }}
+          style={{ width: "40ch", textAlign: "center" }}
           data-aos="fade-up"
+          fontSize={"16px"}
         >
           Add FindFoxs to your websites to manage leads that come from your
           website and to generate new leads.

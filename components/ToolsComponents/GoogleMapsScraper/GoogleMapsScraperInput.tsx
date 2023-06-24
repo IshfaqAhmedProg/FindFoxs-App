@@ -8,6 +8,7 @@ import { CountryStateCity } from "@/shared/interfaces/ToolForm";
 import Image from "next/image";
 
 import keywordOptions from "@/shared/data/KeywordSuggestions.json";
+import AddonInterface from "../UtilityComponents/AddonInterface";
 const fetcher: Fetcher<Array<CountryStateCity>, string> = (...args) =>
   fetch(...args).then((res) => res.json());
 const options = {
@@ -77,8 +78,16 @@ export default function GoogleMapsScraperInput() {
   }, [formData.stateCode, formData.countryCode]);
 
   return (
-    <Stack pt={4} alignItems={"center"} gap={6} maxWidth={"500px"}>
-      <Typography textAlign={"center"}>
+    <Stack
+      p={1}
+      pt={4}
+      alignItems={"center"}
+      gap={3}
+      maxWidth={"500px"}
+      maxHeight={"80vh"}
+      sx={{ overflowY: "auto" }}
+    >
+      <Typography textAlign={"center"} fontSize={"14px"}>
         Enter keywords as you would type in the google maps search box or upload
         a file containing the keywords, make sure the file you upload is of
         .xlsx or .csv format. Also make sure the files have headers on the first
@@ -187,6 +196,11 @@ export default function GoogleMapsScraperInput() {
       <Box minWidth={"250px"}>
         <Divider>Additional Options</Divider>
       </Box>
+      <AddonInterface
+        onAddonSelect={(data) => {
+          console.log(data);
+        }}
+      />
     </Stack>
   );
 }
