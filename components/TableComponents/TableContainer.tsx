@@ -5,6 +5,7 @@ import TableCell from "./TableCell";
 import { useTable } from "@/contexts/TableContext";
 import { InView } from "react-intersection-observer";
 import Loading from "../Loading/Loading";
+import TableEndOfPage from "./TableEndOfPage";
 interface Props {
   primaryKey: string;
   secondaryKeys: Array<string>;
@@ -19,7 +20,6 @@ export default function TableContainer({
   secondaryItems,
 }: Props) {
   const theme = useTheme();
-  const [toggleSecondary, setToggleSecondary] = useState<boolean>();
   const { handleDataFetch, loading } = useTable();
 
   //to keep the sidebar toggled when screen is big
@@ -46,9 +46,12 @@ export default function TableContainer({
             minWidth: "25ch",
             minHeight: "81px",
             position: "relative",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
           }}
         >
-          {loading && <Loading />}
+          {loading ? <Loading /> : <TableEndOfPage primary={primaryKey} />}
         </InView>
       </Stack>
       <Stack
@@ -59,7 +62,7 @@ export default function TableContainer({
         height={"fit-content"}
         sx={{ overflowX: "auto", whiteSpace: "nowrap", overflowY: "hidden" }}
         position="relative"
-        pt={2}
+        py={2}
       >
         <Stack direction="row" pl={2} gap={2} alignItems="center">
           {secondaryKeys?.map((key) => (

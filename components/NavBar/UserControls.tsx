@@ -38,7 +38,7 @@ export default function UserControls({ container }: { container: any }) {
       name: "Account Settings",
       goto: "",
       handler: handleAccountClick,
-      icon: <UserAvatar user={user} />,
+      icon: <UserAvatar avatar={user?.photoURL} name={user?.email} />,
     },
   ];
   const menuLinks: Array<NavLinks> = [

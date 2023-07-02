@@ -238,7 +238,7 @@ const theme = createTheme({
       fontWeight: "bold",
     },
     fontFamily: [
-      '"Montserrat"',
+      "Montserrat",
       "-apple-system",
       "BlinkMacSystemFont",
       '"Segoe UI"',

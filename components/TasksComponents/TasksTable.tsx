@@ -57,6 +57,7 @@ export default function TasksTable() {
         })}
     </>
   );
+
   return (
     <TableContextProvider
       fetchDataFunction={fetchDataFunction}
