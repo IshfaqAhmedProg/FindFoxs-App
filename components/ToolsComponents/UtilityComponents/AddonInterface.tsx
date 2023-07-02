@@ -124,7 +124,7 @@ export default function AddonInterface({ onAddonSelect }: Props) {
           <Stack gap={2}>
             {addOnList.map((addon) => {
               return (
-                <Stack direction={"row"} gap={3} alignItems={"center"}>
+                <Stack direction={"row"} gap={3} alignItems={"center"} key={addon.name}>
                   <CustomCheckbox
                     checked={addons[addon.name]}
                     id={addon.name}
