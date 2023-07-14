@@ -63,6 +63,8 @@ export default function Home() {
         <div
           style={{
             gap: "5rem",
+            display: "flex",
+            flexDirection: "column",
             justifyContent: "flex-start",
             alignItems: "center",
             width: "100%",
