@@ -80,3 +80,4 @@ export function LinkIcon(props: SvgIconProps) {
     </SvgIcon>
   );
 }
+

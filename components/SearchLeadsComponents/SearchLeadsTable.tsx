@@ -43,7 +43,6 @@ export default function SearchLeadsTable({ leads }: { leads: Array<Lead> }) {
     </>
   );
 
-
   return (
     <Suspense
       fallback={
@@ -55,7 +54,7 @@ export default function SearchLeadsTable({ leads }: { leads: Array<Lead> }) {
       <TableMain
         tableTitle="Search for..."
         data={leads}
-        primaryKey="Name"
+        primaryKey="Lead"
         primaryItems={tablePrimaryItems}
         secondaryItems={tableSecondaryItems}
         secondaryKeys={leadPublicFields}

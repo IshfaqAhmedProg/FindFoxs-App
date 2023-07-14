@@ -1,10 +1,8 @@
 import { read, utils } from "xlsx";
 
-export default function processFile(
-  event: React.ChangeEvent<HTMLInputElement>
-) {
-  if (event.target.files) {
-    const file = event.target.files[0];
+export default function processFile(files: FileList) {
+  if (files) {
+    const file = files[0];
     return new Promise((resolve, reject) => {
       const fileSizeInKb = file.size / 1024;
       const MAX_FILE_SIZE = 25 * 1024;

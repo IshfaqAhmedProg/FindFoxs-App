@@ -31,13 +31,19 @@ export type handleSelectAllParams = {
   checked: boolean;
   tableData: DataTypesSupported;
 };
+export type Filter = {
+  label: string;
+  value: Array<string>;
+};
 export interface ITableContext {
   seeMoreOpen: boolean;
   seeMoreOpenAnchor: null | HTMLElement;
   selected: Array<string>;
-  page: number;
   activeTab: string;
   loading: boolean;
+  selectedFilters: Filter;
+  handleSetFilter: (sf: Filter) => void;
+  handleClearFilter: () => void;
   handleTabChange: (params: handleTabChangeParams) => void;
   handleDataFetch: () => void;
   handleSelect: (id: string) => void;

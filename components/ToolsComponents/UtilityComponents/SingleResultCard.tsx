@@ -1,4 +1,4 @@
-import SingleStatSmall from "@/components/CustomComponents/DisplayStats/SingleStatSmall";
+import DisplayStat from "@/components/CustomComponents/DisplayStats/DisplayStat";
 import Loading from "@/components/Loading/Loading";
 import CircularProgress from "@/components/ProgressBars/CircularProgress";
 import HorizontalProgress from "@/components/ProgressBars/HorizontalProgress";
@@ -68,7 +68,7 @@ export default function SingleResultCard({
                   title="Risk"
                 />
               );
-            else return <SingleStatSmall key={stat.statTitle} stat={stat} />;
+            else return <DisplayStat key={stat.statTitle} stat={stat} />;
           })}
         </Stack>
       )}

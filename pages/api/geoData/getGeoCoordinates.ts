@@ -1,24 +1,22 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  var headers = new Headers();
-  headers.append(
-    "X-CSCAPI-KEY",
-    "aTJhR2RKUk9OdWV6bno3MkIwd2ZlaVQwcExueHF1QWxmZnV3UDg2WA=="
-  );
-
+  const requestOptions = {
+    method: "GET",
+  };
   return new Promise<void>((resolve, reject) => {
-    fetch("https://api.countrystatecity.in/v1/countries", {
-      method: "GET",
-      headers: headers,
-      redirect: "follow",
-    })
+    fetch(
+      `https://nominatim.openstreetmap.org/search?q=${req.body.city},+${req.body.state},+${req.body.country}&format=json`,
+      requestOptions
+    )
       .then((response) => response.json())
       .then((response) => {
-        res.status(200).json(response);
+        res.status(200).send(response);
+        console.log("geocoords response", response);
         resolve();
       })
       .catch((error) => {
+        console.log("geocoords error", error);
         res.json(error);
         res.status(405).end();
         resolve();

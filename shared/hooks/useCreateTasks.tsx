@@ -36,7 +36,6 @@ const useCreateTask = ({
         .replace(/[-]/g, "")
         .slice(0, 20);
       const _idShort = _id.slice(0, 8);
-      const estTTC = estimatedTTC(queryCount, tool);
       const data: Task = {
         dateCreated: Timestamp.fromDate(new Date(dateId)),
         queryCount: queryCount,
@@ -45,7 +44,6 @@ const useCreateTask = ({
         uid: user.uid,
         _id,
         _idShort,
-        estimatedTTC: estTTC,
         unit,
       };
 
@@ -55,7 +53,7 @@ const useCreateTask = ({
       setLoadingCreateTask(true);
       adder = Promise.all([
         uploadString(blobRef, dataBlob).then(async (snapshot) => {
-          await setDoc(doc(db, "tasks", _id), data);
+          await setDoc(doc(db, `users/${user.uid}/tasks`, _id), data);
         }),
       ]).catch((err) => {
         console.log(err);

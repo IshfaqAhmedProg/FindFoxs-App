@@ -1,4 +1,5 @@
 import {
+  Filter,
   ITableContext,
   handlePageChangeParams,
   handleSelectAllParams,
@@ -12,14 +13,19 @@ export const TableContextProvider = ({
   children,
   fetchDataFunction,
   loading,
+  filterFunctions,
 }: {
   children: React.ReactNode;
   fetchDataFunction: () => void;
   loading?: boolean;
+  filterFunctions: [(sf: Filter) => void, () => void];
 }) => {
   const [selected, setSelected] = useState<Array<string>>([]);
-  const [page, setPage] = useState<number>(1);
   const [activeTab, setActiveTab] = useState<string>("");
+  const [selectedFilters, setSelectedFilters] = useState<Filter>({
+    label: "",
+    value: [],
+  });
   const [seeMoreOpenAnchor, setSeeMoreOpenAnchor] =
     useState<null | HTMLElement>(null);
   const seeMoreOpen = Boolean(seeMoreOpenAnchor);
@@ -45,7 +51,14 @@ export const TableContextProvider = ({
   const handleDataFetch = () => {
     fetchDataFunction();
   };
-
+  const handleSetFilter = (sf: Filter) => {
+    setSelectedFilters(sf);
+    filterFunctions[0](sf);
+  };
+  const handleClearFilter = () => {
+    setSelectedFilters({ label: "", value: [] });
+    filterFunctions[1]();
+  };
   const handleTabChange = (params: handleTabChangeParams) => {
     setActiveTab(params.tab);
   };
@@ -54,10 +67,12 @@ export const TableContextProvider = ({
       value={{
         selected,
         loading,
-        page,
         seeMoreOpen,
         activeTab,
         seeMoreOpenAnchor,
+        selectedFilters,
+        handleSetFilter,
+        handleClearFilter,
         handleTabChange,
         handleDataFetch,
         handleSelect,

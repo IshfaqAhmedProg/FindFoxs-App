@@ -59,7 +59,7 @@ export default function DoughnutCard({
       </Stack>
       <Stack
         justifyContent={"center"}
-        gap={3}
+        gap={2}
         flexGrow={1}
         minWidth={"300px"}
         maxWidth={"350px"}

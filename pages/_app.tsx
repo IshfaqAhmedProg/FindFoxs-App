@@ -6,20 +6,10 @@ import { ThemeProvider } from "@mui/material/styles";
 import type { AppProps } from "next/app";
 import { Analytics } from "@vercel/analytics/react";
 import Script from "next/script";
-import AOS from "aos";
-import "aos/dist/aos.css";
 
-import { useEffect } from "react";
 
 export default function App({ Component, pageProps }: AppProps) {
-  useEffect(() => {
-    AOS.init({
-      startEvent: "DOMContentLoaded",
-      initClassName: "aos-init",
-      animatedClassName: "aos-animate",
-      disable: "mobile",
-    });
-  }, []);
+
   return (
     <AuthContextProvider>
       <ThemeProvider theme={theme}>

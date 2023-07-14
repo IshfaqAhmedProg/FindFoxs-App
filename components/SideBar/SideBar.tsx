@@ -46,15 +46,19 @@ export default function SideBar({ toggle, handleToggle }: Props) {
       goto: "",
       children: [
         { name: "Email Validator", goto: "/tools/emailValidator" },
-        { name: "Number Validator", goto: "/tools/phoneNumberValidator" },
+        { name: "Phone Number Validator", goto: "/tools/phoneNumberValidator" },
         {
           name: "WhatsApp Validator",
-          goto: "https://whatsappautobot.vercel.app",
+          goto: "/",
         },
         { name: "Google Maps Scraper", goto: "/tools/googleMapsScraper" },
         {
           name: "Email and Contacts Scraper",
           goto: "/tools/emailAndContactScraper",
+        },
+        {
+          name: "Facebook Scraper",
+          goto: "/tools/facebookScraper",
         },
       ],
       expanded: toolsToggle,
@@ -85,7 +89,6 @@ export default function SideBar({ toggle, handleToggle }: Props) {
           setToolsToggle(!content.expanded);
         }
         break;
-
       default:
         break;
     }

@@ -5,33 +5,33 @@ import TableItem from "../TableComponents/TableItem";
 import SearchLeadsSelectAction from "../SearchLeadsComponents/SearchLeadsSelectAction";
 import TasksTableSecondaryItem from "./TasksTableSecondaryItem";
 import TasksTablePrimaryItem from "./TasksTablePrimaryItem";
-import TaskTableFilter from "./TaskTableFilter";
+import TaskTableFilter, { ITaskTableFilter } from "./TaskTableFilter";
 import { TableContextProvider } from "@/contexts/TableContext";
-import { DataTypesSupported } from "@/shared/interfaces/Table";
+import { useAuth } from "@/contexts/AuthContext";
+import { db } from "@/firebase/config";
+import {
+  query,
+  collection,
+  where,
+  orderBy,
+  limit,
+  startAfter,
+  QueryFieldFilterConstraint,
+} from "firebase/firestore";
 import useFirestoreCollection from "@/shared/hooks/useFirestoreCollection";
+import { Filter } from "@/shared/interfaces/Table";
+const queryLimit = 10;
 export default function TasksTable() {
-  const [tasks, setTasks] = useState<DataTypesSupported>([]);
-  const uid = typeof window !== "undefined" && localStorage.getItem("uid");
-  const [results, loading, error, fetchDataFunction] = useFirestoreCollection({
-    collectionString: "tasks",
-    whereObject: {
-      fieldPath: "uid",
-      opStr: "==",
-      value: uid,
-    },
-    orderByObject: {
-      fieldPath: "dateCreated",
-      order: "desc",
-    },
-    fetchSize: 10,
+  const [
+    tasks,
+    loading,
+    error,
+    fetchMoreTasksFunction,
+    handleSetFilter,
+    handleClearFilter,
+  ] = useFirestoreCollection({
+    queryLimit,
   });
-  useEffect(() => {
-    if (results && Array.isArray(results)) {
-      setTasks(results);
-    }
-  }, [results]);
-
-  console.log("tasks", tasks);
 
   const tablePrimaryItems = (
     <>
@@ -57,11 +57,11 @@ export default function TasksTable() {
         })}
     </>
   );
-
   return (
     <TableContextProvider
-      fetchDataFunction={fetchDataFunction}
+      fetchDataFunction={fetchMoreTasksFunction}
       loading={loading}
+      filterFunctions={[handleSetFilter, handleClearFilter]}
     >
       <TableMain
         tableTitle="All Tasks"

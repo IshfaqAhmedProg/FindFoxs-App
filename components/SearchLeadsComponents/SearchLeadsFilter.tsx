@@ -6,8 +6,7 @@ import MilitaryTechOutlinedIcon from "@mui/icons-material/MilitaryTechOutlined";
 import ApartmentRoundedIcon from "@mui/icons-material/ApartmentRounded";
 import PinDropRoundedIcon from "@mui/icons-material/PinDropRounded";
 import FactoryRoundedIcon from "@mui/icons-material/FactoryRounded";
-import { Menu } from "@mui/material";
-import { Stack, Typography, Autocomplete } from "@mui/material";
+import { Stack, Typography, Autocomplete, Menu } from "@mui/material";
 import jobTitles from "@/shared/data/ListOfJobTitles.json";
 
 const LeadTableFilters: Array<LeadAction> = [
@@ -24,7 +23,7 @@ export default function SearchLeadsFilter() {
   const [filterOpenAnchor, setFilterOpenAnchor] = useState<null | HTMLElement>(
     null
   );
-  const addonOpen = Boolean(filterOpenAnchor);
+  const filterOpen = Boolean(filterOpenAnchor);
   function handleFilterClick(event: React.MouseEvent<HTMLElement>) {
     setFilterOpenAnchor(event.currentTarget);
   }
@@ -81,7 +80,7 @@ export default function SearchLeadsFilter() {
       })}
       <Menu
         anchorEl={filterOpenAnchor}
-        open={addonOpen}
+        open={filterOpen}
         onClose={handleFilterClose}
         anchorOrigin={{
           vertical: "bottom",

@@ -63,7 +63,7 @@ export default function PhoneNumberValidator() {
       formData
     );
   }
-  async function submitFile(formData: IToolFormData) {
+  async function submitTask(formData: IToolFormData) {
     await setUserTasks(
       formData.formattedData,
       "Phone Number Validator",
@@ -79,9 +79,9 @@ export default function PhoneNumberValidator() {
       <ToolFormContextProvider
         checkFunction={checkIfPNumber}
         singleInputSubmitFunction={submitSingleNumber}
-        fileInputSubmitFunction={submitFile}
+        taskSubmitFunction={submitTask}
         initialFormData={initialFormData}
-        fileDataLoading={loadingCreateTask}
+        taskSubmitLoading={loadingCreateTask}
         singleDataLoading={loadingSingleResult}
       >
         <ValidatorsInput

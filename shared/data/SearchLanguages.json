@@ -1,0 +1,505 @@
+[
+  {
+    "label": "English",
+    "subtag": "en"
+  },
+  {
+    "label": "Spanish",
+    "subtag": "es"
+  },
+  {
+    "label": "French",
+    "subtag": "fr"
+  },
+  {
+    "label": "German",
+    "subtag": "de"
+  },
+  {
+    "label": "Afrikaans",
+    "subtag": "af"
+  },
+  {
+    "label": "Amharic",
+    "subtag": "am"
+  },
+  {
+    "label": "Arabic",
+    "subtag": "ar"
+  },
+  {
+    "label": "Mapudungun",
+    "subtag": "arn"
+  },
+  {
+    "label": "Assamese",
+    "subtag": "as"
+  },
+  {
+    "label": "Azerbaijani",
+    "subtag": "az"
+  },
+  {
+    "label": "Bashkir",
+    "subtag": "ba"
+  },
+  {
+    "label": "Belarusian",
+    "subtag": "be"
+  },
+  {
+    "label": "Bulgarian",
+    "subtag": "bg"
+  },
+  {
+    "label": "Bengali",
+    "subtag": "bn"
+  },
+  {
+    "label": "Tibetan",
+    "subtag": "bo"
+  },
+  {
+    "label": "Breton",
+    "subtag": "br"
+  },
+  {
+    "label": "Bosnian",
+    "subtag": "bs"
+  },
+  {
+    "label": "Catalan",
+    "subtag": "ca"
+  },
+  {
+    "label": "Corsican",
+    "subtag": "co"
+  },
+  {
+    "label": "Czech",
+    "subtag": "cs"
+  },
+  {
+    "label": "Welsh",
+    "subtag": "cy"
+  },
+  {
+    "label": "Danish",
+    "subtag": "da"
+  },
+
+  {
+    "label": "Lower Sorbian",
+    "subtag": "dsb"
+  },
+  {
+    "label": "Divehi",
+    "subtag": "dv"
+  },
+  {
+    "label": "Greek",
+    "subtag": "el"
+  },
+
+  {
+    "label": "Estonian",
+    "subtag": "et"
+  },
+  {
+    "label": "Basque",
+    "subtag": "eu"
+  },
+  {
+    "label": "Persian",
+    "subtag": "fa"
+  },
+  {
+    "label": "Finnish",
+    "subtag": "fi"
+  },
+  {
+    "label": "Filipino",
+    "subtag": "fil"
+  },
+  {
+    "label": "Faroese",
+    "subtag": "fo"
+  },
+
+  {
+    "label": "Frisian",
+    "subtag": "fy"
+  },
+  {
+    "label": "Irish",
+    "subtag": "ga"
+  },
+  {
+    "label": "Scottish Gaelic",
+    "subtag": "gd"
+  },
+  {
+    "label": "Galician",
+    "subtag": "gl"
+  },
+  {
+    "label": "Alsatian",
+    "subtag": "gsw"
+  },
+  {
+    "label": "Gujarati",
+    "subtag": "gu"
+  },
+  {
+    "label": "Hausa",
+    "subtag": "ha"
+  },
+  {
+    "label": "Hebrew",
+    "subtag": "he"
+  },
+  {
+    "label": "Hindi",
+    "subtag": "hi"
+  },
+  {
+    "label": "Croatian",
+    "subtag": "hr"
+  },
+  {
+    "label": "Upper Sorbian",
+    "subtag": "hsb"
+  },
+  {
+    "label": "Hungarian",
+    "subtag": "hu"
+  },
+  {
+    "label": "Armenian",
+    "subtag": "hy"
+  },
+  {
+    "label": "Indonesian",
+    "subtag": "id"
+  },
+  {
+    "label": "Igbo",
+    "subtag": "ig"
+  },
+  {
+    "label": "Yi",
+    "subtag": "ii"
+  },
+  {
+    "label": "Icelandic",
+    "subtag": "is"
+  },
+  {
+    "label": "Italian",
+    "subtag": "it"
+  },
+  {
+    "label": "Inuktitut",
+    "subtag": "iu"
+  },
+  {
+    "label": "Japanese",
+    "subtag": "ja"
+  },
+  {
+    "label": "Georgian",
+    "subtag": "ka"
+  },
+  {
+    "label": "Kazakh",
+    "subtag": "kk"
+  },
+  {
+    "label": "Greenlandic",
+    "subtag": "kl"
+  },
+  {
+    "label": "Khmer",
+    "subtag": "km"
+  },
+  {
+    "label": "Kannada",
+    "subtag": "kn"
+  },
+  {
+    "label": "Korean",
+    "subtag": "ko"
+  },
+  {
+    "label": "Konkani",
+    "subtag": "kok"
+  },
+  {
+    "label": "Kyrgyz",
+    "subtag": "ky"
+  },
+  {
+    "label": "Luxembourgish",
+    "subtag": "lb"
+  },
+  {
+    "label": "Lao",
+    "subtag": "lo"
+  },
+  {
+    "label": "Lithuanian",
+    "subtag": "lt"
+  },
+  {
+    "label": "Latvian",
+    "subtag": "lv"
+  },
+  {
+    "label": "Maori",
+    "subtag": "mi"
+  },
+  {
+    "label": "Macedonian",
+    "subtag": "mk"
+  },
+  {
+    "label": "Malayalam",
+    "subtag": "ml"
+  },
+  {
+    "label": "Mongolian",
+    "subtag": "mn"
+  },
+  {
+    "label": "Mohawk",
+    "subtag": "moh"
+  },
+  {
+    "label": "Marathi",
+    "subtag": "mr"
+  },
+  {
+    "label": "Malay",
+    "subtag": "ms"
+  },
+  {
+    "label": "Maltese",
+    "subtag": "mt"
+  },
+  {
+    "label": "Burmese",
+    "subtag": "my"
+  },
+  {
+    "label": "Norwegian (Bokmål)",
+    "subtag": "nb"
+  },
+  {
+    "label": "Nepali",
+    "subtag": "ne"
+  },
+  {
+    "label": "Dutch",
+    "subtag": "nl"
+  },
+  {
+    "label": "Norwegian (Nynorsk)",
+    "subtag": "nn"
+  },
+  {
+    "label": "Norwegian",
+    "subtag": "no"
+  },
+  {
+    "label": "Sesotho",
+    "subtag": "st"
+  },
+  {
+    "label": "Occitan",
+    "subtag": "oc"
+  },
+  {
+    "label": "Odia",
+    "subtag": "or"
+  },
+  {
+    "label": "Punjabi",
+    "subtag": "pa"
+  },
+  {
+    "label": "Polish",
+    "subtag": "pl"
+  },
+  {
+    "label": "Dari",
+    "subtag": "prs"
+  },
+  {
+    "label": "Pashto",
+    "subtag": "ps"
+  },
+  {
+    "label": "Portuguese",
+    "subtag": "pt"
+  },
+  {
+    "label": "K'iche",
+    "subtag": "quc"
+  },
+  {
+    "label": "Quechua",
+    "subtag": "qu"
+  },
+  {
+    "label": "Romansh",
+    "subtag": "rm"
+  },
+  {
+    "label": "Romanian",
+    "subtag": "ro"
+  },
+  {
+    "label": "Russian",
+    "subtag": "ru"
+  },
+  {
+    "label": "Kinyarwanda",
+    "subtag": "rw"
+  },
+  {
+    "label": "Sanskrit",
+    "subtag": "sa"
+  },
+  {
+    "label": "Yakut",
+    "subtag": "sah"
+  },
+  {
+    "label": "Sami (Northern)",
+    "subtag": "se"
+  },
+  {
+    "label": "Sinhala",
+    "subtag": "si"
+  },
+  {
+    "label": "Slovak",
+    "subtag": "sk"
+  },
+  {
+    "label": "Slovenian",
+    "subtag": "sl"
+  },
+  {
+    "label": "Sami (Southern)",
+    "subtag": "sma"
+  },
+  {
+    "label": "Sami (Lule)",
+    "subtag": "smj"
+  },
+  {
+    "label": "Sami (Inari)",
+    "subtag": "smn"
+  },
+  {
+    "label": "Sami (Skolt)",
+    "subtag": "sms"
+  },
+  {
+    "label": "Albanian",
+    "subtag": "sq"
+  },
+  {
+    "label": "Serbian",
+    "subtag": "sr"
+  },
+  {
+    "label": "Swedish",
+    "subtag": "sv"
+  },
+  {
+    "label": "Kiswahili",
+    "subtag": "sw"
+  },
+  {
+    "label": "Syriac",
+    "subtag": "syc"
+  },
+  {
+    "label": "Tamil",
+    "subtag": "ta"
+  },
+  {
+    "label": "Telugu",
+    "subtag": "te"
+  },
+  {
+    "label": "Tajik",
+    "subtag": "tg"
+  },
+  {
+    "label": "Thai",
+    "subtag": "th"
+  },
+  {
+    "label": "Turkmen",
+    "subtag": "tk"
+  },
+  {
+    "label": "Tswana",
+    "subtag": "tn"
+  },
+  {
+    "label": "Turkish",
+    "subtag": "tr"
+  },
+  {
+    "label": "Tatar",
+    "subtag": "tt"
+  },
+  {
+    "label": "Tamazight",
+    "subtag": "tzm"
+  },
+  {
+    "label": "Uyghur",
+    "subtag": "ug"
+  },
+  {
+    "label": "Ukrainian",
+    "subtag": "uk"
+  },
+  {
+    "label": "Urdu",
+    "subtag": "ur"
+  },
+  {
+    "label": "Uzbek",
+    "subtag": "uz"
+  },
+  {
+    "label": "Vietnamese",
+    "subtag": "vi"
+  },
+  {
+    "label": "Wolof",
+    "subtag": "wo"
+  },
+  {
+    "label": "Xhosa",
+    "subtag": "xh"
+  },
+  {
+    "label": "Yoruba",
+    "subtag": "yo"
+  },
+  {
+    "label": "Chinese",
+    "subtag": "zh"
+  },
+  {
+    "label": "Zulu",
+    "subtag": "zu"
+  }
+]

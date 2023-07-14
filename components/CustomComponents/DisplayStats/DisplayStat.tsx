@@ -1,8 +1,8 @@
 import React from "react";
-import { Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import Stats from "@/shared/interfaces/Stats";
 
-export default function SingleStatSmall({ stat }: { stat: Stats }) {
+export default function DisplayStat({ stat }: { stat: Stats }) {
   return (
     <Stack gap={2}>
       <Typography variant="h5" color={"var(--primary)"}>
@@ -14,7 +14,7 @@ export default function SingleStatSmall({ stat }: { stat: Stats }) {
           return (
             <Stack direction="row" justifyContent="space-between" key={index}>
               <Typography>{s.title}</Typography>
-              <Typography
+              <Box
                 color={
                   s.stat == "Unknown"
                     ? "var(--graylight)"
@@ -24,7 +24,7 @@ export default function SingleStatSmall({ stat }: { stat: Stats }) {
               >
                 {s.stat}&nbsp;
                 <span className="trailingText">{s.statUnit}</span>
-              </Typography>
+              </Box>
             </Stack>
           );
         })}

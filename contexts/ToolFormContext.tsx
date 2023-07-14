@@ -4,6 +4,7 @@ import { uniqueKeys } from "@/shared/functions/uniqueKeys";
 import IToolFormContext, {
   CountryStateCity,
   IToolFormData,
+  Language,
 } from "@/shared/interfaces/ToolForm";
 import React, { createContext, useContext, useState } from "react";
 
@@ -13,18 +14,18 @@ export const ToolFormContextProvider = ({
   children,
   checkFunction,
   singleInputSubmitFunction, //function to call the api and get the results used for anything where i need to directly call the api
-  fileInputSubmitFunction, //function to upload task to db
+  taskSubmitFunction, //function to upload task to db
   initialFormData,
   singleDataLoading,
-  fileDataLoading,
+  taskSubmitLoading,
 }: {
   children: React.ReactNode;
   singleInputSubmitFunction?: (formData: IToolFormData) => Promise<any>;
-  fileInputSubmitFunction: (formData: IToolFormData) => void;
+  taskSubmitFunction: (formData: IToolFormData) => void;
   checkFunction?: (data: any) => Array<any>;
   initialFormData: any;
   singleDataLoading?: boolean;
-  fileDataLoading?: boolean;
+  taskSubmitLoading?: boolean;
 }) => {
   const [formData, setFormData] = useState<IToolFormData>(initialFormData);
   const [showHeaderSelect, setShowHeaderSelect] = useState<boolean>(false);
@@ -64,12 +65,18 @@ export const ToolFormContextProvider = ({
   const handleCityChange = (val: CountryStateCity) => {
     setFormData({ ...formData, city: val.name });
   };
-  const handleFileDataChange = async (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    if (e.target.files) {
-      const fileName = e.target.files[0].name;
-      await processFile(e)
+  const handleLanguageChange = (lang: Language) => {
+    setFormData({ ...formData, language: lang.subtag });
+  };
+  const handleAddonChange = (addons: Array<string>) => {
+    setFormData({ ...formData, addons: addons[0] });
+    //TODO change this when phone number addon is also implemented on the backend
+  };
+
+  const handleFileDataChange = async (files: FileList | null) => {
+    if (files) {
+      const fileName = files[0].name;
+      await processFile(files)
         ?.then((res) => {
           if (Array.isArray(res)) {
             const uniqueHeaders = uniqueKeys(res);
@@ -104,43 +111,49 @@ export const ToolFormContextProvider = ({
     if (headerValue) setFormData({ ...formData, columnHeader: headerValue });
   };
   const handleHeaderSelectDialogClose = () => {
-    resetFormData();
-    setShowHeaderSelect(false);
+    if (!taskSubmitLoading) {
+      resetFormData();
+      setShowHeaderSelect(false);
+    }
   };
   const handleSingleInputSubmit = async (e: React.SyntheticEvent) => {
     //checking if singlerequest exist and the sending formdata to single request
     singleInputSubmitFunction && (await singleInputSubmitFunction(formData));
   };
-  const handleFileInputSubmit = (e: React.SyntheticEvent) => {
-    fileInputSubmitFunction(formData);
+  const handleTaskSubmit = (e: React.SyntheticEvent) => {
+    taskSubmitFunction(formData);
   };
+
   return (
     <ToolFormContext.Provider
       value={{
         formData,
         singleDataLoading,
+        taskSubmitLoading,
         resetFormData,
         handleKeywordChange,
         handleCountryChange,
         handleStateChange,
         handleCityChange,
+        handleLanguageChange,
+        handleAddonChange,
         handleSingleDataChange,
         handleFileDataChange,
         handleSingleInputSubmit,
-        handleFileInputSubmit,
+        handleTaskSubmit,
       }}
     >
-      <form>
+      <form onSubmit={(e) => e.preventDefault()}>
         {children}
         {formData.allColumnHeaders && (
-          //Show a dialog to select header columns and submit the task
+          //Show a dialog to select header columns and submit the task for validators only
           <SelectHeaderDialog
-            loading={fileDataLoading}
+            loading={taskSubmitLoading}
             open={showHeaderSelect}
             onClose={handleHeaderSelectDialogClose}
             headerSelect={handleHeaderSelect}
             checkData={checkDataInColumn}
-            handleSubmit={handleFileInputSubmit}
+            handleSubmit={handleTaskSubmit}
             formData={formData}
           />
         )}

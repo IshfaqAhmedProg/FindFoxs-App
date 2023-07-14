@@ -19,6 +19,7 @@ interface GoogleMapsScraperFormData {
   countryCode: string;
   stateCode: string;
   addons: string;
+  coords: string;
 }
 interface EmailAndContactsFormData {
   url: string;
@@ -30,21 +31,27 @@ export interface CountryStateCity {
   name: string;
   iso2?: string;
 }
+export interface Language {
+  label: string;
+  subtag: string;
+}
 export interface IToolFormData
   extends GoogleMapsScraperFormData,
     ValidatorFormData,
-    EmailAndContactsFormData {
-}
+    EmailAndContactsFormData {}
 export default interface IToolFormContext {
   formData: IToolFormData;
   singleDataLoading: boolean;
+  taskSubmitLoading: boolean;
   resetFormData: () => void;
   handleKeywordChange: (val: Array<string>) => void;
   handleCountryChange: (val: CountryStateCity) => void;
   handleStateChange: (val: CountryStateCity) => void;
   handleCityChange: (val: CountryStateCity) => void;
+  handleLanguageChange: (lang: Language) => void;
+  handleAddonChange: (addons: Array<string>) => void;
   handleSingleDataChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleFileDataChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleFileDataChange: (files: FileList | null) => void;
   handleSingleInputSubmit: (e: React.SyntheticEvent) => void;
-  handleFileInputSubmit: () => void;
+  handleTaskSubmit: () => void;
 }

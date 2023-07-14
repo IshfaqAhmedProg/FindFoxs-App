@@ -61,7 +61,7 @@ export default function EmailValidator() {
       formData
     );
   }
-  async function submitFile(formData: IToolFormData) {
+  async function submitTask(formData: IToolFormData) {
     await setUserTasks(
       formData.formattedData,
       "Email Validator",
@@ -76,9 +76,9 @@ export default function EmailValidator() {
       <ToolFormContextProvider
         checkFunction={checkIfEmail}
         singleInputSubmitFunction={submitSingleEmail}
-        fileInputSubmitFunction={submitFile}
+        taskSubmitFunction={submitTask}
         initialFormData={initialFormData}
-        fileDataLoading={loadingCreateTask}
+        taskSubmitLoading={loadingCreateTask}
         singleDataLoading={loadingSingleResult}
       >
         <ValidatorsInput

@@ -7,7 +7,7 @@ import DoughnutCard from "@/components/CustomComponents/DoughnutCard/DoughnutCar
 import ResultSummaryCard from "@/components/ToolsComponents/UtilityComponents/ResultSummaryCard";
 import VerticalResultCard from "@/components/ToolsComponents/UtilityComponents/VerticalResultCard";
 import sumObjectValues from "@/shared/functions/sumObjectValues";
-export default function EmailValidatorResult({ task }: { task: Task }) {
+export default function GoogleMapsScraperResult({ task }: { task: Task }) {
   const totalUndeliverable =
     sumObjectValues(task.response?.undeliverable) ?? 728;
   const totalUnknown = sumObjectValues(task.response?.unknown) ?? 403;

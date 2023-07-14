@@ -1,12 +1,16 @@
 import CustomBox from "@/components/CustomComponents/CustomBox";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import React from "react";
-
-export default function VerticalCardWrapper({
-  children,
-}: {
+interface Props {
   children: React.ReactNode;
-}) {
+  title: string;
+  titleColor: string;
+}
+export default function VerticalResultCard({
+  children,
+  title,
+  titleColor,
+}: Props) {
   return (
     <CustomBox boxProps={{ overflow: "hidden" }} variant="inner">
       <Box
@@ -19,6 +23,9 @@ export default function VerticalCardWrapper({
         gap={3}
         height={"100%"}
       >
+        <Typography fontWeight={"bold"} variant="h4" color={titleColor}>
+          {title}
+        </Typography>
         {children}
       </Box>
     </CustomBox>

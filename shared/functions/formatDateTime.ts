@@ -1,3 +1,5 @@
+import { Timestamp } from "firebase/firestore";
+
 export function formatDate(date: Date): string {
   const day = date?.getDate();
   const month = date?.toLocaleString("default", { month: "short" });
@@ -16,12 +18,16 @@ export function formatTime(date: Date): string {
 
   return `${hours}:${minutes}:${seconds} ${period}`;
 }
-export function formatTTC(date: Date): string {
-  const options: Intl.DateTimeFormatOptions = {
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-    hour12: false,
-  };
-  return date.toLocaleString("en-GB", options);
+export function calculateTTC(endTime: Date, startTime: Date) {
+  const durationInMilliseconds = endTime.getTime() - startTime.getTime();
+  const durationInSeconds = Math.floor(durationInMilliseconds / 1000);
+
+  const hours = Math.floor(durationInSeconds / 3600);
+  const minutes = Math.floor((durationInSeconds % 3600) / 60);
+  const seconds = durationInSeconds % 60;
+
+  const formattedDuration = `${hours.toString().padStart(2, "0")}:${minutes
+    .toString()
+    .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+  return formattedDuration;
 }

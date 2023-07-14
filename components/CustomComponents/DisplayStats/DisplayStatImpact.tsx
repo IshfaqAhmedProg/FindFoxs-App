@@ -2,7 +2,7 @@ import React from "react";
 import { Stat } from "@/shared/interfaces/Stats";
 import { Stack, Typography } from "@mui/material";
 
-export default function SingleStatBig({ title, statUnit, stat }: Stat) {
+export default function DisplayStatImpact({ title, statUnit, stat }: Stat) {
   return (
     <Stack>
       <Typography variant="h5" textAlign="center">

@@ -2,41 +2,7 @@ import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
   components: {
-    MuiChip: {
-      styleOverrides: {
-        root: {
-          background: "var(--primarylight)",
-          fontWeight: "bold",
-          color: "white",
-          borderRadius: "var(--border-radius-small)",
-        },
-      },
-    },
-    MuiInputLabel: {
-      styleOverrides: {
-        root: { color: "var(--primarylight)", fontSize: ".875rem" },
-      },
-    },
-    MuiInput: {
-      styleOverrides: {
-        root: {
-          width: "100%",
-          color: "var(--primarylight)",
-          ":hover:not(.Mui-disabled, .Mui-error)::before": {
-            borderBottom: "2px solid var(--accent)",
-          },
-          "::before": {
-            borderBottomColor: "var(--primarylight)",
-          },
-          "::after": {
-            height: "2px",
-            borderBottom: "none",
-            background:
-              "linear-gradient(90deg, var(--accent) 0%, var(--primary) 51%, var(--accent) 100%)",
-          },
-        },
-      },
-    },
+    //A
     MuiAlert: {
       styleOverrides: {
         root: {
@@ -53,13 +19,16 @@ const theme = createTheme({
         },
       },
     },
-    MuiFormControlLabel: {
+    MuiAvatar: {
       styleOverrides: {
         root: {
-          marginLeft: 0,
+          width: 35,
+          height: 35,
+          fontSize: 14,
         },
       },
     },
+    //B
     MuiButton: {
       styleOverrides: {
         root: {
@@ -74,54 +43,40 @@ const theme = createTheme({
         },
       },
     },
-    MuiSvgIcon: {
+    //C
+    MuiCard: {
       styleOverrides: {
         root: {
-          fontSize: 25,
-          transition: "all 0.15s ease",
+          borderRadius: "var(--border-radius)",
+          overflowY: "auto",
+          boxShadow: "var(--box-shadow)",
+          display: "flex",
+          flexDirection: "column",
         },
       },
     },
-    MuiMenuItem: {
-      styleOverrides: {
-        root: {
-          color: "var(--graydark)",
-          fontSize: 14,
-          borderRadius: "var(--border-radius-small)",
-          "& .MuiSvgIcon-root": {
-            fontSize: 20,
-            color: "var(--graylight)",
-          },
-        },
-      },
-    },
-    MuiMenu: {
+    MuiCardHeader: {
       defaultProps: {
-        PaperProps: {
-          elevation: 0,
+        titleTypographyProps: {
           sx: {
-            borderRadius: "var(--border-radius)",
-            overflow: "visible",
-            filter: "drop-shadow(var(--box-shadow))",
-            "& .MuiAvatar-root": {
-              width: 40,
-              height: 40,
-              // ml: -0.5,
-              mr: 1,
-            },
+            fontSize: { xs: "0.875rem", sm: ".75rem", md: ".875rem" },
+            fontWeight: "bold",
+            color: "var(--primarydark)",
           },
         },
       },
     },
-    MuiListItemButton: {
+    MuiChip: {
       styleOverrides: {
         root: {
-          borderRadius:
-            "var(--border-radius-small) 0 0 var(--border-radius-small)",
+          background: "var(--primarylight)",
+          fontWeight: "bold",
+          color: "white",
+          borderRadius: "var(--border-radius-small)",
         },
       },
     },
-
+    //D
     MuiDialog: {
       styleOverrides: {
         root: {
@@ -159,37 +114,92 @@ const theme = createTheme({
         },
       },
     },
-    MuiCard: {
+    //F
+    MuiFormControlLabel: {
       styleOverrides: {
         root: {
-          borderRadius: "var(--border-radius)",
-          overflowY: "auto",
-          boxShadow: "var(--box-shadow)",
-          display: "flex",
-          flexDirection: "column",
+          marginLeft: 0,
         },
       },
     },
-    MuiCardHeader: {
-      defaultProps: {
-        titleTypographyProps: {
-          sx: {
-            fontSize: { xs: "0.875rem", sm: ".75rem", md: ".875rem" },
-            fontWeight: "bold",
-            color: "var(--primarydark)",
+    //I
+    MuiInputLabel: {
+      styleOverrides: {
+        root: { color: "var(--primarylight)", fontSize: ".875rem" },
+      },
+    },
+    MuiInput: {
+      styleOverrides: {
+        root: {
+          width: "100%",
+          color: "var(--primarylight)",
+          ":hover:not(.Mui-disabled, .Mui-error)::before": {
+            borderBottom: "2px solid var(--accent)",
+          },
+          "::before": {
+            borderBottomColor: "var(--primarylight)",
+          },
+          "::after": {
+            height: "2px",
+            borderBottom: "none",
+            background:
+              "linear-gradient(90deg, var(--accent) 0%, var(--primary) 51%, var(--accent) 100%)",
           },
         },
       },
     },
-    MuiAvatar: {
+    //L
+    MuiList: {
       styleOverrides: {
         root: {
-          width: 35,
-          height: 35,
-          fontSize: 14,
+          "& .MuiListItemButton-root svg": {
+            color: "var(--primarylight)",
+          },
         },
       },
     },
+    //L
+    MuiListItemButton: {
+      styleOverrides: {
+        root: {
+          borderRadius:
+            "var(--border-radius-small) 0 0 var(--border-radius-small)",
+        },
+      },
+    },
+    //M
+    MuiMenuItem: {
+      styleOverrides: {
+        root: {
+          color: "var(--graydark)",
+          fontSize: 14,
+          borderRadius: "var(--border-radius-small)",
+          "& .MuiSvgIcon-root": {
+            fontSize: 20,
+            color: "var(--graylight)",
+          },
+        },
+      },
+    },
+    MuiMenu: {
+      defaultProps: {
+        PaperProps: {
+          elevation: 0,
+          sx: {
+            borderRadius: "var(--border-radius)",
+            overflow: "visible",
+            filter: "drop-shadow(var(--box-shadow))",
+            "& .MuiAvatar-root": {
+              width: 40,
+              height: 40,
+              // ml: -0.5,
+              mr: 1,
+            },
+          },
+        },
+      },
+    },
+    //P
     MuiPaginationItem: {
       styleOverrides: {
         root: {
@@ -198,12 +208,12 @@ const theme = createTheme({
         },
       },
     },
-    MuiList: {
+    //S
+    MuiSvgIcon: {
       styleOverrides: {
         root: {
-          "& .MuiListItemButton-root svg": {
-            color: "var(--primarylight)",
-          },
+          fontSize: 25,
+          transition: "all 0.15s ease",
         },
       },
     },

@@ -3,8 +3,8 @@ import TableCell from "../TableComponents/TableCell";
 import StatusGenerator from "./StatusGenerator";
 import { Stack, Typography } from "@mui/material";
 import {
+  calculateTTC,
   formatDate,
-  formatTTC,
   formatTime,
 } from "@/shared/functions/formatDateTime";
 import Task from "@/shared/interfaces/Tasks";
@@ -17,6 +17,7 @@ export default function TasksTableSecondaryItem({
 }) {
   const startTime = task.dateCreated?.toDate();
   const endTime = task.dateCompleted?.toDate() ?? undefined;
+
   const DateTimeComponent = ({ dateTime }: { dateTime: Date }) => {
     return (
       <Stack direction={"row"} gap={0.5} alignItems={"flex-end"}>
@@ -44,10 +45,15 @@ export default function TasksTableSecondaryItem({
         {endTime ? <DateTimeComponent dateTime={endTime} /> : "-"}
       </TableCell>
       <TableCell>
-        <Typography>{task.estimatedTTC}</Typography>
+        <Typography>
+          {endTime ? calculateTTC(endTime, startTime) : "-"}
+        </Typography>
       </TableCell>
       <TableCell>
-        <Typography>{task.queryCount}</Typography>
+        <Typography>
+          {task.queryCount} {task.unit}
+          {"("}s{")"}
+        </Typography>
       </TableCell>
     </>
   );

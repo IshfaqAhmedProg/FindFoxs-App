@@ -1,14 +1,25 @@
 import CustomTextInput from "@/components/CustomComponents/CustomTextInput";
-import { Box, Divider, Stack, Typography, Autocomplete } from "@mui/material";
+import {
+  Box,
+  Divider,
+  Stack,
+  Typography,
+  Autocomplete,
+  Collapse,
+} from "@mui/material";
 import useSWR, { Fetcher } from "swr";
 
 import React, { useEffect, useState } from "react";
 import { useToolForm } from "@/contexts/ToolFormContext";
-import { CountryStateCity } from "@/shared/interfaces/ToolForm";
+import { CountryStateCity, Language } from "@/shared/interfaces/ToolForm";
 import Image from "next/image";
 
 import keywordOptions from "@/shared/data/KeywordSuggestions.json";
+import languageOptions from "@/shared/data/SearchLanguages.json";
 import AddonInterface from "../UtilityComponents/AddonInterface";
+import ArrowDropDownRoundedIcon from "@mui/icons-material/ArrowDropDownRounded";
+import ArrowDropUpRoundedIcon from "@mui/icons-material/ArrowDropUpRounded";
+import CustomButton from "@/components/CustomComponents/CustomButton";
 const fetcher: Fetcher<Array<CountryStateCity>, string> = (...args) =>
   fetch(...args).then((res) => res.json());
 const options = {
@@ -17,17 +28,22 @@ const options = {
 export default function GoogleMapsScraperInput() {
   const {
     formData,
+    taskSubmitLoading,
     handleKeywordChange,
     handleCountryChange,
     handleStateChange,
+    handleLanguageChange,
     handleCityChange,
+    handleAddonChange,
+    handleTaskSubmit,
   } = useToolForm();
   // {
   //   console.log("formData", formData);
   // }
+  const [addOptsTrigger, setAddOptsTrigger] = useState<boolean>(false);
   const [countryStates, setCountryStates] = useState([]);
   const [statesCity, setStateCity] = useState([]);
-  const { data: allCountries, error } = useSWR(
+  const { data: allCountries, error: allCountryError } = useSWR(
     "/api/geoData/getCountry",
     fetcher,
     options
@@ -38,6 +54,10 @@ export default function GoogleMapsScraperInput() {
   // {
   //   console.log("statesCity", statesCity);
   // }
+  function handleAddOptsTrigger() {
+    setAddOptsTrigger((prev) => !prev);
+  }
+
   useEffect(() => {
     if (formData.countryCode != "") {
       fetch("/api/geoData/getStateFromCountry", {
@@ -76,7 +96,6 @@ export default function GoogleMapsScraperInput() {
         });
     }
   }, [formData.stateCode, formData.countryCode]);
-
   return (
     <Stack
       p={1}
@@ -88,10 +107,10 @@ export default function GoogleMapsScraperInput() {
       sx={{ overflowY: "auto" }}
     >
       <Typography textAlign={"center"} fontSize={"14px"}>
-        Enter keywords as you would type in the google maps search box or upload
-        a file containing the keywords, make sure the file you upload is of
-        .xlsx or .csv format. Also make sure the files have headers on the first
-        row.
+        Enter keywords as you would type in the google maps search box. Maximum
+        of 5 keywords are allowed on one task. Make sure to select keywords
+        relevant to the business category you are targetting. If you dont find
+        your keywords in the list below you can add your own.
       </Typography>
       <Stack gap={2}>
         <Stack gap={2} alignItems={"center"}>
@@ -193,14 +212,60 @@ export default function GoogleMapsScraperInput() {
           </>
         )}
       </Stack>
-      <Box minWidth={"250px"}>
-        <Divider>Additional Options</Divider>
+      <Box minWidth={"300px"}>
+        <Divider>
+          <CustomButton
+            kind="plain"
+            buttonProps={{
+              endIcon: addOptsTrigger ? (
+                <ArrowDropUpRoundedIcon />
+              ) : (
+                <ArrowDropDownRoundedIcon />
+              ),
+              onClick: handleAddOptsTrigger,
+            }}
+          >
+            Additional Options
+          </CustomButton>
+        </Divider>
       </Box>
-      <AddonInterface
-        onAddonSelect={(data) => {
-          console.log(data);
+      <Box>
+        <Collapse in={addOptsTrigger}>
+          <Stack gap={2} width={"100%"} alignItems={"center"}>
+            <Stack direction="row" gap={2} alignItems={"center"}>
+              <Typography>Select Language of search results:</Typography>
+              <Autocomplete
+                size="small"
+                options={languageOptions}
+                getOptionLabel={(option: Language) => option.label}
+                limitTags={5}
+                onChange={(e, val) => {
+                  if (val) handleLanguageChange(val);
+                }}
+                renderInput={(params) => (
+                  <CustomTextInput
+                    placeholder="Language"
+                    sx={{ minWidth: "150px", maxWidth: "150px" }}
+                    {...params}
+                    disabled={formData.keywords.length == 5}
+                  />
+                )}
+              />
+            </Stack>
+            <AddonInterface onAddonSelect={handleAddonChange} />
+          </Stack>
+        </Collapse>
+      </Box>
+      <CustomButton
+        kind="secondary"
+        loading={taskSubmitLoading}
+        buttonProps={{
+          disabled: formData.keywords.length == 0 || formData.countryCode == "",
+          onClick: handleTaskSubmit,
         }}
-      />
+      >
+        Submit
+      </CustomButton>
     </Stack>
   );
 }

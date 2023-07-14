@@ -9,8 +9,8 @@ import {
   Box,
 } from "@mui/material";
 import Stats from "@/shared/interfaces/Stats";
-import SingleStatSmall from "@/components/CustomComponents/DisplayStats/SingleStatSmall";
-import SingleStatBig from "@/components/CustomComponents/DisplayStats/SingleStatBig";
+import DisplayStat from "@/components/CustomComponents/DisplayStats/DisplayStat";
+import DisplayStatImpact from "@/components/CustomComponents/DisplayStats/DisplayStatImpact";
 import { ResponsiveBar } from "@nivo/bar";
 import data from "@/shared/data/MockTeamActivity.json";
 import { nivoTheme } from "@/shared/theme/nivoTheme";
@@ -142,12 +142,12 @@ export default function TeamActivityCard() {
         </Box>
 
         <Stack direction="row" justifyContent="space-between" paddingX={6}>
-          <SingleStatBig
+          <DisplayStatImpact
             title="Total Calls by team"
             statUnit="this month"
             stat="80"
           />
-          <SingleStatBig
+          <DisplayStatImpact
             title="Total Emails by team"
             statUnit="this month"
             stat="250"
@@ -155,7 +155,7 @@ export default function TeamActivityCard() {
         </Stack>
         <Stack gap={2} paddingX={6}>
           {statData.map((stat) => {
-            return <SingleStatSmall key={stat.statTitle} stat={stat} />;
+            return <DisplayStat key={stat.statTitle} stat={stat} />;
           })}
           <Stack>
             <Typography variant="h5">Team members online</Typography>

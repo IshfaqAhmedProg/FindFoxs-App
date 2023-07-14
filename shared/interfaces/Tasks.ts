@@ -1,20 +1,19 @@
 import { Timestamp } from "firebase/firestore";
 import { IToolFormData } from "./ToolForm";
-import { User } from "firebase/auth";
-
+export const tools = [
+  "Google Maps Scraper",
+  "Email Validator",
+  "Facebook Scraper",
+  "Email And Contacts Scraper",
+  "Phone Number Validator",
+  "Whatsapp Validator",
+];
+export const statuses = ["RUNNING", "COMPLETE", "FAILED"];
 export interface Tools {
-  tool:
-    | string
-    | "Google Maps Scraper"
-    | "Email Validator"
-    | "Email Reverse Lookup"
-    | "Facebook Scraper"
-    | "Email And Contacts Scraper"
-    | "Phone Number Validator"
-    | "Whatsapp Validator";
+  tool: string | (typeof tools)[number];
 }
 export interface Status {
-  status: string | "RUNNING" | "COMPLETE" | "FAILED";
+  status: string | (typeof statuses)[number];
 }
 interface TaskDetails {
   queryCount: number;

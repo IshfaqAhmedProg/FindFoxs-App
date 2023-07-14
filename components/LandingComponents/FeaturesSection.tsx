@@ -1,16 +1,23 @@
 import React from "react";
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography, useMediaQuery } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import Image from "next/image";
 import SearchForLeadsImage from "@/public/Images/SearchForLeads.png";
 import EngageWithLeadsImage from "@/public/Images/EngageWithLeads.png";
 import ManageYourLeadsImage from "@/public/Images/ManageYourLeads.png";
 import CRMCapableImage from "@/public/Images/CRMCapable.png";
+import EWLAnimation from "@public/Images/Animation/EWL.json";
+import SFLAnimation from "@public/Images/Animation/SFL.json";
+import MYLAnimation from "@public/Images/Animation/MYL.json";
+import MYLOAnimation from "@public/Images/Animation/MYLOverlay.json";
+import Lottie from "lottie-react";
 interface FeatureType {
   highlighted: string;
   title: string;
   desc: string;
   image: any;
   direction: string;
+  animation?: React.ReactNode;
 }
 const featureList: FeatureType[] = [
   {
@@ -19,6 +26,27 @@ const featureList: FeatureType[] = [
     desc: "Search from millions of Leads that we provide in our up-to-date database of leads, or Add your own leads in bulk by uploading them.",
     image: SearchForLeadsImage,
     direction: "row",
+    animation: (
+      <Lottie
+        animationData={SFLAnimation}
+        style={{ width: "100%", maxWidth: "35rem", height: "auto" }}
+        interactivity={{
+          mode: "scroll",
+          actions: [
+            {
+              visibility: [0.2, 0.4],
+              type: "seek",
+              frames: [0, 43],
+            },
+            {
+              visibility: [0.4, 0.8],
+              type: "loop",
+              frames: [43, 199],
+            },
+          ],
+        }}
+      />
+    ),
   },
   {
     highlighted: "Engage",
@@ -26,6 +54,22 @@ const featureList: FeatureType[] = [
     desc: "Send leads on your list Emails and Call them to convert them to a successful customer. Our enhanced systems allow you to convert 99% of your leads.",
     image: EngageWithLeadsImage,
     direction: "row-reverse",
+    animation: (
+      <Lottie
+        animationData={EWLAnimation}
+        style={{ width: "100%", maxWidth: "35rem", height: "auto" }}
+        interactivity={{
+          mode: "scroll",
+          actions: [
+            {
+              visibility: [0.2, 1.0],
+              type: "seek",
+              frames: [0, 120],
+            },
+          ],
+        }}
+      />
+    ),
   },
   {
     highlighted: "Manage",
@@ -33,11 +77,50 @@ const featureList: FeatureType[] = [
     desc: "Sequentially add leads to whichever stage association, incubation, satisfied or not interested the lead is, allowing you to spend your resource on leads that matter.",
     image: ManageYourLeadsImage,
     direction: "row",
+    animation: (
+      <Box position={"relative"} width={"32rem"} minHeight={512 / 1.8}>
+        <Lottie
+          animationData={MYLAnimation}
+          style={{
+            position: "absolute",
+            inset: 0,
+          }}
+          interactivity={{
+            mode: "scroll",
+            actions: [
+              {
+                visibility: [0.2, 1.0],
+                type: "seek",
+                frames: [0, 120],
+              },
+            ],
+          }}
+        />
+        <Lottie
+          animationData={MYLOAnimation}
+          style={{
+            position: "absolute",
+            inset: 0,
+          }}
+          interactivity={{
+            mode: "cursor",
+            actions: [
+              {
+                position: { x: [0, 1], y: [-1, 2] },
+                type: "seek",
+                frames: [0, 120],
+              },
+            ],
+          }}
+        />
+      </Box>
+    ),
   },
 ];
 export default function FeaturesSection() {
+  const theme = useTheme();
   const Feature = ({ feature }: { feature: FeatureType }) => {
-    const { highlighted, title, desc, image, direction } = feature;
+    const { highlighted, title, desc, image, direction, animation } = feature;
     return (
       <Stack
         justifyContent="center"
@@ -68,13 +151,23 @@ export default function FeaturesSection() {
           sx={{ width: { xs: "100%", md: "50%" } }}
           display="flex"
           justifyContent="center"
-          data-aos={direction != "row-reverse" ? "fade-right" : "fade-left"}
+          flex={"1 0 auto"}
+          data-aos={
+            useMediaQuery(theme.breakpoints.down("md")) &&
+            direction != "row-reverse"
+              ? "fade-right"
+              : "fade-left"
+          }
         >
-          <Image
-            src={image}
-            alt={`${highlighted} ${title}`}
-            style={{ width: "100%", maxWidth: "30rem", height: "auto" }}
-          />
+          {useMediaQuery(theme.breakpoints.down("md")) || !animation ? (
+            <Image
+              src={image}
+              alt={`${highlighted} ${title}`}
+              style={{ width: "100%", maxWidth: "30rem", height: "auto" }}
+            />
+          ) : (
+            animation
+          )}
         </Box>
       </Stack>
     );
@@ -82,7 +175,7 @@ export default function FeaturesSection() {
   return (
     <Stack width="100%" alignItems="center" gap={20}>
       <Stack alignItems={"center"} gap={4}>
-        <Stack direction={"row"}>
+        <Stack direction={"row"} flexWrap={"wrap"} justifyContent={"center"}>
           <h2 data-aos="zoom-in-down">One website with all your </h2>
           <h2 data-aos="flip-right" data-aos-delay="300">
             &nbsp;<span>Leads</span>&nbsp;

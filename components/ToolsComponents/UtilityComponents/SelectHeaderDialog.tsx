@@ -111,6 +111,7 @@ export default function SelectHeaderDialog({
                 onClick: onClose,
                 startIcon: <CancelRoundedIcon />,
                 type: "button",
+                disabled: loading,
               }}
             >
               Cancel

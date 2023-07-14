@@ -17,7 +17,7 @@ export default function EmailAndContactsScraper() {
   return (
     <ValidatorWrapper title="Email And Contacts Scraper">
       <ToolFormContextProvider
-        fileInputSubmitFunction={() => {
+        taskSubmitFunction={() => {
           console.log("file requested");
         }}
         initialFormData={emailAndContacts}

@@ -1,6 +1,13 @@
-import { Box, ButtonGroup, Divider, Typography } from "@mui/material";
-import React from "react";
-import SingleStatSmall from "../../CustomComponents/DisplayStats/SingleStatSmall";
+import React, { useState } from "react";
+import {
+  Box,
+  ButtonGroup,
+  Divider,
+  Typography,
+  Menu,
+  MenuItem,
+} from "@mui/material";
+import DisplayStat from "../../CustomComponents/DisplayStats/DisplayStat";
 import CustomButton from "../../CustomComponents/CustomButton";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ShareRoundedIcon from "@mui/icons-material/ShareRounded";
@@ -8,17 +15,66 @@ import Task from "@/shared/interfaces/Tasks";
 import { formatDate, formatTime } from "@/shared/functions/formatDateTime";
 import StatusGenerator from "../../TasksComponents/StatusGenerator";
 import { DocumentData } from "@firebase/firestore-types";
+import { getDownloadURL, ref, getStorage } from "firebase/storage";
+import downloadFile, {
+  getTaskResult,
+  getTaskDownloadUrl,
+} from "@/shared/functions/downloadFile";
+export interface ResultData {
+  downloadUrl: string;
+  response: Array<any>;
+}
+const downloadFormats = ["xlsx", "csv"];
+export type FileType = (typeof downloadFormats)[number];
 
 export default function ResultSummaryCard({
   task,
 }: {
   task: Task | DocumentData;
 }) {
+  const [taskResultData, setTaskResultData] = useState<ResultData>({
+    downloadUrl: "",
+    response: [],
+  });
+  const [downloadMenuAnchor, setDownloadMenuAnchor] =
+    useState<null | HTMLElement>(null);
+  const downloadMenuOpen = Boolean(downloadMenuAnchor);
+  function handleDownloadMenuClick(event: React.MouseEvent<HTMLElement>) {
+    setDownloadMenuAnchor(event.currentTarget);
+  }
+  function handleDownloadMenuClose() {
+    setDownloadMenuAnchor(null);
+  }
+  const checkForFile = async (fileType: FileType) => {
+    const resultData = {
+      downloadUrl: taskResultData.downloadUrl,
+      response: taskResultData.response,
+    };
+    if (taskResultData.downloadUrl == "") {
+      await getTaskDownloadUrl(`${task.uid}/tasks/${task._id}/response`).then(
+        (url) => {
+          resultData.downloadUrl = url;
+        }
+      );
+    }
+    if (taskResultData.response.length == 0) {
+      await getTaskResult(resultData.downloadUrl).then((response) => {
+        console.log(response);
+        resultData.response = response;
+      });
+    }
+    downloadFile(resultData, fileType, task);
+    setTaskResultData({
+      response: resultData.response,
+      downloadUrl: resultData.downloadUrl,
+    });
+  };
+
   return (
     <>
       <Typography variant="h4">Summary</Typography>
       <Divider />
-      <SingleStatSmall
+      <DisplayStat
         stat={{
           statTitle: task.tool,
           stats: [
@@ -51,14 +107,49 @@ export default function ResultSummaryCard({
           Share
         </CustomButton>
         <ButtonGroup variant="text">
-          <CustomButton buttonProps={{ size: "small" }} kind="secondary">
+          <CustomButton
+            buttonProps={{
+              size: "small",
+              onClick: (e) => checkForFile("xlsx"),
+            }}
+            kind="secondary"
+          >
             Download
           </CustomButton>
-          <CustomButton buttonProps={{ size: "small" }} kind="secondary">
+          <CustomButton
+            buttonProps={{ size: "small", onClick: handleDownloadMenuClick }}
+            kind="secondary"
+          >
             <ArrowDropDownIcon />
           </CustomButton>
         </ButtonGroup>
       </Box>
+      <Menu
+        anchorEl={downloadMenuAnchor}
+        open={downloadMenuOpen}
+        onClose={handleDownloadMenuClose}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "right",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+      >
+        <MenuItem sx={{ pointerEvents: "none" }}>
+          <Typography variant="h4" fontSize={"14px"}>
+            Select format
+          </Typography>
+        </MenuItem>
+        {downloadFormats.map((format) => {
+          return (
+            <MenuItem key={format} onClick={(e) => checkForFile(format)}>
+              {format}
+            </MenuItem>
+          );
+        })}
+      </Menu>
     </>
   );
 }

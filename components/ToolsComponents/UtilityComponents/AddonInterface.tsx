@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import EmailAndContactsIcon from "@/public/Icons/EmailAndContactsScraper.svg";
 import PhoneNumberValidatorIcon from "@/public/Icons/PhoneNumberValidator.svg";
 import Image from "next/image";
-import { Tooltip, Typography, Menu, Stack, MenuItem } from "@mui/material";
+import { Typography, Menu, Stack } from "@mui/material";
 import CustomButton from "@/components/CustomComponents/CustomButton";
 import CustomBox from "@/components/CustomComponents/CustomBox";
 import CustomCheckbox from "@/components/CustomComponents/CustomCheckbox";
@@ -53,12 +53,7 @@ export default function AddonInterface({ onAddonSelect }: Props) {
       messageConfirm:
         "Email and Contacts will be scraped from any websites found in the results",
     },
-    {
-      name: "PhoneNumberValidator",
-      icon: PhoneNumberValidatorIcon,
-      message: "Validate Phone Numbers found in the result",
-      messageConfirm: "Phone Numbers found in the result will be validated",
-    },
+
   ];
   return (
     <>
@@ -118,13 +113,24 @@ export default function AddonInterface({ onAddonSelect }: Props) {
           iconButtonProps={{ onClick: () => handleAddonClose() }}
         />
         <Stack alignItems={"center"} padding={3} gap={4}>
-          <Typography>
-            These add-ons will be executed along with the task
+          <Typography variant="h4" textAlign={"center"}>
+            These add-ons will be <br />
+            executed along with the task
           </Typography>
           <Stack gap={2}>
             {addOnList.map((addon) => {
               return (
-                <Stack direction={"row"} gap={3} alignItems={"center"} key={addon.name}>
+                <CustomBox
+                  variant="outer"
+                  key={addon.name}
+                  boxProps={{
+                    display: "flex",
+                    gap: 2,
+                    py: 2,
+                    px: 2,
+                    alignItems: "center",
+                  }}
+                >
                   <CustomCheckbox
                     checked={addons[addon.name]}
                     id={addon.name}
@@ -138,35 +144,33 @@ export default function AddonInterface({ onAddonSelect }: Props) {
                     style={{ minWidth: "60px", maxWidth: "60px" }}
                     alt="icon"
                   />
-                  <Typography textAlign="left" fontSize={"14px"}>
+                  <Typography
+                    textAlign="left"
+                    fontSize={"14px"}
+                    maxWidth={"30ch"}
+                    minHeight={"56px"}
+                  >
                     {addon.message}
                   </Typography>
-                </Stack>
+                </CustomBox>
               );
             })}
           </Stack>
-          <CustomButton kind="primary" buttonProps={{ onClick: handleAddon }}>
+          <CustomButton kind="secondary" buttonProps={{ onClick: handleAddon }}>
             Done
           </CustomButton>
         </Stack>
       </Menu>
-      <Tooltip
-        describeChild
-        arrow
-        title="Add modules to your task and get more out of your scraped data"
-        placement="right"
-        sx={{ maxWidth: "250px", color: "var(--accent)" }}
+
+      <CustomButton
+        buttonProps={{
+          type: "button",
+          onClick: handleAddonClick,
+          sx: { width: "100%" },
+        }}
       >
-        <CustomButton
-          buttonProps={{
-            type: "button",
-            onClick: handleAddonClick,
-            sx: { width: "100%" },
-          }}
-        >
-          + Add-on
-        </CustomButton>
-      </Tooltip>
+        + Add-on
+      </CustomButton>
     </>
   );
 }

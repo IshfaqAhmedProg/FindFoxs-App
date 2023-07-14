@@ -5,11 +5,21 @@ import FeaturesSection from "@/components/LandingComponents/FeaturesSection";
 import { Stack } from "@mui/material";
 import ToolsSection from "@/components/LandingComponents/ToolsSection";
 import FAQsection from "@/components/LandingComponents/FAQsection";
-import GetInTouchSection from "@/components/LandingComponents/GetInTouchSection";
 import Footer from "@/components/LandingComponents/Footer";
 import Cursor from "@/components/LandingComponents/Cursor";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 export default function Home() {
+  useEffect(() => {
+    AOS.init({
+      startEvent: "DOMContentLoaded",
+      initClassName: "aos-init",
+      animatedClassName: "aos-animate",
+      disable: window.innerWidth < 780,
+    });
+  }, []);
   return (
     <>
       <Head>
