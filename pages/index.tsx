@@ -2,7 +2,6 @@ import Head from "next/head";
 import { HeroSection } from "@/components/LandingComponents/HeroSection";
 import styles from "@/styles/Home.module.css";
 import FeaturesSection from "@/components/LandingComponents/FeaturesSection";
-import { Stack } from "@mui/material";
 import ToolsSection from "@/components/LandingComponents/ToolsSection";
 import FAQsection from "@/components/LandingComponents/FAQsection";
 import Footer from "@/components/LandingComponents/Footer";
@@ -61,11 +60,13 @@ export default function Home() {
       </Head>
       <Cursor />
       <main className={styles.main}>
-        <Stack
-          gap="5rem"
-          justifyContent="flex-start"
-          alignItems="center"
-          width="100%"
+        <div
+          style={{
+            gap: "5rem",
+            justifyContent: "flex-start",
+            alignItems: "center",
+            width: "100%",
+          }}
         >
           <HeroSection />
           <FeaturesSection />
@@ -73,7 +74,7 @@ export default function Home() {
           <FAQsection />
           {/* <GetInTouchSection /> */}
           <Footer />
-        </Stack>
+        </div>
       </main>
     </>
   );

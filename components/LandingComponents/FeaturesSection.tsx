@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { Box, Stack, Typography, useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import Image from "next/image";
@@ -10,7 +10,8 @@ import EWLAnimation from "@public/Images/Animation/EWL.json";
 import SFLAnimation from "@public/Images/Animation/SFL.json";
 import MYLAnimation from "@public/Images/Animation/MYL.json";
 import MYLOAnimation from "@public/Images/Animation/MYLOverlay.json";
-import Lottie from "lottie-react";
+import Loading from "../Loading/Loading";
+const Lottie = lazy(() => import("lottie-react"));
 interface FeatureType {
   highlighted: string;
   title: string;
@@ -166,7 +167,7 @@ export default function FeaturesSection() {
               style={{ width: "100%", maxWidth: "30rem", height: "auto" }}
             />
           ) : (
-            animation
+            <Suspense fallback={<Loading />}>{animation}</Suspense>
           )}
         </Box>
       </Stack>
