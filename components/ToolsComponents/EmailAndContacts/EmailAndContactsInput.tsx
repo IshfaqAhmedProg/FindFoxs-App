@@ -94,13 +94,7 @@ export default function EmailAndContactsInput() {
               Upload file
             </Box>
           </label>
-          <input
-            type="file"
-            onChange={handleFileDataChange}
-            id="fileInput"
-            hidden={true}
-            accept=".csv,.xls,.xlsx,text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel"
-          />
+
           <Box minWidth={"350px"}>
             <Divider />
           </Box>
