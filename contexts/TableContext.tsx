@@ -18,7 +18,7 @@ export const TableContextProvider = ({
   children: React.ReactNode;
   fetchDataFunction: () => void;
   loading?: boolean;
-  filterFunctions: [(sf: Filter) => void, () => void];
+  filterFunctions?: [(sf: Filter) => void, () => void];
 }) => {
   const [selected, setSelected] = useState<Array<string>>([]);
   const [activeTab, setActiveTab] = useState<string>("");
@@ -53,11 +53,11 @@ export const TableContextProvider = ({
   };
   const handleSetFilter = (sf: Filter) => {
     setSelectedFilters(sf);
-    filterFunctions[0](sf);
+    filterFunctions && filterFunctions[0](sf);
   };
   const handleClearFilter = () => {
     setSelectedFilters({ label: "", value: [] });
-    filterFunctions[1]();
+    filterFunctions && filterFunctions[1]();
   };
   const handleTabChange = (params: handleTabChangeParams) => {
     setActiveTab(params.tab);
