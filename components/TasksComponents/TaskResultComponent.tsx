@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import EmailValidatorResult from "../ToolsComponents/EmailValidator/EmailValidatorResult";
 import Loading from "../Loading/Loading";
-import useFirestoreDocument from "@/shared/hooks/useFirestoreDocument";
+import useReadDocument from "@/shared/hooks/useReadDocument";
 import Task, { isTask } from "@/shared/interfaces/Tasks";
 import { DTS } from "@/shared/interfaces/Table";
 import PhoneNumberValidatorResult from "../ToolsComponents/PhoneNumberValidator/PhoneNumberValidatorResult";
@@ -10,7 +10,7 @@ import { useAuth } from "@/contexts/AuthContext";
 export default function TaskResultComponent({ taskId }: { taskId: string }) {
   const [task, setTask] = useState<DTS>([]);
   const { user } = useAuth();
-  const [value, loading, error] = useFirestoreDocument({
+  const [value, loading, error] = useReadDocument({
     document: taskId,
     collection: `users/${user?.uid}/tasks`,
   });
@@ -29,6 +29,9 @@ export default function TaskResultComponent({ taskId }: { taskId: string }) {
         return <PhoneNumberValidatorResult task={task} />;
         break;
       case "Google Maps Scraper":
+        return <GoogleMapsScraperResult task={task} />;
+        break;
+      case "Emails And Contacts Scraper":
         return <GoogleMapsScraperResult task={task} />;
         break;
       default:

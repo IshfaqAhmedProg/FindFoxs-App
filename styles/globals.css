@@ -165,3 +165,14 @@ p {
     transform: none !important;
   }
 }
+@keyframes gradientScroll {
+  0% {
+    background-position: 0% 52%;
+  }
+  50% {
+    background-position: 100% 49%;
+  }
+  100% {
+    background-position: 0% 52%;
+  }
+}

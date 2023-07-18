@@ -53,8 +53,8 @@ export default function SideBar({ toggle, handleToggle }: Props) {
         },
         { name: "Google Maps Scraper", goto: "/tools/googleMapsScraper" },
         {
-          name: "Email and Contacts Scraper",
-          goto: "/tools/emailAndContactScraper",
+          name: "Emails and Contacts Scraper",
+          goto: "/tools/emailsAndContactsScraper",
         },
         {
           name: "Facebook Scraper",

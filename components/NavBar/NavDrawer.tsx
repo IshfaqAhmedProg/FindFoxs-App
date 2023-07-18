@@ -1,19 +1,13 @@
 import React from "react";
 import {
   Box,
-  Typography,
-  Divider,
   List,
   ListItem,
   ListItemButton,
   ListItemText,
   ListItemAvatar,
-  Avatar,
 } from "@mui/material";
-import Image from "next/image";
-import Logo from "../../public/Logos/VerifyFoxLogo.svg";
 import { NavLinks } from "@/shared/interfaces/Links";
-import { stringAvatar } from "@/shared/functions/stringAvatar";
 import Link from "next/link";
 
 interface Props {

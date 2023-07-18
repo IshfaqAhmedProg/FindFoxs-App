@@ -13,14 +13,14 @@ export const useToolForm = (): IToolFormContext => useContext(ToolFormContext);
 export const ToolFormContextProvider = ({
   children,
   checkFunction,
-  singleInputSubmitFunction, //function to call the api and get the results used for anything where i need to directly call the api
+  textInputSubmitFunction, //function to call the api and get the results used for anything where i need to directly call the api
   taskSubmitFunction, //function to upload task to db
   initialFormData,
   singleDataLoading,
   taskSubmitLoading,
 }: {
   children: React.ReactNode;
-  singleInputSubmitFunction?: (formData: IToolFormData) => Promise<any>;
+  textInputSubmitFunction?: (formData: IToolFormData) => Promise<any>;
   taskSubmitFunction: (formData: IToolFormData) => void;
   checkFunction?: (data: any) => Array<any>;
   initialFormData: any;
@@ -32,11 +32,11 @@ export const ToolFormContextProvider = ({
   const resetFormData = () => {
     setFormData(initialFormData);
   };
-  const handleSingleDataChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleTextInputChange = (textInput: Array<string>) => {
     setFormData({
       ...formData,
-      singleData: e.target.value,
-      formattedData: (checkFunction && checkFunction([e.target.value])) ?? [],
+      textData: textInput,
+      formattedData: (checkFunction && checkFunction(textInput)) ?? [],
     });
   };
   const handleKeywordChange = (val: Array<string>) => {
@@ -116,9 +116,9 @@ export const ToolFormContextProvider = ({
       setShowHeaderSelect(false);
     }
   };
-  const handleSingleInputSubmit = async (e: React.SyntheticEvent) => {
+  const handleTextInputSubmit = async (e: React.SyntheticEvent) => {
     //checking if singlerequest exist and the sending formdata to single request
-    singleInputSubmitFunction && (await singleInputSubmitFunction(formData));
+    textInputSubmitFunction && (await textInputSubmitFunction(formData));
   };
   const handleTaskSubmit = (e: React.SyntheticEvent) => {
     taskSubmitFunction(formData);
@@ -137,9 +137,9 @@ export const ToolFormContextProvider = ({
         handleCityChange,
         handleLanguageChange,
         handleAddonChange,
-        handleSingleDataChange,
+        handleTextInputChange,
+        handleTextInputSubmit,
         handleFileDataChange,
-        handleSingleInputSubmit,
         handleTaskSubmit,
       }}
     >

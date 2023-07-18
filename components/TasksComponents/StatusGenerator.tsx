@@ -3,7 +3,7 @@ import { Stack, Typography } from "@mui/material";
 import CheckCircleOutlineRoundedIcon from "@mui/icons-material/CheckCircleOutlineRounded";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import ManageHistoryRoundedIcon from "@mui/icons-material/ManageHistoryRounded";
-import capitalizeFirstLetter from "@/shared/functions/capitaliseFirstLetter";
+import capitalizeFirstLetter from "@/shared/functions/stringTransformers/capitaliseFirstLetter";
 import { Status } from "@/shared/interfaces/Tasks";
 interface Props extends Status {
   variant?: "small" | "large";

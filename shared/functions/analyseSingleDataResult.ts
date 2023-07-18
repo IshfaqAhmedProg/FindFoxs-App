@@ -2,7 +2,7 @@ import {
   EmailValidatorResponse,
   PhoneNumberValidatorResponse,
 } from "../interfaces/ValidatorResponses";
-import convertToReadableString from "./convertToReadableString";
+import convertToReadableString from "./stringTransformers/convertToReadableString";
 import getRandomArbitrary from "./getRandomArbitrary";
 
 export default function analyseSingleDataResult(

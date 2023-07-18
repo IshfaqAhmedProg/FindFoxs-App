@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import ValidatorWrapper from "../UtilityComponents/ValidatorWrapper";
+import ToolsLayout from "../UtilityComponents/ToolsLayout";
 import ToolVideo from "../UtilityComponents/ToolVideoCard";
 import { ToolFormContextProvider } from "@/contexts/ToolFormContext";
 import GoogleMapsScraperInput from "./GoogleMapsScraperInput";
@@ -64,7 +64,7 @@ export default function GoogleMapsScraper() {
     setLoading(loadingCreateTask);
   }, [loadingCreateTask]);
   return (
-    <ValidatorWrapper title="Google Maps Scraper">
+    <ToolsLayout title="Google Maps Scraper">
       <ToolFormContextProvider
         taskSubmitFunction={submitTask}
         taskSubmitLoading={loading}
@@ -73,6 +73,6 @@ export default function GoogleMapsScraper() {
         <GoogleMapsScraperInput />
       </ToolFormContextProvider>
       {/* <ToolVideo videoId="TF67a-48jlY" /> */}
-    </ValidatorWrapper>
+    </ToolsLayout>
   );
 }

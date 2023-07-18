@@ -1,7 +1,5 @@
-import { TaskUnits } from "./Tasks";
-
 export interface ValidatorFormData {
-  singleData: string;
+  textData: Array<string>;
   validationResult: string;
   fileName: string;
   unformattedData: Array<unknown>;
@@ -22,9 +20,7 @@ interface GoogleMapsScraperFormData {
   coords: string;
 }
 interface EmailAndContactsFormData {
-  url: string;
   page: string;
-  fileName: string;
 }
 export interface CountryStateCity {
   id: number;
@@ -50,8 +46,8 @@ export default interface IToolFormContext {
   handleCityChange: (val: CountryStateCity) => void;
   handleLanguageChange: (lang: Language) => void;
   handleAddonChange: (addons: Array<string>) => void;
-  handleSingleDataChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleTextInputChange: (textInput: Array<string>) => void;
   handleFileDataChange: (files: FileList | null) => void;
-  handleSingleInputSubmit: (e: React.SyntheticEvent) => void;
+  handleTextInputSubmit: (e: React.SyntheticEvent) => void;
   handleTaskSubmit: () => void;
 }

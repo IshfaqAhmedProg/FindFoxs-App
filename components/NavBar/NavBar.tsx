@@ -1,20 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-import {
-  AppBar,
-  Box,
-  SwipeableDrawer,
-  Toolbar,
-  Tooltip,
-  Stack,
-} from "@mui/material";
+import { AppBar, Box, Toolbar, Tooltip, Stack } from "@mui/material";
 
 import { NavLinks } from "@/shared/interfaces/Links";
-import { SearchBar } from "./SearchBar";
-import { NavDrawer } from "./NavDrawer";
 import UserControls from "./UserControls";
 import HideOnScroll from "../HideOnScroll/HideOnScroll";
 
@@ -22,6 +13,7 @@ import { useAuth } from "@/contexts/AuthContext";
 
 import Logo from "../../public/Logos/ScrapeFoxLogo.svg";
 import LoginRoundedIcon from "@mui/icons-material/LoginRounded";
+import RouteChangeIndicator from "./RouteChangeIndicator";
 interface Props {
   window?: () => Window;
 }
@@ -30,20 +22,11 @@ export default function NavBar(props: Props) {
   const { window } = props;
   const { user } = useAuth();
   const router = useRouter();
-  const [drawerToggle, setDrawerToggle] = useState(false);
-  const drawerWidth = 240;
-  const authLinks: Array<NavLinks> = [
-    { name: "Login", goto: "/auth/login" },
-    { name: "Signup", goto: "/auth/signup" },
-  ];
   const pagesLinks: Array<NavLinks> = [
     { name: "Features", goto: "/features" },
     { name: "Pricing", goto: "/pricing" },
     { name: "About", goto: "/about" },
   ];
-  function handleDrawerToggle() {
-    setDrawerToggle((prev) => !prev);
-  }
   const container =
     window !== undefined ? () => window().document.body : undefined;
   const loginSignupBox = (
@@ -85,6 +68,7 @@ export default function NavBar(props: Props) {
       })}
     </Stack>
   );
+
   return (
     <AppBar
       component="nav"
@@ -147,31 +131,7 @@ export default function NavBar(props: Props) {
           </Stack>
         </Toolbar>
       </HideOnScroll>
-      {/* 
-      <SwipeableDrawer
-        anchor="right"
-        container={container}
-        variant="temporary"
-        disableSwipeToOpen={true}
-        open={drawerToggle}
-        onOpen={handleDrawerToggle}
-        onClose={handleDrawerToggle}
-        ModalProps={{
-          keepMounted: true, // Better open performance on mobile.
-        }}
-        sx={{
-          display: { xs: "block" },
-          "& .MuiDrawer-paper": {
-            boxSizing: "border-box",
-            width: drawerWidth,
-          },
-        }}
-      >
-        <NavDrawer
-          drawerItems={authLinks}
-          handleDrawerToggle={handleDrawerToggle}
-        />
-      </SwipeableDrawer> */}
+      <RouteChangeIndicator />
     </AppBar>
   );
 }

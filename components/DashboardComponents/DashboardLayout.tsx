@@ -5,12 +5,11 @@ import { useTheme } from "@mui/material/styles";
 import { useMediaQuery, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 import Cursor from "../LandingComponents/Cursor";
+import styles from "@/styles/Home.module.css";
 
 export default function DashboardLayout({
-  title,
   children,
 }: {
-  title?: string;
   children?:
     | React.ReactElement
     | JSX.Element
@@ -23,60 +22,59 @@ export default function DashboardLayout({
   );
   const router = useRouter();
   return (
-    <Box position="relative" height="100%" width="100%" display="flex">
-      <SideBar
-        toggle={toggleSidebar}
-        handleToggle={(toggle) => setToggleSidebar(toggle)}
-      />
-      <Box
-        display="flex"
-        flexDirection="column"
-        width="100%"
-        height="100%"
-        paddingTop="5.5rem"
-        sx={
-          toggleSidebar
-            ? {
-                paddingLeft: { xs: "3rem", md: "4rem" },
-                paddingRight: { xs: "0", md: "1" },
-              }
-            : {
-                paddingLeft: { xs: "0.5rem", md: "1rem" },
-                paddingRight: { xs: "0", md: "1" },
-              }
-        }
-        paddingBottom={1}
-        alignItems="flex-start"
-      >
-        <Typography variant="h4" component="h1" px={1.5}>
-          {title}
-        </Typography>
+    <main className={styles.dashboard}>
+      <Box position="relative" height="100%" width="100%" display="flex">
+        <SideBar
+          toggle={toggleSidebar}
+          handleToggle={(toggle) => setToggleSidebar(toggle)}
+        />
         <Box
+          display="flex"
+          flexDirection="column"
           width="100%"
           height="100%"
-          display="grid"
+          paddingTop="5.5rem"
           sx={
-            router.pathname == "/dashboard"
+            toggleSidebar
               ? {
-                  overflowY: "auto",
-                  overflowX: "visible",
-                  gridTemplateColumns: { md: "1fr", lg: "1fr 1fr" },
-                  gridAutoRows: "auto",
-                  px: { xs: 0, md: 1.5 },
+                  paddingLeft: { xs: "3rem", md: "4rem" },
+                  paddingRight: { xs: "0", md: "1" },
                 }
               : {
-                  overflowY: "auto",
-                  overflowX: "visible",
-                  px: { xs: 0, md: 1.5 },
+                  paddingLeft: { xs: "0.5rem", md: "1rem" },
+                  paddingRight: { xs: "0", md: "1" },
                 }
           }
-          pt={1}
-          gap={2}
+          paddingBottom={1}
+          alignItems="flex-start"
         >
-          <Cursor />
-          {children}
+          <Box
+            width="100%"
+            height="100%"
+            display="grid"
+            sx={
+              router.pathname == "/dashboard"
+                ? {
+                    overflowY: "auto",
+                    overflowX: "visible",
+                    gridTemplateColumns: { md: "1fr", lg: "1fr 1fr" },
+                    gridAutoRows: "auto",
+                    px: { xs: 0, md: 1.5 },
+                  }
+                : {
+                    overflowY: "auto",
+                    overflowX: "visible",
+                    px: { xs: 0, md: 1.5 },
+                  }
+            }
+            pt={1}
+            gap={2}
+          >
+            <Cursor />
+            {children}
+          </Box>
         </Box>
       </Box>
-    </Box>
+    </main>
   );
 }

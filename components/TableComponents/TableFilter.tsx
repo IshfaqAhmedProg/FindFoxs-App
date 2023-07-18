@@ -50,7 +50,9 @@ export default function TableFilter({
               indeterminate={
                 selected.length > 0 && selected.length < tableData.length
               }
-              checked={selected.length == tableData.length}
+              checked={
+                selected.length == tableData.length && selected.length != 0
+              }
             />
           }
           sx={
@@ -102,13 +104,19 @@ export default function TableFilter({
             })}
           </Stack>
           <CustomButton
-            kind="plain"
-            buttonProps={{
-              startIcon: <ClearRoundedIcon />,
+            kind="icon"
+            iconButtonProps={{
+              sx: {
+                "& .MuiSvgIcon-root": {
+                  color: "var(--graylight)",
+                },
+                width: "25px",
+                height: "25px",
+              },
               onClick: (e) => handleClearFilter(),
             }}
           >
-            Clear
+            <ClearRoundedIcon />
           </CustomButton>
         </Stack>
       )}

@@ -1,17 +1,17 @@
 import React from "react";
 import Stats from "@/shared/interfaces/Stats";
 import SingleResultCard from "../UtilityComponents/SingleResultCard";
-import ValidatorWrapper from "../UtilityComponents/ValidatorWrapper";
+import ToolsLayout from "../UtilityComponents/ToolsLayout";
 import ToolVideo from "../UtilityComponents/ToolVideoCard";
 import { ToolFormContextProvider } from "@/contexts/ToolFormContext";
 import ValidatorsInput from "../UtilityComponents/ValidatorsInput";
 import { IToolFormData } from "@/shared/interfaces/ToolForm";
-import convertToReadableString from "@/shared/functions/convertToReadableString";
+import convertToReadableString from "@/shared/functions/stringTransformers/convertToReadableString";
 import { useRouter } from "next/navigation";
 import useCreateTask from "@/shared/hooks/useCreateTasks";
 import { useAuth } from "@/contexts/AuthContext";
 import useSingleDataResult from "@/shared/hooks/useSingleDataResult";
-import checkIfEmail from "@/shared/functions/checkIfEmail";
+import checkIfEmail from "@/shared/functions/checkIfFunctions/checkIfEmail";
 const publicStats = [
   "reason",
   "disposable",
@@ -72,10 +72,10 @@ export default function EmailValidator() {
       .catch((err: any) => console.log(err));
   }
   return (
-    <ValidatorWrapper title="Email Validator">
+    <ToolsLayout title="Email Validator">
       <ToolFormContextProvider
         checkFunction={checkIfEmail}
-        singleInputSubmitFunction={submitSingleEmail}
+        textInputSubmitFunction={submitSingleEmail}
         taskSubmitFunction={submitTask}
         initialFormData={initialFormData}
         taskSubmitLoading={loadingCreateTask}
@@ -93,6 +93,6 @@ export default function EmailValidator() {
         resultStat={singleResult.resultStat}
       />
       <ToolVideo videoId="TF67a-48jlY" />
-    </ValidatorWrapper>
+    </ToolsLayout>
   );
 }

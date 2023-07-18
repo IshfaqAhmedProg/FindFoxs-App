@@ -5,13 +5,13 @@ import Task, { Tools, isTask } from "@/shared/interfaces/Tasks";
 import TaskListItem from "@/components/TasksComponents/TaskListItem";
 import { Stack, Divider } from "@mui/material";
 import { DataTypesSupported } from "@/shared/interfaces/Table";
-import useFirestoreCollection from "@/shared/hooks/useFirestoreCollection";
+import useReadTasks from "@/shared/hooks/useReadTasks";
 const queryLimit = 5;
 
 export default function TasksCard() {
   const uid = typeof window !== "undefined" && localStorage.getItem("uid");
 
-  const [results, loading, error, fetchDataFunction] = useFirestoreCollection({
+  const [results, loading, error, fetchDataFunction] = useReadTasks({
     queryLimit,
   });
   return (

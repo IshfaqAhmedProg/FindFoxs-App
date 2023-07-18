@@ -6,7 +6,7 @@ import {
 } from "@/components/ToolsComponents/UtilityComponents/ResultSummaryCard";
 import { DocumentData } from "@firebase/firestore-types";
 import Task from "../interfaces/Tasks";
-import getFirstCharacter from "./getFirstCharacter";
+import getFirstCharacter from "./stringTransformers/getFirstCharacter";
 
 export default function downloadFile(
   resultData: ResultData,

@@ -1,26 +1,26 @@
-import React, { useEffect, useState } from "react";
-import { doc, setDoc, Timestamp } from "firebase/firestore";
+import { useState } from "react";
+import { doc, FirestoreError, setDoc, Timestamp } from "firebase/firestore";
 import { getStorage, ref, uploadString } from "firebase/storage";
 import { v5 as uuidv5 } from "uuid";
-import { estimatedTTC } from "@/shared/functions/estimatedTTC";
 import Task from "@/shared/interfaces/Tasks";
 import { User } from "firebase/auth";
 import { db } from "@/firebase/config";
 
-const useCreateTask = ({
-  user,
-}: {
-  user: User | null;
-}): [
+type ReturnProps = [
   (
     formData: any,
     tool: string,
     queryCount: number,
     unit: string
   ) => Promise<void | [void]>,
-  boolean
-] => {
+  boolean,
+  FirestoreError | undefined | Error
+];
+
+
+const useCreateTask = ({ user }: { user: User | null }): ReturnProps => {
   const [loadingCreateTask, setLoadingCreateTask] = useState<boolean>(false);
+  const [error, setError] = useState<FirestoreError | undefined | Error>();
   const setUserTasks = async (
     formData: any,
     tool: string,
@@ -58,10 +58,11 @@ const useCreateTask = ({
       ]).catch((err) => {
         console.log(err);
         setLoadingCreateTask(false);
+        setError(err);
       });
       return adder;
     }
   };
-  return [setUserTasks, loadingCreateTask];
+  return [setUserTasks, loadingCreateTask, error];
 };
 export default useCreateTask;

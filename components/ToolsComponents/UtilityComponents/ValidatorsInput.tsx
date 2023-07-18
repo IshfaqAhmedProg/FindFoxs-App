@@ -17,8 +17,8 @@ export default function ValidatorsInput({ description, unit }: Props) {
     formData,
     singleDataLoading,
     resetFormData,
-    handleSingleDataChange,
-    handleSingleInputSubmit,
+    handleTextInputChange,
+    handleTextInputSubmit,
   } = useToolForm();
 
   return (
@@ -27,7 +27,7 @@ export default function ValidatorsInput({ description, unit }: Props) {
         {description}
       </Typography>
       <Stack direction={"row"} gap={2} alignItems={"center"}>
-        {formData.singleData &&
+        {formData.textData &&
           (formData.formattedData.length != 0 ? (
             <CheckRoundedIcon color="secondary" />
           ) : (
@@ -35,11 +35,11 @@ export default function ValidatorsInput({ description, unit }: Props) {
           ))}
         <CustomTextInput
           placeholder={`Enter ${unit} to validate`}
-          value={formData.singleData}
-          onChange={handleSingleDataChange}
+          value={formData.textData}
+          onChange={(e) => handleTextInputChange([e.target.value])}
           sx={{ width: "100%" }}
         />
-        {formData.singleData && (
+        {formData.textData && (
           <CustomButton
             kind="plain"
             buttonProps={{
@@ -51,12 +51,12 @@ export default function ValidatorsInput({ description, unit }: Props) {
           </CustomButton>
         )}
       </Stack>
-      {formData.singleData && (
+      {formData.textData && (
         <CustomButton
           kind="secondary"
           loading={singleDataLoading}
           buttonProps={{
-            onClick: handleSingleInputSubmit,
+            onClick: handleTextInputSubmit,
             disabled: formData.formattedData.length == 0,
             type: "submit",
           }}
@@ -64,7 +64,7 @@ export default function ValidatorsInput({ description, unit }: Props) {
           {formData.formattedData.length == 0 ? "Invalid Format" : "Validate"}
         </CustomButton>
       )}
-      {!formData.singleData && (
+      {!formData.textData && (
         <>
           <Box minWidth={"250px"}>
             <Divider>or</Divider>

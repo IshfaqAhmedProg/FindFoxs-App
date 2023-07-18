@@ -84,7 +84,6 @@ const theme = createTheme({
         },
         paperFullWidth: {
           borderRadius: "var(--border-radius)",
-          minHeight: "350px",
           justifyContent: "space-around",
           padding: "2rem",
         },

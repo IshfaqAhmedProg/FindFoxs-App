@@ -4,7 +4,7 @@ export const tools = [
   "Google Maps Scraper",
   "Email Validator",
   "Facebook Scraper",
-  "Email And Contacts Scraper",
+  "Emails And Contacts Scraper",
   "Phone Number Validator",
   "Whatsapp Validator",
 ];

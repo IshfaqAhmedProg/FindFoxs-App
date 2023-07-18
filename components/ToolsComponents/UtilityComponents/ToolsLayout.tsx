@@ -5,7 +5,7 @@ import CustomContainer from "../../CustomComponents/CustomContainer";
 import CustomButton from "@/components/CustomComponents/CustomButton";
 import Link from "next/link";
 
-export default function ValidatorWrapper({
+export default function ToolsLayout({
   children,
   title,
 }: {

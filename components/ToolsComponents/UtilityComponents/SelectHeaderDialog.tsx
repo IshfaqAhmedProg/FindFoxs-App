@@ -31,7 +31,14 @@ export default function SelectHeaderDialog({
   handleSubmit: (e: React.SyntheticEvent) => void;
 }) {
   return (
-    <Dialog open={open} id="backdropBlur" fullWidth={true}>
+    <Dialog
+      open={open}
+      id="backdropBlur"
+      fullWidth={true}
+      sx={{
+        minHeight: "350px",
+      }}
+    >
       <DialogTitle>
         <Typography variant="h4">Creating New Task</Typography>
       </DialogTitle>

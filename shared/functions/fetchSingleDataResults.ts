@@ -1,5 +1,5 @@
 import analyseSingleDataResult from "./analyseSingleDataResult";
-import convertToReadableString from "./convertToReadableString";
+import convertToReadableString from "./stringTransformers/convertToReadableString";
 
 export default async function fetchSingleDataResults(
   fetchUrl: string,

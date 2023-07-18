@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import Stats from "@/shared/interfaces/Stats";
 import SingleResultCard from "../UtilityComponents/SingleResultCard";
-import ValidatorWrapper from "../UtilityComponents/ValidatorWrapper";
+import ToolsLayout from "../UtilityComponents/ToolsLayout";
 import ToolVideo from "../UtilityComponents/ToolVideoCard";
 import { ToolFormContextProvider } from "@/contexts/ToolFormContext";
 import ValidatorsInput from "../UtilityComponents/ValidatorsInput";
 import { IToolFormData } from "@/shared/interfaces/ToolForm";
-import checkIfPNumber from "@/shared/functions/checkIfPNumber";
-import convertToReadableString from "@/shared/functions/convertToReadableString";
+import checkIfPNumber from "@/shared/functions/checkIfFunctions/checkIfPNumber";
+import convertToReadableString from "@/shared/functions/stringTransformers/convertToReadableString";
 import useSingleDataResult from "@/shared/hooks/useSingleDataResult";
 import useCreateTask from "@/shared/hooks/useCreateTasks";
 import { useAuth } from "@/contexts/AuthContext";
@@ -75,10 +75,10 @@ export default function PhoneNumberValidator() {
   }
 
   return (
-    <ValidatorWrapper title="Phone Number Validator">
+    <ToolsLayout title="Phone Number Validator">
       <ToolFormContextProvider
         checkFunction={checkIfPNumber}
-        singleInputSubmitFunction={submitSingleNumber}
+        textInputSubmitFunction={submitSingleNumber}
         taskSubmitFunction={submitTask}
         initialFormData={initialFormData}
         taskSubmitLoading={loadingCreateTask}
@@ -96,6 +96,6 @@ export default function PhoneNumberValidator() {
         resultStat={singleResult.resultStat}
       />
       <ToolVideo videoId="TF67a-48jlY" />
-    </ValidatorWrapper>
+    </ToolsLayout>
   );
 }

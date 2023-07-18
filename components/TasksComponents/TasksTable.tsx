@@ -1,25 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import TableMain from "../TableComponents/TableMain";
 import TablePrimaryItem from "../TableComponents/TablePrimaryItem";
 import TableItem from "../TableComponents/TableItem";
-import SearchLeadsSelectAction from "../SearchLeadsComponents/SearchLeadsSelectAction";
 import TasksTableSecondaryItem from "./TasksTableSecondaryItem";
 import TasksTablePrimaryItem from "./TasksTablePrimaryItem";
-import TaskTableFilter, { ITaskTableFilter } from "./TaskTableFilter";
+import TaskTableFilter from "./TaskTableFilter";
 import { TableContextProvider } from "@/contexts/TableContext";
-import { useAuth } from "@/contexts/AuthContext";
-import { db } from "@/firebase/config";
-import {
-  query,
-  collection,
-  where,
-  orderBy,
-  limit,
-  startAfter,
-  QueryFieldFilterConstraint,
-} from "firebase/firestore";
-import useFirestoreCollection from "@/shared/hooks/useFirestoreCollection";
-import { Filter } from "@/shared/interfaces/Table";
+import useReadTasks from "@/shared/hooks/useReadTasks";
+import TasksTableSelectAction from "./TasksTableSelectAction";
 const queryLimit = 10;
 export default function TasksTable() {
   const [
@@ -29,7 +17,7 @@ export default function TasksTable() {
     fetchMoreTasksFunction,
     handleSetFilter,
     handleClearFilter,
-  ] = useFirestoreCollection({
+  ] = useReadTasks({
     queryLimit,
   });
 
@@ -77,7 +65,7 @@ export default function TasksTable() {
           "Query count",
         ]}
         filterComponent={<TaskTableFilter />}
-        selectActionsComponent={<SearchLeadsSelectAction />}
+        selectActionsComponent={<TasksTableSelectAction />}
       />
     </TableContextProvider>
   );
