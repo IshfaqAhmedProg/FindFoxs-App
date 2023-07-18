@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-
 import TableContainer from "@/components/TableComponents/TableContainer";
 import TableFilter from "@/components/TableComponents/TableFilter";
 import TableTabsSelector from "./TableTabsSelector";
@@ -9,7 +8,7 @@ import CustomCard from "../CustomComponents/CustomCard";
 
 export default function TableMain({
   tableTitle = "",
-  data,
+  tableData,
   primaryKey = "",
   primaryItems,
   secondaryKeys,
@@ -33,7 +32,7 @@ export default function TableMain({
     >
       <TableFilter
         selectActionsComponent={selectActionsComponent}
-        tableData={data}
+        tableData={tableData}
         filterComponent={filterComponent}
       />
       <TableContainer

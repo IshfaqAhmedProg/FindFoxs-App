@@ -6,7 +6,6 @@ export const tools = [
   "Facebook Scraper",
   "Emails And Contacts Scraper",
   "Phone Number Validator",
-  "Whatsapp Validator",
 ];
 export const statuses = ["RUNNING", "COMPLETE", "FAILED"];
 export interface Tools {

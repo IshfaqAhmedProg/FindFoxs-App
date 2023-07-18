@@ -3,12 +3,11 @@ import EmailValidatorResult from "../ToolsComponents/EmailValidator/EmailValidat
 import Loading from "../Loading/Loading";
 import useReadDocument from "@/shared/hooks/useReadDocument";
 import Task, { isTask } from "@/shared/interfaces/Tasks";
-import { DTS } from "@/shared/interfaces/Table";
 import PhoneNumberValidatorResult from "../ToolsComponents/PhoneNumberValidator/PhoneNumberValidatorResult";
 import GoogleMapsScraperResult from "../ToolsComponents/GoogleMapsScraper/GoogleMapsScraperResult";
 import { useAuth } from "@/contexts/AuthContext";
 export default function TaskResultComponent({ taskId }: { taskId: string }) {
-  const [task, setTask] = useState<DTS>([]);
+  const [task, setTask] = useState<Array<Task | undefined>>([]);
   const { user } = useAuth();
   const [value, loading, error] = useReadDocument({
     document: taskId,
@@ -16,7 +15,7 @@ export default function TaskResultComponent({ taskId }: { taskId: string }) {
   });
   useEffect(() => {
     if (value) {
-      setTask(value);
+      setTask(value as Array<Task>);
     }
   }, [value]);
   // const task = tasks.find((task) => task._id == taskId);

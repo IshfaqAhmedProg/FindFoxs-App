@@ -1,10 +1,10 @@
-import React from "react";
+import { useState, useEffect } from "react";
 const useMousePosition = ({ includeTouch }: { includeTouch: Boolean }) => {
-  const [mousePosition, setMousePosition] = React.useState({
+  const [mousePosition, setMousePosition] = useState({
     x: null,
     y: null,
   });
-  React.useEffect(() => {
+  useEffect(() => {
     const updateMousePosition = (ev: any) => {
       let x, y;
       if (ev.touches) {

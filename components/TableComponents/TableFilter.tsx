@@ -10,17 +10,13 @@ import CustomCheckbox from "../CustomComponents/CustomCheckbox";
 import ClearRoundedIcon from "@mui/icons-material/ClearRounded";
 import { useTable } from "@/contexts/TableContext";
 import CustomButton from "../CustomComponents/CustomButton";
+import { ITableFilter } from "@/shared/interfaces/Table";
 
-interface Props {
-  tableData: Array<any>;
-  filterComponent: React.ReactElement;
-  selectActionsComponent: React.ReactElement;
-}
 export default function TableFilter({
   tableData,
   filterComponent,
   selectActionsComponent,
-}: Props) {
+}: ITableFilter) {
   const { handleSelectAll, selected, selectedFilters, handleClearFilter } =
     useTable();
   const containerRef = useRef(null);

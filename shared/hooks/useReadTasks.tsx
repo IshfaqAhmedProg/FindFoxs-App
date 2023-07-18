@@ -16,14 +16,14 @@ import checkIfObjectExistsInArray from "../functions/checkIfObjectExistsInArray"
 import Task from "../interfaces/Tasks";
 import { useAuth } from "@/contexts/AuthContext";
 import { db } from "@/firebase/config";
-import { Filter } from "../interfaces/Table";
+import { FilterParams } from "../interfaces/Table";
 
 type ReturnProps = [
   Array<Task>,
   boolean,
   FirestoreError | undefined,
   () => void,
-  (sf: Filter) => void,
+  (sf: FilterParams) => void,
   () => void
 ];
 
@@ -71,7 +71,7 @@ const useReadTasks = ({ queryLimit }: { queryLimit: number }): ReturnProps => {
       fetchDocs(q);
     }
   }
-  function handleSetFilter(sf: Filter) {
+  function handleSetFilter(sf: FilterParams) {
     clearAll();
     setFilterConstraint([where(sf.label, "in", sf.value)]);
   }

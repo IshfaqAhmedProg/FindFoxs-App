@@ -47,10 +47,6 @@ export default function SideBar({ toggle, handleToggle }: Props) {
       children: [
         { name: "Email Validator", goto: "/tools/emailValidator" },
         { name: "Phone Number Validator", goto: "/tools/phoneNumberValidator" },
-        {
-          name: "WhatsApp Validator",
-          goto: "/",
-        },
         { name: "Google Maps Scraper", goto: "/tools/googleMapsScraper" },
         {
           name: "Emails and Contacts Scraper",

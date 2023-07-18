@@ -1,16 +1,11 @@
-import React, { useState, useEffect } from "react";
-
-import DashboardCardsLayout from "./DashboardCardsLayout";
-import Task, { Tools, isTask } from "@/shared/interfaces/Tasks";
 import TaskListItem from "@/components/TasksComponents/TaskListItem";
-import { Stack, Divider } from "@mui/material";
-import { DataTypesSupported } from "@/shared/interfaces/Table";
 import useReadTasks from "@/shared/hooks/useReadTasks";
+import Task, { isTask } from "@/shared/interfaces/Tasks";
+import { Divider, Stack } from "@mui/material";
+import DashboardCardsLayout from "./DashboardCardsLayout";
 const queryLimit = 5;
 
 export default function TasksCard() {
-  const uid = typeof window !== "undefined" && localStorage.getItem("uid");
-
   const [results, loading, error, fetchDataFunction] = useReadTasks({
     queryLimit,
   });

@@ -6,19 +6,14 @@ import { useTable } from "@/contexts/TableContext";
 import { InView } from "react-intersection-observer";
 import Loading from "../Loading/Loading";
 import TableEndOfPage from "./TableEndOfPage";
-interface Props {
-  primaryKey: string;
-  secondaryKeys: Array<string>;
-  primaryItems: React.ReactElement;
-  secondaryItems: React.ReactElement;
-}
+import { ITableContainer } from "@/shared/interfaces/Table";
 
 export default function TableContainer({
   primaryKey,
   primaryItems,
   secondaryKeys,
   secondaryItems,
-}: Props) {
+}: ITableContainer) {
   const theme = useTheme();
   const { handleDataFetch, loading } = useTable();
 

@@ -1,11 +1,9 @@
-import React from "react";
-import { Divider, Stack } from "@mui/material";
-import CustomButton from "../CustomComponents/CustomButton";
-import { LeadSearchTabs } from "@/shared/interfaces/Lead";
 import { useTable } from "@/contexts/TableContext";
+import { Stack } from "@mui/material";
+import CustomButton from "../CustomComponents/CustomButton";
 
 interface Props {
-  tableTabs: Array<LeadSearchTabs>;
+  tableTabs: Array<string>;
 }
 export default function TableTabsSelector({ tableTabs }: Props) {
   const { activeTab, handleTabChange } = useTable();

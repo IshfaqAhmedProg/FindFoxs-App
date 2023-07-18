@@ -8,7 +8,7 @@ import MonitorHeartRoundedIcon from "@mui/icons-material/MonitorHeartRounded";
 import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
 import { statuses, tools } from "@/shared/interfaces/Tasks";
 import { useTable } from "@/contexts/TableContext";
-import { Filter } from "@/shared/interfaces/Table";
+import { FilterParams } from "@/shared/interfaces/Table";
 export type ITaskTableFilter = "tool" | "status" | string;
 interface TaskTableFilterObject {
   title: string;
@@ -43,7 +43,7 @@ export default function TaskTableFilter() {
     function handleFilterClose() {
       setFilterOpenAnchor(null);
     }
-    const [selectedOption, setSelectedOption] = useState<Filter>({
+    const [selectedOption, setSelectedOption] = useState<FilterParams>({
       label: "",
       value: [],
     });

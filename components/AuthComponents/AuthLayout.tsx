@@ -10,7 +10,6 @@ export default function AuthLayout({
   children: React.ReactNode;
 }) {
   const theme = useTheme();
-
   const { errorAlert } = useAuthError();
   const background = (
     <Image

@@ -1,12 +1,8 @@
-import React, { useState, useEffect } from "react";
-
-import { Box, Typography, IconButton, Tooltip } from "@mui/material";
-import Task, { Status, isTask } from "@/shared/interfaces/Tasks";
-
+import Task, { isTask } from "@/shared/interfaces/Tasks";
+import { DocumentData } from "@firebase/firestore-types";
+import { Box, Tooltip, Typography } from "@mui/material";
 import StatusGenerator from "./StatusGenerator";
 import TaskInteraction from "./TaskInteraction";
-import { DTS, DataTypesSupported } from "@/shared/interfaces/Table";
-import { DocumentData } from "@firebase/firestore-types";
 export default function TaskListItem({ task }: { task: Task | DocumentData }) {
   return (
     <Box

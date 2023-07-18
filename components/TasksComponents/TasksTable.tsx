@@ -53,7 +53,7 @@ export default function TasksTable() {
     >
       <TableMain
         tableTitle="All Tasks"
-        data={tasks}
+        tableData={tasks}
         primaryKey="Task"
         primaryItems={tablePrimaryItems}
         secondaryItems={tableSecondaryItems}

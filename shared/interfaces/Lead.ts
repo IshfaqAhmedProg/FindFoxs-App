@@ -25,4 +25,3 @@ export interface LeadAction {
 
 export const leadSearchTabs = ["Individual", "Company"];
 
-export type LeadSearchTabs = (typeof leadSearchTabs)[number];

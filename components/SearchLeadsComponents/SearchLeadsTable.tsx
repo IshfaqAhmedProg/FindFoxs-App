@@ -1,19 +1,18 @@
-import React, { useState, useEffect, Suspense } from "react";
-import createRandomLeadArray from "@/shared/functions/createRandomLead";
+import SearchLeadsFilter from "@/components/SearchLeadsComponents/SearchLeadsFilter";
+import SearchLeadsPrimaryItem from "@/components/SearchLeadsComponents/SearchLeadsPrimaryItem";
+import SearchLeadsSelectAction from "@/components/SearchLeadsComponents/SearchLeadsSelectAction";
+import SearchLeadsTableSecondaryItem from "@/components/SearchLeadsComponents/SearchLeadsTableSecondaryItem";
+import TableItem from "@/components/TableComponents/TableItem";
+import TableMain from "@/components/TableComponents/TableMain";
+import TablePrimaryItem from "@/components/TableComponents/TablePrimaryItem";
+import { useTable } from "@/contexts/TableContext";
 import {
   Lead,
   leadPublicFields,
   leadSearchTabs,
 } from "@/shared/interfaces/Lead";
-import SearchLeadsPrimaryItem from "@/components/SearchLeadsComponents/SearchLeadsPrimaryItem";
-import TablePrimaryItem from "@/components/TableComponents/TablePrimaryItem";
-import TableItem from "@/components/TableComponents/TableItem";
-import SearchLeadsTableSecondaryItem from "@/components/SearchLeadsComponents/SearchLeadsTableSecondaryItem";
-import TableMain from "@/components/TableComponents/TableMain";
-import SearchLeadsFilter from "@/components/SearchLeadsComponents/SearchLeadsFilter";
-import SearchLeadsSelectAction from "@/components/SearchLeadsComponents/SearchLeadsSelectAction";
-import { useTable } from "@/contexts/TableContext";
 import { CircularProgress, Stack } from "@mui/material";
+import { Suspense, useState } from "react";
 
 export default function SearchLeadsTable({ leads }: { leads: Array<Lead> }) {
   const [loading, setLoading] = useState<boolean>(true);
@@ -53,7 +52,7 @@ export default function SearchLeadsTable({ leads }: { leads: Array<Lead> }) {
     >
       <TableMain
         tableTitle="Search for..."
-        data={leads}
+        tableData={leads}
         primaryKey="Lead"
         primaryItems={tablePrimaryItems}
         secondaryItems={tableSecondaryItems}

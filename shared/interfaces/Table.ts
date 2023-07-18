@@ -1,37 +1,30 @@
-import { DocumentData } from "firebase/firestore";
-import { Lead, LeadSearchTabs } from "./Lead";
-import Task from "./Tasks";
-
-export type DTS = Lead | Task | DocumentData;
-export type DataTypesSupported = Array<DTS>;
-export type STS = LeadSearchTabs;
-export type TabsSuppported = Array<STS>;
-export interface ITableMain {
-  tableTitle?: string;
-  tableTabs?: TabsSuppported;
-  data: DataTypesSupported;
-  primaryKey?: string;
-  primaryItems: React.ReactElement;
-  secondaryKeys: Array<string>;
-  secondaryItems: React.ReactElement;
+export interface ITableFilter {
+  tableData: Array<any>;
   filterComponent: React.ReactElement;
   selectActionsComponent: React.ReactElement;
 }
-export type handleTabChangeParams = {
+export interface ITableContainer {
+  primaryKey: string;
+  secondaryKeys: Array<string>;
+  primaryItems: React.ReactElement;
+  secondaryItems: React.ReactElement;
+}
+export interface ITableMain extends ITableFilter, ITableContainer {
+  tableTitle?: string;
+  tableTabs?: Array<string>;
+}
+
+export type TabChangeParams = {
   event?: React.ChangeEvent<unknown>;
-  tab: STS;
+  tab: string;
   changeFunction?: (params: any) => void;
 };
-export type handlePageChangeParams = {
-  event?: React.ChangeEvent<unknown>;
-  page: number;
-  changeFunction?: (params: any) => void;
-};
-export type handleSelectAllParams = {
+
+export type SelectAllParams = {
   checked: boolean;
-  tableData: DataTypesSupported;
+  tableData: Array<any>;
 };
-export type Filter = {
+export type FilterParams = {
   label: string;
   value: Array<string>;
 };
@@ -41,13 +34,13 @@ export interface ITableContext {
   selected: Array<string>;
   activeTab: string;
   loading: boolean;
-  selectedFilters: Filter;
-  handleSetFilter: (sf: Filter) => void;
+  selectedFilters: FilterParams;
+  handleSetFilter: (sf: FilterParams) => void;
   handleClearFilter: () => void;
-  handleTabChange: (params: handleTabChangeParams) => void;
+  handleTabChange: (params: TabChangeParams) => void;
   handleDataFetch: () => void;
   handleSelect: (id: string) => void;
-  handleSelectAll: (params: handleSelectAllParams) => void;
+  handleSelectAll: (params: SelectAllParams) => void;
   handleSeeMoreClick: (event: React.MouseEvent<HTMLElement>) => void;
   handleSeeMoreClose: () => void;
 }

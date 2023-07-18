@@ -1,9 +1,8 @@
 import {
-  Filter,
+  FilterParams,
   ITableContext,
-  handlePageChangeParams,
-  handleSelectAllParams,
-  handleTabChangeParams,
+  SelectAllParams,
+  TabChangeParams,
 } from "@/shared/interfaces/Table";
 import React, { createContext, useContext, useState } from "react";
 
@@ -18,11 +17,11 @@ export const TableContextProvider = ({
   children: React.ReactNode;
   fetchDataFunction: () => void;
   loading?: boolean;
-  filterFunctions?: [(sf: Filter) => void, () => void];
+  filterFunctions?: [(sf: FilterParams) => void, () => void];
 }) => {
   const [selected, setSelected] = useState<Array<string>>([]);
   const [activeTab, setActiveTab] = useState<string>("");
-  const [selectedFilters, setSelectedFilters] = useState<Filter>({
+  const [selectedFilters, setSelectedFilters] = useState<FilterParams>({
     label: "",
     value: [],
   });
@@ -44,14 +43,14 @@ export const TableContextProvider = ({
       }
     });
   }
-  const handleSelectAll = (params: handleSelectAllParams) => {
+  const handleSelectAll = (params: SelectAllParams) => {
     if (params.checked) setSelected(params.tableData.map((data) => data._id));
     else setSelected([]);
   };
   const handleDataFetch = () => {
     fetchDataFunction();
   };
-  const handleSetFilter = (sf: Filter) => {
+  const handleSetFilter = (sf: FilterParams) => {
     setSelectedFilters(sf);
     filterFunctions && filterFunctions[0](sf);
   };
@@ -59,7 +58,7 @@ export const TableContextProvider = ({
     setSelectedFilters({ label: "", value: [] });
     filterFunctions && filterFunctions[1]();
   };
-  const handleTabChange = (params: handleTabChangeParams) => {
+  const handleTabChange = (params: TabChangeParams) => {
     setActiveTab(params.tab);
   };
   return (

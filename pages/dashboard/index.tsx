@@ -6,10 +6,14 @@ import SingleStatCard from "@/components/DashboardComponents/Cards/SingleStatCar
 import LeadsSourcesCard from "@/components/DashboardComponents/Cards/LeadsSourcesCard";
 import TeamActivityCard from "@/components/DashboardComponents/Cards/TeamActivityCard";
 import LeadStagesCard from "@/components/DashboardComponents/Cards/LeadStagesCard";
+import Head from "next/head";
 
 export default function Dashboard() {
   return (
     <>
+      <Head>
+        <title>FindFoxs-Dashboard</title>
+      </Head>
       <LeadConversionCard />
       <TasksCard />
       <Box

@@ -5,17 +5,14 @@ export default function RouteChangeIndicator() {
   const [loading, setLoading] = useState<boolean>(false);
   useEffect(() => {
     Router.events.on("routeChangeStart", () => {
-      console.log("routeChangeStart");
       setLoading(true);
     });
     Router.events.on("routeChangeComplete", (url) => {
-      console.log("routeChangeComplete");
       setLoading(false);
     });
-  }, [Router]);
+  });
   const defaultStyle = {
-    background:
-      "linear-gradient(270deg, var(--accent), var(--primarylight))",
+    background: "linear-gradient(270deg, var(--accent), var(--primarylight))",
     transition: "opacity 0.3s ease",
     backgroundSize: "400% 400%",
   };
