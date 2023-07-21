@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 export default function NewUserDetails({
   page,
 }: {
@@ -8,7 +8,7 @@ export default function NewUserDetails({
   return (
     <>
       <Typography variant="h4">Before you get started</Typography>
-      <Typography variant="h4">Before you get started</Typography>
+      <Typography variant="h4">Verify your email</Typography>
     </>
   );
 }

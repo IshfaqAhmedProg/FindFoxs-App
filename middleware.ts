@@ -1,7 +1,7 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
-const protectedRoutes = [`/dashboard`, `/leads`];
+const protectedRoutes = [`/dashboard`, `/leads`, `/tasks`, `/tools`];
 const authRoutes = [`/login`, `/signup`];
 export default function middleware(req: NextRequest) {
   let userVerified = req.cookies.get("loggedin");
