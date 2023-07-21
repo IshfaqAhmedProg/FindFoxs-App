@@ -14,29 +14,33 @@ const useReadDocument = ({ document, collection }: Props): ReturnProps => {
   const [result, setResult] = useState<DocumentData>();
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<FirestoreError | undefined>();
+  const [isMounted, setIsMounted] = useState(false);
+  const fetchDoc = async () => {
+    const docRef = doc(db, collection, document);
+    setLoading(true);
+    await getDoc(docRef)
+      .then((docSnap) => {
+        if (docSnap.exists()) {
+          setResult(docSnap.data());
+          console.log("doc fetched");
+          setLoading(false);
+        } else {
+          console.log("No such document!");
+        }
+      })
+      .catch((err) => {
+        setError(err);
+      });
+  };
   useEffect(() => {
-    const subscribe = async () => {
-      const docRef = doc(db, collection, document);
-      setLoading(true);
-      console.log("doc fetched");
-      await getDoc(docRef)
-        .then((docSnap) => {
-          if (docSnap.exists()) {
-            setResult(docSnap.data());
-            setLoading(false);
-          } else {
-            console.log("No such document!");
-          }
-        })
-        .catch((err) => {
-          setError(err);
-        });
-    };
-
+    setIsMounted(true);
     return () => {
-      subscribe();
+      setIsMounted(false);
     };
   }, []);
+  useEffect(() => {
+    if (isMounted) fetchDoc();
+  }, [isMounted]);
 
   return [result, loading, error];
 };

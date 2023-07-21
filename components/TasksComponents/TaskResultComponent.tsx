@@ -18,7 +18,7 @@ export default function TaskResultComponent({ taskId }: { taskId: string }) {
       setTask(value as Array<Task>);
     }
   }, [value]);
-  console.log("task:", value);
+  // console.log("task:", value);
   // const task = tasks.find((task) => task._id == taskId);
   if (isTask<Task>(task)) {
     switch (task.tool) {
