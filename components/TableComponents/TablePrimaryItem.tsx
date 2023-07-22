@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import { Stack, Divider, IconButton, Menu } from "@mui/material";
-import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
+import React from "react";
+import { Stack, Divider } from "@mui/material";
 
 import { useTable } from "@/contexts/TableContext";
 import CustomCheckbox from "../CustomComponents/CustomCheckbox";
@@ -20,18 +19,17 @@ export default function TablePrimaryItem({ id, children }: Props) {
       mt={"1px"}
       gap={2}
       minWidth="20ch"
+      borderRadius={"var(--border-radius) 0 0 var(--border-radius) "}
       sx={
         selected.includes(id)
           ? {
               background: "var(--graylighter)",
-              borderRadius: "var(--border-radius) 0 0 var(--border-radius) ",
               transition: "all 0.1s ease-in-out",
               ":hover": {
                 background: "var(--graylightest)",
               },
             }
           : {
-              borderRadius: "var(--border-radius) 0 0 var(--border-radius) ",
               transition: "all 0.1s ease-in-out",
               ":hover": {
                 background: "var(--graylightest)",

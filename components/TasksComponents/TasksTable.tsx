@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import TableMain from "../TableComponents/TableMain";
 import TablePrimaryItem from "../TableComponents/TablePrimaryItem";
 import TableItem from "../TableComponents/TableItem";
@@ -8,10 +8,13 @@ import TaskTableFilter from "./TaskTableFilter";
 import { TableContextProvider } from "@/contexts/TableContext";
 import useReadTasks from "@/shared/hooks/useReadTasks";
 import TasksTableSelectAction from "./TasksTableSelectAction";
+import { useAuth } from "@/contexts/AuthContext";
+import Task, { isTask } from "@/shared/interfaces/Tasks";
 const queryLimit = 10;
 export default function TasksTable() {
+  const { user } = useAuth();
   const [
-    tasks,
+    results,
     loading,
     error,
     fetchMoreTasksFunction,
@@ -19,29 +22,37 @@ export default function TasksTable() {
     handleClearFilter,
   ] = useReadTasks({
     queryLimit,
+    collection: `users/${user?.uid}/tasks`,
   });
-
+  const [tasks, setTasks] = useState<Array<Task | undefined>>([]);
+  useEffect(() => {
+    if (results.length > 0) {
+      setTasks(results as Array<Task>);
+    }
+  }, [results]);
   const tablePrimaryItems = (
     <>
-      {tasks.length != 0 &&
+      {tasks &&
         tasks.map((task) => {
-          return (
-            <TablePrimaryItem key={task._id} id={task._id}>
-              <TasksTablePrimaryItem task={task} />
-            </TablePrimaryItem>
-          );
+          if (isTask<Task>(task))
+            return (
+              <TablePrimaryItem key={task._id} id={task._id}>
+                <TasksTablePrimaryItem task={task} />
+              </TablePrimaryItem>
+            );
         })}
     </>
   );
   const tableSecondaryItems = (
     <>
-      {tasks.length != 0 &&
+      {tasks &&
         tasks.map((task) => {
-          return (
-            <TableItem key={task._id}>
-              <TasksTableSecondaryItem task={task} />
-            </TableItem>
-          );
+          if (isTask<Task>(task))
+            return (
+              <TableItem key={task._id}>
+                <TasksTableSecondaryItem task={task} />
+              </TableItem>
+            );
         })}
     </>
   );

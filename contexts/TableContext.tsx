@@ -44,7 +44,8 @@ export const TableContextProvider = ({
     });
   }
   const handleSelectAll = (params: SelectAllParams) => {
-    if (params.checked) setSelected(params.tableData.map((data) => data._id));
+    if (params.checked && params.tableData)
+      setSelected(params.tableData.map((data) => data._id));
     else setSelected([]);
   };
   const handleDataFetch = () => {

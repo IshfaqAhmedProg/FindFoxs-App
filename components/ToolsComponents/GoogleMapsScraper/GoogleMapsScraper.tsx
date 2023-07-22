@@ -14,12 +14,10 @@ export default function GoogleMapsScraper() {
   const [setUserTasks, loadingCreateTask] = useCreateTask({ user }); //handle creating new tasks when uploading file
   const googleMapsScraper = {
     keywords: [],
-    country: "",
-    state: "",
-    city: "",
+    country: null,
+    state: null,
+    city: null,
     language: "en",
-    countryCode: "",
-    stateCode: "",
     addons: "",
     coords: "",
   };
@@ -33,9 +31,9 @@ export default function GoogleMapsScraper() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        city: formData.city ?? null,
-        state: formData.state ?? null,
-        country: formData.country,
+        city: formData.city?.name ?? null,
+        state: formData.state?.name ?? null,
+        country: formData.country?.name,
       }),
     })
       .then((res) => res.json())
@@ -72,7 +70,7 @@ export default function GoogleMapsScraper() {
       >
         <GoogleMapsScraperInput />
       </ToolFormContextProvider>
-      {/* <ToolVideo videoId="TF67a-48jlY" /> */}
+      <ToolVideo videoId="TF67a-48jlY" />
     </ToolsLayout>
   );
 }

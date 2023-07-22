@@ -54,7 +54,12 @@ export default function TableFilter({
           sx={
             selected.length == 0
               ? { "& span": { color: "var(--graylight)", fontSize: "12px" } }
-              : { "& span": { color: "var(--primarylight)", fontSize: "12px" } }
+              : {
+                  "& span": {
+                    color: "var(--primarylight)",
+                    fontSize: "12px",
+                  },
+                }
           }
         />
 

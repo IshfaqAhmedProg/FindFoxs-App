@@ -33,14 +33,15 @@ export default function DashboardLayout({
           flexDirection="column"
           width="100%"
           height="100%"
-          paddingTop="5.5rem"
           sx={
             toggleSidebar
               ? {
+                  paddingTop: { xs: "3.5rem", md: "5.5rem" },
                   paddingLeft: { xs: "3rem", md: "4rem" },
                   paddingRight: { xs: "0", md: "1" },
                 }
               : {
+                  paddingTop: { xs: "3.5rem", md: "5.5rem" },
                   paddingLeft: { xs: "0.5rem", md: "1rem" },
                   paddingRight: { xs: "0", md: "1" },
                 }

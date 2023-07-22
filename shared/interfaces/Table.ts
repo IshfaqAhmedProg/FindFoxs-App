@@ -1,5 +1,5 @@
 export interface ITableFilter {
-  tableData: Array<any>;
+  tableData: Array<any | undefined>;
   filterComponent: React.ReactElement;
   selectActionsComponent: React.ReactElement;
 }
@@ -22,7 +22,7 @@ export type TabChangeParams = {
 
 export type SelectAllParams = {
   checked: boolean;
-  tableData: Array<any>;
+  tableData: Array<any | undefined>;
 };
 export type FilterParams = {
   label: string;

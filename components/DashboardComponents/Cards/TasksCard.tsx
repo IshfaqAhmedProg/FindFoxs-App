@@ -3,11 +3,14 @@ import useReadTasks from "@/shared/hooks/useReadTasks";
 import Task, { isTask } from "@/shared/interfaces/Tasks";
 import { Divider, Stack } from "@mui/material";
 import DashboardCardsLayout from "./DashboardCardsLayout";
+import { useAuth } from "@/contexts/AuthContext";
 const queryLimit = 5;
 
 export default function TasksCard() {
+  const { user } = useAuth();
   const [results, loading, error, fetchDataFunction] = useReadTasks({
     queryLimit,
+    collection: `users/${user?.uid}/tasks`,
   });
   return (
     <DashboardCardsLayout title="Tasks" minHeight="236px">

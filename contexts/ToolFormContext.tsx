@@ -46,24 +46,21 @@ export const ToolFormContextProvider = ({
     if (val.iso2)
       setFormData({
         ...formData,
-        countryCode: val.iso2,
-        country: val.name,
-        state: "",
-        stateCode: "",
-        city: "",
+        country: val,
+        state: null,
+        city: null,
       });
   };
   const handleStateChange = (val: CountryStateCity) => {
     if (val.iso2)
       setFormData({
         ...formData,
-        stateCode: val.iso2,
-        state: val.name,
-        city: "",
+        state: val,
+        city: null,
       });
   };
   const handleCityChange = (val: CountryStateCity) => {
-    setFormData({ ...formData, city: val.name });
+    setFormData({ ...formData, city: val });
   };
   const handleLanguageChange = (lang: Language) => {
     setFormData({ ...formData, language: lang.subtag });

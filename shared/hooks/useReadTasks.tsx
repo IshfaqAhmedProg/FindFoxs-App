@@ -19,7 +19,7 @@ import { db } from "@/firebase/config";
 import { FilterParams } from "../interfaces/Table";
 
 type ReturnProps = [
-  Array<Task>,
+  Array<DocumentData>,
   boolean,
   FirestoreError | undefined,
   () => void,
@@ -27,11 +27,16 @@ type ReturnProps = [
   () => void
 ];
 
-const useReadTasks = ({ queryLimit }: { queryLimit: number }): ReturnProps => {
-  const { user } = useAuth();
+const useReadTasks = ({
+  queryLimit,
+  collection: coll,
+}: {
+  queryLimit: number;
+  collection: string;
+}): ReturnProps => {
   const [isMounted, setIsMounted] = useState(false); //for when the component mounts so that initialFetch runs only once when component mounts and again whenever the filterConstraint changes
-  const [results, setResults] = useState<Array<Task>>([]);
-  const [lastResult, setLastResult] = useState<Task | null>(null);
+  const [results, setResults] = useState<Array<DocumentData>>([]);
+  const [lastResult, setLastResult] = useState<DocumentData | null>(null);
   const [endOfData, setEndOfData] = useState<boolean>(false);
   const [filterConstraint, setFilterConstraint] = useState<
     Array<QueryFieldFilterConstraint>
@@ -39,9 +44,9 @@ const useReadTasks = ({ queryLimit }: { queryLimit: number }): ReturnProps => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<FirestoreError | undefined>();
 
-  function initialFetch(uid?: string) {
+  function initialFetch() {
     const q = query(
-      collection(db, `users/${uid ?? user?.uid}/tasks`),
+      collection(db, coll),
       ...filterConstraint,
       orderBy("dateCreated", "desc"),
       limit(queryLimit)
@@ -55,14 +60,14 @@ const useReadTasks = ({ queryLimit }: { queryLimit: number }): ReturnProps => {
     };
   }, []);
   useEffect(() => {
-    if (isMounted && user?.uid) {
-      initialFetch(user.uid);
+    if (isMounted) {
+      initialFetch();
     }
-  }, [isMounted, user?.uid, filterConstraint]);
+  }, [isMounted, filterConstraint]);
   function fetchMoreTasksFunction() {
     if (lastResult) {
       const q = query(
-        collection(db, `users/${user?.uid}/tasks`),
+        collection(db, coll),
         ...filterConstraint,
         orderBy("dateCreated", "desc"),
         limit(queryLimit),
@@ -90,7 +95,7 @@ const useReadTasks = ({ queryLimit }: { queryLimit: number }): ReturnProps => {
           querySnapshot.forEach((doc) => {
             console.log(doc.id, "=>", doc.data());
             if (!checkIfObjectExistsInArray(docs, "_id", doc.data())) {
-              docs = [...docs, doc.data() as Task];
+              docs = [...docs, doc.data()];
             }
             docCount++;
           });

@@ -18,19 +18,20 @@ const useReadDocument = ({ document, collection }: Props): ReturnProps => {
   const fetchDoc = async () => {
     const docRef = doc(db, collection, document);
     setLoading(true);
-    await getDoc(docRef)
-      .then((docSnap) => {
-        if (docSnap.exists()) {
-          setResult(docSnap.data());
-          console.log("doc fetched");
-          setLoading(false);
-        } else {
-          console.log("No such document!");
-        }
-      })
-      .catch((err) => {
-        setError(err);
-      });
+    if (isMounted)
+      await getDoc(docRef)
+        .then((docSnap) => {
+          if (docSnap.exists()) {
+            setResult(docSnap.data());
+            console.log("doc fetched");
+            setLoading(false);
+          } else {
+            console.log("No such document!");
+          }
+        })
+        .catch((err) => {
+          setError(err);
+        });
   };
   useEffect(() => {
     setIsMounted(true);

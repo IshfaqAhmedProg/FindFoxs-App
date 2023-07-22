@@ -59,7 +59,7 @@ export default function GoogleMapsScraperInput() {
   }
 
   useEffect(() => {
-    if (formData.countryCode != "") {
+    if (formData.country) {
       fetch("/api/geoData/getStateFromCountry", {
         method: "POST",
         headers: {
@@ -67,7 +67,7 @@ export default function GoogleMapsScraperInput() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          iso2: formData.countryCode,
+          iso2: formData.country.iso2,
         }),
       })
         .then((res) => res.json())
@@ -75,10 +75,10 @@ export default function GoogleMapsScraperInput() {
           setCountryStates(res);
         });
     }
-  }, [formData.countryCode]);
+  }, [formData.country]);
   //fetch city from states and country
   useEffect(() => {
-    if (formData.stateCode != "") {
+    if (formData.state && formData.country) {
       fetch("/api/geoData/getCityFromState", {
         method: "POST",
         headers: {
@@ -86,8 +86,8 @@ export default function GoogleMapsScraperInput() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          isoC: formData.countryCode,
-          isoS: formData.stateCode,
+          isoC: formData.country.iso2,
+          isoS: formData.state.iso2,
         }),
       })
         .then((res) => res.json())
@@ -95,7 +95,7 @@ export default function GoogleMapsScraperInput() {
           setStateCity(res);
         });
     }
-  }, [formData.stateCode, formData.countryCode]);
+  }, [formData.state, formData.country]);
   return (
     <Stack
       p={1}
@@ -188,6 +188,7 @@ export default function GoogleMapsScraperInput() {
                     setStateCity([]);
                   }
                 }}
+                value={formData.state}
                 sx={{ flex: "1 0 auto" }}
                 disabled={countryStates.length == 0}
                 renderInput={(params) => (
@@ -202,6 +203,7 @@ export default function GoogleMapsScraperInput() {
                 onChange={(e, val) => {
                   if (val) handleCityChange(val);
                 }}
+                value={formData.city}
                 disabled={statesCity.length == 0}
                 sx={{ flex: "1 0 auto" }}
                 renderInput={(params) => (
@@ -260,7 +262,7 @@ export default function GoogleMapsScraperInput() {
         kind="secondary"
         loading={taskSubmitLoading}
         buttonProps={{
-          disabled: formData.keywords.length == 0 || formData.countryCode == "",
+          disabled: formData.keywords.length == 0 || !formData.country,
           onClick: handleTaskSubmit,
         }}
       >

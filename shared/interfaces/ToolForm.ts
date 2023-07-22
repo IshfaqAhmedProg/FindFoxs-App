@@ -10,12 +10,10 @@ export interface ValidatorFormData {
 }
 interface GoogleMapsScraperFormData {
   keywords: Array<string>;
-  country: string;
-  state: string;
-  city: string;
+  country: CountryStateCity | null;
+  state: CountryStateCity | null;
+  city: CountryStateCity | null;
   language: string;
-  countryCode: string;
-  stateCode: string;
   addons: string;
   coords: string;
 }
@@ -23,7 +21,7 @@ interface EmailAndContactsFormData {
   page: string;
 }
 export interface CountryStateCity {
-  id: number;
+  id?: number;
   name: string;
   iso2?: string;
 }
