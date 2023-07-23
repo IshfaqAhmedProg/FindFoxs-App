@@ -21,9 +21,10 @@ export default function downloadFile(
   const worksheet = utils.aoa_to_sheet(applySheetStyles(headers, aoaData));
   const workbook = utils.book_new();
   utils.book_append_sheet(workbook, worksheet);
+  const idShort = task._id.slice(0, 8);
   writeFile(
     workbook,
-    `FindFoxs${getFirstCharacter(task.tool)}_${task._idShort}.${fileType}`
+    `FindFoxs${getFirstCharacter(task.tool)}_${idShort}.${fileType}`
   );
 }
 function getHeaders(resultData: ResultData) {

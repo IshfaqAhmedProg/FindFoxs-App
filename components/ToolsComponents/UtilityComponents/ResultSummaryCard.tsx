@@ -20,6 +20,7 @@ import downloadFile, {
   getTaskResult,
   getTaskDownloadUrl,
 } from "@/shared/functions/downloadFile";
+import CustomBox from "@/components/CustomComponents/CustomBox";
 export interface ResultData {
   downloadUrl: string;
   response: Array<any>;
@@ -71,7 +72,16 @@ export default function ResultSummaryCard({
   };
 
   return (
-    <>
+    <CustomBox
+      boxProps={{
+        sx: { gridColumnStart: "3" },
+        p: 4,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-around",
+        gap: 1,
+      }}
+    >
       <Typography variant="h4">Summary</Typography>
       <Divider />
       <DisplayStat
@@ -150,6 +160,6 @@ export default function ResultSummaryCard({
           );
         })}
       </Menu>
-    </>
+    </CustomBox>
   );
 }

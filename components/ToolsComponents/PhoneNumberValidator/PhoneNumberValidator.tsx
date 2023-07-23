@@ -32,7 +32,7 @@ const initialResultStat: Array<Stats> = publicStats.map((stat) => {
   };
 });
 const initialFormData = {
-  singleData: "",
+  textData: [],
   validationResult: "",
   fileName: "",
   unformattedData: [],

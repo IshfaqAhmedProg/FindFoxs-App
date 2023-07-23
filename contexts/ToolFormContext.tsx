@@ -36,7 +36,10 @@ export const ToolFormContextProvider = ({
     setFormData({
       ...formData,
       textData: textInput,
-      formattedData: (checkFunction && checkFunction(textInput)) ?? [],
+      formattedData:
+        (checkFunction &&
+          checkFunction(new Set([...formData.formattedData, ...textInput]))) ??
+        [],
     });
   };
   const handleKeywordChange = (val: Array<string>) => {
@@ -90,7 +93,6 @@ export const ToolFormContextProvider = ({
     }
   };
   const checkDataInColumn = () => {
-    console.log("here");
     if (formData.columnHeader) {
       console.log("here too");
       const extract = formData.unformattedData.map((row: any) => {

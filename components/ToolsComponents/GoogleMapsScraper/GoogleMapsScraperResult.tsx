@@ -1,8 +1,6 @@
-import CustomBox from "@/components/CustomComponents/CustomBox";
-import Task from "@/shared/interfaces/Tasks";
-import { Box, Typography } from "@mui/material";
-import React from "react";
 import DoughnutCard from "@/components/CustomComponents/DoughnutCard/DoughnutCard";
+import Task from "@/shared/interfaces/Tasks";
+import { Box, Stack } from "@mui/material";
 
 import ResultSummaryCard from "@/components/ToolsComponents/UtilityComponents/ResultSummaryCard";
 import VerticalResultCard from "@/components/ToolsComponents/UtilityComponents/VerticalResultCard";
@@ -112,77 +110,68 @@ export default function GoogleMapsScraperResult({ task }: { task: Task }) {
   ];
 
   return (
-    <Box
-      display={"grid"}
-      gridTemplateRows={"1fr 1fr"}
-      gridTemplateColumns={"repeat(3,1fr)"}
-      width={"100%"}
-      height={"100%"}
-      gap={2}
-      p={2}
-    >
-      <Box
-        gridColumn="span 2"
-        display="flex"
-        py={2}
-        px={4}
-        alignItems="center"
-        justifyContent="space-around"
-        gap={2}
+    <Stack width={"100%"} height={"100%"} gap={5} sx={{ overflowY: "auto" }}>
+      <Stack
+        direction={"row"}
+        justifyContent={"center"}
+        alignItems={"center"}
+        flexWrap={"wrap"}
+        gap={3}
+        mt={3}
       >
-        <DoughnutCard
-          centerValue={(
-            ((task.response?.deliverable ?? 3802) / total) *
-            100
-          ).toFixed(1)}
-          colors={deliverableDataColors}
-          unit="Deliverable"
-          data={deliverableData}
-          total={total}
-          maxHeight="300px"
-        />
-      </Box>
-      <CustomBox
-        boxProps={{
-          sx: { gridColumnStart: "3" },
-          p: 4,
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-around",
-        }}
-      >
+        <Stack direction={"row"} height={"100%"} alignItems={"center"}>
+          <DoughnutCard
+            centerValue={(
+              ((task.response?.deliverable ?? 3802) / total) *
+              100
+            ).toFixed(1)}
+            colors={deliverableDataColors}
+            unit="Deliverable"
+            data={deliverableData}
+            total={total}
+            maxHeight="300px"
+          />
+        </Stack>
         <ResultSummaryCard task={task} />
-      </CustomBox>
-      <VerticalResultCard title="Undeliverable" titleColor="var(--error)">
-        <DoughnutCard
-          centerValue={((totalUndeliverable / total) * 100).toFixed(1)}
-          colors={undeliverableDataColors}
-          data={undeliverableData}
-          unit={totalUndeliverable.toString()}
-          total={totalUndeliverable}
-          maxHeight="200px"
-        />
-      </VerticalResultCard>
-      <VerticalResultCard title="Risky" titleColor="var(--primarydark)">
-        <DoughnutCard
-          centerValue={((totalRisky / total) * 100).toFixed(1)}
-          colors={riskyDataColors}
-          data={riskyData}
-          unit={totalRisky.toString()}
-          total={totalRisky}
-          maxHeight="200px"
-        />
-      </VerticalResultCard>
-      <VerticalResultCard title="Unknown" titleColor="var(--graylight)">
-        <DoughnutCard
-          centerValue={((totalUnknown / total) * 100).toFixed(1)}
-          colors={unknownDataColors}
-          data={unknownData}
-          unit={totalUnknown.toString()}
-          total={totalUnknown}
-          maxHeight="200px"
-        />
-      </VerticalResultCard>
-    </Box>
+      </Stack>
+      <Stack
+        direction={"row"}
+        justifyContent={"center"}
+        gap={3}
+        alignItems={"flex-start"}
+        flexWrap={"wrap"}
+      >
+        <VerticalResultCard title="Undeliverable" titleColor="var(--error)">
+          <DoughnutCard
+            centerValue={((totalUndeliverable / total) * 100).toFixed(1)}
+            colors={undeliverableDataColors}
+            data={undeliverableData}
+            unit={totalUndeliverable.toString()}
+            total={totalUndeliverable}
+            maxHeight="200px"
+          />
+        </VerticalResultCard>
+        <VerticalResultCard title="Risky" titleColor="var(--primarydark)">
+          <DoughnutCard
+            centerValue={((totalRisky / total) * 100).toFixed(1)}
+            colors={riskyDataColors}
+            data={riskyData}
+            unit={totalRisky.toString()}
+            total={totalRisky}
+            maxHeight="200px"
+          />
+        </VerticalResultCard>
+        <VerticalResultCard title="Unknown" titleColor="var(--graylight)">
+          <DoughnutCard
+            centerValue={((totalUnknown / total) * 100).toFixed(1)}
+            colors={unknownDataColors}
+            data={unknownData}
+            unit={totalUnknown.toString()}
+            total={totalUnknown}
+            maxHeight="200px"
+          />
+        </VerticalResultCard>
+      </Stack>
+    </Stack>
   );
 }

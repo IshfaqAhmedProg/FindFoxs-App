@@ -61,7 +61,10 @@ export default function SearchLeadsFilter() {
   };
   return (
     <>
-      <CustomTextInput placeholder="Search by Name" />
+      <CustomTextInput
+        placeholder="Search by Name"
+        sx={{ maxWidth: "250px" }}
+      />
       {LeadTableFilters.map((filter) => {
         return (
           <CustomButton

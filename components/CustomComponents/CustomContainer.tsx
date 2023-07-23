@@ -3,6 +3,7 @@ import { styled } from "@mui/material/styles";
 const CustomContainer = styled("div")(() => ({
   containerType: "size",
   height: "100%",
+  width: "100%",
   overflowY: "auto",
 }));
 export default CustomContainer;

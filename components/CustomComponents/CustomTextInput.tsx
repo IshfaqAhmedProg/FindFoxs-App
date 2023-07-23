@@ -5,13 +5,18 @@ const PlainTextInput = styled(TextField)({
   "& fieldset": {
     border: "none",
   },
-  background: "var(--graylighter)",
+  background: "var(--graylightest)",
 
   borderRadius: "var(--border-radius-small)",
-  color: "var(--primarydark)",
-  "& input::placeholder": {
-    color: "var(--graydark)",
+
+  "& .MuiInputBase-input::placeholder": {
+    color: "var(--black)",
   },
+  "& .MuiInputBase-root": {
+    color: "var(--primarydark)",
+    height: "inherit",
+  },
+
   "& .Mui-focused": {
     backgroundColor: "rgba(250, 250, 250, 1)",
     borderRadius: "var(--border-radius-small)",
@@ -27,6 +32,7 @@ export default function CustomTextInput(props: TextFieldProps) {
       inputProps={{
         style: {
           minHeight: "35px",
+          height: "inherit",
           paddingTop: 0,
           paddingRight: 0,
           paddingBottom: 0,

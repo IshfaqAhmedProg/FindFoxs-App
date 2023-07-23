@@ -12,7 +12,7 @@ import { SideBarLinks } from "@/shared/interfaces/Links";
 import { useRouter } from "next/router";
 import SidebarList from "./SideBarList";
 import CustomButton from "../CustomComponents/CustomButton";
-
+import mainRoutes from "@/routes/mainRoutes";
 interface Props {
   toggle: boolean;
   handleToggle: (params: boolean) => void;
@@ -25,49 +25,27 @@ export default function SideBar({ toggle, handleToggle }: Props) {
 
   const sidebarContent: Array<SideBarLinks> = [
     {
-      name: "Dashboard",
+      ...mainRoutes.dashboard,
       icon: <DashboardIcon />,
-      goto: "/dashboard",
     },
     {
-      name: "Leads",
+      ...mainRoutes.leads,
       icon: <LeadsIcon />,
-      goto: "",
-      children: [
-        { name: "Search Leads", goto: "/leads/search" },
-        { name: "Manage Your Leads", goto: "/leads/manage" },
-        { name: "Engage with Leads", goto: "/leads/engage" },
-      ],
       expanded: leadsToggle,
     },
     {
-      name: "Tools",
+      ...mainRoutes.tools,
+
       icon: <ToolsIcon />,
-      goto: "",
-      children: [
-        { name: "Email Validator", goto: "/tools/emailValidator" },
-        { name: "Phone Number Validator", goto: "/tools/phoneNumberValidator" },
-        { name: "Google Maps Scraper", goto: "/tools/googleMapsScraper" },
-        {
-          name: "Emails and Contacts Scraper",
-          goto: "/tools/emailsAndContactsScraper",
-        },
-        {
-          name: "Facebook Scraper",
-          goto: "/tools/facebookScraper",
-        },
-      ],
       expanded: toolsToggle,
     },
     {
-      name: "Tasks",
+      ...mainRoutes.tasks,
       icon: <TaskOutlinedIcon />,
-      goto: "/tasks",
     },
     {
-      name: "Settings",
+      ...mainRoutes.settings,
       icon: <SettingsOutlinedIcon />,
-      goto: "/",
     },
   ];
   function handleSideBarListClick(content: SideBarLinks) {

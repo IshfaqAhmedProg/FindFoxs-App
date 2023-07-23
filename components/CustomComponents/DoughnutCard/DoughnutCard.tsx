@@ -49,7 +49,11 @@ export default function DoughnutCard({
           alignItems={"center"}
           sx={{ transform: "translate(-50%,-50%)" }}
         >
-          <Typography fontWeight={"bold"} fontSize={"35px"} color={colors[0]||"var(--primary)"}>
+          <Typography
+            fontWeight={"bold"}
+            fontSize={"35px"}
+            color={colors[0] || "var(--primary)"}
+          >
             {centerValue}%
           </Typography>
           <Typography fontWeight={"bold"} color={"var(--graylight)"}>
@@ -61,7 +65,8 @@ export default function DoughnutCard({
         justifyContent={"center"}
         gap={2}
         flexGrow={1}
-        minWidth={"300px"}
+        px={2}
+        minWidth={"250px"}
         maxWidth={"350px"}
       >
         {data.map((r, index) => {

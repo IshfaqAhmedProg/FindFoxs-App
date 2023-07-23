@@ -9,7 +9,6 @@ export default function DragNDrop() {
   const { handleFileDataChange } = useToolForm();
   function handleDragOver(e: React.DragEvent) {
     e.preventDefault();
-    console.log(e);
     setDraggedOver(true);
   }
   function handleDragEnd(e: React.DragEvent) {

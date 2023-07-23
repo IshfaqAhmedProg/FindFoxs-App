@@ -34,6 +34,9 @@ export default function TaskResultComponent({ taskId }: { taskId: string }) {
       case "Emails And Contacts Scraper":
         return <GoogleMapsScraperResult task={task} />;
         break;
+      case "Facebook Scraper":
+        return <GoogleMapsScraperResult task={task} />;
+        break;
       default:
         return <Loading />;
         break;

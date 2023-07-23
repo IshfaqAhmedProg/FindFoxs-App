@@ -3,6 +3,7 @@ import { Url } from "url";
 export interface SimpleLink {
   name: string;
   goto: string | Url;
+  children?: { [key: string]: SimpleLink };
 }
 export interface NavLinks extends SimpleLink {
   handler?: (param: any) => void;
@@ -10,6 +11,5 @@ export interface NavLinks extends SimpleLink {
   badge?: boolean;
 }
 export interface SideBarLinks extends NavLinks {
-  children?: Array<SimpleLink>;
   expanded?: boolean;
 }

@@ -17,7 +17,6 @@ type ReturnProps = [
   FirestoreError | undefined | Error
 ];
 
-
 const useCreateTask = ({ user }: { user: User | null }): ReturnProps => {
   const [loadingCreateTask, setLoadingCreateTask] = useState<boolean>(false);
   const [error, setError] = useState<FirestoreError | undefined | Error>();
@@ -35,7 +34,6 @@ const useCreateTask = ({ user }: { user: User | null }): ReturnProps => {
       const _id = uuidv5(dateId.toString(), MY_NAMESPACE)
         .replace(/[-]/g, "")
         .slice(0, 20);
-      const _idShort = _id.slice(0, 8);
       const data: Task = {
         dateCreated: Timestamp.fromDate(new Date(dateId)),
         queryCount: queryCount,
@@ -43,7 +41,6 @@ const useCreateTask = ({ user }: { user: User | null }): ReturnProps => {
         status: "RUNNING",
         uid: user.uid,
         _id,
-        _idShort,
         unit,
       };
 

@@ -1,5 +1,5 @@
 import CustomTextInput from "@/components/CustomComponents/CustomTextInput";
-import { Box, Divider, Stack, Typography } from "@mui/material";
+import { Box, Divider, InputAdornment, Stack, Typography } from "@mui/material";
 import React from "react";
 import { useToolForm } from "@/contexts/ToolFormContext";
 import CustomButton from "@/components/CustomComponents/CustomButton";
@@ -26,8 +26,8 @@ export default function ValidatorsInput({ description, unit }: Props) {
       <Typography textAlign={"center"} fontSize={"14px"}>
         {description}
       </Typography>
-      <Stack direction={"row"} gap={2} alignItems={"center"}>
-        {formData.textData &&
+      <Stack direction={"row"} gap={2} alignItems={"center"} width={"60%"}>
+        {formData.textData.length > 0 &&
           (formData.formattedData.length != 0 ? (
             <CheckRoundedIcon color="secondary" />
           ) : (
@@ -36,35 +36,38 @@ export default function ValidatorsInput({ description, unit }: Props) {
         <CustomTextInput
           placeholder={`Enter ${unit} to validate`}
           value={formData.textData}
-          onChange={(e) => handleTextInputChange([e.target.value])}
+          onChange={(e) =>
+            handleTextInputChange(e.target.value != "" ? [e.target.value] : [])
+          }
           sx={{ width: "100%" }}
+          disabled={singleDataLoading}
         />
-        {formData.textData && (
+        {formData.textData.length > 0 && (
           <CustomButton
             kind="plain"
             buttonProps={{
               startIcon: <CancelRoundedIcon />,
               onClick: resetFormData,
+              disabled: singleDataLoading,
             }}
           >
             clear
           </CustomButton>
         )}
       </Stack>
-      {formData.textData && (
+      {formData.textData.length > 0 && (
         <CustomButton
           kind="secondary"
-          loading={singleDataLoading}
           buttonProps={{
             onClick: handleTextInputSubmit,
-            disabled: formData.formattedData.length == 0,
+            disabled: formData.formattedData.length == 0 || singleDataLoading,
             type: "submit",
           }}
         >
           {formData.formattedData.length == 0 ? "Invalid Format" : "Validate"}
         </CustomButton>
       )}
-      {!formData.textData && (
+      {formData.textData.length == 0 && (
         <>
           <Box minWidth={"250px"}>
             <Divider>or</Divider>

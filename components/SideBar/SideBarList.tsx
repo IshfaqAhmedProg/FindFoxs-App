@@ -62,17 +62,18 @@ export default function SidebarList({
           )}
         </ListItemButton>
       </Tooltip>
-      {content.children?.length != 0 && (
+      {content.children && (
         <Collapse in={content.expanded} timeout="auto" unmountOnExit>
           <List disablePadding>
-            {content.children?.map((child) => {
-              return (
-                <SideBarListChild
-                  key={child.name}
-                  child={child}
-                  toggle={toggle}
-                />
-              );
+            {Object.keys(content.children).map((child) => {
+              if (content.children)
+                return (
+                  <SideBarListChild
+                    key={child}
+                    child={content.children[child]}
+                    toggle={toggle}
+                  />
+                );
             })}
           </List>
         </Collapse>

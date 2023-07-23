@@ -125,7 +125,7 @@ export default function TaskTableFilter() {
   };
   return (
     <>
-      <CustomTextInput placeholder="Search by Id" />
+      <CustomTextInput placeholder="Search by Id" sx={{ maxWidth: "250px" }} />
       {TasksTableFilters.map((filter) => {
         return (
           <Fragment key={filter.title}>

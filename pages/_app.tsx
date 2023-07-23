@@ -11,6 +11,7 @@ import DashboardLayout from "@/components/DashboardComponents/DashboardLayout";
 const dashboardLayout: Array<string> = ["dashboard", "leads", "tasks", "tools"];
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
+
   return (
     <AuthContextProvider>
       <ThemeProvider theme={theme}>

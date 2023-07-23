@@ -12,22 +12,26 @@ export default function VerticalResultCard({
   titleColor,
 }: Props) {
   return (
-    <CustomBox boxProps={{ overflow: "hidden" }} variant="inner">
-      <Box
-        py={2}
-        px={2}
-        sx={{ overflowY: "auto", overflowX: "hidden" }}
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        gap={3}
-        height={"100%"}
-      >
-        <Typography fontWeight={"bold"} variant="h4" color={titleColor}>
-          {title}
-        </Typography>
-        {children}
-      </Box>
+    <CustomBox
+      boxProps={{
+        overflow: "hidden",
+        py: 2,
+        px: 2,
+        sx: { overflowY: "auto", overflowX: "hidden" },
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        maxHeight: "400px",
+        minHeight: "21.875rem",
+        justifyContent: "space-between",
+        height: "100%",
+      }}
+      variant="inner"
+    >
+      <Typography fontWeight={"bold"} variant="h4" color={titleColor}>
+        {title}
+      </Typography>
+      {children}
     </CustomBox>
   );
 }

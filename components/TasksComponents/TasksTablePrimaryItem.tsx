@@ -29,7 +29,7 @@ export default function TasksTablePrimaryItem({ task }: { task: Task }) {
               color="var(--graylight)"
               noWrap
             >
-              #{task._idShort}
+              #{task._id.slice(0, 8)}
             </Typography>
           </Tooltip>
         </Box>

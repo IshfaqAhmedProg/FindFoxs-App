@@ -102,11 +102,11 @@ export default function GoogleMapsScraperInput() {
       pt={4}
       alignItems={"center"}
       gap={3}
-      maxWidth={"500px"}
+      maxWidth={"600px"}
       maxHeight={"80vh"}
       sx={{ overflowY: "auto" }}
     >
-      <Typography textAlign={"center"} fontSize={"14px"}>
+      <Typography textAlign={"center"} fontSize={"14px"} maxWidth={"80%"}>
         Enter keywords as you would type in the google maps search box. Maximum
         of 5 keywords are allowed on one task. Make sure to select keywords
         relevant to the business category you are targetting. If you dont find

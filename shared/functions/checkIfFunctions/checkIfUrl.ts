@@ -4,7 +4,7 @@ export default function (urlArray: Array<string>) {
   );
   const finalArray = [];
   for (const url of urlArray) {
-    if (url.match(urlRegex)) {
+    if (url && url.match(urlRegex)) {
       finalArray.push(url);
     }
   }

@@ -19,6 +19,15 @@ const theme = createTheme({
         },
       },
     },
+    MuiAutocomplete: {
+      styleOverrides: {
+        paper: {
+          // Customize the styles for the dropdown
+          // For example, you can adjust the width, box-shadow, etc.
+          color: "var(--primary)",
+        },
+      },
+    },
     MuiAvatar: {
       styleOverrides: {
         root: {
@@ -69,9 +78,9 @@ const theme = createTheme({
     MuiChip: {
       styleOverrides: {
         root: {
-          background: "var(--primarylight)",
+          background: "var(--graylighter)",
           fontWeight: "bold",
-          color: "white",
+          color: "var(--primarylight)",
           borderRadius: "var(--border-radius-small)",
         },
       },
@@ -136,7 +145,7 @@ const theme = createTheme({
             borderBottom: "2px solid var(--accent)",
           },
           "::before": {
-            borderBottomColor: "var(--primarylight)",
+            borderBottomColor: "var(--primarylighter)",
           },
           "::after": {
             height: "2px",
