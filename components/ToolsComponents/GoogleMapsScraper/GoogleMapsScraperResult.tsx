@@ -116,10 +116,10 @@ export default function GoogleMapsScraperResult({ task }: { task: Task }) {
         justifyContent={"center"}
         alignItems={"center"}
         flexWrap={"wrap"}
-        gap={3}
+        gap={5}
         mt={3}
       >
-        <Stack direction={"row"} height={"100%"} alignItems={"center"}>
+        <Stack direction={"row"} height={"100%"} alignItems={"center"} gap={3}>
           <DoughnutCard
             centerValue={(
               ((task.response?.deliverable ?? 3802) / total) *

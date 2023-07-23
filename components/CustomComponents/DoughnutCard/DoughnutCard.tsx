@@ -66,7 +66,7 @@ export default function DoughnutCard({
         gap={2}
         flexGrow={1}
         px={2}
-        minWidth={"250px"}
+        minWidth={"260px"}
         maxWidth={"350px"}
       >
         {data.map((r, index) => {

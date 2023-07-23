@@ -121,7 +121,7 @@ export default function EmailValidatorResult({ task }: { task: Task }) {
         gap={3}
         mt={3}
       >
-        <Stack direction={"row"} height={"100%"} alignItems={"center"}>
+        <Stack direction={"row"} height={"100%"} alignItems={"center"} gap={3}>
           <DoughnutCard
             centerValue={(
               ((task.response?.deliverable ?? 3802) / total) *
