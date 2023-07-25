@@ -113,13 +113,20 @@ export default function GoogleMapsScraperResult({ task }: { task: Task }) {
     <Stack width={"100%"} height={"100%"} gap={5} sx={{ overflowY: "auto" }}>
       <Stack
         direction={"row"}
-        justifyContent={"center"}
+        justifyContent={"space-evenly"}
         alignItems={"center"}
         flexWrap={"wrap"}
         gap={5}
         mt={3}
       >
-        <Stack direction={"row"} height={"100%"} alignItems={"center"} gap={3}>
+        <Stack
+          direction={"row"}
+          minHeight={"320px"}
+          alignItems={"center"}
+          justifyContent={"center"}
+          gap={3}
+          flexWrap={"wrap"}
+        >
           <DoughnutCard
             centerValue={(
               ((task.response?.deliverable ?? 3802) / total) *
@@ -136,7 +143,7 @@ export default function GoogleMapsScraperResult({ task }: { task: Task }) {
       </Stack>
       <Stack
         direction={"row"}
-        justifyContent={"center"}
+        justifyContent={"space-evenly"}
         gap={3}
         alignItems={"flex-start"}
         flexWrap={"wrap"}

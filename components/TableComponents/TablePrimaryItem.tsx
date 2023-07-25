@@ -17,7 +17,6 @@ export default function TablePrimaryItem({ id, children }: Props) {
       pt={2}
       ml={1}
       mt={"1px"}
-      gap={2}
       minWidth="20ch"
       borderRadius={"var(--border-radius) 0 0 var(--border-radius) "}
       sx={
@@ -37,13 +36,7 @@ export default function TablePrimaryItem({ id, children }: Props) {
             }
       }
     >
-      <Stack
-        direction="row"
-        alignItems="center"
-        gap={2}
-        justifyContent={"space-between"}
-        width={"100%"}
-      >
+      <Stack direction="row" alignItems="center" gap={2} width={"100%"}>
         <CustomCheckbox
           checked={selected.includes(id)}
           onChange={(e, checked) => handleSelect(id)}

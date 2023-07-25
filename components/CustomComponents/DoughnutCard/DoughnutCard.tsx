@@ -24,12 +24,7 @@ export default function DoughnutCard({
 }) {
   return (
     <>
-      <Stack
-        position="relative"
-        maxHeight={maxHeight}
-        minWidth={"310px"}
-        height="100%"
-      >
+      <Stack position="relative" height={maxHeight} minWidth={"310px"}>
         <ResponsivePieCanvas
           data={data}
           theme={nivoTheme}

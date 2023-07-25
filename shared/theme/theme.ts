@@ -93,7 +93,6 @@ const theme = createTheme({
         },
         paperFullWidth: {
           borderRadius: "var(--border-radius)",
-          justifyContent: "space-around",
           padding: "2rem",
         },
       },

@@ -41,6 +41,16 @@ export default function ValidatorsInput({ description, unit }: Props) {
           }
           sx={{ width: "100%" }}
           disabled={singleDataLoading}
+          inputProps={{
+            tabIndex: 1,
+            style: {
+              minHeight: "40px",
+              height: "inherit",
+              paddingTop: 0,
+              paddingRight: 0,
+              paddingBottom: 0,
+            },
+          }}
         />
         {formData.textData.length > 0 && (
           <CustomButton

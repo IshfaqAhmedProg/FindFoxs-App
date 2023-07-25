@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import {
-  getDocs,
+  onSnapshot,
   query,
   collection,
   where,
@@ -13,10 +13,9 @@ import {
   QueryFieldFilterConstraint,
 } from "firebase/firestore";
 import checkIfObjectExistsInArray from "../functions/checkIfObjectExistsInArray";
-import Task from "../interfaces/Tasks";
-import { useAuth } from "@/contexts/AuthContext";
 import { db } from "@/firebase/config";
 import { FilterParams } from "../interfaces/Table";
+import Task from "../interfaces/Tasks";
 
 type ReturnProps = [
   Array<DocumentData>,
@@ -26,6 +25,7 @@ type ReturnProps = [
   (sf: FilterParams) => void,
   () => void
 ];
+const CACHE_KEY = "readTasksData";
 
 const useReadTasks = ({
   queryLimit,
@@ -87,33 +87,32 @@ const useReadTasks = ({
   async function fetchDocs(q: Query<DocumentData>) {
     if (!endOfData) {
       setLoading(true);
-      var docs = results;
-      var docCount = 0;
-      console.log("getdocs called");
-      await getDocs(q)
-        .then((querySnapshot) => {
-          querySnapshot.forEach((doc) => {
-            console.log(doc.id, "=>", doc.data());
-            if (!checkIfObjectExistsInArray(docs, "_id", doc.data())) {
-              docs = [...docs, doc.data()];
-            }
-            docCount++;
-          });
-          if (docCount < queryLimit) {
-            setEndOfData(true);
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        var docs = results;
+        var docCount = 0;
+        console.log("onSnapshot triggered");
+        querySnapshot.forEach((doc) => {
+          console.log(doc.id, "=>", doc.data());
+          if (!checkIfObjectExistsInArray(docs, "_id", doc.data())) {
+            docs = [...docs, doc.data()];
           }
-        })
-        .catch((err) => {
-          console.log(err);
-          setError(err);
-        })
-        .finally(() => {
-          setLastResult(docs[docs.length - 1]);
-          setResults(docs);
-          setLoading(false);
+          docCount++;
         });
+        if (docCount < queryLimit) {
+          setEndOfData(true);
+        }
+        setLastResult(docs[docs.length - 1]);
+        setResults(docs);
+        setLoading(false);
+      });
+
+      // Clean up the listener when the component unmounts or on re-fetch
+      return () => {
+        unsubscribe();
+      };
     }
   }
+
   async function clearAll() {
     console.log("clearedall");
     setResults([]);

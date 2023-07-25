@@ -48,7 +48,13 @@ export default function SearchLeadsPrimaryItem({ content }: { content: Lead }) {
     setSeeMoreOpenAnchor(null);
   }
   return (
-    <>
+    <Stack
+      direction="row"
+      gap={0.5}
+      alignItems={"center"}
+      justifyContent={"space-between"}
+      width={"100%"}
+    >
       <Avatar sx={{ width: "40px", height: "40px" }}>
         <Image alt="Lead Avatar" src={content.avatar} width={40} height={40} />
       </Avatar>
@@ -88,18 +94,18 @@ export default function SearchLeadsPrimaryItem({ content }: { content: Lead }) {
             </Stack>
           </TableCell>
         </Stack>
-        <IconButton
-          sx={SeeMoreButton}
-          onClick={handleSeeMoreClick}
-          aria-controls={seeMoreOpen ? content.name : undefined}
-          aria-haspopup="true"
-          aria-expanded={seeMoreOpen ? "true" : undefined}
-        >
-          <ChevronRightRoundedIcon
-            sx={{ fontSize: "25px", color: "var(--graylight)" }}
-          />
-        </IconButton>
       </Stack>
+      <IconButton
+        sx={SeeMoreButton}
+        onClick={handleSeeMoreClick}
+        aria-controls={seeMoreOpen ? content.name : undefined}
+        aria-haspopup="true"
+        aria-expanded={seeMoreOpen ? "true" : undefined}
+      >
+        <ChevronRightRoundedIcon
+          sx={{ fontSize: "25px", color: "var(--graylight)" }}
+        />
+      </IconButton>
       <Menu
         anchorEl={seeMoreOpenAnchor}
         id="backdropBlur"
@@ -116,6 +122,6 @@ export default function SearchLeadsPrimaryItem({ content }: { content: Lead }) {
       >
         <SingleLeadCard content={content} handleClose={handleClose} />
       </Menu>
-    </>
+    </Stack>
   );
 }

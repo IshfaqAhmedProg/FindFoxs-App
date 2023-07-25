@@ -38,12 +38,18 @@ export default function SelectHeaderDialog({
       sx={{
         minHeight: "350px",
       }}
+      scroll="paper"
+      aria-labelledby="selectheader-dialog-title"
+      aria-describedby="selectheader-dialog-description"
     >
-      <DialogTitle>
+      <DialogTitle id="selectheader-dialog-title">
         <Typography variant="h4">Creating New Task</Typography>
       </DialogTitle>
       <DialogContent>
-        <DialogContentText textAlign={"center"}>
+        <DialogContentText
+          textAlign={"center"}
+          id="selectheader-dialog-description"
+        >
           Select the header for the column containing the data.
         </DialogContentText>
         <Stack gap={3} alignItems={"center"} mt={4}>
@@ -61,6 +67,7 @@ export default function SelectHeaderDialog({
                   variant="standard"
                   {...params}
                   label="Select Header"
+                  disabled={loading}
                 />
               )}
             />
@@ -71,6 +78,7 @@ export default function SelectHeaderDialog({
                 sx: { color: "var(--graylight)" },
                 onClick: checkData,
                 type: "button",
+                disabled: loading,
               }}
             >
               {formData.formattedData.length > 0 ? "Checked" : "Check"}
@@ -111,6 +119,7 @@ export default function SelectHeaderDialog({
               results for this task in Tasks page once the processing is done.
             </DialogContentText>
           )}
+
           <Stack direction={"row"} gap={2}>
             <CustomButton
               kind="plain"
