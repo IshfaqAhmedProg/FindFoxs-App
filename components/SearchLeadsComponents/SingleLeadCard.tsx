@@ -64,7 +64,7 @@ export default function SingleLeadCard({
         <IdentityDisplay
           name={content.name}
           title={content.jobTitle}
-          avatar={content.avatar}
+          avatar={content.image}
           maxWidth="220px"
         />
       </MenuItem>

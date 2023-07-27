@@ -56,7 +56,7 @@ export default function SearchLeadsPrimaryItem({ content }: { content: Lead }) {
       width={"100%"}
     >
       <Avatar sx={{ width: "40px", height: "40px" }}>
-        <Image alt="Lead Avatar" src={content.avatar} width={40} height={40} />
+        <Image alt="Lead Avatar" src={content.image} width={40} height={40} />
       </Avatar>
       <Stack direction="row" gap={0.5} alignItems={"center"}>
         <Stack gap={1}>
