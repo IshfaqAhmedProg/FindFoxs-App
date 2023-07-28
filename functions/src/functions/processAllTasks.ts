@@ -6,9 +6,9 @@ import emailsAndContactsScraper from "../services/EmailsAndContactsScraper/email
 import facebookScraper from "../services/FacebookScraper/facebookScraper";
 import phoneNumberValidator from "../services/PhoneNumberValidator/phoneNumberValidator";
 import emailValidator from "../services/EmailValidator/emailValidator";
-import path = require("path");
-import os = require("os");
-import fs = require("fs");
+const path = require("path");
+const os = require("os");
+const fs = require("fs");
 
 if (admin.apps.length === 0) {
   admin.initializeApp(functions.config().firebase);
