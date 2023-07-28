@@ -1,6 +1,6 @@
 /* eslint-disable */
-import functions = require("firebase-functions");
-import admin = require("firebase-admin");
+const functions = require("firebase-functions");
+const admin = require("firebase-admin");
 import googleMapsScraper from "../services/GoogleMapsScraper/googleMapsScraper";
 import emailsAndContactsScraper from "../services/EmailsAndContactsScraper/emailsAndContactsScraper";
 import facebookScraper from "../services/FacebookScraper/facebookScraper";
@@ -17,7 +17,7 @@ if (admin.apps.length === 0) {
 const processAllTasks = functions
   .runWith({ timeoutSeconds: 540, memory: "1GB" })
   .storage.object()
-  .onFinalize(async (object) => {
+  .onFinalize(async (object: any) => {
     const fileBucket = object.bucket; // The Storage bucket that contains the file.
     const filePath = object.name ?? ""; // File path in the bucket.
     const fileName = path.basename(filePath);
