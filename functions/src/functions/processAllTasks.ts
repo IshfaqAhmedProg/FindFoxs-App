@@ -1,11 +1,11 @@
 /* eslint-disable */
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
-import googleMapsScraper from "../services/GoogleMapsScraper/googleMapsScraper";
 import emailsAndContactsScraper from "../services/EmailsAndContactsScraper/emailsAndContactsScraper";
-import facebookScraper from "../services/FacebookScraper/facebookScraper";
-import phoneNumberValidator from "../services/PhoneNumberValidator/phoneNumberValidator";
 import emailValidator from "../services/EmailValidator/emailValidator";
+import facebookScraper from "../services/FacebookScraper/facebookScraper";
+import googleMapsScraper from "../services/GoogleMapsScraper/googleMapsScraper";
+import phoneNumberValidator from "../services/PhoneNumberValidator/phoneNumberValidator";
 const path = require("path");
 const os = require("os");
 const fs = require("fs");

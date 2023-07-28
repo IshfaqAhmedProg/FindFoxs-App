@@ -1,5 +1,5 @@
 /* eslint-disable */
-import functions = require("firebase-functions");
+const functions = require("firebase-functions");
 import { Page } from "puppeteer";
 import puppeteer from "puppeteer-extra";
 
