@@ -1,5 +1,4 @@
 /* eslint-disable */
-import fetch from "node-fetch";
 
 const phoneNumberValidator = async function (request: Array<string>) {
   const validatedNumbers = await validateAllNumbers(request);

@@ -1,7 +1,5 @@
 /* eslint-disable */
 
-import fetch from "node-fetch";
-
 interface IEmailPostAnalysis {
   Deliverable: number;
   No_Connect: number;
@@ -47,7 +45,10 @@ const validateAllEmails = async (emails: Array<string>) => {
     const data = await (
       await fetch(`https://mailcheck.p.rapidapi.com/?domain=${item}`, options)
     ).json();
-    postAnalysisData = await postAnalyseEmailValidator(data, postAnalysisData);
+    postAnalysisData = await postAnalyseEmailValidator(
+      data as Record<string, any>,
+      postAnalysisData
+    );
     const configdata = { ...(data as any), email: item };
     allAsyncResults.push(configdata);
   }
@@ -60,11 +61,7 @@ async function postAnalyseEmailValidator(
   paData: IEmailPostAnalysis
 ) {
   paData.total++;
-  if (
-    data.valid.toLowerCase() === "true" &&
-    data.reason === "Whitelisted" &&
-    data.risk < 8
-  ) {
+  if (data.valid == true && data.reason === "Whitelisted" && data.risk <= 8) {
     paData.Deliverable++;
   } else if (
     `${data.valid}${data.block}${data.disposable}${data.domain}${data.text}${data.reason}${data.risk}${data.mx_host}${data.typo}${data.mx_ip}${data.mx_info}${data.last_changed_at}` ==
@@ -75,11 +72,11 @@ async function postAnalyseEmailValidator(
     paData.Low_Quality++;
   } else if (data.reason.startsWith("Some anomalies detected")) {
     paData.Low_Deliverability++;
-  } else if (data.valid.toLowerCase() === "false") {
+  } else if (data.valid == false) {
     paData.Invalid_Email++;
   } else if (data.text.startsWith("Invalid domain")) {
     paData.Invalid_Domain++;
-  } else if (data.disposable.toLowerCase() === "true") {
+  } else if (data.disposable == true) {
     paData.Rejected_Email++;
   } else if (data.mx_info.startsWith("No MX-pointer in DNS record.")) {
     paData.Invalid_SMTP++;

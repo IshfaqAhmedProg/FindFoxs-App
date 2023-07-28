@@ -1,4 +1,4 @@
-//@ts-check
+/* eslint-disable */
 import functions = require("firebase-functions");
 import admin = require("firebase-admin");
 import googleMapsScraper from "../services/GoogleMapsScraper/googleMapsScraper";
