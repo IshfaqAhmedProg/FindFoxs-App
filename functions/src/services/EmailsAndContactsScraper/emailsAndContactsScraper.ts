@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import * as puppeteer from "puppeteer";
+const puppeteer = require("puppeteer");
 import { parsePhoneNumber } from "libphonenumber-js";
 const functions = require("firebase-functions");
 
