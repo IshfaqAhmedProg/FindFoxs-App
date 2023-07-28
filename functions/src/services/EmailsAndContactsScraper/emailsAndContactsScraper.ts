@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 const puppeteer = require("puppeteer");
-import { parsePhoneNumber } from "libphonenumber-js";
+const { parsePhoneNumber } = require("libphonenumber-js");
 const functions = require("firebase-functions");
 
 // User provided constants
