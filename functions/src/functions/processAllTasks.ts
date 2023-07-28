@@ -1,6 +1,6 @@
 /* eslint-disable */
-import functions = require("firebase-functions");
-import admin = require("firebase-admin");
+import * as functions from "firebase-functions";
+import * as admin from "firebase-admin";
 import googleMapsScraper from "../services/GoogleMapsScraper/googleMapsScraper";
 import emailsAndContactsScraper from "../services/EmailsAndContactsScraper/emailsAndContactsScraper";
 import facebookScraper from "../services/FacebookScraper/facebookScraper";

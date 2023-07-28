@@ -23,7 +23,7 @@ const googleMapsScraper = async function (request: GoogleMapsRequest) {
 };
 /**
  *
- * @param request
+ * @param {GoogleMapsRequest} request
  */
 async function scrapeAllKeywords(request: GoogleMapsRequest) {
   const result: Array<any> = [];
@@ -44,8 +44,8 @@ async function scrapeAllKeywords(request: GoogleMapsRequest) {
 }
 /**
  *
- * @param page
- * @param scrollContainer
+ * @param {Page} page
+ * @param {string} scrollContainer
  */
 async function scrollPage(page: Page, scrollContainer: string) {
   let lastHeight = await page.evaluate(
@@ -150,9 +150,9 @@ async function fillDataFromPage(page: Page) {
 
 /**
  *
- * @param query
- * @param coordinates
- * @param hl
+ * @param {string} query
+ * @param {string} coordinates
+ * @param {string} hl
  */
 async function getLocalPlacesInfo(
   query: string,
@@ -160,8 +160,8 @@ async function getLocalPlacesInfo(
   hl = "en"
 ) {
   const browser = await puppeteer.launch({
-    headless: true,
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
+    headless: true,
   });
   console.log(coordinates);
   const page = await browser.newPage();

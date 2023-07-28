@@ -1,8 +1,9 @@
 /* eslint-disable */
-import puppeteer from "puppeteer-extra";
-import functions = require("firebase-functions");
-import StealthPlugin = require("puppeteer-extra-plugin-stealth");
+import * as functions from "firebase-functions";
 import { Page } from "puppeteer";
+import puppeteer from "puppeteer-extra";
+
+import StealthPlugin = require("puppeteer-extra-plugin-stealth");
 var userAgent = require("user-agents");
 puppeteer.use(StealthPlugin());
 const facebookScraper = async function (request: Array<string>) {
