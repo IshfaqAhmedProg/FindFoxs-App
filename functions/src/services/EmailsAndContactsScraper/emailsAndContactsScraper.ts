@@ -2,7 +2,8 @@
 
 import * as puppeteer from "puppeteer";
 import { parsePhoneNumber } from "libphonenumber-js";
-import * as functions from "firebase-functions";
+import functions = require("firebase-functions");
+
 // User provided constants
 const MAX_CHILD_NODES = 0; // the number of child urls to scrape for data
 type Headers = {
