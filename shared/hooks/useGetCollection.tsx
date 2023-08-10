@@ -15,7 +15,6 @@ import {
 import checkIfObjectExistsInArray from "../functions/checkIfObjectExistsInArray";
 import { db } from "@/firebase/config";
 import { FilterParams } from "../interfaces/Table";
-import Task from "../interfaces/Tasks";
 
 type ReturnProps = [
   Array<DocumentData>,
@@ -25,9 +24,8 @@ type ReturnProps = [
   (sf: FilterParams) => void,
   () => void
 ];
-const CACHE_KEY = "readTasksData";
 
-const useReadTasks = ({
+const useGetCollection = ({
   queryLimit,
   collection: coll,
 }: {
@@ -129,4 +127,4 @@ const useReadTasks = ({
   ];
 };
 
-export default useReadTasks;
+export default useGetCollection;

@@ -13,7 +13,7 @@ export default function AuthLayout({
   const { errorAlert } = useAuthError();
   const background = (
     <Image
-      src="https://source.unsplash.com/random/1280x720/?fox"
+      src="https://source.unsplash.com/NBvcQRdRSeQ"
       width={1920}
       height={1080}
       alt="background"

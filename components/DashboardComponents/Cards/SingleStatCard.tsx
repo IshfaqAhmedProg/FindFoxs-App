@@ -12,7 +12,7 @@ export default function SingleStatCard({ title, stat, total, unit }: Props) {
       p={3}
       boxShadow="var(--box-shadow)"
       borderRadius="var(--border-radius)"
-      bgcolor="white"
+      bgcolor="var(--white)"
       display="flex"
       justifyContent="center"
       flexDirection="column"

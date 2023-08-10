@@ -101,7 +101,13 @@ export default function TableFilter({
           <Typography>Filtering by {selectedFilters.label}:</Typography>
           <Stack direction={"row"} gap={1}>
             {selectedFilters.value.map((val) => {
-              return <Chip key={val} label={val} size="small" />;
+              return (
+                <Chip
+                  key={JSON.stringify(val)}
+                  label={JSON.stringify(val)}
+                  size="small"
+                />
+              );
             })}
           </Stack>
           <CustomButton

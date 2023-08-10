@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import EmailValidatorResult from "../ToolsComponents/EmailValidator/EmailValidatorResult";
 import Loading from "../Loading/Loading";
-import useReadDocument from "@/shared/hooks/useReadDocument";
+import useGetDocument from "@/shared/hooks/useGetDocument";
 import Task, { isTask } from "@/shared/interfaces/Tasks";
 import PhoneNumberValidatorResult from "../ToolsComponents/PhoneNumberValidator/PhoneNumberValidatorResult";
 import GoogleMapsScraperResult from "../ToolsComponents/GoogleMapsScraper/GoogleMapsScraperResult";
@@ -9,7 +9,7 @@ import { useAuth } from "@/contexts/AuthContext";
 export default function TaskResultComponent({ taskId }: { taskId: string }) {
   const [task, setTask] = useState<Array<Task | undefined>>([]);
   const { user } = useAuth();
-  const [value, loading, error] = useReadDocument({
+  const [value, loading, error] = useGetDocument({
     document: taskId,
     collection: `users/${user?.uid}/tasks`,
   });

@@ -81,7 +81,7 @@ export default function SideBar({ toggle, handleToggle }: Props) {
         transition: "left 0.15s ease",
         overflowY: "auto",
       }}
-      bgcolor="white"
+      bgcolor="var(--white)"
       paddingTop="4.375rem"
       display="flex"
       flexDirection="column"

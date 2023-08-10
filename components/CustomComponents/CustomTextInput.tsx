@@ -18,7 +18,7 @@ const PlainTextInput = styled(TextField)({
   },
 
   "& .Mui-focused": {
-    backgroundColor: "rgba(250, 250, 250, 1)",
+    backgroundColor: "var(--white)",
     borderRadius: "var(--border-radius-small)",
     boxShadow: "inset var(--box-shadow-hover)",
   },

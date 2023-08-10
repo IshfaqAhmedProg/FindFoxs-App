@@ -10,7 +10,7 @@ type ReturnProps = [
   boolean,
   FirestoreError | undefined
 ];
-const useReadDocument = ({ document, collection }: Props): ReturnProps => {
+const useGetDocument = ({ document, collection }: Props): ReturnProps => {
   const [result, setResult] = useState<DocumentData>();
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<FirestoreError | undefined>();
@@ -45,4 +45,4 @@ const useReadDocument = ({ document, collection }: Props): ReturnProps => {
 
   return [result, loading, error];
 };
-export default useReadDocument;
+export default useGetDocument;

@@ -18,7 +18,6 @@ import { Lead } from "@/shared/interfaces/Lead";
 import TableCell from "@/components/TableComponents/TableCell";
 
 import SingleLeadCard from "./SingleLeadCard";
-import Image from "next/image";
 
 export default function SearchLeadsPrimaryItem({ content }: { content: Lead }) {
   const [seeMoreOpenAnchor, setSeeMoreOpenAnchor] =
@@ -55,9 +54,13 @@ export default function SearchLeadsPrimaryItem({ content }: { content: Lead }) {
       justifyContent={"space-between"}
       width={"100%"}
     >
-      <Avatar sx={{ width: "40px", height: "40px" }}>
-        <Image alt="Lead Avatar" src={content.image} width={40} height={40} />
-      </Avatar>
+      <Avatar
+        sx={{ width: "40px", height: "40px" }}
+        src={
+          content.image ??
+          `https://source.boringavatars.com/bauhaus/40/${content.name}?colors=ffffff,5467e4,303f9f`
+        }
+      />
       <Stack direction="row" gap={0.5} alignItems={"center"}>
         <Stack gap={1}>
           <TableCell fixedWidth="15ch">

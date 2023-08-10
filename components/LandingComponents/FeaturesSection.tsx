@@ -148,8 +148,8 @@ export default function FeaturesSection() {
             {desc}
           </Typography>
         </Stack>
+
         <Box
-          sx={{ width: { xs: "100%", md: "50%" } }}
           display="flex"
           justifyContent="center"
           flex={"1 0 auto"}
@@ -159,6 +159,9 @@ export default function FeaturesSection() {
               ? "fade-right"
               : "fade-left"
           }
+          sx={{
+            width: { xs: "100%", md: "50%" },
+          }}
         >
           {useMediaQuery(theme.breakpoints.down("md")) || !animation ? (
             <Image

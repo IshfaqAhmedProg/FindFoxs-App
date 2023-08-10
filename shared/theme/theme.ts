@@ -61,6 +61,7 @@ const theme = createTheme({
           boxShadow: "var(--box-shadow)",
           display: "flex",
           flexDirection: "column",
+          background:"var(--white)"
         },
       },
     },

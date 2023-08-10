@@ -73,7 +73,6 @@ export default function LoginForm() {
               variant: "contained",
               endIcon: <LoginRoundedIcon />,
             }}
-            loading={loading}
           >
             Log in
           </CustomButton>
@@ -86,7 +85,6 @@ export default function LoginForm() {
               disabled: loading,
               endIcon: <Image src={google} alt="google logo" />,
             }}
-            loading={loading}
           >
             Log in with Google&nbsp;
           </CustomButton>

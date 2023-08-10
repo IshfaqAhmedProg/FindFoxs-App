@@ -1,3 +1,5 @@
+import { Timestamp } from "@firebase/firestore-types";
+
 export interface ITableFilter {
   tableData: Array<any | undefined>;
   filterComponent: React.ReactElement;
@@ -26,7 +28,7 @@ export type SelectAllParams = {
 };
 export type FilterParams = {
   label: string;
-  value: Array<string>;
+  value: Array<string | Timestamp>;
 };
 export interface ITableContext {
   seeMoreOpen: boolean;

@@ -1,5 +1,5 @@
 import TaskListItem from "@/components/TasksComponents/TaskListItem";
-import useReadTasks from "@/shared/hooks/useReadTasks";
+import useGetCollection from "@/shared/hooks/useGetCollection";
 import Task, { isTask } from "@/shared/interfaces/Tasks";
 import { Divider, Stack } from "@mui/material";
 import DashboardCardsLayout from "./DashboardCardsLayout";
@@ -8,7 +8,7 @@ const queryLimit = 5;
 
 export default function TasksCard() {
   const { user } = useAuth();
-  const [results, loading, error, fetchDataFunction] = useReadTasks({
+  const [results, loading, error, fetchDataFunction] = useGetCollection({
     queryLimit,
     collection: `users/${user?.uid}/tasks`,
   });

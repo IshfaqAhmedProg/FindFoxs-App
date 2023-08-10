@@ -21,7 +21,9 @@ export default function IdentityDisplay({
           <Image alt="Lead Avatar" src={avatar} width={40} height={40} />
         </Avatar>
       ) : name ? (
-        <Avatar {...stringAvatar(name)} />
+        <Avatar
+          src={`https://source.boringavatars.com/bauhaus/40/${name}?colors=ffffff,5467e4,303f9f`}
+        />
       ) : (
         ""
       )}

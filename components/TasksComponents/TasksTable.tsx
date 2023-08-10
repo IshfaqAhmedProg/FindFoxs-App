@@ -6,7 +6,7 @@ import TasksTableSecondaryItem from "./TasksTableSecondaryItem";
 import TasksTablePrimaryItem from "./TasksTablePrimaryItem";
 import TaskTableFilter from "./TaskTableFilter";
 import { TableContextProvider } from "@/contexts/TableContext";
-import useReadTasks from "@/shared/hooks/useReadTasks";
+import useGetCollection from "@/shared/hooks/useGetCollection";
 import TasksTableSelectAction from "./TasksTableSelectAction";
 import { useAuth } from "@/contexts/AuthContext";
 import Task, { isTask } from "@/shared/interfaces/Tasks";
@@ -20,7 +20,7 @@ export default function TasksTable() {
     fetchMoreTasksFunction,
     handleSetFilter,
     handleClearFilter,
-  ] = useReadTasks({
+  ] = useGetCollection({
     queryLimit,
     collection: `users/${user?.uid}/tasks`,
   });
@@ -30,6 +30,7 @@ export default function TasksTable() {
       setTasks(results as Array<Task>);
     }
   }, [results]);
+  console.log("usegetcoll error", error);
   const tablePrimaryItems = (
     <>
       {tasks &&
