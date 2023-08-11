@@ -17,7 +17,7 @@ import CustomButton from "../CustomComponents/CustomButton";
 export default function SignupForm() {
   const { handleError } = useAuthError();
 
-  const { signup, googleSignup, sendEV } = useAuth();
+  const { signup, googleAccess, sendEV } = useAuth();
   const [values, setValues] = useState<FormCredentials>({
     email: "",
     password: "",
@@ -35,7 +35,7 @@ export default function SignupForm() {
   function handleGoogleSignup(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
-    googleSignup()
+    googleAccess()
       .then(() => router.replace("/auth/signup/1"))
       .catch((error: any) => handleError(error))
       .finally(() => setLoading(false));

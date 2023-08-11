@@ -32,15 +32,15 @@ export const AuthContextProvider = ({
   //AuthState Change Use Effect
   useEffect(() => {
     setLoading(true);
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
         //TODOsetcookies here
-        localStorage.setItem("uid", user.uid);
+        Cookies.set("token", await user.getIdToken());
         Cookies.set("loggedin", "true");
         Cookies.set("emailVerified", JSON.stringify(user.emailVerified));
         setUser(user);
       } else {
-        localStorage.removeItem("uid");
+        Cookies.remove("token");
         Cookies.remove("loggedin");
         Cookies.remove("emailVerified");
         setUser(null);
@@ -54,41 +54,16 @@ export const AuthContextProvider = ({
 
   //Sign Up Auth function
   async function signup(email: string, password: string) {
-    return createUserWithEmailAndPassword(auth, email, password).then(
-      async (cred) => {
-        await setDoc(doc(db, "users", cred.user.uid), {
-          uid: cred.user.uid,
-          email: cred.user.email,
-          emailVerified: cred.user.emailVerified,
-        });
-      }
-    );
+    return createUserWithEmailAndPassword(auth, email, password);
   }
   //login Auth function
   const login = (email: string, password: string) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
-  //Googlelogin Auth function
-  const googleLogin = () => {
+  //Google Login and signup Auth function
+  const googleAccess = () => {
     const provider = new GoogleAuthProvider();
     return signInWithPopup(auth, provider);
-  };
-  //Google signup Auth function
-  const googleSignup = async () => {
-    const provider = new GoogleAuthProvider();
-    return signInWithPopup(auth, provider).then(async (result) => {
-      const docRef = doc(db, "users", result.user.uid);
-      const docSnap = await getDoc(docRef);
-      if (!docSnap.exists()) {
-        await setDoc(doc(db, "users", result.user.uid), {
-          uid: result.user.uid,
-          email: result.user.email,
-          displayName: result.user.displayName,
-          photoURL: result.user.photoURL,
-          emailVerified: result.user.emailVerified,
-        });
-      }
-    });
   };
 
   //logout Auth function
@@ -96,9 +71,9 @@ export const AuthContextProvider = ({
     await signOut(auth).then(() => {
       setUser(null);
       console.log("loggedout");
+      Cookies.remove("token");
       Cookies.remove("loggedin");
       Cookies.remove("emailVerified");
-      localStorage.removeItem("uid");
       router.replace("/");
     });
   };
@@ -122,8 +97,7 @@ export const AuthContextProvider = ({
       value={{
         login,
         signup,
-        googleLogin,
-        googleSignup,
+        googleAccess,
         sendEV,
         logout,
         resetPass,
@@ -137,8 +111,7 @@ export const AuthContextProvider = ({
 interface IAuthContext {
   login: (email: string, password: string) => Promise<UserCredential>;
   signup: (email: string, password: string) => Promise<UserCredential>;
-  googleSignup: () => Promise<UserCredential>;
-  googleLogin: () => Promise<UserCredential>;
+  googleAccess: () => Promise<UserCredential>;
   sendEV: () => Promise<void> | null;
   logout: () => void;
   resetPass: (email: string) => Promise<void>;

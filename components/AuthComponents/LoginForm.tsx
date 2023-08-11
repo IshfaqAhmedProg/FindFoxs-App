@@ -14,7 +14,7 @@ import FormContainer from "../CustomComponents/FormComponents/FormContainer";
 import CustomButton from "../CustomComponents/CustomButton";
 export default function LoginForm() {
   const { handleError } = useAuthError();
-  const { login, googleLogin } = useAuth();
+  const { login, googleAccess: googleLogin } = useAuth();
   const [values, setValues] = useState<FormCredentials>({
     email: "",
     password: "",
