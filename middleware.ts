@@ -10,12 +10,12 @@ export default async function middleware(req: NextRequest) {
   if (token) {
     const decodedToken = await decodeIdToken(token.value);
     const userVerified = decodedToken.user_id ? true : false;
-    console.log("decodedToken", decodedToken);
+    // console.log("decodedToken", decodedToken);
     const emailVerified = decodedToken.email_verified as boolean;
     let url = req.nextUrl.clone();
     let siteUrl = url.origin;
-    console.log("emailVerified", emailVerified);
-    console.log("userVerified", userVerified);
+    // console.log("emailVerified", emailVerified);
+    // console.log("userVerified", userVerified);
     //if user not verified and tries to access dashboard redirect to login page
     if (
       !userVerified &&
