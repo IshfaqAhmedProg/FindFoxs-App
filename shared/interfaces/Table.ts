@@ -10,6 +10,7 @@ export interface ITableContainer {
   secondaryKeys: Array<string>;
   primaryItems: React.ReactElement;
   secondaryItems: React.ReactElement;
+  paywallComponent?: React.ReactNode;
 }
 export interface ITableMain extends ITableFilter, ITableContainer {
   tableTitle?: string;
@@ -37,6 +38,8 @@ export interface ITableContext {
   activeTab: string;
   loading: boolean;
   selectedFilters: FilterParams;
+  paywallExceeded: boolean;
+  handlePaywallExceeded: (exceeded: boolean) => void;
   handleSetFilter: (sf: FilterParams) => void;
   handleClearFilter: () => void;
   handleTabChange: (params: TabChangeParams) => void;

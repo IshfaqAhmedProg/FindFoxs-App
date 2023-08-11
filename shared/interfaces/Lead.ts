@@ -1,7 +1,7 @@
 import industries from "@/shared/data/ListOfIndustries.json";
 export interface Lead {
   _id: string;
-  image: string;
+  image?: string;
   jobTitle: string;
   email: string;
   phoneNumber: string;

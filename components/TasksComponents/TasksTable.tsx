@@ -22,7 +22,7 @@ export default function TasksTable() {
     handleClearFilter,
   ] = useGetCollection({
     queryLimit,
-    collection: `users/${user?.uid}/tasks`,
+    coll: `users/${user?.uid}/tasks`,
   });
   const [tasks, setTasks] = useState<Array<Task | undefined>>([]);
   useEffect(() => {

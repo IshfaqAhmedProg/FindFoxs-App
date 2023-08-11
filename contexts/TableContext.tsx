@@ -13,14 +13,17 @@ export const TableContextProvider = ({
   fetchDataFunction,
   loading,
   filterFunctions,
+  identifier = "id",
 }: {
   children: React.ReactNode;
   fetchDataFunction: () => void;
   loading?: boolean;
   filterFunctions?: [(sf: FilterParams) => void, () => void];
+  identifier?: string;
 }) => {
   const [selected, setSelected] = useState<Array<string>>([]);
   const [activeTab, setActiveTab] = useState<string>("");
+  const [paywallExceeded, setPaywallExceeded] = useState<boolean>(false);
   const [selectedFilters, setSelectedFilters] = useState<FilterParams>({
     label: "",
     value: [],
@@ -45,11 +48,11 @@ export const TableContextProvider = ({
   }
   const handleSelectAll = (params: SelectAllParams) => {
     if (params.checked && params.tableData)
-      setSelected(params.tableData.map((data) => data._id));
+      setSelected(params.tableData.map((data) => data[identifier]));
     else setSelected([]);
   };
   const handleDataFetch = () => {
-    fetchDataFunction();
+    !paywallExceeded && fetchDataFunction();
   };
   const handleSetFilter = (sf: FilterParams) => {
     setSelectedFilters(sf);
@@ -62,6 +65,9 @@ export const TableContextProvider = ({
   const handleTabChange = (params: TabChangeParams) => {
     setActiveTab(params.tab);
   };
+  const handlePaywallExceeded = (exceeded: boolean) => {
+    setPaywallExceeded(exceeded);
+  };
   return (
     <TableContext.Provider
       value={{
@@ -71,6 +77,8 @@ export const TableContextProvider = ({
         activeTab,
         seeMoreOpenAnchor,
         selectedFilters,
+        paywallExceeded,
+        handlePaywallExceeded,
         handleSetFilter,
         handleClearFilter,
         handleTabChange,

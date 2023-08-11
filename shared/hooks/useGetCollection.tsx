@@ -24,14 +24,25 @@ type ReturnProps = [
   (sf: FilterParams) => void,
   () => void
 ];
-
+type Props = {
+  queryLimit: number;
+  coll: string;
+} & (
+  | {
+      includeAggr: true;
+      aggrDoc: string;
+    }
+  | {
+      includeAggr?: false;
+      aggrDoc?: never;
+    }
+);
 const useGetCollection = ({
   queryLimit,
-  collection: coll,
-}: {
-  queryLimit: number;
-  collection: string;
-}): ReturnProps => {
+  coll,
+  includeAggr,
+  aggrDoc,
+}: Props): ReturnProps => {
   const [isMounted, setIsMounted] = useState(false); //for when the component mounts so that initialFetch runs only once when component mounts and again whenever the filterConstraint changes
   const [results, setResults] = useState<Array<DocumentData>>([]);
   const [lastResult, setLastResult] = useState<DocumentData | null>(null);
@@ -62,7 +73,7 @@ const useGetCollection = ({
       initialFetch();
     }
   }, [isMounted, filterConstraint]);
-  function fetchMoreTasksFunction() {
+  function fetchMoreDataFunction() {
     if (lastResult) {
       const q = query(
         collection(db, coll),
@@ -121,7 +132,7 @@ const useGetCollection = ({
     results,
     loading,
     error,
-    fetchMoreTasksFunction,
+    fetchMoreDataFunction,
     handleSetFilter,
     handleClearFilter,
   ];

@@ -10,7 +10,7 @@ export default function TasksCard() {
   const { user } = useAuth();
   const [results, loading, error, fetchDataFunction] = useGetCollection({
     queryLimit,
-    collection: `users/${user?.uid}/tasks`,
+    coll: `users/${user?.uid}/tasks`,
   });
   return (
     <DashboardCardsLayout title="Tasks" minHeight="236px">

@@ -5,6 +5,7 @@ import TableTabsSelector from "./TableTabsSelector";
 import { useTable } from "@/contexts/TableContext";
 import { ITableMain } from "@/shared/interfaces/Table";
 import CustomCard from "../CustomComponents/CustomCard";
+import { Stack } from "@mui/material";
 
 export default function TableMain({
   tableTitle = "",
@@ -16,6 +17,7 @@ export default function TableMain({
   tableTabs,
   filterComponent,
   selectActionsComponent,
+  paywallComponent,
 }: ITableMain) {
   const { handleTabChange, activeTab } = useTable();
   useEffect(() => {
@@ -40,6 +42,7 @@ export default function TableMain({
         primaryItems={primaryItems}
         secondaryKeys={secondaryKeys}
         secondaryItems={secondaryItems}
+        paywallComponent={paywallComponent}
       />
     </CustomCard>
   );

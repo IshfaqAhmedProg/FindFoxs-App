@@ -5,27 +5,48 @@ import SearchLeadsTableSecondaryItem from "@/components/SearchLeadsComponents/Se
 import TableItem from "@/components/TableComponents/TableItem";
 import TableMain from "@/components/TableComponents/TableMain";
 import TablePrimaryItem from "@/components/TableComponents/TablePrimaryItem";
-import { useTable } from "@/contexts/TableContext";
+import { TableContextProvider } from "@/contexts/TableContext";
+import useGetCollection from "@/shared/hooks/useGetCollection";
 import {
   Lead,
   leadPublicFields,
   leadSearchTabs,
 } from "@/shared/interfaces/Lead";
-import { CircularProgress, Stack } from "@mui/material";
-import { Suspense, useState } from "react";
+import { useEffect, useState } from "react";
+import SearchLeadsPaywall from "./SearchLeadsPaywall";
 
-export default function SearchLeadsTable({ leads }: { leads: Array<Lead> }) {
-  const [loading, setLoading] = useState<boolean>(true);
-  const { activeTab } = useTable();
+const queryLimit = 10;
+export default function SearchLeadsTable() {
+  const [
+    results,
+    loading,
+    error,
+    fetchMoreLeadsFunction,
+    handleSetFilter,
+    handleClearFilter,
+  ] = useGetCollection({
+    queryLimit,
+    coll: `leads`,
+    includeAggr: true,
+    aggrDoc: "",
+  });
+
+  const [leads, setLeads] = useState<Array<Lead | undefined>>([]);
+  useEffect(() => {
+    if (results.length > 0) {
+      setLeads(results as Array<Lead>);
+    }
+  }, [results]);
   const tablePrimaryItems = (
     <>
       {leads.length != 0 &&
         leads.map((lead) => {
-          return (
-            <TablePrimaryItem key={lead._id} id={lead._id}>
-              <SearchLeadsPrimaryItem content={lead} />
-            </TablePrimaryItem>
-          );
+          if (lead)
+            return (
+              <TablePrimaryItem key={lead._id} id={lead._id}>
+                <SearchLeadsPrimaryItem content={lead} />
+              </TablePrimaryItem>
+            );
         })}
     </>
   );
@@ -33,22 +54,21 @@ export default function SearchLeadsTable({ leads }: { leads: Array<Lead> }) {
     <>
       {leads.length != 0 &&
         leads.map((lead) => {
-          return (
-            <TableItem key={lead._id}>
-              <SearchLeadsTableSecondaryItem content={lead} />
-            </TableItem>
-          );
+          if (lead)
+            return (
+              <TableItem key={lead._id}>
+                <SearchLeadsTableSecondaryItem content={lead} />
+              </TableItem>
+            );
         })}
     </>
   );
 
   return (
-    <Suspense
-      fallback={
-        <Stack width="100%" justifyContent={"center"} alignItems={"center"}>
-          <CircularProgress sx={{ color: "var(--graylight)" }} />
-        </Stack>
-      }
+    <TableContextProvider
+      fetchDataFunction={fetchMoreLeadsFunction}
+      loading={loading}
+      identifier="_id"
     >
       <TableMain
         tableTitle="Search for..."
@@ -60,7 +80,8 @@ export default function SearchLeadsTable({ leads }: { leads: Array<Lead> }) {
         tableTabs={leadSearchTabs}
         filterComponent={<SearchLeadsFilter />}
         selectActionsComponent={<SearchLeadsSelectAction />}
+        paywallComponent={<SearchLeadsPaywall />}
       />
-    </Suspense>
+    </TableContextProvider>
   );
 }

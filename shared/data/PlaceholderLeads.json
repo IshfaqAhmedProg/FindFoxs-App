@@ -1,0 +1,35 @@
+[
+  {
+    "_id": "dummylead1",
+    "name": "Providenci Mraz",
+    "jobTitle": "Human Accounts Strategist",
+    "email": "Providenci_Mraz77@hotmail.com",
+    "phoneNumber": "501-246-563",
+    "location": "Solomon Islands, Wisconsin, West Erikaport",
+    "companyName": "Ankunding and Sons",
+    "companyWebsite": "Ankunding%20and%20Sons.com",
+    "industry": "Public Relations"
+  },
+  {
+    "_id": "dummylead2",
+    "name": "Rosa Blick",
+    "jobTitle": "Human Optimization Planner",
+    "email": "Rosa.Blick@hotmail.com",
+    "phoneNumber": "501-671-170",
+    "location": "Congo, Utah, Kansas City",
+    "companyName": "Lang, Bernier and Tremblay",
+    "companyWebsite": "Lang%2C%20Bernier%20and%20Tremblay.com",
+    "industry": "Public Relations"
+  },
+  {
+    "_id": "dummylead3",
+    "name": "Trycia Wunsch",
+    "jobTitle": "Central Quality Liaison",
+    "email": "Trycia80@gmail.com",
+    "phoneNumber": "501-522-337",
+    "location": "New Zealand, Minnesota, South Rashad",
+    "companyName": "Jacobi - Goyette",
+    "companyWebsite": "Jacobi%20-%20Goyette.com",
+    "industry": "Public Relations"
+  }
+]
