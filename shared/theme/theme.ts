@@ -22,9 +22,13 @@ const theme = createTheme({
     MuiAutocomplete: {
       styleOverrides: {
         paper: {
-          // Customize the styles for the dropdown
-          // For example, you can adjust the width, box-shadow, etc.
           color: "var(--primary)",
+          boxShadow: "var(--box-shadow)",
+          borderRadius: "var(--border-radius-small)",
+        },
+        option: {
+          borderBottom: "1px solid var(--graylighter)",
+          borderRadius: "var(--border-radius-small)",
         },
       },
     },
@@ -61,7 +65,7 @@ const theme = createTheme({
           boxShadow: "var(--box-shadow)",
           display: "flex",
           flexDirection: "column",
-          background:"var(--white)"
+          background: "var(--white)",
         },
       },
     },

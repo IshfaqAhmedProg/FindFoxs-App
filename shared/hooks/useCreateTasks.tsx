@@ -43,9 +43,9 @@ const useCreateTask = ({ user }: { user: User | null }): ReturnProps => {
         _id,
         unit,
       };
-
+      const dataBlobObj = { ...data, request: formData };
       const storage = getStorage();
-      const dataBlob = JSON.stringify({ ...data, request: formData });
+      const dataBlob = JSON.stringify(dataBlobObj);
       const blobRef = ref(storage, `${user.uid}/tasks/${_id}/request`);
       setLoadingCreateTask(true);
       adder = Promise.all([

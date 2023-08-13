@@ -28,7 +28,7 @@ export default function SearchLeadsTable() {
     queryLimit,
     coll: `leads`,
     includeAggr: true,
-    aggrDoc: "",
+    aggrDoc: "aggregates/leads",
   });
 
   const [leads, setLeads] = useState<Array<Lead | undefined>>([]);
