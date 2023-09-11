@@ -1,37 +1,38 @@
-import CustomBox from "@/components/CustomComponents/CustomBox";
 import CustomButton from "@/components/CustomComponents/CustomButton";
 import CustomTextInput from "@/components/CustomComponents/CustomTextInput";
-import { useToolForm } from "@/contexts/ToolFormContext";
-import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
-import { Box, Chip, Divider, Stack, Tooltip, Typography } from "@mui/material";
-import React, { useState } from "react";
+import DisplayArray from "@/components/CustomComponents/DisplayStats/DisplayArray";
+import checkIfFacebookPage from "@/shared/functions/checkIfFunctions/checkIfFacebookPage";
+import usePasteDetector from "@/shared/hooks/usePasteDetector";
+import useToolForm, {
+  ToolFormInputProps,
+  initialFormData,
+} from "@/shared/hooks/useToolForm";
+import { Box, Divider, Typography } from "@mui/material";
 import DragNDrop from "../UtilityComponents/DragNDrop";
 
-export default function FacebookScraperInput() {
+export default function FacebookScraperInput({
+  submitTask,
+}: ToolFormInputProps) {
   const {
     formData,
-    handleTextInputChange,
-    handleTextInputSubmit,
-    singleDataLoading,
+    handleTextMultipleInputChange,
+    handleSingleSubmit,
+    handleFileDataChange,
     resetFormData,
-  } = useToolForm();
-  // {
-  //   console.log("formData", formData);
-  // }
-  const [inputValue, setInputValue] = useState<string>("");
-  const handlePasteOrEnter = (
-    event: React.ClipboardEvent<HTMLInputElement>
-  ) => {
-    const pastedUrls = event.clipboardData?.getData("text/plain");
-    const newUrls = pastedUrls
-      ? pastedUrls.replace(/["']/g, "").split(/\n|,|\s+/)
-      : [];
-    if (formData.formattedData.indexOf(inputValue) == -1) {
-      handleTextInputChange(newUrls);
-    }
-  };
+    loading,
+  } = useToolForm({
+    initialState: initialFormData,
+    submitTask,
+    checkFunction: checkIfFacebookPage,
+  });
+  // Handles the pasted values
+  const { handlePaste, handleEnterPress, handlePasteInputChange, inputValue } =
+    usePasteDetector({
+      handlePastedData: handleTextMultipleInputChange,
+      denyRepeat: true,
+    });
   return (
-    <Stack pt={4} alignItems={"center"} gap={4} maxWidth={"500px"}>
+    <>
       <Typography textAlign={"center"}>
         Enter the urls of the facebook page{"("}s{")"} that you want to scrape.
         You can enter them manually or upload a file containing the facebook
@@ -43,68 +44,27 @@ export default function FacebookScraperInput() {
         minRows={3}
         sx={{ width: "80%", minWidth: "300px" }}
         value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
-        onPaste={handlePasteOrEnter}
-        onKeyDown={(event) => {
-          if (event.key === "Enter") {
-            event.preventDefault();
-            if (formData.formattedData.indexOf(inputValue) == -1) {
-              handleTextInputChange(
-                inputValue.replace(/["']/g, "").split(/\n|,|\s+/)
-              );
-              setInputValue("");
-            }
-          }
-        }}
+        onChange={(e) => handlePasteInputChange(e.target.value)}
+        onPaste={handlePaste}
+        onKeyDown={handleEnterPress}
       />
-
       {formData.formattedData.length > 0 && (
-        <Stack gap={1} width={"80%"}>
-          <Stack
-            direction={"row"}
-            justifyContent={"space-between"}
-            alignItems={"center"}
-          >
-            <Typography>Urls to scrape</Typography>
-            <CustomButton
-              kind="plain"
-              buttonProps={{
-                startIcon: <CancelRoundedIcon />,
-                onClick: resetFormData,
-                disabled: singleDataLoading,
-              }}
-            >
-              clear
-            </CustomButton>
-          </Stack>
-          <CustomBox
-            variant="inner"
-            boxProps={{
-              display: "flex",
-              width: "100%",
-              flexWrap: "wrap",
-              p: 1,
-              gap: 1,
-              maxHeight: "250px",
-              sx: { overflowY: "auto" },
-            }}
-          >
-            {formData.formattedData.map((text) => {
-              return (
-                <Tooltip key={text} title={text}>
-                  <Chip label={text} size="small" />
-                </Tooltip>
-              );
-            })}
-          </CustomBox>
-        </Stack>
+        <DisplayArray
+          array={formData.formattedData}
+          clearArray={() => {
+            resetFormData();
+            handlePasteInputChange("");
+          }}
+          disableClear={loading}
+          title="Pages to scrape"
+        />
       )}
       {formData.formattedData.length > 0 && (
         <CustomButton
           kind="secondary"
-          loading={singleDataLoading}
+          loading={loading}
           buttonProps={{
-            onClick: handleTextInputSubmit,
+            onClick: handleSingleSubmit,
             disabled: formData.formattedData.length == 0,
             type: "submit",
           }}
@@ -114,14 +74,15 @@ export default function FacebookScraperInput() {
             : "Scrape Url(s)"}
         </CustomButton>
       )}
-      {!(formData?.textData.length > 0) && (
+      {/* Prevent showing fileupload if textinput path selected */}
+      {!inputValue && formData.formattedData.length == 0 && (
         <>
           <Box minWidth={"250px"}>
             <Divider>or</Divider>
           </Box>
-          <DragNDrop />
+          <DragNDrop handleFileDataChange={handleFileDataChange} />
         </>
       )}
-    </Stack>
+    </>
   );
 }

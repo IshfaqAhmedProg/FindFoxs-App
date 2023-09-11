@@ -1,17 +1,17 @@
-import React, { useState } from "react";
-import Stats from "@/shared/interfaces/Stats";
-import SingleResultCard from "../UtilityComponents/SingleResultCard";
-import ToolsLayout from "../UtilityComponents/ToolsLayout";
-import ToolVideo from "../UtilityComponents/ToolVideoCard";
-import { ToolFormContextProvider } from "@/contexts/ToolFormContext";
-import ValidatorsInput from "../UtilityComponents/ValidatorsInput";
-import { IToolFormData } from "@/shared/interfaces/ToolForm";
+import { useAuth } from "@/contexts/AuthContext";
 import checkIfPNumber from "@/shared/functions/checkIfFunctions/checkIfPNumber";
+import createTask from "@/shared/functions/createTask";
 import convertToReadableString from "@/shared/functions/stringTransformers/convertToReadableString";
 import useSingleDataResult from "@/shared/hooks/useSingleDataResult";
-import useCreateTask from "@/shared/hooks/useCreateTasks";
-import { useAuth } from "@/contexts/AuthContext";
+import { UToolFormData } from "@/shared/hooks/useToolForm";
+import Stats from "@/shared/interfaces/Stats";
+import { Stack } from "@mui/material";
 import { useRouter } from "next/navigation";
+import SingleResultCard from "../UtilityComponents/SingleResultCard";
+import ToolVideo from "../UtilityComponents/ToolVideoCard";
+import ToolsLayout from "../UtilityComponents/ToolsLayout";
+import ValidatorsInput from "../UtilityComponents/ValidatorsInput";
+
 const publicStats = [
   "phone",
   "phone_type",
@@ -31,20 +31,10 @@ const initialResultStat: Array<Stats> = publicStats.map((stat) => {
     ],
   };
 });
-const initialFormData = {
-  textData: [],
-  validationResult: "",
-  fileName: "",
-  unformattedData: [],
-  extractLength: 0,
-  formattedData: [],
-  allColumnHeaders: [],
-  columnHeader: "",
-};
+
 export default function PhoneNumberValidator() {
   const router = useRouter();
   const { user } = useAuth();
-  const [setUserTasks, loadingCreateTask] = useCreateTask({ user }); //handle creating new tasks when uploading file
   const [singleResult, fetchSingleDataResults, loadingSingleResult] =
     useSingleDataResult({
       initialResult: {
@@ -54,7 +44,7 @@ export default function PhoneNumberValidator() {
       },
       publicStats,
     }); //handles single input results
-  async function submitSingleNumber(formData: IToolFormData) {
+  async function submitSingle(formData: UToolFormData) {
     await fetchSingleDataResults(
       "/api/validators/validatePhoneNumber",
       JSON.stringify({
@@ -63,39 +53,36 @@ export default function PhoneNumberValidator() {
       formData
     );
   }
-  async function submitTask(formData: IToolFormData) {
-    await setUserTasks(
+  async function submitTask(formData: UToolFormData) {
+    await createTask(
+      user,
       formData.formattedData,
       "Phone Number Validator",
       formData.formattedData.length,
       "number"
-    )
-      .then(() => router.push("/tasks"))
-      .catch((err: any) => console.log(err));
+    ).then(() => router.push("/tasks"));
   }
 
   return (
-    <ToolsLayout title="Phone Number Validator">
-      <ToolFormContextProvider
-        checkFunction={checkIfPNumber}
-        textInputSubmitFunction={submitSingleNumber}
-        taskSubmitFunction={submitTask}
-        initialFormData={initialFormData}
-        taskSubmitLoading={loadingCreateTask}
-        singleDataLoading={loadingSingleResult}
-      >
-        <ValidatorsInput
-          description="You can enter a single number or upload a file containing a list of numbers, make sure the file you upload is of .xlsx or .csv format. Also make sure the files have headers on the first row."
-          unit="number"
+    <ToolsLayout
+      title="Phone Number Validator"
+      toolVideo={<ToolVideo videoId="TF67a-48jlY" />}
+      singleResultCard={
+        <SingleResultCard
+          loading={loadingSingleResult}
+          confidence={singleResult.resultScore}
+          result={singleResult.resultReport}
+          resultStat={singleResult.resultStat}
         />
-      </ToolFormContextProvider>
-      <SingleResultCard
-        loading={loadingSingleResult}
-        confidence={singleResult.resultScore}
-        result={singleResult.resultReport}
-        resultStat={singleResult.resultStat}
+      }
+    >
+      <ValidatorsInput
+        description="You can enter a single number or upload a file containing a list of numbers, make sure the file you upload is of .xlsx or .csv format. Also make sure the files have headers on the first row."
+        unit="number"
+        submitSingle={submitSingle}
+        submitTask={submitTask}
+        checkFunction={checkIfPNumber}
       />
-      <ToolVideo videoId="TF67a-48jlY" />
     </ToolsLayout>
   );
 }

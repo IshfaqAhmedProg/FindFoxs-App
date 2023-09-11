@@ -1,111 +1,68 @@
+import CustomButton from "@/components/CustomComponents/CustomButton";
 import CustomTextInput from "@/components/CustomComponents/CustomTextInput";
+import keywordOptions from "@/shared/data/KeywordSuggestions.json";
+import languageOptions from "@/shared/data/SearchLanguages.json";
+import useLocationForm, {
+  CountryStateCity,
+} from "@/shared/hooks/useLocationForm";
+import useToolForm, {
+  ToolFormInputProps,
+  initialFormData,
+} from "@/shared/hooks/useToolForm";
+import ArrowDropDownRoundedIcon from "@mui/icons-material/ArrowDropDownRounded";
+import ArrowDropUpRoundedIcon from "@mui/icons-material/ArrowDropUpRounded";
 import {
+  Autocomplete,
   Box,
+  Collapse,
   Divider,
   Stack,
   Typography,
-  Autocomplete,
-  Collapse,
 } from "@mui/material";
-import useSWR, { Fetcher } from "swr";
-
-import React, { useEffect, useState } from "react";
-import { useToolForm } from "@/contexts/ToolFormContext";
-import { CountryStateCity, Language } from "@/shared/interfaces/ToolForm";
 import Image from "next/image";
-
-import keywordOptions from "@/shared/data/KeywordSuggestions.json";
-import languageOptions from "@/shared/data/SearchLanguages.json";
+import { useState } from "react";
 import AddonInterface from "../UtilityComponents/AddonInterface";
-import ArrowDropDownRoundedIcon from "@mui/icons-material/ArrowDropDownRounded";
-import ArrowDropUpRoundedIcon from "@mui/icons-material/ArrowDropUpRounded";
-import CustomButton from "@/components/CustomComponents/CustomButton";
-const fetcher: Fetcher<Array<CountryStateCity>, string> = (...args) =>
-  fetch(...args).then((res) => res.json());
-const options = {
-  dedupingInterval: 10000,
-};
-export default function GoogleMapsScraperInput() {
+
+export interface Language {
+  label: string;
+  subtag: string;
+}
+export default function GoogleMapsScraperInput({
+  submitTask,
+}: ToolFormInputProps) {
   const {
     formData,
-    taskSubmitLoading,
-    handleKeywordChange,
+    loading,
+    handleTextMultipleInputChange,
+    handleTaskSubmit,
+    handleUpdateFormData,
+  } = useToolForm({
+    initialState: initialFormData,
+    submitTask,
+  });
+  const {
+    location,
+    allCountries,
+    countryStates,
+    statesCity,
+    loading: locationLoading,
+    resetCountryStateCity,
     handleCountryChange,
     handleStateChange,
-    handleLanguageChange,
     handleCityChange,
-    handleAddonChange,
-    handleTaskSubmit,
-  } = useToolForm();
+    fetchCoords,
+  } = useLocationForm();
   // {
   //   console.log("formData", formData);
   // }
   const [addOptsTrigger, setAddOptsTrigger] = useState<boolean>(false);
-  const [countryStates, setCountryStates] = useState([]);
-  const [statesCity, setStateCity] = useState([]);
-  const { data: allCountries, error: allCountryError } = useSWR(
-    "/api/geoData/getCountry",
-    fetcher,
-    options
-  );
-  // {
-  //   console.log("countryStates", countryStates);
-  // }
-  // {
-  //   console.log("statesCity", statesCity);
-  // }
+
   function handleAddOptsTrigger() {
     setAddOptsTrigger((prev) => !prev);
   }
 
-  useEffect(() => {
-    if (formData.country) {
-      fetch("/api/geoData/getStateFromCountry", {
-        method: "POST",
-        headers: {
-          Accept: "application/json, text/plain, */*",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          iso2: formData.country.iso2,
-        }),
-      })
-        .then((res) => res.json())
-        .then((res) => {
-          setCountryStates(res);
-        });
-    }
-  }, [formData.country]);
-  //fetch city from states and country
-  useEffect(() => {
-    if (formData.state && formData.country) {
-      fetch("/api/geoData/getCityFromState", {
-        method: "POST",
-        headers: {
-          Accept: "application/json, text/plain, */*",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          isoC: formData.country.iso2,
-          isoS: formData.state.iso2,
-        }),
-      })
-        .then((res) => res.json())
-        .then((res) => {
-          setStateCity(res);
-        });
-    }
-  }, [formData.state, formData.country]);
   return (
-    <Stack
-      p={1}
-      pt={4}
-      alignItems={"center"}
-      gap={3}
-      maxWidth={"600px"}
-      maxHeight={"80vh"}
-      sx={{ overflowY: "auto" }}
-    >
+    <>
       <Typography textAlign={"center"} fontSize={"14px"} maxWidth={"80%"}>
         Enter keywords as you would type in the google maps search box. Maximum
         of 5 keywords are allowed on one task. Make sure to select keywords
@@ -122,21 +79,21 @@ export default function GoogleMapsScraperInput() {
               size="small"
               options={keywordOptions}
               limitTags={5}
-              value={formData.keywords}
+              value={formData.textData as Array<string>}
               onChange={(e, val) => {
-                handleKeywordChange(val);
+                handleTextMultipleInputChange(val);
               }}
               renderInput={(params) => (
                 <CustomTextInput
                   placeholder="Enter keywords"
                   sx={{ minWidth: "300px", maxWidth: "300px" }}
                   {...params}
-                  disabled={formData.keywords.length == 5}
+                  disabled={formData.textData.length == 5}
                 />
               )}
             />
           </Stack>
-          {formData.keywords.length == 5 && (
+          {formData.textData.length == 5 && (
             <Typography color="error">
               Max no. of keywords allowed is 5.
             </Typography>
@@ -153,10 +110,11 @@ export default function GoogleMapsScraperInput() {
               onChange={(e, val) => {
                 if (val) {
                   handleCountryChange(val);
-                  setCountryStates([]);
-                  setStateCity([]);
+                  resetCountryStateCity("all");
                 }
               }}
+              loading={locationLoading}
+              loadingText={"Please wait..."}
               sx={{ flex: "1 0 auto" }}
               renderOption={(props, option) => (
                 <Stack direction={"row"} component="li" {...props} gap={1}>
@@ -185,10 +143,12 @@ export default function GoogleMapsScraperInput() {
                 onChange={(e, val) => {
                   if (val) {
                     handleStateChange(val);
-                    setStateCity([]);
+                    resetCountryStateCity("stateCity");
                   }
                 }}
-                value={formData.state}
+                loading={locationLoading}
+                loadingText={"Please wait..."}
+                value={location.state}
                 sx={{ flex: "1 0 auto" }}
                 disabled={countryStates.length == 0}
                 renderInput={(params) => (
@@ -200,10 +160,15 @@ export default function GoogleMapsScraperInput() {
                 options={statesCity}
                 getOptionLabel={(option: CountryStateCity) => option.name}
                 limitTags={5}
-                onChange={(e, val) => {
-                  if (val) handleCityChange(val);
+                onChange={async (e, val) => {
+                  if (val) {
+                    handleCityChange(val);
+                    handleUpdateFormData({ coords: await fetchCoords() });
+                  }
                 }}
-                value={formData.city}
+                loading={locationLoading}
+                loadingText={"Please wait..."}
+                value={location.city}
                 disabled={statesCity.length == 0}
                 sx={{ flex: "1 0 auto" }}
                 renderInput={(params) => (
@@ -242,32 +207,36 @@ export default function GoogleMapsScraperInput() {
                 getOptionLabel={(option: Language) => option.label}
                 limitTags={5}
                 onChange={(e, val) => {
-                  if (val) handleLanguageChange(val);
+                  if (val) handleUpdateFormData({ language: val });
                 }}
                 renderInput={(params) => (
                   <CustomTextInput
                     placeholder="Language"
                     sx={{ minWidth: "150px", maxWidth: "150px" }}
                     {...params}
-                    disabled={formData.keywords.length == 5}
+                    disabled={formData.textData.length == 5}
                   />
                 )}
               />
             </Stack>
-            <AddonInterface onAddonSelect={handleAddonChange} />
+            <AddonInterface
+              onAddonSelect={(addons) =>
+                handleUpdateFormData({ addons: addons[0] })
+              }
+            />
           </Stack>
         </Collapse>
       </Box>
       <CustomButton
         kind="secondary"
-        loading={taskSubmitLoading}
+        loading={loading}
         buttonProps={{
-          disabled: formData.keywords.length == 0 || !formData.country,
+          disabled: formData.textData.length == 0 || location.coords == "",
           onClick: handleTaskSubmit,
         }}
       >
         Submit
       </CustomButton>
-    </Stack>
+    </>
   );
 }

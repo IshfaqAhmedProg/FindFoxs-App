@@ -24,6 +24,7 @@
     "@types/react-dom": "18.0.10",
     "@vercel/analytics": "^1.0.1",
     "aos": "^2.3.4",
+    "email-existence": "^0.1.6",
     "eslint": "8.32.0",
     "eslint-config-next": "^13.4.9",
     "firebase": "^10.0.0",

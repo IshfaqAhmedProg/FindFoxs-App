@@ -1,50 +1,30 @@
-import React from "react";
-import ToolsLayout from "../UtilityComponents/ToolsLayout";
-import ToolVideo from "../UtilityComponents/ToolVideoCard";
-import { ToolFormContextProvider } from "@/contexts/ToolFormContext";
-import EmailsAndContactsScraperInput from "./EmailsAndContactsScraperInput";
-import checkIfUrl from "@/shared/functions/checkIfFunctions/checkIfUrl";
-import useCreateTask from "@/shared/hooks/useCreateTasks";
 import { useAuth } from "@/contexts/AuthContext";
-import { IToolFormData } from "@/shared/interfaces/ToolForm";
+import createTask from "@/shared/functions/createTask";
+import { UToolFormData } from "@/shared/hooks/useToolForm";
+import { Stack } from "@mui/material";
 import { useRouter } from "next/router";
+import ToolVideo from "../UtilityComponents/ToolVideoCard";
+import ToolsLayout from "../UtilityComponents/ToolsLayout";
+import EmailsAndContactsScraperInput from "./EmailsAndContactsScraperInput";
 
 export default function EmailsAndContactsScraper() {
-  const emailAndContacts = {
-    textData: [],
-    pages: "",
-    fileName: "",
-    unformattedData: [],
-    formattedData: [],
-    allColumnHeaders: [],
-    columnHeader: "",
-  };
   const { user } = useAuth();
-  const [setUserTasks, loadingCreateTask] = useCreateTask({ user }); //handle creating new tasks when uploading file
   const router = useRouter();
-  async function submitTask(formData: IToolFormData) {
-    await setUserTasks(
+  async function submitTask(formData: UToolFormData) {
+    await createTask(
+      user,
       formData.formattedData,
       "Emails And Contacts Scraper",
       formData.formattedData.length,
       "url"
-    )
-      .then(() => router.push("/tasks"))
-      .catch((err: any) => console.log(err));
+    ).then(() => router.push("/tasks"));
   }
   return (
-    <ToolsLayout title="Email And Contacts Scraper">
-      <ToolFormContextProvider
-        initialFormData={emailAndContacts}
-        checkFunction={checkIfUrl}
-        textInputSubmitFunction={submitTask}
-        taskSubmitFunction={submitTask}
-        taskSubmitLoading={loadingCreateTask}
-        singleDataLoading={loadingCreateTask}
-      >
-        <EmailsAndContactsScraperInput />
-      </ToolFormContextProvider>
-      <ToolVideo videoId="TF67a-48jlY" />
+    <ToolsLayout
+      title="Email And Contacts Scraper"
+      toolVideo={<ToolVideo videoId="TF67a-48jlY" />}
+    >
+      <EmailsAndContactsScraperInput submitTask={submitTask} />
     </ToolsLayout>
   );
 }

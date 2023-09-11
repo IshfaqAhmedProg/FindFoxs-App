@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import FileUploadRoundedIcon from "@mui/icons-material/FileUploadRounded";
 import FileDownloadRoundedIcon from "@mui/icons-material/FileDownloadRounded";
 import { Box } from "@mui/material";
-import { useToolForm } from "@/contexts/ToolFormContext";
-
-export default function DragNDrop() {
+import { useToolFormContext } from "@/contexts/ToolFormContext";
+interface Props {
+  handleFileDataChange: (files: FileList | null) => void;
+}
+export default function DragNDrop({ handleFileDataChange }: Props) {
   const [draggedOver, setDraggedOver] = useState<boolean>(false);
-  const { handleFileDataChange } = useToolForm();
   function handleDragOver(e: React.DragEvent) {
     e.preventDefault();
     setDraggedOver(true);

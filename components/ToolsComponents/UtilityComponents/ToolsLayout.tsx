@@ -1,16 +1,20 @@
-import React from "react";
-import { Box } from "@mui/material";
-import CustomCard from "@/components/CustomComponents/CustomCard";
-import CustomContainer from "../../CustomComponents/CustomContainer";
 import CustomButton from "@/components/CustomComponents/CustomButton";
+import CustomCard from "@/components/CustomComponents/CustomCard";
+import { Box, Stack } from "@mui/material";
 import Link from "next/link";
+import React from "react";
+import CustomContainer from "../../CustomComponents/CustomContainer";
 
 export default function ToolsLayout({
   children,
   title,
+  singleResultCard,
+  toolVideo,
 }: {
   children: React.ReactNode;
   title: string;
+  singleResultCard?: React.ReactNode;
+  toolVideo: React.ReactNode;
 }) {
   return (
     <CustomCard
@@ -45,9 +49,13 @@ export default function ToolsLayout({
           width={"100%"}
           height={"100%"}
           gridTemplateColumns={"1fr 1fr"}
-          gridTemplateRows={"1fr 1fr"}
+          gridTemplateRows={"1fr"}
         >
-          {children}
+          <Stack py={4} alignItems={"center"} gap={5} maxWidth={"600px"}>
+            {children}
+          </Stack>
+          {singleResultCard && singleResultCard}
+          {toolVideo}
         </Box>
       </CustomContainer>
     </CustomCard>

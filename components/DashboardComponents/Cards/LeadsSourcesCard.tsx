@@ -2,7 +2,7 @@ import React from "react";
 import DashboardCardsLayout from "./DashboardCardsLayout";
 import { ResponsivePieCanvas } from "@nivo/pie";
 import data from "@/shared/data/MockLeadsSources.json";
-import { nivoTheme } from "@/shared/theme/nivoTheme";
+import { nivoTheme } from "@/shared/themes/nivoTheme";
 
 export default function LeadsSourcesCard() {
   return (

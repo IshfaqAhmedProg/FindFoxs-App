@@ -13,7 +13,7 @@ import DisplayStat from "@/components/CustomComponents/DisplayStats/DisplayStat"
 import DisplayStatImpact from "@/components/CustomComponents/DisplayStats/DisplayStatImpact";
 import { ResponsiveBar } from "@nivo/bar";
 import data from "@/shared/data/MockTeamActivity.json";
-import { nivoTheme } from "@/shared/theme/nivoTheme";
+import { nivoTheme } from "@/shared/themes/nivoTheme";
 
 const peopleOnlineData = [
   { name: "John Bradley", profileImage: "/Images/genericperson1.png" },

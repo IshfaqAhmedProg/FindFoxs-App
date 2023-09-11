@@ -1,5 +1,5 @@
 import CustomButton from "@/components/CustomComponents/CustomButton";
-import { ValidatorFormData } from "@/shared/interfaces/ToolForm";
+
 import {
   Autocomplete,
   Dialog,
@@ -13,6 +13,7 @@ import {
 import React from "react";
 import PlaylistAddCheckRoundedIcon from "@mui/icons-material/PlaylistAddCheckRounded";
 import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
+import { ToolFormData } from "@/shared/hooks/useToolForm";
 export default function SelectHeaderDialog({
   loading,
   open,
@@ -25,7 +26,7 @@ export default function SelectHeaderDialog({
   loading?: boolean;
   open: boolean;
   onClose: () => void;
-  formData: ValidatorFormData;
+  formData: ToolFormData;
   checkData: () => void;
   headerSelect: (value: string | null) => void;
   handleSubmit: (e: React.SyntheticEvent) => void;
@@ -55,7 +56,7 @@ export default function SelectHeaderDialog({
         <Stack gap={3} alignItems={"center"} mt={4}>
           <Stack direction={"row"} gap={2} alignItems={"flex-end"}>
             <Autocomplete
-              options={formData.allColumnHeaders}
+              options={formData.allColumnHeaders ?? []}
               disablePortal
               id="selectHeaders"
               sx={{ width: 300 }}

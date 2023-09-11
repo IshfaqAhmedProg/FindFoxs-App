@@ -1,18 +1,19 @@
-import React from "react";
-import Stats from "@/shared/interfaces/Stats";
-import SingleResultCard from "../UtilityComponents/SingleResultCard";
-import ToolsLayout from "../UtilityComponents/ToolsLayout";
-import ToolVideo from "../UtilityComponents/ToolVideoCard";
-import { ToolFormContextProvider } from "@/contexts/ToolFormContext";
-import ValidatorsInput from "../UtilityComponents/ValidatorsInput";
-import { IToolFormData } from "@/shared/interfaces/ToolForm";
-import convertToReadableString from "@/shared/functions/stringTransformers/convertToReadableString";
-import { useRouter } from "next/navigation";
-import useCreateTask from "@/shared/hooks/useCreateTasks";
 import { useAuth } from "@/contexts/AuthContext";
-import useSingleDataResult from "@/shared/hooks/useSingleDataResult";
 import checkIfEmail from "@/shared/functions/checkIfFunctions/checkIfEmail";
+import createTask from "@/shared/functions/createTask";
+import convertToReadableString from "@/shared/functions/stringTransformers/convertToReadableString";
+import useSingleDataResult from "@/shared/hooks/useSingleDataResult";
+import { UToolFormData } from "@/shared/hooks/useToolForm";
+import Stats from "@/shared/interfaces/Stats";
+import { useRouter } from "next/navigation";
+import SingleResultCard from "../UtilityComponents/SingleResultCard";
+import ToolVideo from "../UtilityComponents/ToolVideoCard";
+import ToolsLayout from "../UtilityComponents/ToolsLayout";
+import ValidatorsInput from "../UtilityComponents/ValidatorsInput";
+
 const publicStats = [
+  "email",
+  "inbox_exists",
   "reason",
   "disposable",
   "possible_typo",
@@ -29,20 +30,10 @@ const initialResultStat: Array<Stats> = publicStats.map((stat) => {
     ],
   };
 });
-const initialFormData = {
-  textData: [],
-  validationResult: "",
-  fileName: "",
-  unformattedData: [],
-  extractLength: 0,
-  formattedData: [],
-  allColumnHeaders: [],
-  columnHeader: "",
-};
+
 export default function EmailValidator() {
   const router = useRouter();
   const { user } = useAuth();
-  const [setUserTasks, loadingCreateTask] = useCreateTask({ user }); //handle creating new tasks when uploading file
   const [singleResult, fetchSingleDataResults, loadingSingleResult] =
     useSingleDataResult({
       initialResult: {
@@ -52,7 +43,7 @@ export default function EmailValidator() {
       },
       publicStats,
     }); //handles single input results
-  async function submitSingleEmail(formData: IToolFormData) {
+  async function submitSingle(formData: UToolFormData) {
     await fetchSingleDataResults(
       "/api/validators/validateEmail",
       JSON.stringify({
@@ -61,38 +52,35 @@ export default function EmailValidator() {
       formData
     );
   }
-  async function submitTask(formData: IToolFormData) {
-    await setUserTasks(
+  async function submitTask(formData: UToolFormData) {
+    await createTask(
+      user,
       formData.formattedData,
       "Email Validator",
       formData.formattedData.length,
       "email"
-    )
-      .then(() => router.push("/tasks"))
-      .catch((err: any) => console.log(err));
+    ).then(() => router.push("/tasks"));
   }
   return (
-    <ToolsLayout title="Email Validator">
-      <ToolFormContextProvider
-        checkFunction={checkIfEmail}
-        textInputSubmitFunction={submitSingleEmail}
-        taskSubmitFunction={submitTask}
-        initialFormData={initialFormData}
-        taskSubmitLoading={loadingCreateTask}
-        singleDataLoading={loadingSingleResult}
-      >
-        <ValidatorsInput
-          description="You can enter a single email or upload a file containing a list of emails, make sure the file you upload is of .xlsx or .csv format. Also make sure the files have headers on the first row."
-          unit="email"
+    <ToolsLayout
+      title="Email Validator"
+      singleResultCard={
+        <SingleResultCard
+          loading={loadingSingleResult}
+          confidence={singleResult.resultScore}
+          result={singleResult.resultReport}
+          resultStat={singleResult.resultStat}
         />
-      </ToolFormContextProvider>
-      <SingleResultCard
-        loading={loadingSingleResult}
-        confidence={singleResult.resultScore}
-        result={singleResult.resultReport}
-        resultStat={singleResult.resultStat}
+      }
+      toolVideo={<ToolVideo videoId="TF67a-48jlY" />}
+    >
+      <ValidatorsInput
+        description="You can enter a single email or upload a file containing a list of emails, make sure the file you upload is of .xlsx or .csv format. Also make sure the files have headers on the first row."
+        unit="email"
+        submitSingle={submitSingle}
+        submitTask={submitTask}
+        checkFunction={checkIfEmail}
       />
-      <ToolVideo videoId="TF67a-48jlY" />
     </ToolsLayout>
   );
 }

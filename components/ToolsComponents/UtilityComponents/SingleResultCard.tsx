@@ -17,6 +17,8 @@ export default function SingleResultCard({
   result,
   resultStat,
 }: Props) {
+  // console.log(resultStat);
+
   return (
     <Stack
       gridRow={"span 2"}
@@ -41,10 +43,14 @@ export default function SingleResultCard({
       <Typography
         variant="h3"
         color={
-          result.toLowerCase().includes("invalid")
+          result.includes("Invalid")
             ? "var(--error)"
-            : result.toLowerCase().includes("yet")
+            : result.includes("Disposable")
+            ? "var(--primary)"
+            : result.includes("yet!")
             ? "var(--graylight)"
+            : result.includes("Valid")
+            ? "var(--accent)"
             : "var(--primarylight)"
         }
       >

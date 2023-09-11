@@ -1,51 +1,71 @@
-import CustomTextInput from "@/components/CustomComponents/CustomTextInput";
-import { Box, Divider, Stack, Typography, Autocomplete } from "@mui/material";
-import React from "react";
-import FileUploadRoundedIcon from "@mui/icons-material/FileUploadRounded";
-import { useToolForm } from "@/contexts/ToolFormContext";
 import CustomButton from "@/components/CustomComponents/CustomButton";
+import CustomTextInput from "@/components/CustomComponents/CustomTextInput";
+import DisplayArray from "@/components/CustomComponents/DisplayStats/DisplayArray";
+import checkIfUrl from "@/shared/functions/checkIfFunctions/checkIfUrl";
+import usePasteDetector from "@/shared/hooks/usePasteDetector";
+import useToolForm, {
+  ToolFormInputProps,
+  initialFormData,
+} from "@/shared/hooks/useToolForm";
+import { Box, Divider, Typography } from "@mui/material";
 import DragNDrop from "../UtilityComponents/DragNDrop";
 
-export default function EmailsAndContactsScraperInput() {
+export default function EmailsAndContactsScraperInput({
+  submitTask,
+}: ToolFormInputProps) {
   const {
     formData,
-    handleTextInputChange,
-    handleTextInputSubmit,
-    singleDataLoading,
-  } = useToolForm();
-  // {
-  //   console.log("formData", formData);
-  // }
-  const options: Array<string> = [];
+    handleTextMultipleInputChange,
+    handleSingleSubmit,
+    handleFileDataChange,
+    resetFormData,
+    loading,
+  } = useToolForm({
+    initialState: initialFormData,
+    checkFunction: checkIfUrl,
+    submitTask,
+  });
+  // Handles the pasted values
+  const { handlePaste, handlePasteInputChange, handleEnterPress, inputValue } =
+    usePasteDetector({
+      handlePastedData: handleTextMultipleInputChange,
+      denyRepeat: true,
+    });
   return (
-    <Stack pt={4} alignItems={"center"} gap={6} maxWidth={"500px"}>
+    <>
       <Typography textAlign={"center"}>
         Enter the urls of the websites you want to scrape. You can also upload a
         .xlsx or .csv file containing the urls. Make sure to check your urls if
         they are valid urls
       </Typography>
-      <Stack direction={"row"} gap={2}>
-        <Autocomplete
-          freeSolo
-          multiple
-          size="small"
-          options={options}
-          onChange={(e, val) => val && handleTextInputChange(val)}
-          renderInput={(params) => (
-            <CustomTextInput
-              placeholder="Enter url(s) here"
-              sx={{ minWidth: "250px" }}
-              {...params}
-            />
-          )}
+      <CustomTextInput
+        placeholder="Enter website url(s) here"
+        multiline
+        minRows={3}
+        sx={{ width: "80%", minWidth: "300px" }}
+        value={inputValue}
+        onChange={(e) => handlePasteInputChange(e.target.value)}
+        onPaste={handlePaste}
+        onKeyDown={handleEnterPress}
+      />
+
+      {formData.formattedData.length > 0 && (
+        <DisplayArray
+          array={formData.formattedData}
+          clearArray={() => {
+            resetFormData();
+            handlePasteInputChange("");
+          }}
+          disableClear={loading}
+          title="Websites to scrape"
         />
-      </Stack>
-      {formData?.textData.length > 0 && (
+      )}
+      {formData.formattedData.length > 0 && (
         <CustomButton
           kind="secondary"
-          loading={singleDataLoading}
+          loading={loading}
           buttonProps={{
-            onClick: handleTextInputSubmit,
+            onClick: handleSingleSubmit,
             disabled: formData.formattedData.length == 0,
             type: "submit",
           }}
@@ -55,14 +75,14 @@ export default function EmailsAndContactsScraperInput() {
             : "Scrape Url(s)"}
         </CustomButton>
       )}
-      {!(formData?.textData.length > 0) && (
+      {!inputValue && formData.formattedData.length == 0 && (
         <>
           <Box minWidth={"250px"}>
             <Divider>or</Divider>
           </Box>
-          <DragNDrop />
+          <DragNDrop handleFileDataChange={handleFileDataChange} />
         </>
       )}
-    </Stack>
+    </>
   );
 }

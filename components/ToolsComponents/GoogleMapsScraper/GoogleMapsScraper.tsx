@@ -1,76 +1,41 @@
-import React, { useState, useEffect } from "react";
-import ToolsLayout from "../UtilityComponents/ToolsLayout";
-import ToolVideo from "../UtilityComponents/ToolVideoCard";
-import { ToolFormContextProvider } from "@/contexts/ToolFormContext";
-import GoogleMapsScraperInput from "./GoogleMapsScraperInput";
-import { IToolFormData } from "@/shared/interfaces/ToolForm";
-import useCreateTask from "@/shared/hooks/useCreateTasks";
 import { useAuth } from "@/contexts/AuthContext";
+import createTask from "@/shared/functions/createTask";
+import {
+  GoogleMapsScraperFormData,
+  UToolFormData,
+} from "@/shared/hooks/useToolForm";
 import { useRouter } from "next/router";
+import ToolVideo from "../UtilityComponents/ToolVideoCard";
+import ToolsLayout from "../UtilityComponents/ToolsLayout";
+import GoogleMapsScraperInput from "./GoogleMapsScraperInput";
 
 export default function GoogleMapsScraper() {
   const router = useRouter();
   const { user } = useAuth();
-  const [setUserTasks, loadingCreateTask] = useCreateTask({ user }); //handle creating new tasks when uploading file
-  const googleMapsScraper = {
-    keywords: [],
-    country: null,
-    state: null,
-    city: null,
-    language: "en",
-    addons: "",
-    coords: "",
-  };
-  const [loading, setLoading] = useState<boolean>(false);
-  async function submitTask(formData: IToolFormData) {
-    setLoading(true);
-    await fetch("/api/geoData/getGeoCoordinates", {
-      method: "POST",
-      headers: {
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json",
+
+  async function submitTask(formData: UToolFormData) {
+    console.log("submitTask formData", formData);
+    await createTask(
+      user,
+      {
+        keywords: formData.textData,
+        language: (formData as GoogleMapsScraperFormData).language,
+        coords: (formData as GoogleMapsScraperFormData).coords,
       },
-      body: JSON.stringify({
-        city: formData.city?.name ?? null,
-        state: formData.state?.name ?? null,
-        country: formData.country?.name,
-      }),
-    })
-      .then((res) => res.json())
-      .then(async (res) => {
-        await setUserTasks(
-          { ...formData, coords: `@${res[0].lat},${res[0].lon},12z` },
-          "Google Maps Scraper",
-          formData.keywords.length,
-          "keyword"
-        )
-          .then(() => {
-            router.push("/tasks");
-            setLoading(false);
-          })
-          .catch((err: any) => {
-            setLoading(false);
-            console.log(err);
-          });
-      })
-      .catch((err) => {
-        setLoading(false);
-        console.log("getGeoCoordinate error", err);
-      });
+      "Google Maps Scraper",
+      formData.textData.length,
+      "keyword"
+    ).then(() => {
+      router.push("/tasks");
+    });
   }
-  useEffect(() => {
-    setLoading(loadingCreateTask);
-  }, [loadingCreateTask]);
+
   return (
-    <ToolsLayout title="Google Maps Scraper">
-      <ToolFormContextProvider
-        taskSubmitFunction={submitTask}
-        taskSubmitLoading={loading}
-        initialFormData={googleMapsScraper}
-      >
-        <GoogleMapsScraperInput />
-      </ToolFormContextProvider>
-      <ToolVideo videoId="TF67a-48jlY" />
+    <ToolsLayout
+      title="Google Maps Scraper"
+      toolVideo={<ToolVideo videoId="TF67a-48jlY" />}
+    >
+      <GoogleMapsScraperInput submitTask={submitTask} />
     </ToolsLayout>
   );
 }

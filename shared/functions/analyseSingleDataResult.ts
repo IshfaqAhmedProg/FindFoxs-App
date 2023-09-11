@@ -4,6 +4,7 @@ import {
 } from "../interfaces/ValidatorResponses";
 import convertToReadableString from "./stringTransformers/convertToReadableString";
 import getRandomArbitrary from "./getRandomArbitrary";
+import isBoolean from "validator/lib/isBoolean";
 
 export default function analyseSingleDataResult(
   response: EmailValidatorResponse | PhoneNumberValidatorResponse,
@@ -60,28 +61,33 @@ function generateStatStruct(response: any, publicStats: Array<string>) {
       statTitle: convertToReadableString(key),
       stats: [
         {
-          title:
-            typeof value === "number"
-              ? value
-              : convertToReadableString(value) ?? "",
+          title: isBoolean(value.toString())
+            ? convertToReadableString(value)
+            : !Array.isArray(value)
+            ? value ?? "-"
+            : value.length > 0
+            ? JSON.stringify(value)
+            : "None",
         },
       ],
     };
   });
 }
 function emailScore(response: EmailValidatorResponse): number {
-  const { valid, disposable } = response;
-
-  if (valid && !disposable) {
-    // High score for valid and not disposable
-    return 0.85;
-  } else if (valid && disposable) {
-    // Lower score for valid but disposable
-    return 0.45;
+  const { inbox_exists, valid } = response;
+  console.log("valid", valid);
+  let score = 0;
+  if (inbox_exists) {
+    // High score for valid and inbox exists
+    score = getRandomArbitrary(0.82, 0.85);
+  } else if (valid && !inbox_exists) {
+    // Lower score for valid but inbox doesnt exist
+    score = getRandomArbitrary(0.42, 0.45);
   } else {
     // Lowest score for invalid
-    return 0.15;
+    score = getRandomArbitrary(0.12, 0.15);
   }
+  return score;
 }
 function phoneScore(response: PhoneNumberValidatorResponse): number {
   const { phone_valid } = response;
@@ -95,12 +101,12 @@ function phoneScore(response: PhoneNumberValidatorResponse): number {
   }
 }
 function emailReport(response: EmailValidatorResponse): string {
-  const { valid, disposable, possible_typo } = response;
+  const { valid, disposable, inbox_exists, possible_typo } = response;
 
-  if (valid && !disposable) {
+  if (valid && inbox_exists) {
     // High score for valid and not disposable
     return "Valid Email";
-  } else if (valid && disposable) {
+  } else if (valid && disposable && inbox_exists) {
     // Lower score for valid but disposable
     return "Disposable Email";
   } else if (possible_typo.length > 0) {

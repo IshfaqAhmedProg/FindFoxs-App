@@ -4,6 +4,7 @@ export interface EmailValidatorResponse {
   valid: boolean;
   block: boolean;
   disposable: boolean;
+  email_forwarder: boolean;
   domain: string;
   text: string;
   reason: string;
@@ -13,6 +14,9 @@ export interface EmailValidatorResponse {
   mx_ip: string;
   mx_info: string;
   last_changed_at: string;
+  email: string;
+  inbox_checkable: boolean;
+  inbox_exists: boolean;
 }
 export interface PhoneNumberValidatorResponse {
   status: string;

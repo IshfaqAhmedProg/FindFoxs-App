@@ -1,28 +1,39 @@
-import CustomTextInput from "@/components/CustomComponents/CustomTextInput";
-import { Box, Divider, InputAdornment, Stack, Typography } from "@mui/material";
-import React from "react";
-import { useToolForm } from "@/contexts/ToolFormContext";
 import CustomButton from "@/components/CustomComponents/CustomButton";
-import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
-import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
-import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
+import CustomTextInput from "@/components/CustomComponents/CustomTextInput";
 import DragNDrop from "@/components/ToolsComponents/UtilityComponents/DragNDrop";
+import useToolForm, {
+  ToolFormInputProps,
+  initialFormData,
+} from "@/shared/hooks/useToolForm";
+import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
+import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
+import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
+import { Box, Divider, Stack, Typography } from "@mui/material";
 
-interface Props {
-  description: string;
-  unit: string;
-}
-export default function ValidatorsInput({ description, unit }: Props) {
+export default function ValidatorsInput({
+  description,
+  unit,
+  submitSingle,
+  submitTask,
+  checkFunction,
+}: ToolFormInputProps) {
   const {
     formData,
-    singleDataLoading,
-    resetFormData,
+    loading,
     handleTextInputChange,
-    handleTextInputSubmit,
-  } = useToolForm();
+    handleFileDataChange,
+    resetFormData,
+    handleSingleSubmit,
+    headerSelectDialog,
+  } = useToolForm({
+    initialState: initialFormData,
+    checkFunction,
+    submitTask: submitTask,
+    submitSingle: submitSingle,
+  });
 
   return (
-    <Stack pt={4} alignItems={"center"} gap={6} maxWidth={"500px"}>
+    <>
       <Typography textAlign={"center"} fontSize={"14px"}>
         {description}
       </Typography>
@@ -36,11 +47,9 @@ export default function ValidatorsInput({ description, unit }: Props) {
         <CustomTextInput
           placeholder={`Enter ${unit} to validate`}
           value={formData.textData}
-          onChange={(e) =>
-            handleTextInputChange(e.target.value != "" ? [e.target.value] : [])
-          }
+          onChange={handleTextInputChange}
           sx={{ width: "100%" }}
-          disabled={singleDataLoading}
+          disabled={loading}
           inputProps={{
             tabIndex: 1,
             style: {
@@ -58,7 +67,7 @@ export default function ValidatorsInput({ description, unit }: Props) {
             buttonProps={{
               startIcon: <CancelRoundedIcon />,
               onClick: resetFormData,
-              disabled: singleDataLoading,
+              disabled: loading,
             }}
           >
             clear
@@ -69,8 +78,8 @@ export default function ValidatorsInput({ description, unit }: Props) {
         <CustomButton
           kind="secondary"
           buttonProps={{
-            onClick: handleTextInputSubmit,
-            disabled: formData.formattedData.length == 0 || singleDataLoading,
+            onClick: handleSingleSubmit,
+            disabled: formData.formattedData.length == 0 || loading,
             type: "submit",
           }}
         >
@@ -82,9 +91,10 @@ export default function ValidatorsInput({ description, unit }: Props) {
           <Box minWidth={"250px"}>
             <Divider>or</Divider>
           </Box>
-          <DragNDrop />
+          <DragNDrop handleFileDataChange={handleFileDataChange} />
         </>
       )}
-    </Stack>
+      {headerSelectDialog}
+    </>
   );
 }

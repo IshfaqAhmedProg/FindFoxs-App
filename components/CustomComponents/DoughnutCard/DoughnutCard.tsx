@@ -1,4 +1,4 @@
-import { nivoTheme } from "@/shared/theme/nivoTheme";
+import { nivoTheme } from "@/shared/themes/nivoTheme";
 import { Chip, Stack, Typography } from "@mui/material";
 import { ResponsivePieCanvas } from "@nivo/pie";
 import React from "react";
