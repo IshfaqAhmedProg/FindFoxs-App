@@ -22,7 +22,7 @@ const theme = createTheme({
     MuiAutocomplete: {
       styleOverrides: {
         paper: {
-          color: "var(--primary)",
+          color: "var(--graydark)",
           boxShadow: "var(--box-shadow)",
           borderRadius: "var(--border-radius-small)",
         },
@@ -74,7 +74,6 @@ const theme = createTheme({
         titleTypographyProps: {
           sx: {
             fontSize: { xs: "0.875rem", sm: ".75rem", md: ".875rem" },
-            fontWeight: "bold",
             color: "var(--primarydark)",
           },
         },
@@ -261,13 +260,13 @@ const theme = createTheme({
     },
     fontFamily: [
       "Montserrat",
+      "sans-serif",
       "-apple-system",
       "BlinkMacSystemFont",
       '"Segoe UI"',
       "Roboto",
       '"Helvetica Neue"',
       "Arial",
-      "sans-serif",
       '"Apple Color Emoji"',
       '"Segoe UI Emoji"',
       '"Segoe UI Symbol"',
@@ -301,7 +300,7 @@ const theme = createTheme({
     },
     h5: {
       fontSize: "md",
-      fontWeight: "bold",
+      fontWeight: "700",
       color: "var(--primarydark)",
       letterSpacing: 0.2,
     },

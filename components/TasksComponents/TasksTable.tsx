@@ -30,7 +30,6 @@ export default function TasksTable() {
       setTasks(results as Array<Task>);
     }
   }, [results]);
-  console.log("usegetcoll error", error);
   const tablePrimaryItems = (
     <>
       {tasks &&
@@ -62,6 +61,7 @@ export default function TasksTable() {
       fetchDataFunction={fetchMoreTasksFunction}
       loading={loading}
       filterFunctions={[handleSetFilter, handleClearFilter]}
+      identifier="_id"
     >
       <TableMain
         tableTitle="All Tasks"
