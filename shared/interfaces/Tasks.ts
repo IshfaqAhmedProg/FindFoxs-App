@@ -1,5 +1,4 @@
 import { Timestamp } from "firebase/firestore";
-import { IToolFormData } from "./ToolForm";
 export const tools = [
   "Google Maps Scraper",
   "Email Validator",
@@ -19,7 +18,7 @@ interface TaskDetails {
   dateCreated: Date | number | Timestamp;
   dateCompleted?: Date | number | Timestamp;
   estimatedTTC?: string;
-  request?: IToolFormData;
+  request?: any;
 }
 
 export interface TaskResult {

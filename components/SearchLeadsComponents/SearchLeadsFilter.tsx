@@ -42,16 +42,11 @@ export default function SearchLeadsFilter() {
             size="small"
             options={jobTitles}
             limitTags={5}
-            //   value={formData.keywords}
-            //   onChange={(e, val) => {
-            //     handleKeywordChange(val);
-            //   }}
             renderInput={(params) => (
               <CustomTextInput
                 placeholder="Enter Job Title"
                 sx={{ minWidth: "300px", maxWidth: "300px" }}
                 {...params}
-                //   disabled={formData.keywords.length == 5}
               />
             )}
           />

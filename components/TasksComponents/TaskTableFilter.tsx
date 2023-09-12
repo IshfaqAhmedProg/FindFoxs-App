@@ -101,7 +101,6 @@ export default function TaskTableFilter() {
                     placeholder={`Select ${filter.label}`}
                     sx={{ minWidth: "250px", maxWidth: "250px" }}
                     {...params}
-                    //   disabled={formData.keywords.length == 5}
                   />
                 )}
               />
