@@ -87,6 +87,18 @@ const theme = createTheme({
           color: "var(--primarylight)",
           borderRadius: "var(--border-radius-small)",
         },
+        colorSuccess: {
+          background: "var(--accentdark)",
+          fontWeight: "bold",
+          color: "var(--white)",
+          borderRadius: "var(--border-radius-small)",
+        },
+        colorError: {
+          background: "var(--error)",
+          fontWeight: "bold",
+          color: "var(--white)",
+          borderRadius: "var(--border-radius-small)",
+        },
       },
     },
     //D
@@ -251,6 +263,12 @@ const theme = createTheme({
       dark: "#c53333",
       light: "#fd6b6b",
       contrastText: "##f99292",
+    },
+    success: {
+      main: "#00e676",
+      dark: "#13a386",
+      light: "#33eb91",
+      contrastText: "#ffffff",
     },
   },
   typography: {

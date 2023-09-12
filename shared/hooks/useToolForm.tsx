@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { Suspense, lazy, useState } from "react";
 import { uniqueKeys } from "../functions/uniqueKeys";
 import processFile from "../functions/processFile";
-import SelectHeaderDialog from "@/components/ToolsComponents/UtilityComponents/SelectHeaderDialog";
-import { LocationFormData } from "./useLocationForm";
+import Loading from "@/components/CustomComponents/Loading/Loading";
+const SelectHeaderDialog = lazy(
+  () =>
+    import("@/components/ToolsComponents/UtilityComponents/SelectHeaderDialog")
+);
 
 interface FileColumnCheckFormData {
   fileName: string;
@@ -141,7 +144,7 @@ const useToolForm = ({
   };
   const checkDataInColumn = () => {
     if (formData.columnHeader) {
-      console.log("here too");
+      // console.log("here too");
       const extract = formData.unformattedData.map((row: any) => {
         return row[formData.columnHeader];
       });
@@ -155,15 +158,17 @@ const useToolForm = ({
   };
   const headerSelectDialog = (
     //Show a dialog to select header columns and submit the task for validators only
-    <SelectHeaderDialog
-      loading={loading}
-      open={showHeaderSelect}
-      onClose={handleHeaderSelectDialogClose}
-      headerSelect={handleHeaderSelect}
-      checkData={checkDataInColumn}
-      handleSubmit={handleTaskSubmit}
-      formData={formData}
-    />
+    <Suspense fallback={<Loading />}>
+      <SelectHeaderDialog
+        loading={loading}
+        open={showHeaderSelect}
+        onClose={handleHeaderSelectDialogClose}
+        headerSelect={handleHeaderSelect}
+        checkData={checkDataInColumn}
+        handleSubmit={handleTaskSubmit}
+        formData={formData}
+      />
+    </Suspense>
   );
 
   return {

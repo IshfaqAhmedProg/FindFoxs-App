@@ -18,7 +18,7 @@ interface Props {
   handleToggle: (params: boolean) => void;
 }
 export default function SideBar({ toggle, handleToggle }: Props) {
-  const sidebarWidth = 300;
+  const sidebarWidth = 280;
   const router = useRouter();
   const [leadsToggle, setLeadsToggle] = useState(true);
   const [toolsToggle, setToolsToggle] = useState(true);

@@ -1,6 +1,9 @@
-import FacebookScraper from "@/components/ToolsComponents/FacebookScraper/FacebookScraper";
+const FacebookScraper = lazy(
+  () => import("@/components/ToolsComponents/FacebookScraper/FacebookScraper")
+);
+import Loading from "@/components/CustomComponents/Loading/Loading";
 import Head from "next/head";
-import React from "react";
+import { Suspense, lazy } from "react";
 
 export default function facebookScraper() {
   return (
@@ -8,7 +11,9 @@ export default function facebookScraper() {
       <Head>
         <title>FindFoxs-Google Maps Scraper</title>
       </Head>
-      <FacebookScraper />
+      <Suspense fallback={<Loading />}>
+        <FacebookScraper />
+      </Suspense>
     </>
   );
 }

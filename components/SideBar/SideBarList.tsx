@@ -1,16 +1,15 @@
+import { SideBarLinks } from "@/shared/interfaces/Links";
+import ExpandLessRoundedIcon from "@mui/icons-material/ExpandLessRounded";
+import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded";
 import {
+  Collapse,
   List,
   ListItemButton,
   ListItemText,
-  Typography,
-  Collapse,
   Tooltip,
+  Typography,
 } from "@mui/material";
-import { SideBarLinks } from "@/shared/interfaces/Links";
-import React from "react";
 import { useRouter } from "next/router";
-import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded";
-import ExpandLessRoundedIcon from "@mui/icons-material/ExpandLessRounded";
 import SideBarListChild from "./SideBarListChild";
 export default function SidebarList({
   toggle,
@@ -29,9 +28,13 @@ export default function SidebarList({
   };
   return (
     <>
-      <Tooltip title={toggle && content.name}>
+      <Tooltip
+        title={toggle && content.name}
+        placement="right"
+        enterDelay={500}
+      >
         <ListItemButton
-          sx={{ gap: "0.5rem", paddingRight: "10px" }}
+          sx={{ gap: "0.8rem", paddingRight: "10px" }}
           selected={router.pathname === content.goto}
           onClick={() => handleSideBarListClick(content)}
         >

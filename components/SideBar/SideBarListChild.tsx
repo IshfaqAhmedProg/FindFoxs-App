@@ -1,16 +1,11 @@
 import { SimpleLink } from "@/shared/interfaces/Links";
-import React from "react";
+import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import {
-  Box,
-  IconButton,
-  List,
   ListItemButton,
   ListItemText,
-  Typography,
-  Collapse,
   Tooltip,
+  Typography,
 } from "@mui/material";
-import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 
 import { useRouter } from "next/router";
 export default function SideBarListChild({
@@ -23,7 +18,7 @@ export default function SideBarListChild({
   const router = useRouter();
 
   return (
-    <Tooltip title={child.name}>
+    <Tooltip title={child.name} placement="right" enterDelay={500}>
       <ListItemButton
         key={child.name}
         sx={{ marginLeft: "2.5rem", paddingRight: "15px" }}

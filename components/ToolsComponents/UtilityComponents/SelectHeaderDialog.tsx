@@ -1,5 +1,7 @@
 import CustomButton from "@/components/CustomComponents/CustomButton";
-
+import { ToolFormData } from "@/shared/hooks/useToolForm";
+import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
+import PlaylistAddCheckRoundedIcon from "@mui/icons-material/PlaylistAddCheckRounded";
 import {
   Autocomplete,
   Dialog,
@@ -11,9 +13,6 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
-import PlaylistAddCheckRoundedIcon from "@mui/icons-material/PlaylistAddCheckRounded";
-import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
-import { ToolFormData } from "@/shared/hooks/useToolForm";
 export default function SelectHeaderDialog({
   loading,
   open,
@@ -43,8 +42,8 @@ export default function SelectHeaderDialog({
       aria-labelledby="selectheader-dialog-title"
       aria-describedby="selectheader-dialog-description"
     >
-      <DialogTitle id="selectheader-dialog-title">
-        <Typography variant="h4">Creating New Task</Typography>
+      <DialogTitle id="selectheader-dialog-title" variant="h4">
+        Creating New Task
       </DialogTitle>
       <DialogContent>
         <DialogContentText

@@ -24,13 +24,13 @@ export const NavDrawer = ({ drawerItems, handleDrawerToggle }: Props) => {
               {item.goto ? (
                 <Link href={item.goto}>
                   <ListItemButton sx={{ color: "var(--accentlight)" }}>
-                    <ListItemAvatar>{item.icon}</ListItemAvatar>
+                    <ListItemAvatar>{item.Icon}</ListItemAvatar>
                     <ListItemText primary={item.name} />
                   </ListItemButton>
                 </Link>
               ) : (
                 <>
-                  <ListItemAvatar>{item.icon}</ListItemAvatar>
+                  <ListItemAvatar>{item.Icon}</ListItemAvatar>
                   <ListItemText primary={item.name} />
                 </>
               )}

@@ -51,7 +51,13 @@ export default function ToolsLayout({
           gridTemplateColumns={"1fr 1fr"}
           gridTemplateRows={"1fr"}
         >
-          <Stack py={4} alignItems={"center"} gap={5} maxWidth={"600px"}>
+          <Stack
+            py={4}
+            alignItems={"center"}
+            gap={5}
+            maxWidth={"600px"}
+            position={"relative"}
+          >
             {children}
           </Stack>
           {singleResultCard && singleResultCard}

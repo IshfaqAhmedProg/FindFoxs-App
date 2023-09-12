@@ -1,21 +1,31 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import decodeIdToken from "./shared/functions/verifyIdToken";
+import { JWTExpired } from "jose/dist/types/util/errors";
 
 const protectedRoutes = [`/dashboard`, `/leads`, `/tasks`, `/tools`];
 const authRoutes = [`/login`, `/signup`];
 export default async function middleware(req: NextRequest) {
   //TODO verify token here
   let token = req.cookies.get("token");
+  let tokenExpired = false;
   if (token) {
-    const decodedToken = await decodeIdToken(token.value);
-    const userVerified = decodedToken.user_id ? true : false;
+    const decodedToken = await decodeIdToken(token.value).catch(
+      (err: JWTExpired) => {
+        console.log(err);
+        tokenExpired = true;
+      }
+    );
+    const userVerified = decodedToken?.user_id ? true : false;
     // console.log("decodedToken", decodedToken);
-    const emailVerified = decodedToken.email_verified as boolean;
+    const emailVerified = decodedToken?.email_verified as boolean;
     let url = req.nextUrl.clone();
     let siteUrl = url.origin;
     // console.log("emailVerified", emailVerified);
     // console.log("userVerified", userVerified);
+    if (tokenExpired) {
+      return NextResponse.redirect(`${siteUrl}/auth/login`);
+    }
     //if user not verified and tries to access dashboard redirect to login page
     if (
       !userVerified &&

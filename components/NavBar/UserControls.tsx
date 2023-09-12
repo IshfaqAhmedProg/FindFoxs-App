@@ -25,39 +25,39 @@ export default function UserControls({ container }: { container: any }) {
       name: "Help Center",
       goto: "/help",
       handler: handleHelpCenterClick,
-      icon: <HelpIcon />,
+      Icon: <HelpIcon />,
     },
     {
       name: "Notifications",
       goto: "",
       handler: handleNotificationClick,
-      icon: <NotificationsIcon />,
+      Icon: <NotificationsIcon />,
       badge: true,
     },
     {
       name: "Account Settings",
       goto: "",
       handler: handleAccountClick,
-      icon: <UserAvatar avatar={user?.photoURL} name={user?.email} />,
+      Icon: <UserAvatar avatar={user?.photoURL} name={user?.email} />,
     },
   ];
   const menuLinks: Array<NavLinks> = [
     {
       name: "Settings",
       handler: handleClose,
-      icon: <SettingsOutlinedIcon />,
+      Icon: <SettingsOutlinedIcon />,
       goto: "/settings",
     },
     {
       name: "Dashboard",
-      icon: <DashboardIcon />,
+      Icon: <DashboardIcon />,
       goto: "/dashboard",
       handler: (param: any) => router.push("/dashboard"),
     },
     {
       name: "Logout",
       handler: handleLogout,
-      icon: <LogoutRoundedIcon />,
+      Icon: <LogoutRoundedIcon />,
       goto: "",
     },
   ];
@@ -85,7 +85,7 @@ export default function UserControls({ container }: { container: any }) {
         alignItems="center"
       >
         {navLinks.map((navItem) => {
-          if (navItem.icon) {
+          if (navItem.Icon) {
             return (
               <CustomButton
                 key={navItem.name}
@@ -104,7 +104,7 @@ export default function UserControls({ container }: { container: any }) {
                     variant="dot"
                     invisible={!navItem?.badge}
                   >
-                    {navItem.icon}
+                    {navItem.Icon}
                   </Badge>
                 </Tooltip>
               </CustomButton>

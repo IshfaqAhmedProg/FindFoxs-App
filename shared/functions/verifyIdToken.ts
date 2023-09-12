@@ -12,7 +12,7 @@ const decodeIdToken = async (idToken: string) => {
   const JWKS = createLocalJWKSet(response);
   // console.log("header=>", header);
   const { payload } = await jwtVerify(idToken, JWKS);
-  // console.log("payload=>", payload, protectedHeader);
+  // console.log("payload=>", payload);
   return payload;
 };
 export default decodeIdToken;

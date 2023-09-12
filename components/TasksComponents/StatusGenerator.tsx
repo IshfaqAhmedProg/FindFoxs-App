@@ -1,5 +1,5 @@
 import React from "react";
-import { Stack, Typography } from "@mui/material";
+import { Stack, Typography, Chip } from "@mui/material";
 import CheckCircleOutlineRoundedIcon from "@mui/icons-material/CheckCircleOutlineRounded";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import ManageHistoryRoundedIcon from "@mui/icons-material/ManageHistoryRounded";
@@ -36,17 +36,18 @@ export default function StatusGenerator({ status, variant = "small" }: Props) {
   switch (status) {
     case "COMPLETE":
       return (
-        <Stack sx={containerStyle}>
-          <CheckCircleOutlineRoundedIcon
-            sx={{
-              color: "var(--accent)",
-              ...iconStyle,
-            }}
-          />
-          <Typography sx={fontStyle} color="var(--accent)">
-            {statString}
-          </Typography>
-        </Stack>
+        <Chip
+          icon={
+            <CheckCircleOutlineRoundedIcon
+              sx={{
+                color: "var(--accent)",
+                ...iconStyle,
+              }}
+            />
+          }
+          label={statString}
+          color="success"
+        />
       );
       break;
     case "FAILED":
