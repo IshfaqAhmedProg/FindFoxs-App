@@ -1,8 +1,8 @@
 import React from "react";
 import DashboardCardsLayout from "./DashboardCardsLayout";
-import CircularProgress from "@/components/ProgressBars/CircularProgress";
+import CircularProgress from "@/components/CustomComponents/ProgressBars/CircularProgress";
 import { Box, Stack, Typography } from "@mui/material";
-import HorizontalProgress from "@/components/ProgressBars/HorizontalProgress";
+import HorizontalProgress from "@/components/CustomComponents/ProgressBars/HorizontalProgress";
 export default function LeadConversionCard() {
   const leadConversionDetails = [
     {

@@ -7,7 +7,7 @@ import { AppBar, Box, Toolbar, Tooltip, Stack } from "@mui/material";
 
 import { NavLinks } from "@/shared/interfaces/Links";
 import UserControls from "./UserControls";
-import HideOnScroll from "../HideOnScroll/HideOnScroll";
+import HideOnScroll from "../CustomComponents/HideOnScroll/HideOnScroll";
 
 import { useAuth } from "@/contexts/AuthContext";
 

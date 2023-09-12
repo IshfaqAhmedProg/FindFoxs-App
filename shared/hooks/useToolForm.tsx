@@ -16,9 +16,7 @@ interface CommonFormData {
   formattedData: Array<string>;
 }
 export interface ToolFormData extends CommonFormData, FileColumnCheckFormData {}
-export interface GoogleMapsScraperFormData
-  extends CommonFormData,
-    LocationFormData {
+export interface GoogleMapsScraperFormData extends CommonFormData {
   language: string;
   addons: string;
   coords: string;

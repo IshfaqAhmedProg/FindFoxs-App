@@ -1,7 +1,7 @@
 import DisplayStat from "@/components/CustomComponents/DisplayStats/DisplayStat";
-import Loading from "@/components/Loading/Loading";
-import CircularProgress from "@/components/ProgressBars/CircularProgress";
-import HorizontalProgress from "@/components/ProgressBars/HorizontalProgress";
+import Loading from "@/components/CustomComponents/Loading/Loading";
+import CircularProgress from "@/components/CustomComponents/ProgressBars/CircularProgress";
+import HorizontalProgress from "@/components/CustomComponents/ProgressBars/HorizontalProgress";
 import Stats, { Stat } from "@/shared/interfaces/Stats";
 import { Box, Divider, Stack, Typography } from "@mui/material";
 import React from "react";

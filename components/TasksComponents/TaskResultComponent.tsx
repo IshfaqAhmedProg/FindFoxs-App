@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import EmailValidatorResult from "../ToolsComponents/EmailValidator/EmailValidatorResult";
-import Loading from "../Loading/Loading";
+import Loading from "../CustomComponents/Loading/Loading";
 import useGetDocument from "@/shared/hooks/useGetDocument";
 import Task, { isTask } from "@/shared/interfaces/Tasks";
 import PhoneNumberValidatorResult from "../ToolsComponents/PhoneNumberValidator/PhoneNumberValidatorResult";

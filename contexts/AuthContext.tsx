@@ -16,7 +16,7 @@ import { auth, db } from "../firebase/config";
 import { User } from "firebase/auth";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
-import Loading from "@/components/Loading/Loading";
+import Loading from "@/components/CustomComponents/Loading/Loading";
 
 const AuthContext = createContext<any>({});
 export const useAuth = (): IAuthContext => useContext(AuthContext);

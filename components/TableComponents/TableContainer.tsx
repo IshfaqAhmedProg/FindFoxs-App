@@ -4,7 +4,7 @@ import { useTheme } from "@mui/material/styles";
 import TableCell from "./TableCell";
 import { useTable } from "@/contexts/TableContext";
 import { InView } from "react-intersection-observer";
-import Loading from "../Loading/Loading";
+import Loading from "../CustomComponents/Loading/Loading";
 import TableEndOfPage from "./TableEndOfPage";
 import { ITableContainer } from "@/shared/interfaces/Table";
 

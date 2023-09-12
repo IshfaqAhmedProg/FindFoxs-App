@@ -10,7 +10,7 @@ import EWLAnimation from "@public/Images/Animation/EWL.json";
 import SFLAnimation from "@public/Images/Animation/SFL.json";
 import MYLAnimation from "@public/Images/Animation/MYL.json";
 import MYLOAnimation from "@public/Images/Animation/MYLOverlay.json";
-import Loading from "../Loading/Loading";
+import Loading from "../CustomComponents/Loading/Loading";
 const Lottie = lazy(() => import("lottie-react"));
 interface FeatureType {
   highlighted: string;

@@ -18,13 +18,18 @@ interface TaskDetails {
   dateCreated: Date | number | Timestamp;
   dateCompleted?: Date | number | Timestamp;
   estimatedTTC?: string;
-  request?: any;
+  request?: Array<string> | IGoogleMapsScraperRequest;
 }
-
+export type IGoogleMapsScraperRequest = {
+  keywords: string;
+  coords: string;
+  addons: string;
+  language: string;
+};
 export interface TaskResult {
-  response?: IEmailValidatorResult;
+  response?: IEmailValidatorResponse;
 }
-export interface IEmailValidatorResult {
+export interface IEmailValidatorResponse {
   deliverable: number;
   undeliverable: {
     invalid_email: number;
