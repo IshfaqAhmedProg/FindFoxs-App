@@ -1,21 +1,21 @@
+import { FormInput } from "@/components/CustomComponents/FormComponents/FormInput";
 import { useAuth } from "@/contexts/AuthContext";
+import { useErrorHandler } from "@/contexts/ErrorHandlerContext";
 import { FormCredentials } from "@/shared/interfaces/FormInputs";
+import HowToRegRoundedIcon from "@mui/icons-material/HowToRegRounded";
+import { Box, Divider } from "@mui/material";
+import Typography from "@mui/material/Typography";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import inputs from "../../shared/constants/inputs.json";
 import google from "../../public/Logos/Extra/Google.svg";
-import Image from "next/image";
-import Typography from "@mui/material/Typography";
-
-import { Box, Divider } from "@mui/material";
-import { FormInput } from "@/components/CustomComponents/FormComponents/FormInput";
-import HowToRegRoundedIcon from "@mui/icons-material/HowToRegRounded";
-import FormContainer from "../CustomComponents/FormComponents/FormContainer";
-import { useAuthError } from "@/contexts/AuthErrorContext";
+import inputs from "../../shared/constants/inputs.json";
 import CustomButton from "../CustomComponents/CustomButton";
+import FormContainer from "../CustomComponents/FormComponents/FormContainer";
+import { GetRefinedFirebaseError } from "@/shared/functions/errorHandler";
 
 export default function SignupForm() {
-  const { handleError } = useAuthError();
+  const { handleError } = useErrorHandler();
 
   const { signup, googleAccess, sendEV } = useAuth();
   const [values, setValues] = useState<FormCredentials>({
@@ -29,7 +29,7 @@ export default function SignupForm() {
     setLoading(true);
     signup(values.email, values.password)
       .then(() => router.replace("/auth/signup/1"))
-      .catch((error: any) => handleError(error))
+      .catch((error: any) => handleError(GetRefinedFirebaseError(error)))
       .finally(() => setLoading(false));
   }
   function handleGoogleSignup(e: React.FormEvent<HTMLFormElement>) {
@@ -37,7 +37,7 @@ export default function SignupForm() {
     setLoading(true);
     googleAccess()
       .then(() => router.replace("/auth/signup/1"))
-      .catch((error: any) => handleError(error))
+      .catch((error: any) => handleError(GetRefinedFirebaseError(error)))
       .finally(() => setLoading(false));
   }
   function onChange(e: React.ChangeEvent<HTMLInputElement>) {

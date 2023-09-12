@@ -1,19 +1,21 @@
+import { FormInput } from "@/components/CustomComponents/FormComponents/FormInput";
 import { useAuth } from "@/contexts/AuthContext";
+import google from "@/public/Logos/Extra/Google.svg";
+import inputs from "@/shared/constants/inputs.json";
+import { GetRefinedFirebaseError } from "@/shared/functions/errorHandler";
 import { FormCredentials } from "@/shared/interfaces/FormInputs";
+import LoginRoundedIcon from "@mui/icons-material/LoginRounded";
+import { Box, Divider } from "@mui/material";
+import Typography from "@mui/material/Typography";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import { useAuthError } from "../../contexts/AuthErrorContext";
-import inputs from "@/shared/constants/inputs.json";
-import { Box, Divider } from "@mui/material";
-import { FormInput } from "@/components/CustomComponents/FormComponents/FormInput";
-import google from "@/public/Logos/Extra/Google.svg";
-import Image from "next/image";
-import Typography from "@mui/material/Typography";
-import LoginRoundedIcon from "@mui/icons-material/LoginRounded";
-import FormContainer from "../CustomComponents/FormComponents/FormContainer";
+import { useErrorHandler } from "../../contexts/ErrorHandlerContext";
 import CustomButton from "../CustomComponents/CustomButton";
+import FormContainer from "../CustomComponents/FormComponents/FormContainer";
+
 export default function LoginForm() {
-  const { handleError } = useAuthError();
+  const { handleError } = useErrorHandler();
   const { login, googleAccess: googleLogin } = useAuth();
   const [values, setValues] = useState<FormCredentials>({
     email: "",
@@ -30,7 +32,7 @@ export default function LoginForm() {
         router.replace("/dashboard");
       })
       .catch((error: any) => {
-        handleError(error);
+        handleError(GetRefinedFirebaseError(error));
       })
       .finally(() => setLoading(false));
   }
@@ -39,7 +41,7 @@ export default function LoginForm() {
     setLoading(true);
     googleLogin()
       .then(() => router.replace("/dashboard"))
-      .catch((error: any) => handleError(error))
+      .catch((error: any) => handleError(GetRefinedFirebaseError(error)))
       .finally(() => setLoading(false));
   }
   function onChange(e: React.ChangeEvent<HTMLInputElement>) {

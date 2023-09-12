@@ -1,9 +1,8 @@
 import React, { useState, createContext, useEffect, useContext } from "react";
 import { Alert, AlertTitle, Fade } from "@mui/material";
-import { GetRefinedFirebaseError } from "@/shared/functions/errorHandler";
-const AuthErrorContext = createContext<any>({});
-export const useAuthError = () => useContext(AuthErrorContext);
-export const AuthErrorProvider = ({
+const ErrorHandlerContext = createContext<any>({});
+export const useErrorHandler = () => useContext(ErrorHandlerContext);
+export const ErrorHandlerProvider = ({
   children,
 }: {
   children: React.ReactNode;
@@ -13,7 +12,7 @@ export const AuthErrorProvider = ({
   const handleError = (err: any) => {
     setChecked(true);
     if (err == null) return;
-    setErrorMsg(GetRefinedFirebaseError(err));
+    setErrorMsg(err);
     return;
   };
   useEffect(() => {
@@ -43,8 +42,8 @@ export const AuthErrorProvider = ({
     </Fade>
   );
   return (
-    <AuthErrorContext.Provider value={{ handleError, errorAlert }}>
+    <ErrorHandlerContext.Provider value={{ handleError, errorAlert }}>
       {children}
-    </AuthErrorContext.Provider>
+    </ErrorHandlerContext.Provider>
   );
 };

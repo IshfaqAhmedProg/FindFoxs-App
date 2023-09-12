@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 import { Box, Stack, useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import { useAuthError } from "../../contexts/AuthErrorContext";
+import { useErrorHandler } from "../../contexts/ErrorHandlerContext";
 
 export default function AuthLayout({
   children,
@@ -10,7 +10,7 @@ export default function AuthLayout({
   children: React.ReactNode;
 }) {
   const theme = useTheme();
-  const { errorAlert } = useAuthError();
+  const { errorAlert } = useErrorHandler();
   const background = (
     <Image
       src="https://source.unsplash.com/NBvcQRdRSeQ"

@@ -31,7 +31,7 @@ export default function SidebarList({
     <>
       <Tooltip title={toggle && content.name}>
         <ListItemButton
-          sx={{ gap: "1rem", paddingRight: "10px" }}
+          sx={{ gap: "0.5rem", paddingRight: "10px" }}
           selected={router.pathname === content.goto}
           onClick={() => handleSideBarListClick(content)}
         >
@@ -39,7 +39,7 @@ export default function SidebarList({
           <ListItemText
             disableTypography
             primary={
-              <Typography variant="h5" fontSize={"1rem"}>
+              <Typography variant="h5" fontSize={"0.9rem"}>
                 {content.name}
               </Typography>
             }

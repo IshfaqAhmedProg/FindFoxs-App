@@ -74,12 +74,11 @@ export default function TableFilter({
               <Stack
                 direction="row"
                 alignItems={"center"}
-                justifyContent={"center"}
+                justifyContent={"flex-end"}
                 minWidth={"622px"}
                 width={"100%"}
                 gap={1}
               >
-                <Typography>Filters:</Typography>
                 {filterComponent}
               </Stack>
             </span>

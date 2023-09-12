@@ -26,7 +26,7 @@ export default function SideBarListChild({
     <Tooltip title={child.name}>
       <ListItemButton
         key={child.name}
-        sx={{ marginLeft: "3rem", gap: "1rem", paddingRight: "15px" }}
+        sx={{ marginLeft: "2.5rem", paddingRight: "15px" }}
         selected={router.pathname === child.goto}
         onClick={() => router.push(child.goto)}
       >
@@ -36,9 +36,8 @@ export default function SideBarListChild({
             <Typography
               color={"var(--primary)"}
               sx={{
-                fontSize: "14px",
+                fontSize: "13px",
               }}
-              maxWidth="18ch"
             >
               {child.name}
             </Typography>

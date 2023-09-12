@@ -1,14 +1,14 @@
 import React from "react";
 
-import { AuthErrorProvider } from "@/contexts/AuthErrorContext";
+import { ErrorHandlerProvider } from "@/contexts/ErrorHandlerContext";
 import SignupForm from "@/components/AuthComponents/SignupForm";
 import AuthLayout from "@/components/AuthComponents/AuthLayout";
 export default function login() {
   return (
-    <AuthErrorProvider>
+    <ErrorHandlerProvider>
       <AuthLayout>
         <SignupForm />
       </AuthLayout>
-    </AuthErrorProvider>
+    </ErrorHandlerProvider>
   );
 }
