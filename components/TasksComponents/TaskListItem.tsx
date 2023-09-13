@@ -60,7 +60,7 @@ export default function TaskListItem({ task }: { task: Task | DocumentData }) {
         </Box>
         <Box
           display="flex"
-          gap={0.5}
+          gap={1}
           alignItems="center"
           textOverflow="ellipsis"
           overflow="hidden"

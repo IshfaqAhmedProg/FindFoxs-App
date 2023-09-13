@@ -30,13 +30,14 @@ export default function FacebookScraperInput({
     usePasteDetector({
       handlePastedData: handleTextMultipleInputChange,
       denyRepeat: true,
+      limit: 5,
     });
   return (
     <>
       <Typography textAlign={"center"}>
         Enter the urls of the facebook page{"("}s{")"} that you want to scrape.
         You can enter them manually or upload a file containing the facebook
-        page urls.
+        page urls. You are limited to 5 facebook pages per task.
       </Typography>
       <CustomTextInput
         placeholder="Enter facebook page url(s) here"

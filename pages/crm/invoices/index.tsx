@@ -1,5 +1,5 @@
 import UnderMaintenance from "@/components/CustomComponents/UnderMaintenance";
 
-export default function ManageLeads() {
+export default function invoices() {
   return <UnderMaintenance />;
 }

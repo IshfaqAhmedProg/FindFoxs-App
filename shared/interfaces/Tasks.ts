@@ -30,24 +30,24 @@ export interface TaskResult {
   response?: IEmailValidatorResponse;
 }
 export interface IEmailValidatorResponse {
-  deliverable: number;
-  undeliverable: {
-    invalid_email: number;
-    invalid_domain: number;
-    rejected_email: number;
-    invalid_smtp: number;
+  Deliverable: number;
+  Undeliverable: {
+    Invalid_email: number;
+    Invalid_domain: number;
+    Rejected_email: number;
+    Invalid_smtp: number;
   };
-  risky: {
-    low_quality: number;
-    low_deliverability: number;
+  Risky: {
+    Low_quality: number;
+    Low_deliverability: number;
   };
-  unknown: {
-    no_connect: number;
-    timeout: number;
-    unavailable_smtp: number;
-    unexpected_error: number;
+  Unknown: {
+    No_connect: number;
+    Timeout: number;
+    Unavailable_smtp: number;
+    Unexpected_error: number;
   };
-  duplicate: number;
+  Duplicate: number;
 }
 export type TaskUnits = string | "website" | "email" | "number" | "keyword";
 export default interface Task extends TaskDetails, Tools, Status, TaskResult {

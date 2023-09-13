@@ -8,7 +8,13 @@ import { Analytics } from "@vercel/analytics/react";
 import Script from "next/script";
 import { useRouter } from "next/router";
 import DashboardLayout from "@/components/DashboardComponents/DashboardLayout";
-const dashboardLayout: Array<string> = ["dashboard", "leads", "tasks", "tools"];
+const dashboardLayout: Array<string> = [
+  "dashboard",
+  "leads",
+  "tasks",
+  "tools",
+  "crm",
+];
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
 

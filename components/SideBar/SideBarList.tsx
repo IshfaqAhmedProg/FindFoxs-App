@@ -42,7 +42,11 @@ export default function SidebarList({
           <ListItemText
             disableTypography
             primary={
-              <Typography variant="h5" fontSize={"0.9rem"}>
+              <Typography
+                variant="h5"
+                fontSize={"0.9rem"}
+                color={"var(--primary)"}
+              >
                 {content.name}
               </Typography>
             }

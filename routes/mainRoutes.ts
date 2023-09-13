@@ -8,13 +8,22 @@ const mainRoutes: RouteCollection = {
     name: "Dashboard",
     goto: "/dashboard",
   },
+  crm: {
+    name: "CRM",
+    goto: "",
+    children: {
+      customers: { name: "Customers", goto: "/crm/customers" },
+      invoices: { name: "Invoices", goto: "/crm/invoices" },
+      quotes: { name: "Quotes", goto: "/crm/quotes" },
+    },
+  },
   leads: {
     name: "Leads",
     goto: "",
     children: {
-      search: { name: "Search Leads", goto: "/leads/search" },
-      manage: { name: "Manage Your Leads", goto: "/leads/manage" },
-      engage: { name: "Engage with Leads", goto: "/leads/engage" },
+      search: { name: "Search New Leads", goto: "/leads/search" },
+      manage: { name: "Manage Your Leads ", goto: "/leads/manage" },
+      engage: { name: "Engage With Leads ", goto: "/leads/engage" },
     },
   },
   tools: {

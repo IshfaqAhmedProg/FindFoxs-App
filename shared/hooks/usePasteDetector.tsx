@@ -1,9 +1,14 @@
 import { useState } from "react";
 type Props = {
-  handlePastedData: (textInput: Array<string>) => void;
+  handlePastedData: (textInput: Array<string>, limit: number) => void;
   denyRepeat: boolean;
+  limit?: number;
 };
-export default function usePasteDetector(props: Props) {
+export default function usePasteDetector({
+  handlePastedData,
+  denyRepeat,
+  limit = 20,
+}: Props) {
   const [inputValue, setInputValue] = useState<string>("");
 
   const handlePaste = (event: React.ClipboardEvent<HTMLInputElement>) => {
@@ -11,8 +16,8 @@ export default function usePasteDetector(props: Props) {
     const newUrls = pastedData
       ? pastedData.replace(/["']/g, "").split(/\n|,|\s+/)
       : [];
-    if (props.denyRepeat) {
-      props.handlePastedData(newUrls);
+    if (denyRepeat) {
+      handlePastedData(newUrls, limit);
       setInputValue("");
     }
   };
@@ -22,9 +27,10 @@ export default function usePasteDetector(props: Props) {
   const handleEnterPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.key === "Enter") {
       event.preventDefault();
-      if (props.denyRepeat) {
-        props.handlePastedData(
-          inputValue.replace(/["']/g, "").split(/\n|,|\s+/)
+      if (denyRepeat) {
+        handlePastedData(
+          inputValue.replace(/["']/g, "").split(/\n|,|\s+/),
+          limit
         );
         setInputValue("");
       }

@@ -1,19 +1,17 @@
-import CustomBox from "@/components/CustomComponents/CustomBox";
-import Task from "@/shared/interfaces/Tasks";
-import { Stack } from "@mui/material";
-import React from "react";
 import DoughnutCard from "@/components/CustomComponents/DoughnutCard/DoughnutCard";
-
 import ResultSummaryCard from "@/components/ToolsComponents/UtilityComponents/ResultSummaryCard";
 import VerticalResultCard from "@/components/ToolsComponents/UtilityComponents/VerticalResultCard";
 import sumObjectValues from "@/shared/functions/sumObjectValues";
+import Task from "@/shared/interfaces/Tasks";
+import { Stack } from "@mui/material";
+
 export default function EmailValidatorResult({ task }: { task: Task }) {
   const totalUndeliverable =
-    sumObjectValues(task.response?.undeliverable) ?? 728;
-  const totalUnknown = sumObjectValues(task.response?.unknown) ?? 403;
-  const totalRisky = sumObjectValues(task.response?.risky) ?? 1372;
+    sumObjectValues(task.response?.Undeliverable) ?? 728;
+  const totalUnknown = sumObjectValues(task.response?.Unknown) ?? 403;
+  const totalRisky = sumObjectValues(task.response?.Risky) ?? 1372;
   const total =
-    (task.response?.deliverable ?? 3802) +
+    (task.response?.Deliverable ?? 3802) +
     totalUndeliverable +
     totalRisky +
     totalUnknown;
@@ -31,41 +29,41 @@ export default function EmailValidatorResult({ task }: { task: Task }) {
     {
       id: "No_Connect",
       label: "No Connect",
-      value: task.response?.unknown.no_connect ?? 102,
+      value: task.response?.Unknown.No_connect ?? 102,
     },
     {
       id: "Timeout",
       label: "Timeout",
-      value: task.response?.unknown.timeout ?? 36,
+      value: task.response?.Unknown.Timeout ?? 36,
     },
     {
       id: "Unavailable_SMTP",
       label: "Unavailable SMTP",
-      value: task.response?.unknown.unavailable_smtp ?? 137,
+      value: task.response?.Unknown.Unavailable_smtp ?? 137,
     },
     {
       id: "Unexpected_Error",
       label: "Unexpected Error",
-      value: task.response?.unknown.unexpected_error ?? 128,
+      value: task.response?.Unknown.Unexpected_error ?? 128,
     },
   ];
   const riskyData = [
     {
       id: "Low_Quality",
       label: "Low Quality",
-      value: task.response?.risky.low_quality ?? 488,
+      value: task.response?.Risky.Low_quality ?? 488,
     },
     {
       id: "Low_Deliverability",
       label: "Low Deliverability",
-      value: task.response?.risky.low_deliverability ?? 884,
+      value: task.response?.Risky.Low_deliverability ?? 884,
     },
   ];
   const deliverableData = [
     {
       id: "Deliverable",
       label: "Deliverable",
-      value: task.response?.deliverable ?? 3802,
+      value: task.response?.Deliverable ?? 3802,
     },
     {
       id: "Undeliverable",
@@ -75,7 +73,7 @@ export default function EmailValidatorResult({ task }: { task: Task }) {
     {
       id: "Duplicate",
       label: "Duplicate",
-      value: task.response?.duplicate ?? 195,
+      value: task.response?.Duplicate ?? 195,
     },
     {
       id: "Risky",
@@ -92,22 +90,22 @@ export default function EmailValidatorResult({ task }: { task: Task }) {
     {
       id: "Invalid_Email",
       label: "Invalid Email",
-      value: task.response?.undeliverable.invalid_email ?? 319,
+      value: task.response?.Undeliverable.Invalid_email ?? 319,
     },
     {
       id: "Invalid_Domain",
       label: "Invalid Domain",
-      value: task.response?.undeliverable.invalid_domain ?? 106,
+      value: task.response?.Undeliverable.Invalid_domain ?? 106,
     },
     {
       id: "Rejected_Email",
       label: "Rejected Email",
-      value: task.response?.undeliverable.rejected_email ?? 180,
+      value: task.response?.Undeliverable.Rejected_email ?? 180,
     },
     {
       id: "Invalid_SMTP",
       label: "Invalid SMTP",
-      value: task.response?.undeliverable.invalid_smtp ?? 123,
+      value: task.response?.Undeliverable.Invalid_smtp ?? 123,
     },
   ];
 
@@ -124,7 +122,7 @@ export default function EmailValidatorResult({ task }: { task: Task }) {
         <Stack direction={"row"} height={"100%"} alignItems={"center"} gap={3}>
           <DoughnutCard
             centerValue={(
-              ((task.response?.deliverable ?? 3802) / total) *
+              ((task.response?.Deliverable ?? 3802) / total) *
               100
             ).toFixed(1)}
             colors={deliverableDataColors}

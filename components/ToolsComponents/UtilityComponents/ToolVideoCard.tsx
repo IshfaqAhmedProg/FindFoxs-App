@@ -1,6 +1,5 @@
-import Loading from "@/components/CustomComponents/Loading/Loading";
 import { Box, Stack } from "@mui/material";
-import React, { Suspense } from "react";
+import React from "react";
 import YouTube, { YouTubeProps } from "react-youtube";
 
 export default function ToolVideo({ videoId }: { videoId: string }) {
@@ -27,18 +26,16 @@ export default function ToolVideo({ videoId }: { videoId: string }) {
       position={"relative"}
       pt={4}
     >
-      <Suspense fallback={<Loading />}>
-        <Box
-          height={"fit-content"}
-          width={"80%"}
-          maxWidth={"720px"}
-          bgcolor={"var(--graydark)"}
-          borderRadius="var(--border-radius)"
-          overflow={"hidden"}
-        >
-          <YouTube videoId={videoId} opts={opts} />
-        </Box>
-      </Suspense>
+      <Box
+        height={"fit-content"}
+        width={"80%"}
+        maxWidth={"720px"}
+        bgcolor={"var(--graydark)"}
+        borderRadius="var(--border-radius)"
+        overflow={"hidden"}
+      >
+        <YouTube videoId={videoId} opts={opts} />
+      </Box>
     </Stack>
   );
 }

@@ -40,10 +40,7 @@ export const AuthContextProvider = ({
         Cookies.set("emailVerified", JSON.stringify(user.emailVerified));
         setUser(user);
       } else {
-        Cookies.remove("token");
-        Cookies.remove("loggedin");
-        Cookies.remove("emailVerified");
-        setUser(null);
+        logout();
       }
       setLoading(false);
     });

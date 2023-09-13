@@ -87,6 +87,12 @@ const theme = createTheme({
           color: "var(--primarylight)",
           borderRadius: "var(--border-radius-small)",
         },
+        colorPrimary: {
+          background: "var(--primarylight)",
+          fontWeight: "bold",
+          color: "var(--white)",
+          borderRadius: "var(--border-radius-small)",
+        },
         colorSuccess: {
           background: "var(--accentdark)",
           fontWeight: "bold",

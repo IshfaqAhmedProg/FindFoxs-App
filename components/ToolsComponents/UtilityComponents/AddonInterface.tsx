@@ -1,11 +1,10 @@
-import React, { useState } from "react";
-import EmailAndContactsIcon from "@/public/Icons/EmailAndContactsScraper.svg";
-import PhoneNumberValidatorIcon from "@/public/Icons/PhoneNumberValidator.svg";
-import Image from "next/image";
-import { Typography, Menu, Stack } from "@mui/material";
-import CustomButton from "@/components/CustomComponents/CustomButton";
 import CustomBox from "@/components/CustomComponents/CustomBox";
+import CustomButton from "@/components/CustomComponents/CustomButton";
 import CustomCheckbox from "@/components/CustomComponents/CustomCheckbox";
+import EmailAndContactsIcon from "@/public/Icons/EmailAndContactsScraper.svg";
+import { Menu, Stack, Typography } from "@mui/material";
+import Image from "next/image";
+import React, { useState } from "react";
 interface AddonType {
   [key: string]: boolean;
 }
@@ -18,6 +17,7 @@ interface Addon {
   message: string;
   messageConfirm: string;
 }
+
 export default function AddonInterface({ onAddonSelect }: Props) {
   const [addonOpenAnchor, setAddonOpenAnchor] = useState<null | HTMLElement>(
     null
@@ -53,7 +53,6 @@ export default function AddonInterface({ onAddonSelect }: Props) {
       messageConfirm:
         "Email and Contacts will be scraped from any websites found in the results",
     },
-
   ];
   return (
     <>

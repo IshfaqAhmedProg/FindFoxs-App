@@ -30,13 +30,14 @@ export default function EmailsAndContactsScraperInput({
     usePasteDetector({
       handlePastedData: handleTextMultipleInputChange,
       denyRepeat: true,
+      limit: 5,
     });
   return (
     <>
       <Typography textAlign={"center"}>
         Enter the urls of the websites you want to scrape. You can also upload a
         .xlsx or .csv file containing the urls. Make sure to check your urls if
-        they are valid urls
+        they are valid urls. You are limited to 5 websites per task
       </Typography>
       <CustomTextInput
         placeholder="Enter website url(s) here"

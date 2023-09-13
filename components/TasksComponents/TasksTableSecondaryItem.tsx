@@ -36,7 +36,7 @@ export default function TasksTableSecondaryItem({
   return (
     <>
       <TableCell>
-        <StatusGenerator status={task.status} variant="large" />
+        <StatusGenerator status={task.status} variant="small" />
       </TableCell>
       <TableCell>
         <DateTimeComponent dateTime={startTime} />

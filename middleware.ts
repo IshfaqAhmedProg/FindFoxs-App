@@ -24,7 +24,7 @@ export default async function middleware(req: NextRequest) {
     // console.log("emailVerified", emailVerified);
     // console.log("userVerified", userVerified);
     if (tokenExpired) {
-      return NextResponse.redirect(`${siteUrl}/auth/login`);
+      return NextResponse.redirect(siteUrl);
     }
     //if user not verified and tries to access dashboard redirect to login page
     if (

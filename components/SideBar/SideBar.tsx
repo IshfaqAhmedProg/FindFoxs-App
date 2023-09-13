@@ -1,18 +1,17 @@
-import { Box, IconButton, List } from "@mui/material";
-import React, { useState } from "react";
-import MenuOpenRoundedIcon from "@mui/icons-material/MenuOpenRounded";
-import {
-  DashboardIcon,
-  LeadsIcon,
-  ToolsIcon,
-} from "@/public/Icons/CustomIcons";
-import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
-import TaskOutlinedIcon from "@mui/icons-material/TaskOutlined";
-import { SideBarLinks } from "@/shared/interfaces/Links";
-import { useRouter } from "next/router";
-import SidebarList from "./SideBarList";
-import CustomButton from "../CustomComponents/CustomButton";
 import mainRoutes from "@/routes/mainRoutes";
+import { SideBarLinks } from "@/shared/interfaces/Links";
+import Diversity1RoundedIcon from "@mui/icons-material/Diversity1Rounded";
+import Groups2RoundedIcon from "@mui/icons-material/Groups2Rounded";
+import HandymanOutlinedIcon from "@mui/icons-material/HandymanOutlined";
+import MenuOpenRoundedIcon from "@mui/icons-material/MenuOpenRounded";
+import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
+import SpeedRoundedIcon from "@mui/icons-material/SpeedRounded";
+import TaskRoundedIcon from "@mui/icons-material/TaskRounded";
+import { Box, List } from "@mui/material";
+import { useRouter } from "next/router";
+import { useState } from "react";
+import CustomButton from "../CustomComponents/CustomButton";
+import SidebarList from "./SideBarList";
 interface Props {
   toggle: boolean;
   handleToggle: (params: boolean) => void;
@@ -20,52 +19,51 @@ interface Props {
 export default function SideBar({ toggle, handleToggle }: Props) {
   const sidebarWidth = 280;
   const router = useRouter();
-  const [leadsToggle, setLeadsToggle] = useState(true);
-  const [toolsToggle, setToolsToggle] = useState(true);
-
   const sidebarContent: Array<SideBarLinks> = [
     {
       ...mainRoutes.dashboard,
-      icon: <DashboardIcon />,
+      icon: <SpeedRoundedIcon />,
+    },
+    {
+      ...mainRoutes.crm,
+      icon: <Diversity1RoundedIcon />,
+      expanded: true,
     },
     {
       ...mainRoutes.leads,
-      icon: <LeadsIcon />,
-      expanded: leadsToggle,
+      icon: <Groups2RoundedIcon />,
+      expanded: true,
     },
     {
       ...mainRoutes.tools,
 
-      icon: <ToolsIcon />,
-      expanded: toolsToggle,
+      icon: <HandymanOutlinedIcon />,
+      expanded: true,
     },
     {
       ...mainRoutes.tasks,
-      icon: <TaskOutlinedIcon />,
+      icon: <TaskRoundedIcon />,
     },
     {
       ...mainRoutes.settings,
-      icon: <SettingsOutlinedIcon />,
+      icon: <SettingsRoundedIcon />,
     },
   ];
-  function handleSideBarListClick(content: SideBarLinks) {
-    if (!!content.goto) {
-      router.push(content.goto);
+  const [contentState, setContentState] = useState(sidebarContent);
+
+  function handleSideBarListClick(clickedContent: SideBarLinks) {
+    if (!!clickedContent.goto) {
+      router.push(clickedContent.goto);
     }
-    switch (content.name) {
-      case "Leads":
-        {
-          setLeadsToggle(!content.expanded);
-        }
-        break;
-      case "Tools":
-        {
-          setToolsToggle(!content.expanded);
-        }
-        break;
-      default:
-        break;
-    }
+
+    setContentState((prev) =>
+      prev.map((content) => {
+        if (content.name == clickedContent.name) {
+          content.expanded = !content.expanded;
+          return content;
+        } else return content;
+      })
+    );
   }
 
   return (
@@ -94,6 +92,9 @@ export default function SideBar({ toggle, handleToggle }: Props) {
           sx: {
             transform: toggle ? "rotate(180deg)" : "rotate(0deg)",
             transition: "transform 0.15s ease",
+            "& .MuiSvgIcon-root": {
+              color: "var(--graylight)",
+            },
           },
         }}
       >

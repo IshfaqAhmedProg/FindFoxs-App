@@ -1,3 +1,7 @@
+import CustomTextInput from "@/components/CustomComponents/CustomTextInput";
+import Loading from "@/components/CustomComponents/Loading/Loading";
+import { Autocomplete, Stack } from "@mui/material";
+import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import useSWR, { Fetcher } from "swr";
 
@@ -133,7 +137,86 @@ export default function useLocationForm() {
     setLocation({ ...location, coords });
     return coords;
   };
+  const LocationForm = allCountries ? (
+    <>
+      <Autocomplete
+        size="small"
+        options={allCountries}
+        getOptionLabel={(option: CountryStateCity) => option.name}
+        onChange={(e, val) => {
+          if (val) {
+            handleCountryChange(val);
+            resetCountryStateCity("all");
+          }
+        }}
+        loading={loading}
+        loadingText={"Please wait..."}
+        sx={{ flex: "1 0 auto" }}
+        renderOption={(props, option) => (
+          <Stack direction={"row"} component="li" {...props} gap={1}>
+            {option.iso2 && (
+              <Image
+                loading="lazy"
+                height={"12"}
+                width={"20"}
+                src={`https://flagcdn.com/w20/${option.iso2.toLowerCase()}.png`}
+                alt={`flag of ${option.name}`}
+              />
+            )}
+            {option.name}
+          </Stack>
+        )}
+        renderInput={(props) => (
+          <CustomTextInput placeholder="Select Country" {...props} />
+        )}
+      />
+      <Stack direction={"row"} gap={2}>
+        <Autocomplete
+          size="small"
+          options={countryStates}
+          getOptionLabel={(option: CountryStateCity) => option.name}
+          limitTags={5}
+          onChange={(e, val) => {
+            if (val) {
+              handleStateChange(val);
+              resetCountryStateCity("stateCity");
+            }
+          }}
+          loading={loading}
+          loadingText={"Please wait..."}
+          value={location.state}
+          sx={{ flex: "1 0 auto" }}
+          disabled={countryStates.length == 0}
+          renderInput={(params) => (
+            <CustomTextInput placeholder="Select State" {...params} />
+          )}
+        />
+        <Autocomplete
+          size="small"
+          options={statesCity}
+          getOptionLabel={(option: CountryStateCity) => option.name}
+          limitTags={5}
+          onChange={async (e, val) => {
+            if (val) {
+              handleCityChange(val);
+            }
+          }}
+          loading={loading}
+          loadingText={"Please wait..."}
+          value={location.city}
+          disabled={statesCity.length == 0}
+          sx={{ flex: "1 0 auto" }}
+          renderInput={(params) => (
+            <CustomTextInput placeholder="Select City" {...params} />
+          )}
+        />
+      </Stack>
+    </>
+  ) : (
+    <Loading />
+  );
   return {
+    LocationForm,
     location,
     allCountries,
     countryStates,

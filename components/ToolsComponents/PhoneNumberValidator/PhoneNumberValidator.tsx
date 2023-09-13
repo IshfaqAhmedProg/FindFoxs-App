@@ -5,7 +5,6 @@ import convertToReadableString from "@/shared/functions/stringTransformers/conve
 import useSingleDataResult from "@/shared/hooks/useSingleDataResult";
 import { UToolFormData } from "@/shared/hooks/useToolForm";
 import Stats from "@/shared/interfaces/Stats";
-import { Stack } from "@mui/material";
 import { useRouter } from "next/navigation";
 import SingleResultCard from "../UtilityComponents/SingleResultCard";
 import ToolVideo from "../UtilityComponents/ToolVideoCard";

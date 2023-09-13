@@ -1,11 +1,8 @@
-import React, { Suspense, lazy, useState } from "react";
-import { uniqueKeys } from "../functions/uniqueKeys";
-import processFile from "../functions/processFile";
 import Loading from "@/components/CustomComponents/Loading/Loading";
-const SelectHeaderDialog = lazy(
-  () =>
-    import("@/components/ToolsComponents/UtilityComponents/SelectHeaderDialog")
-);
+import React, { Suspense, lazy, useState } from "react";
+import processFile from "../functions/processFile";
+import { uniqueKeys } from "../functions/uniqueKeys";
+import SelectHeaderDialog from "@/components/ToolsComponents/UtilityComponents/SelectHeaderDialog";
 
 interface FileColumnCheckFormData {
   fileName: string;
@@ -72,16 +69,19 @@ const useToolForm = ({
       formattedData: checkFunction ? checkFunction([e.target.value]) : [],
     });
   };
-  const handleTextMultipleInputChange = (textInput: Array<string>) => {
+  const handleTextMultipleInputChange = (
+    textInput: Array<string>,
+    limit: number | undefined = 20
+  ) => {
     setFormData({
       ...formData,
       textData: textInput,
       formattedData:
-        (checkFunction &&
-          checkFunction(
-            Array.from(new Set([...formData.formattedData, ...textInput]))
-          )) ??
-        [],
+        textInput.length <= limit && checkFunction
+          ? checkFunction(
+              Array.from(new Set([...formData.formattedData, ...textInput]))
+            )
+          : formData.formattedData,
     });
   };
   const handleFileDataChange = async (files: FileList | null) => {
@@ -158,17 +158,15 @@ const useToolForm = ({
   };
   const headerSelectDialog = (
     //Show a dialog to select header columns and submit the task for validators only
-    <Suspense fallback={<Loading />}>
-      <SelectHeaderDialog
-        loading={loading}
-        open={showHeaderSelect}
-        onClose={handleHeaderSelectDialogClose}
-        headerSelect={handleHeaderSelect}
-        checkData={checkDataInColumn}
-        handleSubmit={handleTaskSubmit}
-        formData={formData}
-      />
-    </Suspense>
+    <SelectHeaderDialog
+      loading={loading}
+      open={showHeaderSelect}
+      onClose={handleHeaderSelectDialogClose}
+      headerSelect={handleHeaderSelect}
+      checkData={checkDataInColumn}
+      handleSubmit={handleTaskSubmit}
+      formData={formData}
+    />
   );
 
   return {
