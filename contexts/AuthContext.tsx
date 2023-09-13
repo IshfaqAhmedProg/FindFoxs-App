@@ -35,7 +35,7 @@ export const AuthContextProvider = ({
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
         //TODOsetcookies here
-        Cookies.set("token", await user.getIdToken());
+        Cookies.set("token", await user.getIdToken(true));
         Cookies.set("loggedin", "true");
         Cookies.set("emailVerified", JSON.stringify(user.emailVerified));
         setUser(user);
