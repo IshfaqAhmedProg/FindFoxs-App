@@ -29,26 +29,22 @@ export default function DisplayArray({
         )}
         <CustomButton
           kind="plain"
-          buttonProps={{
-            startIcon: <CancelRoundedIcon />,
-            onClick: clearArray,
-            disabled: disableClear,
-          }}
+          startIcon={<CancelRoundedIcon />}
+          onClick={clearArray}
+          disabled={disableClear}
         >
           clear
         </CustomButton>
       </Stack>
       <CustomBox
         variant="inner"
-        boxProps={{
-          display: "flex",
-          width: "100%",
-          flexWrap: "wrap",
-          p: 1,
-          gap: 1,
-          maxHeight: "250px",
-          sx: { overflowY: "auto" },
-        }}
+        display="flex"
+        width="100%"
+        flexWrap="wrap"
+        p={1}
+        gap={1}
+        maxHeight="250px"
+        sx={{ overflowY: "auto" }}
       >
         {array.map((text) => {
           return (

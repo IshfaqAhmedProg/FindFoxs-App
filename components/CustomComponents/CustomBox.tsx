@@ -1,15 +1,14 @@
 import Box, { BoxProps } from "@mui/material/Box";
 import React from "react";
 
+type CustomBoxProps = {
+  variant?: "inner" | "outer";
+} & BoxProps;
 export default function CustomBox({
   children,
-  variant = "outer",
-  boxProps,
-}: {
-  children?: React.ReactNode;
-  variant?: "inner" | "outer";
-  boxProps?: BoxProps;
-}) {
+  variant,
+  ...boxProps
+}: CustomBoxProps) {
   return (
     <Box
       borderRadius={"var(--border-radius-large)"}

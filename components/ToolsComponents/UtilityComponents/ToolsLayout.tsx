@@ -21,12 +21,7 @@ export default function ToolsLayout({
       title={title}
       action={
         <Link href={"/tasks"}>
-          <CustomButton
-            kind="plain"
-            buttonProps={{
-              sx: { color: "var(--primary)" },
-            }}
-          >
+          <CustomButton kind="plain" sx={{ color: "var(--primary)" }}>
             History
           </CustomButton>
         </Link>

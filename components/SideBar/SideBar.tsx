@@ -10,8 +10,9 @@ import TaskRoundedIcon from "@mui/icons-material/TaskRounded";
 import { Box, List } from "@mui/material";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import CustomButton from "../CustomComponents/CustomButton";
+import CustomIconButton from "../CustomComponents/CustomIconButton";
 import SidebarList from "./SideBarList";
+
 interface Props {
   toggle: boolean;
   handleToggle: (params: boolean) => void;
@@ -55,11 +56,12 @@ export default function SideBar({ toggle, handleToggle }: Props) {
     if (!!clickedContent.goto) {
       router.push(clickedContent.goto);
     }
-
+    console.log("clickedContent", clickedContent);
     setContentState((prev) =>
       prev.map((content) => {
         if (content.name == clickedContent.name) {
-          content.expanded = !content.expanded;
+          content["expanded"] = !content.expanded;
+          console.log("content", content);
           return content;
         } else return content;
       })
@@ -85,23 +87,20 @@ export default function SideBar({ toggle, handleToggle }: Props) {
       flexDirection="column"
       alignItems="flex-end"
     >
-      <CustomButton
-        kind="icon"
-        iconButtonProps={{
-          onClick: () => handleToggle(!toggle),
-          sx: {
-            transform: toggle ? "rotate(180deg)" : "rotate(0deg)",
-            transition: "transform 0.15s ease",
-            "& .MuiSvgIcon-root": {
-              color: "var(--graylight)",
-            },
+      <CustomIconButton
+        onClick={() => handleToggle(!toggle)}
+        sx={{
+          transform: toggle ? "rotate(180deg)" : "rotate(0deg)",
+          transition: "transform 0.15s ease",
+          "& .MuiSvgIcon-root": {
+            color: "var(--graylight)",
           },
         }}
       >
         <MenuOpenRoundedIcon />
-      </CustomButton>
+      </CustomIconButton>
       <List sx={{ width: "100%" }}>
-        {sidebarContent.map((content) => {
+        {contentState.map((content) => {
           return (
             <SidebarList
               key={content.name}

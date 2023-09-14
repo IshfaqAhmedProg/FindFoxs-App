@@ -51,25 +51,24 @@ export default function TaskTableFilter() {
       <>
         <CustomButton
           kind="plain"
-          buttonProps={{
-            id: filter.title,
-            startIcon: filter.icon,
-            sx:
-              selectedFilters.label == filter.label
-                ? {
-                    "& .MuiSvgIcon-root": {
-                      color: "var(--primarylight)",
-                    },
+          id={filter.title}
+          startIcon={filter.icon}
+          sx={
+            selectedFilters.label == filter.label
+              ? {
+                  "& .MuiSvgIcon-root": {
                     color: "var(--primarylight)",
-                  }
-                : {
-                    "& .MuiSvgIcon-root": {
-                      color: "var(--graylight)",
-                    },
+                  },
+                  color: "var(--primarylight)",
+                }
+              : {
+                  "& .MuiSvgIcon-root": {
                     color: "var(--graylight)",
                   },
-            onClick: handleFilterClick,
-          }}
+                  color: "var(--graylight)",
+                }
+          }
+          onClick={handleFilterClick}
         >
           {filter.title}
         </CustomButton>
@@ -106,13 +105,11 @@ export default function TaskTableFilter() {
               />
               <CustomButton
                 kind="plain"
-                buttonProps={{
-                  startIcon: <CheckRoundedIcon />,
-                  onClick: (e) => {
-                    handleSetFilter(selectedOption);
-                  },
-                  sx: { mt: 1 },
+                startIcon={<CheckRoundedIcon />}
+                onClick={(e) => {
+                  handleSetFilter(selectedOption);
                 }}
+                sx={{ mt: 1 }}
               >
                 Filter
               </CustomButton>

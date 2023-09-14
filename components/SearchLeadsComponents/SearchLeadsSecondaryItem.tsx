@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Lead } from "@/shared/interfaces/Lead";
 import InsertLinkIcon from "@mui/icons-material/InsertLink";
 
-export default function SearchLeadsTableSecondaryItem({ content }: { content: Lead }) {
+export default function SearchLeadsSecondaryItem({ content }: { content: Lead }) {
   const linkStyle = {
     color: "var(--primarylight)",
     fontSize: "14px",

@@ -97,14 +97,14 @@ export default function GoogleMapsScraperInput({
         <Divider>
           <CustomButton
             kind="plain"
-            buttonProps={{
-              endIcon: addOptsTrigger ? (
+            endIcon={
+              addOptsTrigger ? (
                 <ArrowDropUpRoundedIcon />
               ) : (
                 <ArrowDropDownRoundedIcon />
-              ),
-              onClick: handleAddOptsTrigger,
-            }}
+              )
+            }
+            onClick={handleAddOptsTrigger}
           >
             Additional Options
           </CustomButton>
@@ -144,10 +144,8 @@ export default function GoogleMapsScraperInput({
       <CustomButton
         kind="secondary"
         loading={loading}
-        buttonProps={{
-          disabled: formData.textData.length == 0 || location.coords == "",
-          onClick: handleTaskSubmit,
-        }}
+        disabled={formData.textData.length == 0 || location.coords == ""}
+        onClick={handleTaskSubmit}
       >
         Submit
       </CustomButton>

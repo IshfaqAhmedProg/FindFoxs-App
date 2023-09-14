@@ -6,6 +6,7 @@ import { Stack, Tooltip, Typography } from "@mui/material";
 import { useState } from "react";
 import ConfirmationDialog from "../CustomComponents/ConfirmationDialog/ConfirmationDialog";
 import CustomButton from "../CustomComponents/CustomButton";
+import CustomIconButton from "../CustomComponents/CustomIconButton";
 export default function TasksTableSelectAction() {
   const { selected } = useTable();
   const [deleteDocument, loading, error] = useDeleteTasks();
@@ -35,23 +36,21 @@ export default function TasksTableSelectAction() {
       >
         {LeadTableSelectActions.map((filter) => {
           return (
-            <CustomButton
-              kind="icon"
+            <CustomIconButton
               key={filter.title}
-              iconButtonProps={{
-                onClick: filter.handler,
-                sx:
-                  filter.title == "Delete Task(s)"
-                    ? {
-                        "& .MuiSvgIcon-root": {
-                          color: "var(--error)",
-                        },
-                      }
-                    : {},
-              }}
+              onClick={filter.handler}
+              sx={
+                filter.title == "Delete Task(s)"
+                  ? {
+                      "& .MuiSvgIcon-root": {
+                        color: "var(--error)",
+                      },
+                    }
+                  : {}
+              }
             >
               <Tooltip title={filter.title}>{filter.icon}</Tooltip>
-            </CustomButton>
+            </CustomIconButton>
           );
         })}
       </Stack>

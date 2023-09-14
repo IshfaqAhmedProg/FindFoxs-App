@@ -11,6 +11,7 @@ import ClearRoundedIcon from "@mui/icons-material/ClearRounded";
 import { useTable } from "@/contexts/TableContext";
 import CustomButton from "../CustomComponents/CustomButton";
 import { ITableFilter } from "@/shared/interfaces/Table";
+import CustomIconButton from "../CustomComponents/CustomIconButton";
 
 export default function TableFilter({
   tableData,
@@ -109,21 +110,19 @@ export default function TableFilter({
               );
             })}
           </Stack>
-          <CustomButton
+          <CustomIconButton
             kind="icon"
-            iconButtonProps={{
-              sx: {
-                "& .MuiSvgIcon-root": {
-                  color: "var(--graylight)",
-                },
-                width: "25px",
-                height: "25px",
+            sx={{
+              "& .MuiSvgIcon-root": {
+                color: "var(--graylight)",
               },
-              onClick: (e) => handleClearFilter(),
+              width: "25px",
+              height: "25px",
             }}
+            onClick={(e) => handleClearFilter()}
           >
             <ClearRoundedIcon />
-          </CustomButton>
+          </CustomIconButton>
         </Stack>
       )}
     </>

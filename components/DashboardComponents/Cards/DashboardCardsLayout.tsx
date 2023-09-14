@@ -1,5 +1,5 @@
 import React from "react";
-import { CardHeader,Card, CardContent, Divider } from "@mui/material";
+import { CardHeader, Card, CardContent, Divider } from "@mui/material";
 import ReadMoreRoundedIcon from "@mui/icons-material/ReadMoreRounded";
 import CustomButton from "@/components/CustomComponents/CustomButton";
 interface Props {
@@ -16,7 +16,8 @@ export default function DashboardCardsLayout({
   const button = (
     <CustomButton
       kind="plain"
-      buttonProps={{ startIcon: buttonIcon, "aria-label": `see more ${title}` }}
+      startIcon={buttonIcon}
+      aria-label={`see more ${title}`}
     >
       See More
     </CustomButton>

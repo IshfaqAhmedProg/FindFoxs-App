@@ -1,6 +1,7 @@
 import CustomBox from "@/components/CustomComponents/CustomBox";
 import CustomButton from "@/components/CustomComponents/CustomButton";
 import CustomCheckbox from "@/components/CustomComponents/CustomCheckbox";
+import CustomIconButton from "@/components/CustomComponents/CustomIconButton";
 import EmailAndContactsIcon from "@/public/Icons/EmailAndContactsScraper.svg";
 import { Menu, Stack, Typography } from "@mui/material";
 import Image from "next/image";
@@ -64,13 +65,11 @@ export default function AddonInterface({ onAddonSelect }: Props) {
                 <CustomBox
                   variant="outer"
                   key={addon.name}
-                  boxProps={{
-                    display: "flex",
-                    gap: 2,
-                    py: 2,
-                    px: 2,
-                    alignItems: "center",
-                  }}
+                  display="flex"
+                  gap={2}
+                  py={2}
+                  px={2}
+                  alignItems="center"
                 >
                   <CustomCheckbox
                     checked={addons[addon.name]}
@@ -107,10 +106,7 @@ export default function AddonInterface({ onAddonSelect }: Props) {
           horizontal: "center",
         }}
       >
-        <CustomButton
-          kind="close"
-          iconButtonProps={{ onClick: () => handleAddonClose() }}
-        />
+        <CustomIconButton kind="close" onClick={(e) => handleAddonClose()} />
         <Stack alignItems={"center"} padding={3} gap={4}>
           <Typography variant="h4" textAlign={"center"}>
             These add-ons will be <br />
@@ -122,13 +118,11 @@ export default function AddonInterface({ onAddonSelect }: Props) {
                 <CustomBox
                   variant="outer"
                   key={addon.name}
-                  boxProps={{
-                    display: "flex",
-                    gap: 2,
-                    py: 2,
-                    px: 2,
-                    alignItems: "center",
-                  }}
+                  display="flex"
+                  gap={2}
+                  py={2}
+                  px={2}
+                  alignItems="center"
                 >
                   <CustomCheckbox
                     checked={addons[addon.name]}
@@ -155,18 +149,16 @@ export default function AddonInterface({ onAddonSelect }: Props) {
               );
             })}
           </Stack>
-          <CustomButton kind="secondary" buttonProps={{ onClick: handleAddon }}>
+          <CustomButton kind="secondary" onClick={handleAddon}>
             Done
           </CustomButton>
         </Stack>
       </Menu>
 
       <CustomButton
-        buttonProps={{
-          type: "button",
-          onClick: handleAddonClick,
-          sx: { width: "100%" },
-        }}
+        type="button"
+        onClick={handleAddonClick}
+        sx={{ width: "100%" }}
       >
         + Add-on
       </CustomButton>

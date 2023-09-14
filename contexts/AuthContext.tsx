@@ -1,22 +1,21 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
 import {
-  onAuthStateChanged,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
   GoogleAuthProvider,
-  signOut,
-  signInWithPopup,
-  sendPasswordResetEmail,
-  sendEmailVerification,
   UserCredential,
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  sendEmailVerification,
+  sendPasswordResetEmail,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  onIdTokenChanged,
+  signOut,
 } from "firebase/auth";
-
-import { doc, setDoc, getDoc } from "firebase/firestore";
-import { auth, db } from "../firebase/config";
+import React, { createContext, useContext, useEffect, useState } from "react";
+import Loading from "@/components/CustomComponents/Loading/Loading";
 import { User } from "firebase/auth";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
-import Loading from "@/components/CustomComponents/Loading/Loading";
+import { auth } from "../firebase/config";
 
 const AuthContext = createContext<any>({});
 export const useAuth = (): IAuthContext => useContext(AuthContext);
@@ -32,12 +31,10 @@ export const AuthContextProvider = ({
   //AuthState Change Use Effect
   useEffect(() => {
     setLoading(true);
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+    const unsubscribe = onIdTokenChanged(auth, async (user) => {
       if (user) {
-        //TODOsetcookies here
         Cookies.set("token", await user.getIdToken(true));
         Cookies.set("loggedin", "true");
-        Cookies.set("emailVerified", JSON.stringify(user.emailVerified));
         setUser(user);
       } else {
         logout();
@@ -70,7 +67,6 @@ export const AuthContextProvider = ({
       console.log("loggedout");
       Cookies.remove("token");
       Cookies.remove("loggedin");
-      Cookies.remove("emailVerified");
       router.replace("/");
     });
   };

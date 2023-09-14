@@ -48,12 +48,7 @@ export const HeroSection = () => {
         data-aos-delay="500"
       >
         <CustomButton kind="primarylg">Try for free</CustomButton>
-        <CustomButton
-          buttonProps={{
-            startIcon: videoIcon,
-          }}
-          kind="secondarylg"
-        >
+        <CustomButton startIcon={videoIcon} kind="secondarylg">
           Watch a video
         </CustomButton>
       </Box>

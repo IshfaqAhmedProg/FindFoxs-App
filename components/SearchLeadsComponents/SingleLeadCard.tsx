@@ -16,6 +16,7 @@ import PhoneForwardedRoundedIcon from "@mui/icons-material/PhoneForwardedRounded
 import ApartmentRoundedIcon from "@mui/icons-material/ApartmentRounded";
 import PinDropRoundedIcon from "@mui/icons-material/PinDropRounded";
 import FactoryRoundedIcon from "@mui/icons-material/FactoryRounded";
+import CustomIconButton from "../CustomComponents/CustomIconButton";
 export default function SingleLeadCard({
   content,
   handleClose,
@@ -56,10 +57,7 @@ export default function SingleLeadCard({
   ];
   return (
     <>
-      <CustomButton
-        kind="close"
-        iconButtonProps={{ onClick: () => handleClose() }}
-      />
+      <CustomIconButton kind="close" onClick={() => handleClose()} />
       <MenuItem sx={{ pointerEvents: "none" }}>
         <IdentityDisplay
           name={content.name}
@@ -75,16 +73,16 @@ export default function SingleLeadCard({
         justifyContent={"center"}
         gap={1}
       >
-        <CustomButton kind="icon">
+        <CustomIconButton>
           <Tooltip title="Send an email!">
             <ForwardToInboxOutlinedIcon sx={{ fontSize: "31px" }} />
           </Tooltip>
-        </CustomButton>
-        <CustomButton kind="icon">
+        </CustomIconButton>
+        <CustomIconButton>
           <Tooltip title="Make a call!">
             <PhoneForwardedRoundedIcon sx={{ fontSize: "31px" }} />
           </Tooltip>
-        </CustomButton>
+        </CustomIconButton>
       </Stack>
       <Typography variant="h4" sx={{ pl: 3, py: 1, fontSize: "12px" }}>
         Status

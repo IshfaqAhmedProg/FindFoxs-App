@@ -1,13 +1,13 @@
 import mockLeads from "@/shared/data/PlaceholderLeads.json";
-import { Stack, useMediaQuery, Typography } from "@mui/material";
+import ReceiptLongRoundedIcon from "@mui/icons-material/ReceiptLongRounded";
+import { Stack, Typography, useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import CustomBox from "../CustomComponents/CustomBox";
+import CustomButton from "../CustomComponents/CustomButton";
 import TableItem from "../TableComponents/TableItem";
 import TablePrimaryItem from "../TableComponents/TablePrimaryItem";
 import SearchLeadsPrimaryItem from "./SearchLeadsPrimaryItem";
-import SearchLeadsTableSecondaryItem from "./SearchLeadsTableSecondaryItem";
-import CustomButton from "../CustomComponents/CustomButton";
-import ReceiptLongRoundedIcon from "@mui/icons-material/ReceiptLongRounded";
-import CustomBox from "../CustomComponents/CustomBox";
+import SearchLeadsSecondaryItem from "./SearchLeadsSecondaryItem";
 export default function SearchLeadsPaywall() {
   const theme = useTheme();
 
@@ -30,20 +30,14 @@ export default function SearchLeadsPaywall() {
         mockLeads.map((lead) => {
           return (
             <TableItem key={lead._id}>
-              <SearchLeadsTableSecondaryItem content={lead} />
+              <SearchLeadsSecondaryItem content={lead} />
             </TableItem>
           );
         })}
     </>
   );
   return (
-    <CustomBox
-      boxProps={{
-        width: "100%",
-        position: "relative",
-        bgcolor: "var(--white)",
-      }}
-    >
+    <CustomBox width="100%" position="relative" bgcolor="var(--white)">
       <Stack
         position={"absolute"}
         top={"0"}
@@ -80,10 +74,7 @@ export default function SearchLeadsPaywall() {
           Get access to more than 10,000+ leads and more features by upgrading
           to one of our paid plans.
         </Typography>
-        <CustomButton
-          kind="secondary"
-          buttonProps={{ startIcon: <ReceiptLongRoundedIcon /> }}
-        >
+        <CustomButton kind="secondary" startIcon={<ReceiptLongRoundedIcon />}>
           View Plans
         </CustomButton>
       </Stack>

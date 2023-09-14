@@ -66,12 +66,10 @@ export default function SignupForm() {
             />
           ))}
           <CustomButton
-            buttonProps={{
-              type: "submit",
-              disabled: loading,
-              variant: "contained",
-              endIcon: <HowToRegRoundedIcon />,
-            }}
+            type="submit"
+            disabled={loading}
+            variant="contained"
+            endIcon={<HowToRegRoundedIcon />}
             loading={loading}
           >
             Sign up
@@ -80,14 +78,12 @@ export default function SignupForm() {
         <Divider style={{ width: "100%" }}>or</Divider>
         <FormContainer onSubmit={handleGoogleSignup}>
           <CustomButton
-            buttonProps={{
-              type: "submit",
-              disabled: loading,
-              endIcon: <Image src={google} alt="google logo" />,
-            }}
+            type="submit"
+            disabled={loading}
+            endIcon={<Image src={google} alt="google logo" />}
             loading={loading}
           >
-            Sign up with Google&nbsp;
+            Log in with Google&nbsp;
           </CustomButton>
         </FormContainer>
       </Box>

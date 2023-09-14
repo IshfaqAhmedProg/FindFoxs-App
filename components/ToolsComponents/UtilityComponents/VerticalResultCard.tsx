@@ -13,19 +13,17 @@ export default function VerticalResultCard({
 }: Props) {
   return (
     <CustomBox
-      boxProps={{
-        overflow: "hidden",
-        py: 2,
-        px: 2,
-        sx: { overflowY: "auto", overflowX: "hidden" },
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        maxHeight: "400px",
-        minHeight: "21.875rem",
-        justifyContent: "space-between",
-        height: "100%",
-      }}
+      overflow="hidden"
+      py={2}
+      px={2}
+      sx={{ overflowY: "auto", overflowX: "hidden" }}
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      maxHeight="400px"
+      minHeight="21.875rem"
+      justifyContent="space-between"
+      height="100%"
       variant="inner"
     >
       <Typography fontWeight={"bold"} variant="h4" color={titleColor}>

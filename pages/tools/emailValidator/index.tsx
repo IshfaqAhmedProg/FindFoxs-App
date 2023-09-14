@@ -1,9 +1,9 @@
-const EmailValidator = lazy(
-  () => import("@/components/ToolsComponents/EmailValidator/EmailValidator")
-);
 import Loading from "@/components/CustomComponents/Loading/Loading";
 import Head from "next/head";
 import { Suspense, lazy } from "react";
+const EmailValidator = lazy(
+  () => import("@/components/ToolsComponents/EmailValidator/EmailValidator")
+);
 
 export default function emailValidator() {
   return (

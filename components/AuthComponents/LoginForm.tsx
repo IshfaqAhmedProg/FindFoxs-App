@@ -69,12 +69,10 @@ export default function LoginForm() {
             />
           ))}
           <CustomButton
-            buttonProps={{
-              type: "submit",
-              disabled: loading,
-              variant: "contained",
-              endIcon: <LoginRoundedIcon />,
-            }}
+            type="submit"
+            disabled={loading}
+            variant="contained"
+            endIcon={<LoginRoundedIcon />}
           >
             Log in
           </CustomButton>
@@ -82,11 +80,9 @@ export default function LoginForm() {
         <Divider style={{ width: "100%" }}>or</Divider>
         <FormContainer onSubmit={handleGoogleLogin}>
           <CustomButton
-            buttonProps={{
-              type: "submit",
-              disabled: loading,
-              endIcon: <Image src={google} alt="google logo" />,
-            }}
+            type="submit"
+            disabled={loading}
+            endIcon={<Image src={google} alt="google logo" />}
           >
             Log in with Google&nbsp;
           </CustomButton>

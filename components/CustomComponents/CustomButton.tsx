@@ -1,24 +1,12 @@
 import * as React from "react";
 import { styled } from "@mui/material/styles";
-import IconButton, { IconButtonProps } from "@mui/material/IconButton";
 import Button, { ButtonProps } from "@mui/material/Button";
-import ClearRoundedIcon from "@mui/icons-material/ClearRounded";
 import { CircularProgress } from "@mui/material";
 
-interface Props {
-  buttonProps?: ButtonProps;
-  iconButtonProps?: IconButtonProps;
-  children?: React.ReactElement | string;
-  kind?:
-    | "plain"
-    | "primary"
-    | "primarylg"
-    | "secondary"
-    | "secondarylg"
-    | "icon"
-    | "close";
+type CustomButtonProps = {
+  kind?: "plain" | "primary" | "primarylg" | "secondary" | "secondarylg";
   loading?: boolean;
-}
+} & ButtonProps;
 const PlainButton = styled(Button)({
   bgcolor: "transparent",
   boxShadow: "none",
@@ -36,26 +24,14 @@ const PlainButton = styled(Button)({
   },
   padding: "0 8px",
 });
-const CloseButton = styled(IconButton)({
-  position: "absolute",
-  top: "1%",
-  right: "1%",
-});
-const iconHoverStyle = {
-  ":hover": {
-    "& .MuiSvgIcon-root": {
-      color: "var(--accent)",
-    },
-  },
-};
+
 const loadingIcon = <CircularProgress color="secondary" size={24} />;
 export default function CustomButton({
-  buttonProps,
-  iconButtonProps,
   children,
   kind = "primary",
   loading = false,
-}: Props) {
+  ...buttonProps
+}: CustomButtonProps) {
   switch (kind) {
     case "plain":
       return (
@@ -64,26 +40,7 @@ export default function CustomButton({
         </PlainButton>
       );
       break;
-    case "close":
-      return (
-        <CloseButton {...iconButtonProps}>
-          <ClearRoundedIcon />
-        </CloseButton>
-      );
-    case "icon":
-      return (
-        <IconButton
-          {...iconButtonProps}
-          sx={{
-            "& .MuiSvgIcon-root": { color: "var(--primarylight)" },
-            ...iconHoverStyle,
-            ...iconButtonProps?.sx,
-          }}
-        >
-          {loading ? loadingIcon : children}
-        </IconButton>
-      );
-      break;
+
     case "secondarylg":
       return (
         <Button

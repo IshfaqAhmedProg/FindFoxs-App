@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import decodeIdToken from "./shared/functions/verifyIdToken";
 import { JWTExpired } from "jose/dist/types/util/errors";
 
-const protectedRoutes = [`/dashboard`, `/leads`, `/tasks`, `/tools`];
+const protectedRoutes = [`/dashboard`, `/leads`, `/tasks`, `/tools`, `/crm`];
 const authRoutes = [`/login`, `/signup`];
 export default async function middleware(req: NextRequest) {
   //TODO verify token here
@@ -12,7 +12,7 @@ export default async function middleware(req: NextRequest) {
   if (token) {
     const decodedToken = await decodeIdToken(token.value).catch(
       (err: JWTExpired) => {
-        console.log(err);
+        console.log("IdToken expired", err);
         tokenExpired = true;
       }
     );
@@ -24,7 +24,7 @@ export default async function middleware(req: NextRequest) {
     // console.log("emailVerified", emailVerified);
     // console.log("userVerified", userVerified);
     if (tokenExpired) {
-      return NextResponse.redirect(siteUrl);
+      return NextResponse.redirect(url);
     }
     //if user not verified and tries to access dashboard redirect to login page
     if (

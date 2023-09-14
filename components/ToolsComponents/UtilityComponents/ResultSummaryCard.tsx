@@ -73,14 +73,12 @@ export default function ResultSummaryCard({
 
   return (
     <CustomBox
-      boxProps={{
-        sx: { gridColumnStart: "3" },
-        p: 4,
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-around",
-        gap: 1,
-      }}
+      sx={{ gridColumnStart: "3" }}
+      p={4}
+      display="flex"
+      flexDirection="column"
+      justifyContent="space-around"
+      gap={1}
     >
       <Typography variant="h4">Summary</Typography>
       <Divider />
@@ -105,29 +103,26 @@ export default function ResultSummaryCard({
             },
             {
               title: "Status",
-              stat: <StatusGenerator status={task.status} variant="large" />,
+              stat: <StatusGenerator status={task.status} variant="medium" />,
             },
           ],
         }}
       />
       <Box display={"flex"} gap={3}>
-        <CustomButton
-          buttonProps={{ size: "small", startIcon: <ShareRoundedIcon /> }}
-        >
+        <CustomButton size="small" startIcon={<ShareRoundedIcon />}>
           Share
         </CustomButton>
         <ButtonGroup variant="text">
           <CustomButton
-            buttonProps={{
-              size: "small",
-              onClick: (e) => checkForFile("xlsx"),
-            }}
+            size="small"
+            onClick={(e) => checkForFile("xlsx")}
             kind="secondary"
           >
             Download
           </CustomButton>
           <CustomButton
-            buttonProps={{ size: "small", onClick: handleDownloadMenuClick }}
+            size="small"
+            onClick={handleDownloadMenuClick}
             kind="secondary"
           >
             <ArrowDropDownIcon />

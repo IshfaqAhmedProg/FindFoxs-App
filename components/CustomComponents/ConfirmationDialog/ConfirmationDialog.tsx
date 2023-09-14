@@ -39,20 +39,14 @@ export default function ConfirmationDialog({
           <Stack direction={"row"} gap={2}>
             <CustomButton
               kind="plain"
-              buttonProps={{
-                onClick: onClose,
-                startIcon: <CancelRoundedIcon />,
-                type: "button",
-                disabled: loading,
-              }}
+              onClick={onClose}
+              startIcon={<CancelRoundedIcon />}
+              type="button"
+              disabled={loading}
             >
               Cancel
             </CustomButton>
-            <CustomButton
-              kind="secondary"
-              loading={loading}
-              buttonProps={{ onClick: action }}
-            >
+            <CustomButton kind="secondary" loading={loading} onClick={action}>
               {label}
             </CustomButton>
           </Stack>

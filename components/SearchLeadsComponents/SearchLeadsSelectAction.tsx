@@ -14,6 +14,7 @@ import AddchartOutlinedIcon from "@mui/icons-material/AddchartOutlined";
 import ForwardToInboxOutlinedIcon from "@mui/icons-material/ForwardToInboxOutlined";
 import PhoneForwardedRoundedIcon from "@mui/icons-material/PhoneForwardedRounded";
 import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
+import CustomIconButton from "../CustomComponents/CustomIconButton";
 export default function SearchLeadsSelectAction() {
   const LeadTableSelectActions: Array<LeadAction> = [
     {
@@ -66,13 +67,9 @@ export default function SearchLeadsSelectAction() {
       >
         {LeadTableSelectActions.map((filter) => {
           return (
-            <CustomButton
-              kind="icon"
-              key={filter.title}
-              iconButtonProps={{ onClick: filter.handler }}
-            >
+            <CustomIconButton key={filter.title} onClick={filter.handler}>
               <Tooltip title={filter.title}>{filter.icon}</Tooltip>
-            </CustomButton>
+            </CustomIconButton>
           );
         })}
       </Stack>

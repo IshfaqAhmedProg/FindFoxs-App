@@ -1,7 +1,7 @@
 import SearchLeadsFilter from "@/components/SearchLeadsComponents/SearchLeadsFilter";
 import SearchLeadsPrimaryItem from "@/components/SearchLeadsComponents/SearchLeadsPrimaryItem";
 import SearchLeadsSelectAction from "@/components/SearchLeadsComponents/SearchLeadsSelectAction";
-import SearchLeadsTableSecondaryItem from "@/components/SearchLeadsComponents/SearchLeadsTableSecondaryItem";
+import SearchLeadsSecondaryItem from "@/components/SearchLeadsComponents/SearchLeadsSecondaryItem";
 import TableItem from "@/components/TableComponents/TableItem";
 import TableMain from "@/components/TableComponents/TableMain";
 import TablePrimaryItem from "@/components/TableComponents/TablePrimaryItem";
@@ -57,7 +57,7 @@ export default function SearchLeadsTable() {
           if (lead)
             return (
               <TableItem key={lead._id}>
-                <SearchLeadsTableSecondaryItem content={lead} />
+                <SearchLeadsSecondaryItem content={lead} />
               </TableItem>
             );
         })}

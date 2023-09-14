@@ -64,11 +64,9 @@ export default function FacebookScraperInput({
         <CustomButton
           kind="secondary"
           loading={loading}
-          buttonProps={{
-            onClick: handleSingleSubmit,
-            disabled: formData.formattedData.length == 0,
-            type: "submit",
-          }}
+          onClick={handleSingleSubmit}
+          disabled={formData.formattedData.length == 0}
+          type={"submit"}
         >
           {formData.formattedData.length == 0
             ? "Invalid url(s)"

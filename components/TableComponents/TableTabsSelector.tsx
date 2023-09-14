@@ -13,13 +13,12 @@ export default function TableTabsSelector({ tableTabs }: Props) {
         <CustomButton
           key={tab}
           kind="plain"
-          buttonProps={{
-            sx:
-              activeTab == tab
-                ? { color: "var(--primary)" }
-                : { color: "var(--graylight)" },
-            onClick: (e) => handleTabChange({ tab }),
-          }}
+          sx={
+            activeTab == tab
+              ? { color: "var(--primary)" }
+              : { color: "var(--graylight)" }
+          }
+          onClick={(e) => handleTabChange({ tab })}
         >
           {tab}
         </CustomButton>

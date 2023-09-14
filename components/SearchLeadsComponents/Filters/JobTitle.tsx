@@ -1,7 +1,6 @@
-import React from "react";
-import { Stack, Typography, Autocomplete } from "@mui/material";
-import CustomButton from "@/components/CustomComponents/CustomButton";
 import CustomTextInput from "@/components/CustomComponents/CustomTextInput";
+import { Autocomplete, Stack, Typography } from "@mui/material";
+
 const jobTitles = [
   "Software Engineer",
   "Project Manager",

@@ -73,13 +73,11 @@ export default function SelectHeaderDialog({
             />
             <CustomButton
               kind="plain"
-              buttonProps={{
-                startIcon: <PlaylistAddCheckRoundedIcon />,
-                sx: { color: "var(--graylight)" },
-                onClick: checkData,
-                type: "button",
-                disabled: loading,
-              }}
+              startIcon={<PlaylistAddCheckRoundedIcon />}
+              sx={{ color: "var(--graylight)" }}
+              onClick={checkData}
+              type="button"
+              disabled={loading}
             >
               {formData.formattedData.length > 0 ? "Checked" : "Check"}
             </CustomButton>
@@ -123,23 +121,19 @@ export default function SelectHeaderDialog({
           <Stack direction={"row"} gap={2}>
             <CustomButton
               kind="plain"
-              buttonProps={{
-                onClick: onClose,
-                startIcon: <CancelRoundedIcon />,
-                type: "button",
-                disabled: loading,
-              }}
+              onClick={onClose}
+              startIcon={<CancelRoundedIcon />}
+              type="button"
+              disabled={loading}
             >
               Cancel
             </CustomButton>
             <CustomButton
               kind="secondary"
               loading={loading}
-              buttonProps={{
-                onClick: handleSubmit,
-                type: "submit",
-                disabled: formData.formattedData.length == 0,
-              }}
+              onClick={handleSubmit}
+              type={"submit"}
+              disabled={formData.formattedData.length == 0}
             >
               Submit
             </CustomButton>

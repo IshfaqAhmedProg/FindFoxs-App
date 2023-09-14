@@ -64,11 +64,9 @@ export default function ValidatorsInput({
         {formData.textData.length > 0 && (
           <CustomButton
             kind="plain"
-            buttonProps={{
-              startIcon: <CancelRoundedIcon />,
-              onClick: resetFormData,
-              disabled: loading,
-            }}
+            startIcon={<CancelRoundedIcon />}
+            onClick={resetFormData}
+            disabled={loading}
           >
             clear
           </CustomButton>
@@ -77,11 +75,9 @@ export default function ValidatorsInput({
       {formData.textData.length > 0 && (
         <CustomButton
           kind="secondary"
-          buttonProps={{
-            onClick: handleSingleSubmit,
-            disabled: formData.formattedData.length == 0 || loading,
-            type: "submit",
-          }}
+          onClick={handleSingleSubmit}
+          disabled={formData.formattedData.length == 0 || loading}
+          type={"submit"}
         >
           {formData.formattedData.length == 0 ? "Invalid Format" : "Validate"}
         </CustomButton>

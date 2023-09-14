@@ -246,6 +246,30 @@ const theme = createTheme({
         },
       },
     },
+    //T
+    MuiTabs: {
+      styleOverrides: {
+        root: {
+          "& .MuiTabs-indicator": {
+            display: "flex",
+            justifyContent: "center",
+            backgroundColor: "transparent",
+          },
+          "& .MuiTabs-indicatorSpan": {
+            maxWidth: 40,
+            width: "100%",
+            backgroundColor: "var(--accent)",
+          },
+        },
+      },
+    },
+    MuiTab: {
+      styleOverrides: {
+        root: {
+          color: "var(--graylight)",
+        },
+      },
+    },
   },
   palette: {
     primary: {

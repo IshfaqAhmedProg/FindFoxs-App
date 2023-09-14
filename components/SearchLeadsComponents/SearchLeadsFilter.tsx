@@ -65,12 +65,10 @@ export default function SearchLeadsFilter() {
           <CustomButton
             key={filter.title}
             kind="plain"
-            buttonProps={{
-              id: filter.title,
-              startIcon: filter.icon,
-              sx: { color: "var(--graylight)" },
-              onClick: handleFilterClick,
-            }}
+            id={filter.title}
+            startIcon={filter.icon}
+            sx={{ color: "var(--graylight)" }}
+            onClick={handleFilterClick}
           >
             {filter.title}
           </CustomButton>

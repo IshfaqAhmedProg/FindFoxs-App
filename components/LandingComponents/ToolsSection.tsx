@@ -1,16 +1,12 @@
-import React from "react";
-import Image from "next/image";
-import { Stack, Tooltip } from "@mui/material";
-import Typography from "@mui/material/Typography";
-
 import EmailAddressValidatorImage from "@/public/Icons/EmailAddressValidator.svg";
+import EmailAndContactsScraperImage from "@/public/Icons/EmailAndContactsScraper.svg";
 import GoogleMapsScraperImage from "@/public/Icons/GoogleMapsScraper.svg";
 import PhoneNumberValidatorImage from "@/public/Icons/PhoneNumberValidator.svg";
 import WhatsAppValidatorImage from "@/public/Icons/WhatsAppValidator.svg";
-import EmailAndContactsScraperImage from "@/public/Icons/EmailAndContactsScraper.svg";
-import Button from "@mui/material/Button";
+import { Stack, Tooltip } from "@mui/material";
+import Typography from "@mui/material/Typography";
+import Image from "next/image";
 import Link from "next/link";
-import CustomBox from "../CustomComponents/CustomBox";
 
 export default function ToolsSection() {
   interface ToolType {

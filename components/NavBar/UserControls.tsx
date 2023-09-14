@@ -1,17 +1,17 @@
-import React, { useState } from "react";
-import { Tooltip, IconButton, Badge, Avatar, Stack } from "@mui/material";
-import NotificationsIcon from "@mui/icons-material/NotificationsNoneRounded";
-import HelpIcon from "@mui/icons-material/HelpOutlineRounded";
-import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
-import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
-import { stringAvatar } from "@/shared/functions/stringAvatar";
-import { NavLinks } from "@/shared/interfaces/Links";
 import { useAuth } from "@/contexts/AuthContext";
-import { useRouter } from "next/router";
-import NavMenu from "./NavMenu";
 import { DashboardIcon } from "@/public/Icons/CustomIcons";
-import IdentityDisplay from "../CustomComponents/IdentityDisplay/IdentityDisplay";
+import { NavLinks } from "@/shared/interfaces/Links";
+import HelpIcon from "@mui/icons-material/HelpOutlineRounded";
+import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
+import NotificationsIcon from "@mui/icons-material/NotificationsNoneRounded";
+import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
+import { Badge, Stack, Tooltip } from "@mui/material";
+import { useRouter } from "next/router";
+import React, { useState } from "react";
 import CustomButton from "../CustomComponents/CustomButton";
+import CustomIconButton from "../CustomComponents/CustomIconButton";
+import IdentityDisplay from "../CustomComponents/IdentityDisplay/IdentityDisplay";
+import NavMenu from "./NavMenu";
 import UserAvatar from "./UserAvatar";
 
 export default function UserControls({ container }: { container: any }) {
@@ -87,16 +87,13 @@ export default function UserControls({ container }: { container: any }) {
         {navLinks.map((navItem) => {
           if (navItem.icon) {
             return (
-              <CustomButton
+              <CustomIconButton
                 key={navItem.name}
-                kind="icon"
-                iconButtonProps={{
-                  onClick: navItem.handler,
-                  size: "small",
-                  "aria-controls": accountOpen ? navItem.name : "undefined",
-                  "aria-haspopup": true,
-                  "aria-expanded": accountOpen ? true : undefined,
-                }}
+                onClick={navItem.handler}
+                size="small"
+                aria-controls={accountOpen ? navItem.name : "undefined"}
+                aria-haspopup={true}
+                aria-expanded={accountOpen ? true : undefined}
               >
                 <Tooltip title={navItem.name}>
                   <Badge
@@ -107,7 +104,7 @@ export default function UserControls({ container }: { container: any }) {
                     {navItem.icon}
                   </Badge>
                 </Tooltip>
-              </CustomButton>
+              </CustomIconButton>
             );
           }
         })}
