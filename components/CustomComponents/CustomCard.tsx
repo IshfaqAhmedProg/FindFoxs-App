@@ -39,8 +39,6 @@ export default function CustomCard({
           height: "100%",
           position: "relative",
           ":last-child": {
-            display: "flex",
-            flexDirection: "column",
             padding: 0,
           },
         }}
