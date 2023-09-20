@@ -8,7 +8,6 @@ import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import { Badge, Stack, Tooltip } from "@mui/material";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import CustomButton from "../CustomComponents/CustomButton";
 import CustomIconButton from "../CustomComponents/CustomIconButton";
 import IdentityDisplay from "../CustomComponents/IdentityDisplay/IdentityDisplay";
 import NavMenu from "./NavMenu";
@@ -63,6 +62,7 @@ export default function UserControls({ container }: { container: any }) {
   ];
 
   function handleAccountClick(event: React.MouseEvent<HTMLElement>) {
+    console.log("event.currentTarget", event.currentTarget);
     setAccountOpenAnchor(event.currentTarget);
   }
 

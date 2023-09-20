@@ -38,6 +38,7 @@ export default function CustomIconButton({
     default:
       return (
         <IconButton
+          {...iconButtonProps}
           sx={{
             "& .MuiSvgIcon-root": { color: "var(--primarylight)" },
             ...iconHoverStyle,
