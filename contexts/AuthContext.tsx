@@ -2,7 +2,6 @@ import {
   GoogleAuthProvider,
   UserCredential,
   createUserWithEmailAndPassword,
-  onAuthStateChanged,
   sendEmailVerification,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
@@ -37,7 +36,7 @@ export const AuthContextProvider = ({
         Cookies.set("loggedin", "true");
         setUser(user);
       } else {
-        logout();
+        setUser(null);
       }
       setLoading(false);
     });
@@ -64,7 +63,7 @@ export const AuthContextProvider = ({
   const logout = async () => {
     await signOut(auth).then(() => {
       setUser(null);
-      console.log("loggedout");
+      console.log("logged out")
       Cookies.remove("token");
       Cookies.remove("loggedin");
       router.replace("/");

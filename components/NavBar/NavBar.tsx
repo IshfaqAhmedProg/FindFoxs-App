@@ -14,6 +14,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import Logo from "../../public/Logos/ScrapeFoxLogo.svg";
 import LoginRoundedIcon from "@mui/icons-material/LoginRounded";
 import RouteChangeIndicator from "./RouteChangeIndicator";
+import CustomIconButton from "../CustomComponents/CustomIconButton";
 interface Props {
   window?: () => Window;
 }
@@ -43,11 +44,11 @@ export default function NavBar(props: Props) {
         </Link>
       )}
       {router.pathname != "/auth/login" && (
-        <Link href="/auth/login">
+        <CustomIconButton onClick={() => router.push("/auth/login")}>
           <Tooltip title="Login">
             <LoginRoundedIcon />
           </Tooltip>
-        </Link>
+        </CustomIconButton>
       )}
       {/* <SearchBar /> */}
     </Box>

@@ -7,7 +7,7 @@ import NotificationsIcon from "@mui/icons-material/NotificationsNoneRounded";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import { Badge, Stack, Tooltip } from "@mui/material";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import CustomIconButton from "../CustomComponents/CustomIconButton";
 import IdentityDisplay from "../CustomComponents/IdentityDisplay/IdentityDisplay";
 import NavMenu from "./NavMenu";
@@ -87,24 +87,25 @@ export default function UserControls({ container }: { container: any }) {
         {navLinks.map((navItem) => {
           if (navItem.icon) {
             return (
-              <CustomIconButton
-                key={navItem.name}
-                onClick={navItem.handler}
-                size="small"
-                aria-controls={accountOpen ? navItem.name : "undefined"}
-                aria-haspopup={true}
-                aria-expanded={accountOpen ? true : undefined}
-              >
-                <Tooltip title={navItem.name}>
-                  <Badge
-                    color="secondary"
-                    variant="dot"
-                    invisible={!navItem?.badge}
-                  >
-                    {navItem.icon}
-                  </Badge>
-                </Tooltip>
-              </CustomIconButton>
+              <Fragment key={navItem.name}>
+                <CustomIconButton
+                  onClick={navItem.handler}
+                  size="small"
+                  aria-controls={accountOpen ? navItem.name : "undefined"}
+                  aria-haspopup={true}
+                  aria-expanded={accountOpen ? true : undefined}
+                >
+                  <Tooltip title={navItem.name}>
+                    <Badge
+                      color="secondary"
+                      variant="dot"
+                      invisible={!navItem?.badge}
+                    >
+                      {navItem.icon}
+                    </Badge>
+                  </Tooltip>
+                </CustomIconButton>
+              </Fragment>
             );
           }
         })}
