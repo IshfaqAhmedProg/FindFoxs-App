@@ -56,16 +56,22 @@ export const AuthContextProvider = ({
   //Google Login and signup Auth function
   const googleAccess = () => {
     const provider = new GoogleAuthProvider();
-    return signInWithPopup(auth, provider);
+    return signInWithPopup(auth, provider).then((result) => {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential?.accessToken;
+      // The signed-in user info.
+      const user = result.user;
+    });
   };
 
   //logout Auth function
   const logout = async () => {
     await signOut(auth).then(() => {
-      setUser(null);
-      console.log("logged out")
+      console.log("logged out");
       Cookies.remove("token");
       Cookies.remove("loggedin");
+      setUser(null);
       router.replace("/");
     });
   };

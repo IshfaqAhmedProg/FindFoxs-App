@@ -9,11 +9,11 @@ import Script from "next/script";
 import { useRouter } from "next/router";
 import DashboardLayout from "@/components/DashboardComponents/DashboardLayout";
 const dashboardLayout: Array<string> = [
-  "dashboard",
-  "leads",
-  "tasks",
-  "tools",
-  "crm",
+  "/dashboard",
+  "/people",
+  "/tasks",
+  "/tools",
+  "/crm",
 ];
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -22,7 +22,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <AuthContextProvider>
       <ThemeProvider theme={theme}>
         <NavBar />
-        {dashboardLayout.includes(router.pathname.split("/")[1]) ? (
+        {dashboardLayout.some((route) => router.pathname.includes(route)) ? (
           <DashboardLayout>
             <Component {...pageProps} />
           </DashboardLayout>

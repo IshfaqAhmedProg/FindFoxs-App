@@ -1,17 +1,17 @@
 import Head from "next/head";
 import { Suspense, lazy } from "react";
 import Loading from "@/components/CustomComponents/Loading/Loading";
-const ManageLeads = lazy(
-  () => import("@/components/ManageLeadsComponents/ManageLeads")
+const ManagePeople = lazy(
+  () => import("@/components/ManagePeopleComponents/ManagePeople")
 );
 export default function index() {
   return (
     <>
       <Head>
-        <title>FindFoxs-Manage your Leads</title>
+        <title>FindFoxs-Manage People</title>
       </Head>
       <Suspense fallback={<Loading />}>
-        <ManageLeads />
+        <ManagePeople />
       </Suspense>
     </>
   );

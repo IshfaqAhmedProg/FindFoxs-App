@@ -8,7 +8,7 @@ import LoginRoundedIcon from "@mui/icons-material/LoginRounded";
 import { Box, Divider } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useErrorHandler } from "../../contexts/ErrorHandlerContext";
 import CustomButton from "../CustomComponents/CustomButton";
@@ -29,7 +29,7 @@ export default function LoginForm() {
     setLoading(true);
     login(values.email, values.password)
       .then(() => {
-        router.replace("/dashboard");
+        router.push("/dashboard");
       })
       .catch((error: any) => {
         handleError(GetRefinedFirebaseError(error));
@@ -40,7 +40,10 @@ export default function LoginForm() {
     e.preventDefault();
     setLoading(true);
     googleLogin()
-      .then(() => router.replace("/dashboard"))
+      .then(() => {
+        console.log("success google login");
+        router.push("/dashboard");
+      })
       .catch((error: any) => handleError(GetRefinedFirebaseError(error)))
       .finally(() => setLoading(false));
   }

@@ -19,7 +19,7 @@ const LeadTableFilters: Array<LeadAction> = [
   { title: "Industry", icon: <FactoryRoundedIcon /> },
 ];
 
-export default function SearchLeadsFilter() {
+export default function SearchPeopleFilter() {
   const [filterOpenAnchor, setFilterOpenAnchor] = useState<null | HTMLElement>(
     null
   );
@@ -30,7 +30,6 @@ export default function SearchLeadsFilter() {
   function handleFilterClose() {
     setFilterOpenAnchor(null);
   }
-  console.log(filterOpenAnchor);
   const Filter = ({ filterTitle }: { filterTitle: string }) => {
     return (
       <>

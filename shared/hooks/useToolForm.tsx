@@ -86,6 +86,7 @@ const useToolForm = ({
   };
   const handleFileDataChange = async (files: FileList | null) => {
     if (files) {
+      setLoading(true);
       const fileName = files[0].name;
       await processFile(files)
         ?.then((res) => {
@@ -103,7 +104,8 @@ const useToolForm = ({
         .catch((err) => {
           console.log(err);
           setError(err);
-        });
+        })
+        .finally(() => setLoading(false));
     }
   };
   const handleUpdateFormData = (obj: Record<string, any>) => {
@@ -116,19 +118,23 @@ const useToolForm = ({
   const handleTaskSubmit = async (e: React.SyntheticEvent) => {
     if (submitTask) {
       setLoading(true);
-      await submitTask(formData).catch((err) => {
-        console.log("Error on task submit", err);
-        setError(err);
-      });
+      await submitTask(formData)
+        .catch((err) => {
+          console.log("Error on task submit", err);
+          setError(err);
+        })
+        .finally(() => setLoading(false));
     }
   };
   const handleSingleSubmit = async (e: React.SyntheticEvent) => {
     if (submitSingle) {
       setLoading(true);
-      await submitSingle(formData).catch((err) => {
-        console.log("Error on single submit", err);
-        setError(err);
-      });
+      await submitSingle(formData)
+        .catch((err) => {
+          console.log("Error on single submit", err);
+          setError(err);
+        })
+        .finally(() => setLoading(false));
     }
   };
 
@@ -145,6 +151,7 @@ const useToolForm = ({
   const checkDataInColumn = () => {
     if (formData.columnHeader) {
       // console.log("here too");
+      setLoading(true);
       const extract = formData.unformattedData.map((row: any) => {
         return row[formData.columnHeader];
       });
@@ -155,6 +162,7 @@ const useToolForm = ({
         extractLength: extract.length,
       });
     }
+    setLoading(false);
   };
   const headerSelectDialog = (
     //Show a dialog to select header columns and submit the task for validators only

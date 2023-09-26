@@ -1,14 +1,25 @@
 import React from "react";
 import { Typography } from "@mui/material";
+import { useAuth } from "@/contexts/AuthContext";
+import CustomButton from "@/components/CustomComponents/CustomButton";
+import Stack from "@mui/material/Stack";
 export default function NewUserDetails({
   page,
 }: {
   page: string | string[] | undefined;
 }) {
+  const { sendEV } = useAuth();
   return (
-    <>
-      <Typography variant="h4">Before you get started</Typography>
-      <Typography variant="h4">Verify your email</Typography>
-    </>
+    <Stack alignItems={"center"} gap={2}>
+      <Typography variant="h2" fontWeight={"bold"}>
+        Before you get started
+      </Typography>
+      <Typography variant="h4" color={"var(--primarylight)"}>
+        Verify your email
+      </Typography>
+      <CustomButton kind="plain" onClick={sendEV}>
+        Resend Verification Email
+      </CustomButton>
+    </Stack>
   );
 }

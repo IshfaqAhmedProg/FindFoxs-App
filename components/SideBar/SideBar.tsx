@@ -31,7 +31,7 @@ export default function SideBar({ toggle, handleToggle }: Props) {
       expanded: true,
     },
     {
-      ...mainRoutes.leads,
+      ...mainRoutes.people,
       icon: <Groups2RoundedIcon />,
       expanded: true,
     },

@@ -15,8 +15,8 @@ import ForwardToInboxOutlinedIcon from "@mui/icons-material/ForwardToInboxOutlin
 import PhoneForwardedRoundedIcon from "@mui/icons-material/PhoneForwardedRounded";
 import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
 import CustomIconButton from "../CustomComponents/CustomIconButton";
-export default function SearchLeadsSelectAction() {
-  const LeadTableSelectActions: Array<LeadAction> = [
+export default function SearchPeopleSelectAction() {
+  const peopleTableSelectActions: Array<LeadAction> = [
     {
       title: "Save to Group",
       icon: <AddHomeOutlinedIcon />,
@@ -65,7 +65,7 @@ export default function SearchLeadsSelectAction() {
         width={"100%"}
         gap={1}
       >
-        {LeadTableSelectActions.map((filter) => {
+        {peopleTableSelectActions.map((filter) => {
           return (
             <CustomIconButton key={filter.title} onClick={filter.handler}>
               <Tooltip title={filter.title}>{filter.icon}</Tooltip>

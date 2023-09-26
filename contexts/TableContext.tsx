@@ -1,3 +1,4 @@
+import { useTabsSelector } from "@/components/CustomComponents/CustomTabs";
 import {
   FilterParams,
   ITableContext,
@@ -22,12 +23,12 @@ export const TableContextProvider = ({
   identifier?: string;
 }) => {
   const [selected, setSelected] = useState<Array<string>>([]);
-  const [activeTab, setActiveTab] = useState<string>("");
   const [paywallExceeded, setPaywallExceeded] = useState<boolean>(false);
   const [selectedFilters, setSelectedFilters] = useState<FilterParams>({
     label: "",
     value: [],
   });
+  const { activeTab, handleTabChange } = useTabsSelector();
   const [seeMoreOpenAnchor, setSeeMoreOpenAnchor] =
     useState<null | HTMLElement>(null);
   const seeMoreOpen = Boolean(seeMoreOpenAnchor);
@@ -62,9 +63,7 @@ export const TableContextProvider = ({
     setSelectedFilters({ label: "", value: [] });
     filterFunctions && filterFunctions[1]();
   };
-  const handleTabChange = (params: TabChangeParams) => {
-    setActiveTab(params.tab);
-  };
+
   const handlePaywallExceeded = (exceeded: boolean) => {
     setPaywallExceeded(exceeded);
   };

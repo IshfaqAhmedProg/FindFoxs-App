@@ -17,13 +17,13 @@ const mainRoutes: RouteCollection = {
       quotes: { name: "Quotes", goto: "/crm/quotes" },
     },
   },
-  leads: {
-    name: "Leads",
+  people: {
+    name: "People",
     goto: "",
     children: {
-      search: { name: "Search New Leads", goto: "/leads/search" },
-      manage: { name: "Manage Your Leads ", goto: "/leads/manage" },
-      engage: { name: "Engage With Leads ", goto: "/leads/engage" },
+      search: { name: "Search New People", goto: "/people/search" },
+      manage: { name: "Manage People", goto: "/people/manage" },
+      engage: { name: "Engage With People", goto: "/people/engage" },
     },
   },
   tools: {

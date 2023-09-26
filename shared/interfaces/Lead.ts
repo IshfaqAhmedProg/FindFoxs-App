@@ -23,5 +23,4 @@ export interface LeadAction {
   handler?: (params: any) => void;
 }
 
-export const leadSearchTabs = ["Individual", "Company"];
 

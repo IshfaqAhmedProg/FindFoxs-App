@@ -53,15 +53,6 @@ const useGetCollection = ({
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<FirestoreError | undefined>();
 
-  function initialFetch() {
-    const q = query(
-      collection(db, coll),
-      ...filterConstraint,
-      orderBy("dateCreated", "desc"),
-      limit(queryLimit)
-    );
-    fetchDocs(q);
-  }
   useEffect(() => {
     setIsMounted(true);
     return () => {
@@ -70,9 +61,19 @@ const useGetCollection = ({
   }, []);
   useEffect(() => {
     if (isMounted) {
-      initialFetch();
+      const q = query(
+        collection(db, coll),
+        ...filterConstraint,
+        orderBy("dateCreated", "desc"),
+        limit(queryLimit)
+      );
+      fetchDocs(q);
     }
   }, [isMounted, filterConstraint]);
+
+  /**
+   * Function to fetch more data when intersection observer is activated
+   */
   function fetchMoreDataFunction() {
     if (lastResult) {
       const q = query(
@@ -85,48 +86,67 @@ const useGetCollection = ({
       fetchDocs(q);
     }
   }
-  function handleSetFilter(sf: FilterParams) {
+  /**
+   * Function that changes the filter constraints when set by the user
+   * @param {FilterParams} filterParams Object containing label and value
+   */
+  function handleSetFilter(filterParams: FilterParams) {
     clearAll();
-    setFilterConstraint([where(sf.label, "in", sf.value)]);
+    setFilterConstraint([where(filterParams.label, "in", filterParams.value)]);
   }
+  /**
+   * Function to clear filter constraints
+   */
   function handleClearFilter() {
     clearAll();
     setFilterConstraint([]);
   }
-  async function fetchDocs(q: Query<DocumentData>) {
+  /**
+   * Reset hook whenever filter constraint changes
+   */
+  async function clearAll() {
+    console.log("clearedall");
+    setResults([]);
+    setLastResult(null);
+    setEndOfData(false);
+  }
+  /**
+   * Main function that fetches the docs based on the query provided
+   * @param {Query<DocumentData>} query Firestore query
+   */
+  async function fetchDocs(query: Query<DocumentData>) {
     if (!endOfData) {
       setLoading(true);
-      const unsubscribe = onSnapshot(q, (querySnapshot) => {
-        var docs = results;
-        var docCount = 0;
-        console.log("onSnapshot triggered");
-        querySnapshot.forEach((doc) => {
-          console.log(doc.id, "=>", doc.data());
-          if (!checkIfObjectExistsInArray(docs, "_id", doc.data())) {
-            docs = [...docs, doc.data()];
+      const unsubscribe = onSnapshot(
+        query,
+        (querySnapshot) => {
+          var docs = results;
+          var docCount = 0;
+          console.log("onSnapshot triggered");
+          querySnapshot.forEach((doc) => {
+            console.log(doc.id, "=>", doc.data());
+            if (!checkIfObjectExistsInArray(docs, "_id", doc.data())) {
+              docs = [...docs, doc.data()];
+            }
+            docCount++;
+          });
+          if (docCount < queryLimit) {
+            setEndOfData(true);
           }
-          docCount++;
-        });
-        if (docCount < queryLimit) {
-          setEndOfData(true);
+          setLastResult(docs[docs.length - 1]);
+          setResults(docs);
+          setLoading(false);
+        },
+        (error) => {
+          setError(error);
         }
-        setLastResult(docs[docs.length - 1]);
-        setResults(docs);
-        setLoading(false);
-      });
+      );
 
       // Clean up the listener when the component unmounts or on re-fetch
       return () => {
         unsubscribe();
       };
     }
-  }
-
-  async function clearAll() {
-    console.log("clearedall");
-    setResults([]);
-    setLastResult(null);
-    setEndOfData(false);
   }
   return [
     results,

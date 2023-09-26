@@ -19,7 +19,7 @@ import TableCell from "@/components/TableComponents/TableCell";
 
 import SingleLeadCard from "./SingleLeadCard";
 
-export default function SearchLeadsPrimaryItem({ content }: { content: Lead }) {
+export default function SearchPeoplePrimaryItem({ content }: { content: Lead }) {
   const [seeMoreOpenAnchor, setSeeMoreOpenAnchor] =
     useState<null | HTMLElement>(null);
   const seeMoreOpen = Boolean(seeMoreOpenAnchor);

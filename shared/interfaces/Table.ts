@@ -29,20 +29,20 @@ export type SelectAllParams = {
 };
 export type FilterParams = {
   label: string;
-  value: Array<string | Timestamp>;
+  value: Array<any>;
 };
 export interface ITableContext {
   seeMoreOpen: boolean;
   seeMoreOpenAnchor: null | HTMLElement;
   selected: Array<string>;
-  activeTab: string;
+  activeTab: number;
   loading: boolean;
   selectedFilters: FilterParams;
   paywallExceeded: boolean;
   handlePaywallExceeded: (exceeded: boolean) => void;
   handleSetFilter: (sf: FilterParams) => void;
   handleClearFilter: () => void;
-  handleTabChange: (params: TabChangeParams) => void;
+  handleTabChange: (event: React.SyntheticEvent, value: any) => void;
   handleDataFetch: () => void;
   handleSelect: (id: string) => void;
   handleSelectAll: (params: SelectAllParams) => void;

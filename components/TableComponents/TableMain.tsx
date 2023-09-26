@@ -1,11 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import TableContainer from "@/components/TableComponents/TableContainer";
 import TableFilter from "@/components/TableComponents/TableFilter";
-import TableTabsSelector from "./TableTabsSelector";
+import CustomTabs, {
+  useTabsSelector,
+} from "../CustomComponents/CustomTabs";
 import { useTable } from "@/contexts/TableContext";
 import { ITableMain } from "@/shared/interfaces/Table";
 import CustomCard from "../CustomComponents/CustomCard";
-import { Stack } from "@mui/material";
 
 export default function TableMain({
   tableTitle = "",
@@ -19,18 +20,19 @@ export default function TableMain({
   selectActionsComponent,
   paywallComponent,
 }: ITableMain) {
-  const { handleTabChange, activeTab } = useTable();
-  useEffect(() => {
-    //setting the initially selected tab
-    if (tableTabs) {
-      const tab = tableTabs[0];
-      if (!activeTab) handleTabChange({ tab });
-    }
-  }, [activeTab, handleTabChange, tableTabs]);
+  const { activeTab, handleTabChange } = useTable();
   return (
     <CustomCard
       title={tableTitle}
-      action={tableTabs ? <TableTabsSelector tableTabs={tableTabs} /> : null}
+      tabsComponent={
+        tableTabs ? (
+          <CustomTabs
+            tabs={tableTabs}
+            activeTab={activeTab}
+            handleTabChange={handleTabChange}
+          />
+        ) : null
+      }
     >
       <TableFilter
         selectActionsComponent={selectActionsComponent}

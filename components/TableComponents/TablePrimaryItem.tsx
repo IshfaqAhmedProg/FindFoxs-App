@@ -12,6 +12,7 @@ export default function TablePrimaryItem({ id, children }: Props) {
   const { selected, handleSelect } = useTable();
   return (
     <Stack
+      className="tb-primary"
       minHeight="81px"
       justifyContent="space-between"
       pt={2}

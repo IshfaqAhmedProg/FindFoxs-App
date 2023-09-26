@@ -1,5 +1,5 @@
 import { jwtVerify, createLocalJWKSet } from "jose";
-const decodeIdToken = async (idToken: string) => {
+const verifyIdToken = async (idToken: string) => {
   const response = await (
     await fetch(
       "https://www.googleapis.com/service_accounts/v1/jwk/securetoken@system.gserviceaccount.com"
@@ -15,4 +15,4 @@ const decodeIdToken = async (idToken: string) => {
   // console.log("payload=>", payload);
   return payload;
 };
-export default decodeIdToken;
+export default verifyIdToken;

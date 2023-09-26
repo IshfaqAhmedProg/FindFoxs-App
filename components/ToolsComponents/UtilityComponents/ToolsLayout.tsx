@@ -19,14 +19,14 @@ export default function ToolsLayout({
   return (
     <CustomCard
       title={title}
-      action={
+      actionComponent={
         <Link href={"/tasks"}>
           <CustomButton kind="plain" sx={{ color: "var(--primary)" }}>
             History
           </CustomButton>
         </Link>
       }
-      actionPos="right"
+      position="right"
     >
       <CustomContainer>
         <Box
@@ -55,7 +55,7 @@ export default function ToolsLayout({
           >
             {children}
           </Stack>
-          {singleResultCard && singleResultCard}
+          {singleResultCard ?? ""}
           {toolVideo}
         </Box>
       </CustomContainer>

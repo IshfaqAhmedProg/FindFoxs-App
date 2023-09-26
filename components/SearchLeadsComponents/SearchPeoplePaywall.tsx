@@ -1,4 +1,4 @@
-import mockLeads from "@/shared/data/PlaceholderLeads.json";
+import mockPeople from "@/shared/data/PlaceholderLeads.json";
 import ReceiptLongRoundedIcon from "@mui/icons-material/ReceiptLongRounded";
 import { Stack, Typography, useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
@@ -6,19 +6,18 @@ import CustomBox from "../CustomComponents/CustomBox";
 import CustomButton from "../CustomComponents/CustomButton";
 import TableItem from "../TableComponents/TableItem";
 import TablePrimaryItem from "../TableComponents/TablePrimaryItem";
-import SearchLeadsPrimaryItem from "./SearchLeadsPrimaryItem";
-import SearchLeadsSecondaryItem from "./SearchLeadsSecondaryItem";
-export default function SearchLeadsPaywall() {
+import SearchPeoplePrimaryItem from "./SearchPeoplePrimaryItem";
+import SearchPeopleSecondaryItem from "./SearchPeopleSecondaryItem";
+export default function SearchPeoplePaywall() {
   const theme = useTheme();
-
-  mockLeads.length = 3;
+  mockPeople.length = 3;
   const tablePrimaryItems = (
     <>
-      {mockLeads.length != 0 &&
-        mockLeads.map((lead) => {
+      {mockPeople.length != 0 &&
+        mockPeople.map((lead) => {
           return (
             <TablePrimaryItem key={lead._id} id={lead._id}>
-              <SearchLeadsPrimaryItem content={lead} />
+              <SearchPeoplePrimaryItem content={lead} />
             </TablePrimaryItem>
           );
         })}
@@ -26,11 +25,11 @@ export default function SearchLeadsPaywall() {
   );
   const tableSecondaryItems = (
     <>
-      {mockLeads.length != 0 &&
-        mockLeads.map((lead) => {
+      {mockPeople.length != 0 &&
+        mockPeople.map((lead) => {
           return (
             <TableItem key={lead._id}>
-              <SearchLeadsSecondaryItem content={lead} />
+              <SearchPeopleSecondaryItem content={lead} />
             </TableItem>
           );
         })}

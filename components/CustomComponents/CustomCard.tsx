@@ -2,35 +2,43 @@ import { Card, CardContent, CardHeader, Divider } from "@mui/material";
 import React from "react";
 interface Props {
   title: string;
-  action?: React.ReactNode;
+  tabsComponent?: React.ReactNode;
+  actionComponent?: React.ReactNode;
   children: React.ReactNode;
-  actionPos?: "left" | "right";
+  position?: "left" | "right";
 }
 export default function CustomCard({
   title,
-  action,
+  tabsComponent,
+  actionComponent,
   children,
-  actionPos = "left",
+  position = "left",
 }: Props) {
+  const cardHeaderWithAction = {
+    "& div:first-of-type": {
+      flex: position == "left" ? "0 1 auto" : "1 0 auto",
+    },
+    gap: 4,
+  };
+  const cardHeaderWithTabs = {
+    ...cardHeaderWithAction,
+    paddingBlock: 0.5,
+  };
   return (
     <Card>
-      <CardHeader
-        title={title}
-        action={action ?? null}
-        sx={
-          actionPos == "left"
-            ? {
-                "& div:first-of-type": {
-                  flex: "0 1 auto",
-                },
-              }
-            : {
-                "& div:first-of-type": {
-                  flex: "1 0 auto",
-                },
-              }
-        }
-      />
+      {title && (
+        <CardHeader
+          title={title}
+          action={(tabsComponent || actionComponent) ?? null}
+          sx={
+            tabsComponent
+              ? cardHeaderWithTabs
+              : actionComponent
+              ? cardHeaderWithAction
+              : null
+          }
+        />
+      )}
       <Divider />
       <CardContent
         sx={{

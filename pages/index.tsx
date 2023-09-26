@@ -19,6 +19,7 @@ export default function Home() {
       disable: window.innerWidth < 780,
     });
   }, []);
+
   return (
     <>
       <Head>

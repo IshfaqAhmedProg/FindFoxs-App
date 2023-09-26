@@ -23,6 +23,7 @@ export default function DashboardLayout({
   const router = useRouter();
   return (
     <main className={styles.dashboard}>
+      <Cursor />
       <Box position="relative" height="100%" width="100%" display="flex">
         <SideBar
           toggle={toggleSidebar}
@@ -36,13 +37,12 @@ export default function DashboardLayout({
           sx={
             toggleSidebar
               ? {
-                  paddingTop: { xs: "3.5rem", md: "5.5rem" },
-                  paddingLeft: { xs: "3rem", md: "4rem" },
+                  paddingTop: { xs: "4rem", md: "4.5rem" },
+                  paddingLeft: { xs: "2.5rem", md: "3.5rem" },
                   paddingRight: { xs: "0", md: "1" },
                 }
               : {
-                  paddingTop: { xs: "3.5rem", md: "5.5rem" },
-                  paddingLeft: { xs: "0.5rem", md: "1rem" },
+                  paddingTop: { xs: "4rem", md: "4.5rem" },
                   paddingRight: { xs: "0", md: "1" },
                 }
           }
@@ -71,7 +71,6 @@ export default function DashboardLayout({
             pt={1}
             gap={2}
           >
-            <Cursor />
             {children}
           </Box>
         </Box>

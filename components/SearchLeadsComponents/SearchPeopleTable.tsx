@@ -1,22 +1,19 @@
-import SearchLeadsFilter from "@/components/SearchLeadsComponents/SearchLeadsFilter";
-import SearchLeadsPrimaryItem from "@/components/SearchLeadsComponents/SearchLeadsPrimaryItem";
-import SearchLeadsSelectAction from "@/components/SearchLeadsComponents/SearchLeadsSelectAction";
-import SearchLeadsSecondaryItem from "@/components/SearchLeadsComponents/SearchLeadsSecondaryItem";
+import SearchPeopleFilter from "@/components/SearchLeadsComponents/SearchPeopleFilter";
+import SearchPeoplePrimaryItem from "@/components/SearchLeadsComponents/SearchPeoplePrimaryItem";
+import SearchPeopleSecondaryItem from "@/components/SearchLeadsComponents/SearchPeopleSecondaryItem";
+import SearchPeopleSelectAction from "@/components/SearchLeadsComponents/SearchPeopleSelectAction";
 import TableItem from "@/components/TableComponents/TableItem";
 import TableMain from "@/components/TableComponents/TableMain";
 import TablePrimaryItem from "@/components/TableComponents/TablePrimaryItem";
 import { TableContextProvider } from "@/contexts/TableContext";
 import useGetCollection from "@/shared/hooks/useGetCollection";
-import {
-  Lead,
-  leadPublicFields,
-  leadSearchTabs,
-} from "@/shared/interfaces/Lead";
+import { Lead, leadPublicFields } from "@/shared/interfaces/Lead";
 import { useEffect, useState } from "react";
-import SearchLeadsPaywall from "./SearchLeadsPaywall";
+import SearchPeoplePaywall from "./SearchPeoplePaywall";
 
-const queryLimit = 10;
-export default function SearchLeadsTable() {
+export default function SearchPeopleTable() {
+  const queryLimit = 10;
+  const peopleSearchTabs = ["Individual", "Company"];
   const [
     results,
     loading,
@@ -31,20 +28,20 @@ export default function SearchLeadsTable() {
     aggrDoc: "aggregates/leads",
   });
 
-  const [leads, setLeads] = useState<Array<Lead | undefined>>([]);
+  const [people, setPeople] = useState<Array<Lead | undefined>>([]);
   useEffect(() => {
     if (results.length > 0) {
-      setLeads(results as Array<Lead>);
+      setPeople(results as Array<Lead>);
     }
   }, [results]);
   const tablePrimaryItems = (
     <>
-      {leads.length != 0 &&
-        leads.map((lead) => {
+      {people.length != 0 &&
+        people.map((lead) => {
           if (lead)
             return (
               <TablePrimaryItem key={lead._id} id={lead._id}>
-                <SearchLeadsPrimaryItem content={lead} />
+                <SearchPeoplePrimaryItem content={lead} />
               </TablePrimaryItem>
             );
         })}
@@ -52,12 +49,12 @@ export default function SearchLeadsTable() {
   );
   const tableSecondaryItems = (
     <>
-      {leads.length != 0 &&
-        leads.map((lead) => {
+      {people.length != 0 &&
+        people.map((lead) => {
           if (lead)
             return (
               <TableItem key={lead._id}>
-                <SearchLeadsSecondaryItem content={lead} />
+                <SearchPeopleSecondaryItem content={lead} />
               </TableItem>
             );
         })}
@@ -72,15 +69,15 @@ export default function SearchLeadsTable() {
     >
       <TableMain
         tableTitle="Search for..."
-        tableData={leads}
+        tableData={people}
         primaryKey="Lead"
         primaryItems={tablePrimaryItems}
         secondaryItems={tableSecondaryItems}
         secondaryKeys={leadPublicFields}
-        tableTabs={leadSearchTabs}
-        filterComponent={<SearchLeadsFilter />}
-        selectActionsComponent={<SearchLeadsSelectAction />}
-        paywallComponent={<SearchLeadsPaywall />}
+        tableTabs={peopleSearchTabs}
+        filterComponent={<SearchPeopleFilter />}
+        selectActionsComponent={<SearchPeopleSelectAction />}
+        paywallComponent={<SearchPeoplePaywall />}
       />
     </TableContextProvider>
   );
