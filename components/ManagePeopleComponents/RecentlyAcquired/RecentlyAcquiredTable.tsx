@@ -11,7 +11,7 @@ import useGetCollection from "@/shared/hooks/useGetCollection";
 import { Lead, leadPublicFields } from "@/shared/interfaces/Lead";
 import React, { useEffect, useState } from "react";
 
-export default function AcquiredPeopleTable() {
+export default function RecentlyAcquiredTable() {
   const queryLimit = 10;
   const [
     results,

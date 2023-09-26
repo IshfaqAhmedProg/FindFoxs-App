@@ -1,17 +1,17 @@
 import CustomTabs, {
-  useTabsSelector
+  useTabsSelector,
 } from "@/components/CustomComponents/CustomTabs";
 import CustomCard from "@components/CustomComponents/CustomCard";
 import { Stack } from "@mui/material";
 import React from "react";
-import AcquiredPeopleTable from "./AcquiredPeople/AcquiredPeopleTable";
+import RecentlyAcquiredTable from "./RecentlyAcquired/RecentlyAcquiredTable";
 import Analytics from "./Analytics";
-import CRMStages from "./CRMStages";
+import LeadsStages from "./LeadsStages/LeadsStages";
 
 export default function ManagePeople() {
   const tabs: { [key: string]: React.ReactNode } = {
-    "Acquired People": <AcquiredPeopleTable />,
-    "CRM Stages": <CRMStages />,
+    "Recently Acquired": <RecentlyAcquiredTable />,
+    "Leads Stages": <LeadsStages />,
     Analytics: <Analytics />,
   };
   const { activeTab, handleTabChange } = useTabsSelector();

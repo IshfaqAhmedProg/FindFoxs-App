@@ -52,19 +52,21 @@ export default async function middleware(req: NextRequest) {
   ) {
     return NextResponse.redirect(`${siteUrl}/dashboard`);
   }
-
-  const logObj = {
-    base: url.basePath,
-    url: url.pathname,
-    homeURL: url.pathname == "/",
-    emailVerified: emailVerified,
-    userVerified: userVerified,
-    tokenExists: !!token,
-    tokenExpired: tokenExpired,
-    protectedRoutes: protectedRoutes.some((route) =>
-      url.pathname.includes(route)
-    ),
-    authRoutes: authRoutes.some((route) => url.pathname.includes(route)),
-  };
-  console.log(logObj);
+  // console.log({
+  //   host: url.host,
+  //   hostname: url.hostname,
+  //   locale: url.locale,
+  //   domainLocale: url.domainLocale,
+  //   defaultLocale: url.defaultLocale,
+  //   url: url.pathname,
+  //   emailVerified: emailVerified,
+  //   userVerified: userVerified,
+  //   tokenExists: !!token,
+  //   tokenExpired: tokenExpired,
+  //   landingPage: url.pathname == "/",
+  //   protectedRoute: protectedRoutes.some((route) =>
+  //     url.pathname.includes(route)
+  //   ),
+  //   authRoute: authRoutes.some((route) => url.pathname.includes(route)),
+  // });
 }

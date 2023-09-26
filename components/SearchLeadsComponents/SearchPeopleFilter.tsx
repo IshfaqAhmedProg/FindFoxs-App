@@ -9,7 +9,7 @@ import FactoryRoundedIcon from "@mui/icons-material/FactoryRounded";
 import { Stack, Typography, Autocomplete, Menu } from "@mui/material";
 import jobTitles from "@/shared/data/ListOfJobTitles.json";
 
-const LeadTableFilters: Array<LeadAction> = [
+const PeopleTableFilters: Array<LeadAction> = [
   {
     title: "Job Title",
     icon: <MilitaryTechOutlinedIcon />,
@@ -59,7 +59,7 @@ export default function SearchPeopleFilter() {
         placeholder="Search by Name"
         sx={{ maxWidth: "250px" }}
       />
-      {LeadTableFilters.map((filter) => {
+      {PeopleTableFilters.map((filter) => {
         return (
           <CustomButton
             key={filter.title}
