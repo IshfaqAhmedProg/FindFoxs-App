@@ -2,6 +2,7 @@ import Loading from "@/components/CustomComponents/Loading/Loading";
 import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
+  onAuthStateChanged,
   onIdTokenChanged,
   sendEmailVerification,
   sendPasswordResetEmail,
@@ -30,11 +31,12 @@ export const AuthContextProvider = ({
   //AuthState Change Use Effect
   useEffect(() => {
     setLoading(true);
-    const unsubscribe = onIdTokenChanged(auth, async (user) => {
-      if (user) {
-        Cookies.set("token", await user.getIdToken(true));
+    const unsubscribe = onIdTokenChanged(auth, async (u) => {
+      if (u) {
+        Cookies.set("token", await u.getIdToken(true));
         Cookies.set("loggedin", "true");
-        setUser(user);
+        Cookies.set("uid", u.uid);
+        setUser(u);
       } else {
         setUser(null);
       }
@@ -50,13 +52,22 @@ export const AuthContextProvider = ({
     return createUserWithEmailAndPassword(auth, email, password);
   }
   //login Auth function
-  function login(email: string, password: string) {
-    return signInWithEmailAndPassword(auth, email, password);
+  async function login(email: string, password: string) {
+    const value = await signInWithEmailAndPassword(auth, email, password);
+    Cookies.set("token", await value.user.getIdToken(true));
+    Cookies.set("loggedin", "true");
+    Cookies.set("uid", value.user.uid);
+    setUser(value.user);
+    router.replace("/dashboard");
   }
   //Google Login and signup Auth function
-  function googleAccess() {
-    const provider = new GoogleAuthProvider();
-    return signInWithPopup(auth, provider);
+  async function googleAccess() {
+    const value = await signInWithPopup(auth, new GoogleAuthProvider());
+    Cookies.set("token", await value.user.getIdToken(true));
+    Cookies.set("loggedin", "true");
+    Cookies.set("uid", value.user.uid);
+    setUser(value.user);
+    router.replace("/dashboard");
   }
 
   //logout Auth function

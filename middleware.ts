@@ -4,14 +4,7 @@ import verifyIdToken from "./shared/functions/verifyIdToken";
 import { JWTExpired } from "jose/dist/types/util/errors";
 import { JWTPayload } from "jose";
 
-const protectedRoutes = [
-  `/dashboard`,
-  `/people`,
-  `/tasks`,
-  `/tools`,
-  `/crm`,
-  `/verifyEmail`,
-];
+const protectedRoutes = [`/dashboard`, `/people`, `/tasks`, `/tools`, `/crm`];
 const authRoutes = [`/login`, `/signup`];
 export default async function middleware(req: NextRequest) {
   let token = req.cookies.get("token");
@@ -23,18 +16,17 @@ export default async function middleware(req: NextRequest) {
       tokenExpired = true;
     });
   }
+  const userId = decodedToken?.user_id ?? req.cookies.get("uid");
   const userVerified = decodedToken?.user_id ? true : false;
   const emailVerified = decodedToken?.email_verified as boolean;
   let url = req.nextUrl.clone();
   let siteUrl = url.origin;
 
   if (tokenExpired) {
+    //refresh page if token is expired
     return NextResponse.redirect(url);
   }
-  if (userVerified && url.pathname == "/") {
-    // If user is verified and tries to access landing page at '/'
-    return NextResponse.redirect(`${siteUrl}/dashboard`);
-  }
+
   // If user verified but email not verified and tries to access protected pages redirect to onboarding page
   if (
     userVerified &&
@@ -67,6 +59,7 @@ export default async function middleware(req: NextRequest) {
     homeURL: url.pathname == "/",
     emailVerified: emailVerified,
     userVerified: userVerified,
+    tokenExists: !!token,
     tokenExpired: tokenExpired,
     protectedRoutes: protectedRoutes.some((route) =>
       url.pathname.includes(route)

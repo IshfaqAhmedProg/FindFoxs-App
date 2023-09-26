@@ -28,10 +28,6 @@ export default function LoginForm() {
     e.preventDefault();
     setLoading(true);
     login(values.email, values.password)
-      .then((value) => {
-        console.log("success email login");
-        router.replace("/dashboard");
-      })
       .catch((error: any) => {
         handleError(GetRefinedFirebaseError(error));
       })
@@ -41,10 +37,6 @@ export default function LoginForm() {
     e.preventDefault();
     setLoading(true);
     googleLogin()
-      .then((value) => {
-        console.log("success google login");
-        router.replace("/dashboard");
-      })
       .catch((error: any) => handleError(GetRefinedFirebaseError(error)))
       .finally(() => setLoading(false));
   }
