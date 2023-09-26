@@ -3,11 +3,7 @@ import { Typography } from "@mui/material";
 import { useAuth } from "@/contexts/AuthContext";
 import CustomButton from "@/components/CustomComponents/CustomButton";
 import Stack from "@mui/material/Stack";
-export default function NewUserDetails({
-  page,
-}: {
-  page: string | string[] | undefined;
-}) {
+export default function VerifyEmail() {
   const { sendEV } = useAuth();
   return (
     <Stack alignItems={"center"} gap={2}>

@@ -8,7 +8,7 @@ import LoginRoundedIcon from "@mui/icons-material/LoginRounded";
 import { Box, Divider } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useErrorHandler } from "../../contexts/ErrorHandlerContext";
 import CustomButton from "../CustomComponents/CustomButton";
@@ -28,8 +28,9 @@ export default function LoginForm() {
     e.preventDefault();
     setLoading(true);
     login(values.email, values.password)
-      .then(() => {
-        router.push("/dashboard");
+      .then((value) => {
+        console.log("success email login");
+        router.replace("/dashboard");
       })
       .catch((error: any) => {
         handleError(GetRefinedFirebaseError(error));
@@ -40,9 +41,9 @@ export default function LoginForm() {
     e.preventDefault();
     setLoading(true);
     googleLogin()
-      .then(() => {
+      .then((value) => {
         console.log("success google login");
-        router.push("/dashboard");
+        router.replace("/dashboard");
       })
       .catch((error: any) => handleError(GetRefinedFirebaseError(error)))
       .finally(() => setLoading(false));

@@ -1,19 +1,19 @@
+import Loading from "@/components/CustomComponents/Loading/Loading";
 import {
-  GoogleAuthProvider,
-  UserCredential,
   createUserWithEmailAndPassword,
+  GoogleAuthProvider,
+  onIdTokenChanged,
   sendEmailVerification,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
-  onIdTokenChanged,
   signOut,
+  User,
+  UserCredential,
 } from "firebase/auth";
-import React, { createContext, useContext, useEffect, useState } from "react";
-import Loading from "@/components/CustomComponents/Loading/Loading";
-import { User } from "firebase/auth";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { auth } from "../firebase/config";
 
 const AuthContext = createContext<any>({});
@@ -46,49 +46,41 @@ export const AuthContextProvider = ({
   }, []);
 
   //Sign Up Auth function
-  async function signup(email: string, password: string) {
+  function signup(email: string, password: string) {
     return createUserWithEmailAndPassword(auth, email, password);
   }
   //login Auth function
-  const login = (email: string, password: string) => {
+  function login(email: string, password: string) {
     return signInWithEmailAndPassword(auth, email, password);
-  };
+  }
   //Google Login and signup Auth function
-  const googleAccess = () => {
+  function googleAccess() {
     const provider = new GoogleAuthProvider();
-    return signInWithPopup(auth, provider).then((result) => {
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential?.accessToken;
-      // The signed-in user info.
-      const user = result.user;
-    });
-  };
+    return signInWithPopup(auth, provider);
+  }
 
   //logout Auth function
-  const logout = async () => {
+  async function logout() {
     await signOut(auth).then(() => {
       console.log("logged out");
       Cookies.remove("token");
+      Cookies.remove("GAPItoken");
       Cookies.remove("loggedin");
       setUser(null);
       router.replace("/");
     });
-  };
+  }
   //Password Reset Auth function
-  const resetPass = (email: string) => {
+  function resetPass(email: string) {
     return sendPasswordResetEmail(auth, email);
-  };
+  }
   //Send Email Verification Auth Function
-  const sendEV = () => {
-    let sender = null;
-    if (auth.currentUser != null) {
-      sender = sendEmailVerification(auth.currentUser).then(() => {
-        console.log("email sent");
-      });
+  async function sendEV() {
+    if (auth.currentUser == null) {
+      return;
     }
-    return sender;
-  };
+    return sendEmailVerification(auth.currentUser);
+  }
 
   return (
     <AuthContext.Provider

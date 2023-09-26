@@ -28,7 +28,10 @@ export default function SignupForm() {
     e.preventDefault();
     setLoading(true);
     signup(values.email, values.password)
-      .then(() => router.replace("/auth/signup/1"))
+      .then(() => {
+        sendEV();
+      })
+      .then(() => router.replace("/auth/signup/verifyEmail"))
       .catch((error: any) => handleError(GetRefinedFirebaseError(error)))
       .finally(() => setLoading(false));
   }
@@ -36,7 +39,7 @@ export default function SignupForm() {
     e.preventDefault();
     setLoading(true);
     googleAccess()
-      .then(() => router.replace("/auth/signup/1"))
+      .then(() => router.replace("/dashboard"))
       .catch((error: any) => handleError(GetRefinedFirebaseError(error)))
       .finally(() => setLoading(false));
   }

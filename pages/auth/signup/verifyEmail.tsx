@@ -1,11 +1,12 @@
 import AuthLayout from "@/components/AuthComponents/AuthLayout";
-import LoginForm from "@/components/AuthComponents/LoginForm";
+import VerifyEmail from "@/components/AuthComponents/NewUserOnboarding/NewUserDetails";
 import { ErrorHandlerProvider } from "@/contexts/ErrorHandlerContext";
-export default function login() {
+
+export default function Onboarding() {
   return (
     <ErrorHandlerProvider>
       <AuthLayout>
-        <LoginForm />
+        <VerifyEmail />
       </AuthLayout>
     </ErrorHandlerProvider>
   );
