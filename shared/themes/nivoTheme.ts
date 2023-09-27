@@ -14,7 +14,7 @@ export const nivoTheme = {
   axis: {
     domain: {
       line: {
-        stroke: "#b4befd",
+        stroke: "#b1bad2",
         strokeWidth: 2,
       },
     },
@@ -28,12 +28,12 @@ export const nivoTheme = {
     },
     ticks: {
       line: {
-        stroke: "#b4befd",
+        stroke: "#767a8b",
         strokeWidth: 1,
       },
       text: {
         fontSize: 11,
-        fill: "#1d276b",
+        fill: "#767a8b",
         outlineWidth: 0,
         outlineColor: "transparent",
       },

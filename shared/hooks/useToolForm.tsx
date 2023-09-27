@@ -127,6 +127,7 @@ const useToolForm = ({
     }
   };
   const handleSingleSubmit = async (e: React.SyntheticEvent) => {
+    e.preventDefault();
     if (submitSingle) {
       setLoading(true);
       await submitSingle(formData)

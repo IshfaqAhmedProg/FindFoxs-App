@@ -3,7 +3,8 @@ import CustomTextInput from "@/components/CustomComponents/CustomTextInput";
 import FormContainer from "@/components/CustomComponents/FormComponents/FormContainer";
 import DragNDrop from "@/components/ToolsComponents/UtilityComponents/DragNDrop";
 import useToolForm, {
-  initialFormData, ToolFormInputProps
+  initialFormData,
+  ToolFormInputProps,
 } from "@/shared/hooks/useToolForm";
 import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
 import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
@@ -37,7 +38,7 @@ export default function ValidatorsInput({
       <Typography textAlign={"center"} fontSize={"14px"}>
         {description}
       </Typography>
-      <FormContainer onSubmit={handleSingleSubmit}>
+      <FormContainer onSubmit={handleSingleSubmit} style={{ width: "100%" }}>
         <Stack direction={"row"} gap={2} alignItems={"center"} width={"60%"}>
           {formData.textData.length > 0 &&
             (formData.formattedData.length != 0 ? (

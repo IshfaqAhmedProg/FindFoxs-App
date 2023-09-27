@@ -13,13 +13,13 @@ export default function LeadsStages() {
       sx={{ overflowX: "auto" }}
     >
       <StageCard
-        name="Awareness"
+        name="Acquisition"
         stageTotalLeads={425}
         stageTotalMonth={125}
         color={"var(--primarydark)"}
       />
       <StageCard
-        name="Lead Capture"
+        name="Lead Engage"
         stageTotalLeads={10}
         stageTotalMonth={125}
         color={"var(--primary)"}
@@ -40,7 +40,7 @@ export default function LeadsStages() {
         name="Customer"
         stageTotalLeads={10}
         stageTotalMonth={125}
-        color={"var(--accent)"}
+        color={"var(--accentlight)"}
       />
     </Stack>
   );

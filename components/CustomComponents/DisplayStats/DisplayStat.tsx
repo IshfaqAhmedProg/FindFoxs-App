@@ -4,7 +4,7 @@ import Stats from "@/shared/interfaces/Stats";
 
 export default function DisplayStat({ stat }: { stat: Stats }) {
   return (
-    <Stack gap={2}>
+    <Stack gap={2} className="display-stat">
       <Typography variant="h5" color={"var(--primary)"}>
         {stat.statTitle}&nbsp;
         <span className="trailingText">{stat.statTitleTrailing}</span>
@@ -12,7 +12,12 @@ export default function DisplayStat({ stat }: { stat: Stats }) {
       <Stack gap={1}>
         {stat.stats.map((s, index) => {
           return (
-            <Stack direction="row" justifyContent="space-between" key={index}>
+            <Stack
+              direction="row"
+              justifyContent="space-between"
+              key={index}
+              alignItems={"center"}
+            >
               <Typography>{s.title}</Typography>
               <Box
                 color={

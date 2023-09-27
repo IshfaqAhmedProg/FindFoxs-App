@@ -1,3 +1,4 @@
+import convertToReadableString from "@/shared/functions/stringTransformers/convertToReadableString";
 import { Tab, Tabs } from "@mui/material";
 import React, { useState } from "react";
 
@@ -6,8 +7,8 @@ interface Props {
   activeTab: number;
   handleTabChange: (event: React.SyntheticEvent, value: any) => void;
 }
-export function useTabsSelector() {
-  const [activeTab, setActiveTab] = useState<number>(0);
+export function useTabsSelector(initialTab: number = 0) {
+  const [activeTab, setActiveTab] = useState<number>(initialTab);
   function handleTabChange(e: React.SyntheticEvent, value: any) {
     setActiveTab(value);
   }
@@ -27,7 +28,11 @@ export default function CustomTabs({
       }}
     >
       {tabs.map((tab) => (
-        <Tab label={tab} key={tab} sx={{ fontSize: "0.8em" }} />
+        <Tab
+          label={convertToReadableString(tab)}
+          key={tab}
+          sx={{ fontSize: "0.8em" }}
+        />
       ))}
     </Tabs>
   );

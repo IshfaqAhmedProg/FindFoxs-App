@@ -13,7 +13,11 @@ export default function CustomBox({
     <Box
       borderRadius={"var(--border-radius)"}
       boxShadow={
-        variant == "outer" ? "var(--box-shadow)" : "inset var(--box-shadow)"
+        variant == "outer"
+          ? "var(--box-shadow)"
+          : variant == "inner"
+          ? "inset var(--box-shadow)"
+          : undefined
       }
       {...boxProps}
     >

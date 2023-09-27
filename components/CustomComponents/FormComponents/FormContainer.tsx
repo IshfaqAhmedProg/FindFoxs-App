@@ -2,9 +2,11 @@ import React from "react";
 export default function FormContainer({
   onSubmit,
   children,
+  style,
 }: {
   onSubmit: React.FormEventHandler<HTMLFormElement>;
   children: React.ReactNode;
+  style?: React.CSSProperties;
 }) {
   return (
     <form
@@ -14,6 +16,7 @@ export default function FormContainer({
         flexDirection: "column",
         gap: "1.5rem",
         alignItems: "center",
+        ...style,
       }}
     >
       {children}

@@ -3,26 +3,38 @@ import CustomTabs, {
 } from "@/components/CustomComponents/CustomTabs";
 import CustomCard from "@components/CustomComponents/CustomCard";
 import { Stack } from "@mui/material";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import RecentlyAcquiredTable from "./RecentlyAcquired/RecentlyAcquiredTable";
 import Analytics from "./Analytics";
 import LeadsStages from "./LeadsStages/LeadsStages";
+import { useRouter } from "next/router";
 
 export default function ManagePeople() {
-  const tabs: { [key: string]: React.ReactNode } = {
-    "Recently Acquired": <RecentlyAcquiredTable />,
-    "Leads Stages": <LeadsStages />,
-    Analytics: <Analytics />,
+  const router = useRouter();
+  const tab = router.query.tab;
+  const tabs: {
+    [key: string]: React.ReactNode;
+  } = {
+    recently_acquired: <RecentlyAcquiredTable />,
+    leads_stages: <LeadsStages />,
+    analytics: <Analytics />,
   };
-  const { activeTab, handleTabChange } = useTabsSelector();
+  const tabArray = Object.keys(tabs);
+  const [activeTab, setActiveTab] = useState(0);
+  useEffect(() => {
+    if (tab) setActiveTab(tabArray.indexOf(tab[0]));
+  }, [tab]);
   return (
     <CustomCard
       title={"Manage People"}
       tabsComponent={
         <CustomTabs
-          tabs={Object.keys(tabs)}
+          tabs={tabArray}
           activeTab={activeTab}
-          handleTabChange={handleTabChange}
+          handleTabChange={(e, value) => {
+            router.push(`/people/manage/${tabArray[value]}`);
+            setActiveTab(value);
+          }}
         />
       }
     >
@@ -34,7 +46,7 @@ export default function ManagePeople() {
         px={1}
         mb={2}
       >
-        {tabs[Object.keys(tabs)[activeTab]]}
+        {tabs[tabArray[activeTab]]}
       </Stack>
     </CustomCard>
   );
