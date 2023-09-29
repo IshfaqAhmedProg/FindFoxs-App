@@ -2,10 +2,7 @@ import CustomButton from "@/components/CustomComponents/CustomButton";
 import CustomTextInput from "@/components/CustomComponents/CustomTextInput";
 import FormContainer from "@/components/CustomComponents/FormComponents/FormContainer";
 import DragNDrop from "@/components/ToolsComponents/UtilityComponents/DragNDrop";
-import useToolForm, {
-  initialFormData,
-  ToolFormInputProps,
-} from "@/shared/hooks/useToolForm";
+import useToolForm, { ToolFormProps } from "@/shared/hooks/useToolForm";
 import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
 import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
@@ -17,7 +14,10 @@ export default function ValidatorsInput({
   submitSingle,
   submitTask,
   checkFunction,
-}: ToolFormInputProps) {
+}: {
+  description?: string;
+  unit?: string;
+} & ToolFormProps) {
   const {
     formData,
     loading,
@@ -27,7 +27,6 @@ export default function ValidatorsInput({
     handleSingleSubmit,
     headerSelectDialog,
   } = useToolForm({
-    initialState: initialFormData,
     checkFunction,
     submitTask,
     submitSingle,

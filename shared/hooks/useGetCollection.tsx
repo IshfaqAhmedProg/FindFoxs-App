@@ -12,7 +12,7 @@ import {
   FirestoreError,
   QueryFieldFilterConstraint,
 } from "firebase/firestore";
-import checkIfObjectExistsInArray from "../functions/checkIfObjectExistsInArray";
+import checkIfObjectExistsInArray from "../functions/checkIfFunctions/checkIfObjectExistsInArray";
 import { db } from "@/firebase/config";
 import { FilterParams } from "../interfaces/Table";
 

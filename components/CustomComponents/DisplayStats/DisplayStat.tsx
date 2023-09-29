@@ -4,7 +4,7 @@ import Stats from "@/shared/interfaces/Stats";
 
 export default function DisplayStat({ stat }: { stat: Stats }) {
   return (
-    <Stack gap={2} className="display-stat">
+    <Stack gap={2} className="display-stat" width={"100%"}>
       <Typography variant="h5" color={"var(--primary)"}>
         {stat.statTitle}&nbsp;
         <span className="trailingText">{stat.statTitleTrailing}</span>

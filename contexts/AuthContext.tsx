@@ -33,9 +33,7 @@ export const AuthContextProvider = ({
     setLoading(true);
     const unsubscribe = onIdTokenChanged(auth, async (u) => {
       if (u) {
-        Cookies.set("token", await u.getIdToken(true));
-        Cookies.set("loggedin", "true");
-        Cookies.set("uid", u.uid);
+        registerToCookie(u);
         setUser(u);
       } else {
         setUser(null);
@@ -54,32 +52,29 @@ export const AuthContextProvider = ({
   //login Auth function
   async function login(email: string, password: string) {
     const value = await signInWithEmailAndPassword(auth, email, password);
-    Cookies.set("token", await value.user.getIdToken(true));
-    Cookies.set("loggedin", "true");
-    Cookies.set("uid", value.user.uid);
+    registerToCookie(value.user);
     setUser(value.user);
     router.replace("/dashboard");
   }
   //Google Login and signup Auth function
   async function googleAccess() {
-    const value = await signInWithPopup(auth, new GoogleAuthProvider());
-    Cookies.set("token", await value.user.getIdToken(true));
-    Cookies.set("loggedin", "true");
-    Cookies.set("uid", value.user.uid);
+    const provider = new GoogleAuthProvider();
+    provider.addScope("https://www.googleapis.com/auth/gmail.modify");
+    const value = await signInWithPopup(auth, provider);
+    registerToCookie(value.user);
     setUser(value.user);
     router.replace("/dashboard");
   }
 
   //logout Auth function
   async function logout() {
-    await signOut(auth).then(() => {
-      console.log("logged out");
-      Cookies.remove("token");
-      Cookies.remove("GAPItoken");
-      Cookies.remove("loggedin");
-      setUser(null);
-      router.replace("/");
-    });
+    await signOut(auth);
+    console.log("logged out");
+    Cookies.remove("token");
+    Cookies.remove("loggedin");
+    Cookies.remove("uid");
+    setUser(null);
+    router.replace("/");
   }
   //Password Reset Auth function
   function resetPass(email: string) {
@@ -92,7 +87,11 @@ export const AuthContextProvider = ({
     }
     return sendEmailVerification(auth.currentUser);
   }
-
+  async function registerToCookie(user: User) {
+    Cookies.set("token", await user.getIdToken(true));
+    Cookies.set("loggedin", "true");
+    Cookies.set("uid", user.uid);
+  }
   return (
     <AuthContext.Provider
       value={{

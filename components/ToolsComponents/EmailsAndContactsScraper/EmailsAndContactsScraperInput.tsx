@@ -4,7 +4,7 @@ import DisplayArray from "@/components/CustomComponents/DisplayStats/DisplayArra
 import checkIfUrl from "@/shared/functions/checkIfFunctions/checkIfUrl";
 import usePasteDetector from "@/shared/hooks/usePasteDetector";
 import useToolForm, {
-  ToolFormInputProps,
+  ToolFormProps,
   initialFormData,
 } from "@/shared/hooks/useToolForm";
 import { Box, Divider, Typography } from "@mui/material";
@@ -12,7 +12,7 @@ import DragNDrop from "../UtilityComponents/DragNDrop";
 
 export default function EmailsAndContactsScraperInput({
   submitTask,
-}: ToolFormInputProps) {
+}: ToolFormProps) {
   const {
     formData,
     handleTextMultipleInputChange,
@@ -21,7 +21,6 @@ export default function EmailsAndContactsScraperInput({
     resetFormData,
     loading,
   } = useToolForm({
-    initialState: initialFormData,
     checkFunction: checkIfUrl,
     submitTask,
   });

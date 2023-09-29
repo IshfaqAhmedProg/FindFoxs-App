@@ -4,7 +4,7 @@ import keywordOptions from "@/shared/data/KeywordSuggestions.json";
 import languageOptions from "@/shared/data/SearchLanguages.json";
 import useLocationForm from "@/shared/hooks/useLocationForm";
 import useToolForm, {
-  ToolFormInputProps,
+  ToolFormProps,
   initialFormData,
 } from "@/shared/hooks/useToolForm";
 import ArrowDropDownRoundedIcon from "@mui/icons-material/ArrowDropDownRounded";
@@ -24,9 +24,7 @@ export interface Language {
   label: string;
   subtag: string;
 }
-export default function GoogleMapsScraperInput({
-  submitTask,
-}: ToolFormInputProps) {
+export default function GoogleMapsScraperInput({ submitTask }: ToolFormProps) {
   const {
     formData,
     loading,

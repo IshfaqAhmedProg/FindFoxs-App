@@ -2,8 +2,8 @@ import mainRoutes from "@/routes/mainRoutes";
 import { SideBarLinks } from "@/shared/interfaces/Links";
 import Diversity1RoundedIcon from "@mui/icons-material/Diversity1Rounded";
 import Groups2RoundedIcon from "@mui/icons-material/Groups2Rounded";
-import HandymanOutlinedIcon from "@mui/icons-material/HandymanOutlined";
 import MenuOpenRoundedIcon from "@mui/icons-material/MenuOpenRounded";
+import HandymanRoundedIcon from "@mui/icons-material/HandymanRounded";
 import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
 import SpeedRoundedIcon from "@mui/icons-material/SpeedRounded";
 import TaskRoundedIcon from "@mui/icons-material/TaskRounded";
@@ -38,7 +38,7 @@ export default function SideBar({ toggle, handleToggle }: Props) {
     {
       ...mainRoutes.tools,
 
-      icon: <HandymanOutlinedIcon />,
+      icon: <HandymanRoundedIcon />,
       expanded: true,
     },
     {

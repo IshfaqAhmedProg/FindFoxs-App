@@ -4,7 +4,7 @@ import DisplayArray from "@/components/CustomComponents/DisplayStats/DisplayArra
 import checkIfFacebookPage from "@/shared/functions/checkIfFunctions/checkIfFacebookPage";
 import usePasteDetector from "@/shared/hooks/usePasteDetector";
 import useToolForm, {
-  ToolFormInputProps,
+  ToolFormProps,
   initialFormData,
 } from "@/shared/hooks/useToolForm";
 import { Box, Divider, Typography } from "@mui/material";
@@ -12,7 +12,7 @@ import DragNDrop from "../UtilityComponents/DragNDrop";
 
 export default function FacebookScraperInput({
   submitTask,
-}: ToolFormInputProps) {
+}: ToolFormProps) {
   const {
     formData,
     handleTextMultipleInputChange,

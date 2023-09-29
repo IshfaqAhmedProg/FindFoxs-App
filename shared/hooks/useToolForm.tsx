@@ -1,5 +1,4 @@
-import Loading from "@/components/CustomComponents/Loading/Loading";
-import React, { Suspense, lazy, useState } from "react";
+import React, { useState } from "react";
 import processFile from "../functions/processFile";
 import { uniqueKeys } from "../functions/uniqueKeys";
 import SelectHeaderDialog from "@/components/ToolsComponents/UtilityComponents/SelectHeaderDialog";
@@ -36,22 +35,14 @@ export const initialFormData = {
   ...initialFileColumnCheckData,
 };
 
-export type ToolFormInputProps = {
-  submitSingle?: (formData: UToolFormData) => Promise<any>;
-  submitTask: (formData: UToolFormData) => Promise<any>;
-  checkFunction?: (data: Array<string>) => Array<string>;
-} & {
-  description?: string;
-  unit?: string;
-};
 export type ToolFormProps = {
-  initialState: ToolFormData;
+  initialState?: ToolFormData;
   submitSingle?: (formData: UToolFormData) => Promise<any>;
   submitTask: (formData: UToolFormData) => Promise<any>;
   checkFunction?: (data: Array<string>) => Array<string>;
 };
 const useToolForm = ({
-  initialState,
+  initialState = initialFormData,
   checkFunction,
   submitTask,
   submitSingle,

@@ -1,37 +1,23 @@
-import { getDownloadURL, ref, getStorage } from "firebase/storage";
-import { writeFile, utils } from "sheetjs-style";
-import {
-  FileType,
-  ResultData,
-} from "@/components/ToolsComponents/UtilityComponents/ResultSummaryCard";
-import { DocumentData } from "@firebase/firestore-types";
-import Task from "../interfaces/Tasks";
-import getFirstCharacter from "./stringTransformers/getFirstCharacter";
+import { getDownloadURL, getStorage, ref } from "firebase/storage";
+import { utils, writeFile } from "sheetjs-style";
 
-export default function downloadFile(
-  resultData: ResultData,
-  fileType: FileType,
-  task: Task | DocumentData
+export default function downloadAooAsSheet(
+  arrayObject: Array<any>,
+  fileName: string
 ) {
-  const headers = getHeaders(resultData);
+  const headers = getHeaders(arrayObject);
   const aoaData = [[]];
-  resultData.response.map((obj) => {
+  arrayObject.map((obj) => {
     aoaData.push(Object.values(obj));
   });
   const worksheet = utils.aoa_to_sheet(applySheetStyles(headers, aoaData));
   const workbook = utils.book_new();
   utils.book_append_sheet(workbook, worksheet);
-  const idShort = task._id.slice(0, 8);
-  writeFile(
-    workbook,
-    `FindFoxs${getFirstCharacter(task.tool)}_${idShort}.${fileType}`
-  );
+  writeFile(workbook, fileName);
 }
-function getHeaders(resultData: ResultData) {
+function getHeaders(resultData: Array<any>) {
   return Object.keys(
-    resultData.response.sort(
-      (a, b) => Object.keys(b).length - Object.keys(a).length
-    )[0]
+    resultData.sort((a, b) => Object.keys(b).length - Object.keys(a).length)[0]
   );
 }
 function applySheetStyles(headerArray: Array<string>, data: Array<Array<any>>) {

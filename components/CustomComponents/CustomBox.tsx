@@ -3,10 +3,14 @@ import React from "react";
 
 type CustomBoxProps = {
   variant?: "inner" | "outer";
+  stack?: boolean;
+  row?: boolean;
 } & BoxProps;
 export default function CustomBox({
   children,
   variant,
+  stack,
+  row,
   ...boxProps
 }: CustomBoxProps) {
   return (
@@ -19,6 +23,8 @@ export default function CustomBox({
           ? "inset var(--box-shadow)"
           : undefined
       }
+      display={stack ? "flex" : "block"}
+      flexDirection={row ? "row" : "column"}
       {...boxProps}
     >
       {children}

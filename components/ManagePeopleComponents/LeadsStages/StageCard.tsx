@@ -3,6 +3,8 @@ import { Stack, Typography } from "@mui/material";
 import React from "react";
 import { ResponsiveLine, Serie } from "@nivo/line";
 import { nivoTheme } from "@/shared/themes/nivoTheme";
+import Stats from "@/shared/interfaces/Stats";
+import DisplayStat from "@/components/CustomComponents/DisplayStats/DisplayStat";
 interface Props {
   name: string;
   stageTotalLeads: number;
@@ -58,42 +60,19 @@ const MyResponsiveLine = ({
     legends={[]}
   />
 );
-const StageStat = (props: StageStatProps) => {
-  return (
-    <Stack
-      direction={"row"}
-      width={"100%"}
-      justifyContent={"space-between"}
-      alignItems={"center"}
-    >
-      <Stack>
-        <Typography variant="h5" color={"var(--primary)"}>
-          {props.title}
-        </Typography>
-        {props.subTitle && (
-          <Typography
-            lineHeight={1}
-            fontWeight={"medium"}
-            color={"var(--graylight)"}
-          >
-            {props.subTitle}
-          </Typography>
-        )}
-      </Stack>
-      {typeof props.value === "number" ? (
-        <Typography variant="h4" color={"var(--accent)"}>
-          {props.value}
-        </Typography>
-      ) : (
-        <Typography variant="h5" color={"var(--primarylight)"}>
-          {props.value}
-        </Typography>
-      )}
-    </Stack>
-  );
-};
 export default function StageCard(props: Props) {
-  const data = [
+  const statData: Array<Stats> = [
+    {
+      statTitle: "Summary",
+      statTitleTrailing: "this month",
+      stats: [
+        { title: "John Bradley", stat: "80", statUnit: "calls" },
+        { title: "Peter Petely", stat: "70", statUnit: "calls" },
+        { title: "Weter Wetely", stat: "58", statUnit: "calls" },
+      ],
+    },
+  ];
+  const lineGraphData = [
     {
       id: "Total added",
       color: "white",
@@ -129,14 +108,26 @@ export default function StageCard(props: Props) {
     <CustomBox
       width={"100%"}
       minWidth={"250px"}
-      height={"100%"}
       variant="outer"
-      px={2}
+      height={"100%"}
+      sx={{ background: props.color }}
+      stack
+      alignItems={"center"}
+      pt={1}
+      gap={1}
     >
-      <Stack height={"100%"} alignItems={"center"} gap={3} pt={3}>
-        <Typography variant="h4" fontWeight={"bold"} color={props.color}>
-          {props.name}
-        </Typography>
+      <Typography variant="h5" fontWeight={"bold"} color={"var(--white)"}>
+        {props.name}
+      </Typography>
+      <CustomBox
+        width={"100%"}
+        height={"100%"}
+        stack
+        alignItems={"center"}
+        gap={3}
+        p={1}
+        sx={{ background: "var(--white)" }}
+      >
         <CustomBox
           width={"100%"}
           minHeight={"200px"}
@@ -152,42 +143,16 @@ export default function StageCard(props: Props) {
             py={2}
           >
             <div style={{ width: "100%", height: "150px" }}>
-              <MyResponsiveLine data={data} color={props.color} />
+              <MyResponsiveLine data={lineGraphData} color={props.color} />
             </div>
-            <Stack width={"100%"} alignItems={"center"} gap={1} mt={3}>
-              <StageStat
-                title="Total"
-                value={props.stageTotalLeads}
-                color={props.color}
-              />
-              <StageStat
-                title="Total added"
-                subTitle="this month"
-                value={props.stageTotalMonth}
-                color={props.color}
-              />
-              <StageStat
-                title="Total"
-                subTitle="this month"
-                value={"london"}
-                color={props.color}
-              />
-              <StageStat
-                title="Total"
-                subTitle="this month"
-                value={props.stageTotalMonth}
-                color={props.color}
-              />
-              <StageStat
-                title="Total"
-                subTitle="this month"
-                value={props.stageTotalMonth}
-                color={props.color}
-              />
+            <Stack width={"100%"} alignItems={"center"} gap={3} mt={3}>
+              {statData.map((stat) => {
+                return <DisplayStat key={stat.statTitle} stat={stat} />;
+              })}
             </Stack>
           </CustomBox>
         </CustomBox>
-      </Stack>
+      </CustomBox>
     </CustomBox>
   );
 }

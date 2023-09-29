@@ -15,12 +15,12 @@ import Task from "@/shared/interfaces/Tasks";
 import { formatDate, formatTime } from "@/shared/functions/formatDateTime";
 import StatusGenerator from "../../TasksComponents/StatusGenerator";
 import { DocumentData } from "@firebase/firestore-types";
-import { getDownloadURL, ref, getStorage } from "firebase/storage";
-import downloadFile, {
+import downloadAooAsSheet, {
   getTaskResult,
   getTaskDownloadUrl,
-} from "@/shared/functions/downloadFile";
+} from "@/shared/functions/downloadAooAsSheet";
 import CustomBox from "@/components/CustomComponents/CustomBox";
+import getFirstCharacter from "@/shared/functions/stringTransformers/getFirstCharacter";
 export interface ResultData {
   downloadUrl: string;
   response: Array<any>;
@@ -64,7 +64,11 @@ export default function ResultSummaryCard({
         resultData.response = response;
       });
     }
-    downloadFile(resultData, fileType, task);
+    const idShort = task._id.slice(0, 8);
+    downloadAooAsSheet(
+      resultData.response,
+      `FindFoxs${getFirstCharacter(task.tool)}_${idShort}.${fileType}`
+    );
     setTaskResultData({
       response: resultData.response,
       downloadUrl: resultData.downloadUrl,

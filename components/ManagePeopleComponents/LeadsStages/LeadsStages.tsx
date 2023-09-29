@@ -6,7 +6,7 @@ export default function LeadsStages() {
   return (
     <Stack
       direction={"row"}
-      gap={5}
+      gap={3}
       p={3}
       height={"100%"}
       flexWrap={"nowrap"}

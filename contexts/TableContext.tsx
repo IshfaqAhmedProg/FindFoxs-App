@@ -2,8 +2,7 @@ import { useTabsSelector } from "@/components/CustomComponents/CustomTabs";
 import {
   FilterParams,
   ITableContext,
-  SelectAllParams,
-  TabChangeParams,
+  SelectAllParams
 } from "@/shared/interfaces/Table";
 import React, { createContext, useContext, useState } from "react";
 
