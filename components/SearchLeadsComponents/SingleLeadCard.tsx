@@ -22,7 +22,7 @@ export default function SingleLeadCard({
   handleClose,
 }: {
   content: Lead;
-  handleClose: () => void;
+  handleClose: (e: React.MouseEvent<HTMLElement>) => void;
 }) {
   const iconColor = { color: "var(--graylight)" };
 
@@ -57,13 +57,12 @@ export default function SingleLeadCard({
   ];
   return (
     <>
-      <CustomIconButton kind="close" onClick={() => handleClose()} />
+      <CustomIconButton kind="close" onClick={handleClose} />
       <MenuItem sx={{ pointerEvents: "none" }}>
         <IdentityDisplay
           name={content.name}
           title={content.jobTitle}
           avatar={content.image}
-          maxWidth="220px"
         />
       </MenuItem>
       <Divider />

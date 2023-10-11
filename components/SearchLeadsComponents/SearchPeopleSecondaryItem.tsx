@@ -4,10 +4,14 @@ import Link from "next/link";
 import { Lead } from "@/shared/interfaces/Lead";
 import InsertLinkIcon from "@mui/icons-material/InsertLink";
 
-export default function SearchPeopleSecondaryItem({ content }: { content: Lead }) {
+export default function SearchPeopleSecondaryItem({
+  content,
+}: {
+  content: Lead;
+}) {
   const linkStyle = {
     color: "var(--primarylight)",
-    fontSize: "14px",
+    fontSize: "0.8em",
     width: "100%",
     display: "flex",
     alignItems: "center",
@@ -23,7 +27,7 @@ export default function SearchPeopleSecondaryItem({ content }: { content: Lead }
           style={linkStyle}
           passHref={true}
         >
-          <InsertLinkIcon sx={{ fontSize: "15px" }} />
+          <InsertLinkIcon sx={{ fontSize: "11px" }} />
           {content.companyName}
         </Link>
       </TableCell>

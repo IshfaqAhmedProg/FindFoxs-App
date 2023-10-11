@@ -6,14 +6,8 @@ interface Props {
   avatar?: string | null | undefined;
   name: string | null | undefined;
   title?: string;
-  maxWidth: string;
 }
-export default function IdentityDisplay({
-  avatar,
-  name,
-  title,
-  maxWidth,
-}: Props) {
+export default function IdentityDisplay({ avatar, name, title }: Props) {
   return (
     <>
       {avatar ? (
@@ -27,7 +21,7 @@ export default function IdentityDisplay({
       ) : (
         ""
       )}
-      <Stack textOverflow="ellipsis" width={maxWidth} overflow="hidden">
+      <Stack textOverflow="ellipsis" width={"15ch"} overflow="hidden">
         <Typography sx={{ fontWeight: "bold", color: "var(--primary)" }} noWrap>
           {name}
         </Typography>

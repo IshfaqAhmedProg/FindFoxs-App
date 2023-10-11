@@ -19,7 +19,11 @@ import TableCell from "@/components/TableComponents/TableCell";
 
 import SingleLeadCard from "./SingleLeadCard";
 
-export default function SearchPeoplePrimaryItem({ content }: { content: Lead }) {
+export default function SearchPeoplePrimaryItem({
+  content,
+}: {
+  content: Lead;
+}) {
   const [seeMoreOpenAnchor, setSeeMoreOpenAnchor] =
     useState<null | HTMLElement>(null);
   const seeMoreOpen = Boolean(seeMoreOpenAnchor);
@@ -43,7 +47,7 @@ export default function SearchPeoplePrimaryItem({ content }: { content: Lead }) 
     setSeeMoreOpenAnchor(event.currentTarget);
   }
 
-  function handleClose() {
+  function handleClose(e: React.MouseEvent<HTMLElement>) {
     setSeeMoreOpenAnchor(null);
   }
   return (
@@ -77,11 +81,13 @@ export default function SearchPeoplePrimaryItem({ content }: { content: Lead }) 
                 <Typography
                   noWrap
                   sx={{
-                    fontSize: 16,
+                    fontSize: "1em",
                     fontWeight: "700",
                     color: "var(--primarylight)",
                   }}
-                >{`${content.name}`}</Typography>
+                >
+                  {content.name}
+                </Typography>
               </button>
             </Tooltip>
             <Stack direction="row" gap={0.5}>

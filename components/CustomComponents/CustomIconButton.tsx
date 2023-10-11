@@ -24,14 +24,14 @@ const loadingIcon = <CircularProgress color="secondary" size={24} />;
 
 export default function CustomIconButton({
   children,
-  kind,
+  kind = "icon",
   loading,
   ...iconButtonProps
 }: CustomIconButtonProps) {
   switch (kind) {
     case "close":
       return (
-        <CloseButton>
+        <CloseButton {...iconButtonProps}>
           <ClearRoundedIcon />
         </CloseButton>
       );

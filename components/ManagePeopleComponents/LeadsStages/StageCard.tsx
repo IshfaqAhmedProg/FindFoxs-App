@@ -5,6 +5,8 @@ import { ResponsiveLine, Serie } from "@nivo/line";
 import { nivoTheme } from "@/shared/themes/nivoTheme";
 import Stats from "@/shared/interfaces/Stats";
 import DisplayStat from "@/components/CustomComponents/DisplayStats/DisplayStat";
+import MockLeads from "@/shared/data/MockLeads.json";
+import IdentityDisplay from "@/components/CustomComponents/IdentityDisplay/IdentityDisplay";
 interface Props {
   name: string;
   stageTotalLeads: number;
@@ -152,6 +154,23 @@ export default function StageCard(props: Props) {
             </Stack>
           </CustomBox>
         </CustomBox>
+        <Stack width={"100%"} height={"100%"}>
+          <Typography variant="h5" color={"var(--graylight)"}>
+            Recently Added
+          </Typography>
+          <Stack width={"100%"} sx={{ overflowY: "scroll" }}>
+            {MockLeads.map((lead) => {
+              return (
+                <IdentityDisplay
+                  key={lead._id}
+                  avatar={lead.image}
+                  name={lead.name}
+                  title={lead.jobTitle}
+                />
+              );
+            })}
+          </Stack>
+        </Stack>
       </CustomBox>
     </CustomBox>
   );

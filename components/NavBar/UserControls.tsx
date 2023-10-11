@@ -121,7 +121,6 @@ export default function UserControls({ container }: { container: any }) {
             avatar={user?.photoURL}
             name={user?.email}
             title="Team Manager"
-            maxWidth="15ch"
           />
         }
       />
